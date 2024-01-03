@@ -10,10 +10,10 @@ export function LocaleProvider({ children }: PropsWithChildren) {
 
   const languages = { en, ka };
 
-
   useEffect(() => {
-if()
-  },[])
+    const language = localStorage.getItem("language");
+    if (language) setLocale(language as Locale_Enum);
+  }, []);
 
   const toggleLocale = useCallback(() => {
     if (locale === Locale_Enum.KA) {
