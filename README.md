@@ -1,8 +1,2 @@
-# Starter Kit #1
-ყველაზე მარტივი და ზოგადი codebase ფინალური პროექტის დასაწყებად
+Amazon E-Commerce Project
 
-## Technologies Used
-
- **SASS** - for design
- **AXIOS** - for requests
- **React Context** - for context
