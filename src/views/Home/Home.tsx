@@ -18,7 +18,7 @@ export function Home() {
   return (
     <SHome>
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <div className="w-6 h-6"></div>
+      {/* <div className="w-6 h-6"></div> */}
       <button onClick={() => toggleTheme()}>შეცვალე theme</button>
     </SHome>
   );

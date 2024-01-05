@@ -1,11 +1,12 @@
 import { Outlet } from "react-router-dom";
-
+import { Header } from "./Header/Header";
+import { Footer } from "./Footer/Footer";
 export function PublicLayout() {
   return (
     <div>
-      <button>მაღლა</button>
+      <Header />
       <Outlet />
-      <button>დაბლა</button>
+      <Footer />
     </div>
   );
 }
