@@ -1,5 +1,3 @@
-function Header() {
-  return <div>Header</div>;
+export function Header() {
+  return <div>this is Header</div>;
 }
-
-export default Header;

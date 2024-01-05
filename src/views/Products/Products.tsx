@@ -15,7 +15,7 @@ export function Products() {
 
       <button
         onClick={() => {
-          localStorage.setItem("language", "ქართუი");
+          localStorage.setItem("language", "ქართული");
           setLanguage("ქართული");
         }}
       >
