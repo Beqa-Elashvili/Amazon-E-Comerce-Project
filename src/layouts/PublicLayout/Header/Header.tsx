@@ -1,6 +1,7 @@
 import React from "react";
 import { SHeader } from "./Header.style";
-
+import { FormattedMessage, useIntl } from "react-intl";
+import { Translate } from "./SelectLanguage";
 export function Header() {
   return (
     <SHeader className="bg-gray-900">
@@ -12,12 +13,29 @@ export function Header() {
         />
       </button>
       <button className="Deliver">
-        <h5>Deliver to</h5>
+        <h5>
+          <FormattedMessage id="Deliver-to" defaultMessage={"Deliver to"} />
+        </h5>
         <h3>
-          <img src="./Images/map cursor.png" alt="cursor" className="Map w-4 h-4 mr-0.5" />
+          <img
+            src="./Images/map cursor.png"
+            alt="cursor"
+            className="Map w-4 h-4 mr-0.5"
+          />
           Los Angeles
         </h3>
       </button>
+      <div className="Search-input">
+        <input type="text" placeholder="Search Amazon" />
+        <button className="input-btn">
+          <img
+            className=" w-5 h-5"
+            src="./Images/search-icon.png"
+            alt="search-icon"
+          />
+        </button>
+      </div>
+      <Translate />
     </SHeader>
   );
 }
