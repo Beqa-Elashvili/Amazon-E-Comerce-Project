@@ -77,3 +77,33 @@ export const SHeader = styled.div`
     }
   }
 `;
+export const Hbuttons = styled.div`
+  display: flex;
+  gap: 4px;
+  & button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: start;
+    color: #ffffff;
+    height: 55px;
+    padding: 20px 6px 20px 6px;
+    & p {
+      font-size: 11px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+  }
+  & .shop-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    & h4 {
+      margin-top: 18px;
+    }
+  }
+  & .shopping-cart-icon {
+    height: 45px;
+    width: 45px;
+    filter: brightness(0) invert(1) grayscale(1);
+  }
+`;

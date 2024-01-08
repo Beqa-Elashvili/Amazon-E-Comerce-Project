@@ -1,11 +1,12 @@
 import React from "react";
-import { SHeader } from "./Header.style";
+import { SHeader, Hbuttons } from "./Header.style";
 import { FormattedMessage, useIntl } from "react-intl";
 import { Translate } from "./SelectLanguage";
 export function Header() {
   return (
     <SHeader className="bg-gray-900">
       <button>
+        ,
         <img
           src="./IMages/amazon logo.png"
           alt="amazon Logo"
@@ -36,6 +37,37 @@ export function Header() {
         </button>
       </div>
       <Translate />
+      <Hbuttons>
+        <button>
+          <p>
+            <FormattedMessage
+              id="Hello,sign in"
+              defaultMessage={"Hello, Sign in"}
+            />
+          </p>
+          <h4>
+            <FormattedMessage id="Account-&-Lists"/>
+          </h4>
+        </button>
+        <button>
+          <p>
+            <FormattedMessage id="returns" />
+          </p>
+          <h4>
+            <FormattedMessage id="Orders"/>
+          </h4>
+        </button>
+        <button className="shop-button">
+          <img
+            className="shopping-cart-icon"
+            src="./Images/shopping-cart-icon.png"
+            alt="Shopping-cart-icon"
+          />
+          <h4>
+            <FormattedMessage id="Cart"/>
+          </h4>
+        </button>
+      </Hbuttons>
     </SHeader>
   );
 }

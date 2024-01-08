@@ -1,2 +1,7 @@
 {"hello": "hello",
-"Deliver-to" : "Deliver to"}
+"Deliver-to" : "Deliver to",
+ "Hello,sign in" : " Hello, Sign in",
+ "Account-&-Lists" : "Account & Lists",
+"returns" : "returns",
+"Orders" : " & Orders", 
+"Cart" : "Cart"}
