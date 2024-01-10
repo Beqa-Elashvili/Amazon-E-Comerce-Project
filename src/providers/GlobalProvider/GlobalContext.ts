@@ -1,11 +1,22 @@
-import { createContext } from "react";
+import { Dispatch, SetStateAction, createContext } from "react";
 
 interface TGlobalContext {
-  count: number;
-  setCount: React.Dispatch<React.SetStateAction<number>>;
+  categorys: {
+    category: string;
+    Id: string;
+  }[];
+
+  setCategorys: Dispatch<
+    SetStateAction<
+      {
+        category: string;
+        Id: string;
+      }[]
+    >
+  >;
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
-  count: 0,
-  setCount: () => {},
+  categorys: [],
+  setCategorys: () => {},
 });

@@ -2,11 +2,16 @@ import React from "react";
 import { SHeader, Hbuttons } from "./Header.style";
 import { FormattedMessage, useIntl } from "react-intl";
 import { Translate } from "./SelectLanguage";
+import { useContext } from "react";
+import { GlobalContext } from "@src/providers/GlobalProvider";
+import { Divider } from "antd";
+
 export function Header() {
+  const { categorys } = useContext(GlobalContext);
+
   return (
     <SHeader className="bg-gray-900">
       <button>
-        ,
         <img
           src="./IMages/amazon logo.png"
           alt="amazon Logo"
@@ -26,7 +31,17 @@ export function Header() {
           Los Angeles
         </h3>
       </button>
+
       <div className="Search-input">
+        <select name="All" id="All">
+          {categorys?.map((category) => {
+            return (
+              <option key={category.Id} value={category.category}>
+                {category.category}
+              </option>
+            );
+          })}
+        </select>
         <input type="text" placeholder="Search Amazon" />
         <button className="input-btn">
           <img
@@ -46,15 +61,18 @@ export function Header() {
             />
           </p>
           <h4>
-            <FormattedMessage id="Account-&-Lists"/>
+            <FormattedMessage
+              id="Account-&-Lists"
+              defaultMessage={"Account-&-Lists"}
+            />
           </h4>
         </button>
         <button>
           <p>
-            <FormattedMessage id="returns" />
+            <FormattedMessage id="returns" defaultMessage={"returns"} />
           </p>
           <h4>
-            <FormattedMessage id="Orders"/>
+            <FormattedMessage id="Orders" defaultMessage={"Orders"} />
           </h4>
         </button>
         <button className="shop-button">
@@ -64,7 +82,7 @@ export function Header() {
             alt="Shopping-cart-icon"
           />
           <h4>
-            <FormattedMessage id="Cart"/>
+            <FormattedMessage id="Cart" defaultMessage={"Cart"} />
           </h4>
         </button>
       </Hbuttons>

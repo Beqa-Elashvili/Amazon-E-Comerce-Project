@@ -11,6 +11,7 @@ export const SHeader = styled.div`
   }
   & button {
     border: none;
+    width: max-content;
     padding: 12px 4px 0px 0px;
     background-color: rgb(17 24 39);
     cursor: pointer;
@@ -21,8 +22,8 @@ export const SHeader = styled.div`
     margin-left: 4px;
     flex-direction: column;
     color: #ffffff;
-    padding: 11px;
-    width: 155px;
+    padding: 10px;
+    min-width: max-content;
   }
   & .Map {
     filter: brightness(0) invert(1) grayscale(1);
@@ -35,18 +36,42 @@ export const SHeader = styled.div`
   & h3 {
     font-weight: 600;
   }
+  & select {
+    text-align: center;
+    position: absolute;
+    margin-left: 20px;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+    background-color: #d0d1d1;
+    height: 44px;
+    border-radius: 4px 0px 0px 4px;
+    border: none;
+    border-right: 1px grey solid;
+    color: #515452;
+    transition: border-color 1s;
+    :focus {
+      border: 2px solid;
+      border-color: lightcoral;
+      outline: none;
+    }
+    & option {
+      background-color: #ffffff;
+      color: black;
+    }
+  }
+
   & .Search-input {
     display: flex;
     align-items: center;
     position: relative;
   }
   & input {
-    padding: 14px;
+    padding: 14px 120px;
     border: 5px hidden;
-    border-radius: 4px 4px 4px 4px;
+    border-radius: 4px;
     transition: border-color 1s;
-    width: 800px;
-    margin-left: 12px;
+    width: 820px;
+    margin-left: 20px;
     :focus {
       border: 2px solid;
       border-color: lightcoral;

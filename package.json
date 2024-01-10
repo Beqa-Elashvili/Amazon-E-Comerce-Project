@@ -17,12 +17,14 @@
     "react-router-dom": "^6.21.1",
     "styled-components": "^5.3.6",
     "tailwind": "^4.0.0",
+    "uuid": "^9.0.1",
     "vite-tsconfig-paths": "^4.2.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@types/styled-components": "^5.1.29",
+    "@types/uuid": "^9.0.7",
     "@vitejs/plugin-react": "^3.1.0",
     "autoprefixer": "^10.4.16",
     "babel-plugin-macros": "^3.1.0",
