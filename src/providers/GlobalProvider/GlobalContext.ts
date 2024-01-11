@@ -6,6 +6,11 @@ interface TGlobalContext {
     Id: string;
   }[];
 
+  categoryes: {
+    category: string;
+    id: string;
+  }[];
+
   setCategorys: Dispatch<
     SetStateAction<
       {
@@ -14,9 +19,19 @@ interface TGlobalContext {
       }[]
     >
   >;
+  setCategoryes: Dispatch<
+    SetStateAction<
+      {
+        category: string;
+        id: string;
+      }[]
+    >
+  >;
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
   categorys: [],
+  categoryes: [],
   setCategorys: () => {},
+  setCategoryes: () => {},
 });

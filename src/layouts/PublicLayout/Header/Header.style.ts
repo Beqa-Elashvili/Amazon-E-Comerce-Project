@@ -57,6 +57,7 @@ export const SHeader = styled.div`
     & option {
       background-color: #ffffff;
       color: black;
+      text-align: center;
     }
   }
 
@@ -71,7 +72,6 @@ export const SHeader = styled.div`
     border-radius: 4px;
     transition: border-color 1s;
     width: 820px;
-    margin-left: 20px;
     :focus {
       border: 2px solid;
       border-color: lightcoral;
@@ -130,5 +130,38 @@ export const Hbuttons = styled.div`
     height: 45px;
     width: 45px;
     filter: brightness(0) invert(1) grayscale(1);
+  }
+`;
+export const SCategoryMenu = styled.div`
+  display: flex;
+  background-image: linear-gradient(
+    to bottom,
+    #051937,
+    #004d7a,
+    #008793,
+    #00bf72,
+    #a8eb12
+  );
+  justify-content: space-evenly;
+  height: 40px;
+  & button {
+    padding: 12px;
+    height: 40px;
+    color: #ffffff;
+    font-family: serif;
+    border-radius: 2px;
+    background-image: linear-gradient(
+      to bottom,
+      #051937,
+      #004d7a,
+      #008793,
+      #00bf72,
+      #a8eb12
+    );
+    border: none;
+    :hover {
+      cursor: pointer;
+      border: 2px white solid;
+    }
   }
 `;
