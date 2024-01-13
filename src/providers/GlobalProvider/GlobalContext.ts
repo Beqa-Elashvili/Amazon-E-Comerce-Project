@@ -6,6 +6,22 @@ interface TGlobalContext {
     Id: string;
   }[];
 
+  footerLinks: {
+    Carrer: string;
+    Name: string;
+    id: string;
+  }[];
+
+  setFooterLinks: Dispatch<
+    SetStateAction<
+      {
+        Carrer: string;
+        Name: string;
+        id: string;
+      }[]
+    >
+  >;
+
   categoryes: {
     category: string;
     id: string;
@@ -19,6 +35,7 @@ interface TGlobalContext {
       }[]
     >
   >;
+
   setCategoryes: Dispatch<
     SetStateAction<
       {
@@ -32,6 +49,8 @@ interface TGlobalContext {
 export const GlobalContext = createContext<TGlobalContext>({
   categorys: [],
   categoryes: [],
+  footerLinks: [],
+  setFooterLinks: () => {},
   setCategorys: () => {},
   setCategoryes: () => {},
 });

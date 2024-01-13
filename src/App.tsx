@@ -22,10 +22,10 @@ function App() {
         </Routes>
       </Suspense>
 
-      <div>
+      {/* <div>
         <button onClick={() => toggleLocale()}>change</button>
         <FormattedMessage id="hello" defaultMessage={"hello"} />
-      </div>
+      </div> */}
     </div>
   );
 }

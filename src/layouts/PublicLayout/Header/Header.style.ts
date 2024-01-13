@@ -134,14 +134,7 @@ export const Hbuttons = styled.div`
 `;
 export const SCategoryMenu = styled.div`
   display: flex;
-  background-image: linear-gradient(
-    to bottom,
-    #051937,
-    #004d7a,
-    #008793,
-    #00bf72,
-    #a8eb12
-  );
+  background-color: #232f3e;
   justify-content: space-evenly;
   height: 40px;
   & button {
@@ -150,14 +143,7 @@ export const SCategoryMenu = styled.div`
     color: #ffffff;
     font-family: serif;
     border-radius: 2px;
-    background-image: linear-gradient(
-      to bottom,
-      #051937,
-      #004d7a,
-      #008793,
-      #00bf72,
-      #a8eb12
-    );
+    background-color: #232f3e;
     border: none;
     :hover {
       cursor: pointer;
