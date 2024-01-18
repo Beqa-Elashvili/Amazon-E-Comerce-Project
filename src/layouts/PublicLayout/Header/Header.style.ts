@@ -5,6 +5,7 @@ export const SHeader = styled.div`
   max-height: 62px;
   display: flex;
   align-items: center;
+  justify-content: center;
   & button:hover {
     border: solid 1px #ffffff;
     border-radius: 3%;
@@ -18,12 +19,10 @@ export const SHeader = styled.div`
   }
   & .Deliver {
     display: flex;
-    min-width: 120px;
     margin-left: 4px;
     flex-direction: column;
     color: #ffffff;
     padding: 10px;
-    min-width: max-content;
   }
   & .Map {
     filter: brightness(0) invert(1) grayscale(1);
@@ -60,7 +59,6 @@ export const SHeader = styled.div`
       text-align: center;
     }
   }
-
   & .Search-input {
     display: flex;
     align-items: center;
@@ -71,7 +69,7 @@ export const SHeader = styled.div`
     border: 5px hidden;
     border-radius: 4px;
     transition: border-color 1s;
-    width: 820px;
+    width: 800px;
     :focus {
       border: 2px solid;
       border-color: lightcoral;

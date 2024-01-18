@@ -7,7 +7,7 @@ interface TGlobalContext {
   }[];
 
   footerLinks: {
-    Carrer: string;
+    Destination: string;
     Name: string;
     id: string;
   }[];
@@ -15,7 +15,7 @@ interface TGlobalContext {
   setFooterLinks: Dispatch<
     SetStateAction<
       {
-        Carrer: string;
+        Destination: string;
         Name: string;
         id: string;
       }[]
