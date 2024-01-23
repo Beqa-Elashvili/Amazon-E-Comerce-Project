@@ -1,6 +1,9 @@
+import { FooterLine } from "./FooterStyle";
+
 export function AuthFooter(): JSX.Element {
   return (
-    <div className="flex items-center justify-center flex-col text-sm font-sans">
+    <FooterLine className="flex items-center justify-center flex-col text-sm font-sans">
+      <div className="line mb-5 mt-5"></div>
       <div className="flex gap-7">
         <a
           className="no-underline hover:text-amber-600 hover:underline"
@@ -21,9 +24,7 @@ export function AuthFooter(): JSX.Element {
           Help
         </a>
       </div>
-      <div className="mt-3">
-        © 1996-2024, Amazon.com, Inc. or its affiliates
-      </div>
-    </div>
+      <p className="mt-2">© 1996-2024, Amazon.com, Inc. or its affiliates</p>
+    </FooterLine>
   );
 }

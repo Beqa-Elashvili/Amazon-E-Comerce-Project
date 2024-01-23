@@ -8,8 +8,8 @@ import { AutLayouts } from "@src/layouts/AutLayouts";
 
 const Home = lazy(() => import("@src/views/Home"));
 const Products = lazy(() => import("@src/views/Products"));
-const Login = lazy(() => import("@src/views/Login"));
-const Register = lazy(() => import("@src/views/Register"));
+const Login = lazy(() => import("@src/views/AuthViews/Login"));
+const Register = lazy(() => import("@src/views/AuthViews/Register"));
 
 function App() {
   const { toggleLocale } = useContext(LocaleContext);

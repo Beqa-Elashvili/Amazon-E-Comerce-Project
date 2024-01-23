@@ -4,8 +4,10 @@ import { Translate } from "./SelectLanguage";
 import { useContext } from "react";
 import { GlobalContext } from "@src/providers/GlobalProvider";
 import { Category } from "./CategoryMenu";
+import { useNavigate } from "react-router-dom";
 
 export function Header() {
+  const navigate = useNavigate();
   const { categorys } = useContext(GlobalContext);
 
   return (
@@ -52,7 +54,7 @@ export function Header() {
         </div>
         <Translate />
         <Hbuttons>
-          <button>
+          <button onClick={() => navigate("/Register")}>
             <p>
               <FormattedMessage
                 id="Hello,sign in"
