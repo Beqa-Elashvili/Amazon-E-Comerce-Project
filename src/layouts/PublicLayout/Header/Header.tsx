@@ -54,7 +54,7 @@ export function Header() {
         </div>
         <Translate />
         <Hbuttons>
-          <button onClick={() => navigate("/Register")}>
+          <button onClick={() => navigate("/Login")}>
             <p>
               <FormattedMessage
                 id="Hello,sign in"

@@ -16,7 +16,7 @@ export function Login(): JSX.Element {
       <div className="content">
         <Form
           className="flex flex-col justify-center"
-          name="basic"
+          name="Sign in"
           initialValues={{ remember: true }}
           autoComplete="off"
         >
@@ -31,20 +31,24 @@ export function Login(): JSX.Element {
               },
             ]}
           >
-            <Input />
+            <Input autoComplete="off" />
           </Form.Item>
           <h5>Password</h5>
           <Form.Item
             name="password"
             rules={[{ required: true, message: "Please input your password!" }]}
           >
-            <Input.Password placeholder="At least 6 charecters" />
-            <div className="flex mt-2">
-              <img className="h-4 w-4" src="./Images/Img-!.png" alt="" />
-              <p>Passwords must be at least 6 characters.</p>
+            <div>
+              <Input.Password
+                autoComplete="off"
+                placeholder="At least 6 charecters"
+              />
+              <div className="flex mt-2">
+                <img className="h-4 w-4" src="./Images/Img-!.png" alt="" />
+                <p>Passwords must be at least 6 characters.</p>
+              </div>
             </div>
           </Form.Item>
-          <Form.Item name="remember" valuePropName="checked"></Form.Item>
           <Form.Item wrapperCol={{ offset: 0, span: 1 }}>
             <Button
               className="bg-yellow-400"

@@ -214,7 +214,6 @@ const SelectCategorys = [
     Id: uuidv4(),
   },
 ];
-console.log(footerAmazonLinks);
 
 export function GlobalProvider({ children }: PropsWithChildren) {
   const [categorys, setCategorys] = useState(SelectCategorys);
