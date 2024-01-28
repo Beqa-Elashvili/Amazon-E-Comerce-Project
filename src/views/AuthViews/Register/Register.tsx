@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { Button, Form, Input } from "antd";
 import { RegisterStyle } from "../Authstyle";
 import { useNavigate } from "react-router-dom";
-import { useSignUp } from "./hooks/useSignUp";
+import { BaseAxios } from "@src/utils/Base_Axios";
+import { useAuthPRovider } from "@src/providers/AuthProvider";
+import { TAuthTokens } from "@src/@types/TokensTypes";
 
 export type RegisterFormValue = {
   first_name: string;
@@ -14,8 +17,9 @@ export type RegisterFormValue = {
 
 export function Register(): JSX.Element {
   const [form] = Form.useForm();
+  const [authLoading, setAuthLoading] = useState(false);
+  const { setAuthData } = useAuthPRovider();
   const navigate = useNavigate();
-  const { SignUpUser } = useSignUp();
 
   async function onfinish(values: RegisterFormValue) {
     if (values.password !== values.repeat_password) {
@@ -27,7 +31,14 @@ export function Register(): JSX.Element {
       ]);
       return;
     }
-    await SignUpUser(values);
+    try {
+      setAuthLoading(true);
+      const resp = await BaseAxios.post("/auth/register", values);
+      setAuthData(resp.data as TAuthTokens);
+    } catch (error) {
+    } finally {
+      setAuthLoading(false);
+    }
   }
 
   return (
@@ -61,19 +72,7 @@ export function Register(): JSX.Element {
           >
             <Input placeholder="Enter Your Lastname" autoComplete="off" />
           </Form.Item>
-          <h5>Email</h5>
-          <Form.Item
-            name="email"
-            rules={[
-              {
-                required: true,
-                message: "Please input your email !",
-              },
-            ]}
-          >
-            <Input autoComplete="off" />
-          </Form.Item>
-          <h5>Mobile Number</h5>
+          <h5>Phone Number</h5>
           <Form.Item
             name="phone_number"
             rules={[
@@ -88,6 +87,18 @@ export function Register(): JSX.Element {
               placeholder="mobile number must be 9 characters"
             />
           </Form.Item>
+          <h5>Email</h5>
+          <Form.Item
+            name="email"
+            rules={[
+              {
+                required: true,
+                message: "Please input your email !",
+              },
+            ]}
+          >
+            <Input autoComplete="off" />
+          </Form.Item>
           <h5>Password</h5>
           <Form.Item
             name="password"
@@ -100,7 +111,7 @@ export function Register(): JSX.Element {
               />
               <div className="flex mt-2">
                 <img className="h-4 w-4" src="./Images/Img-!.png" alt="!-Img" />
-                <p>Passwords must be at least 6 characters.</p>
+                <p>Passwords must be at least 8 characters.</p>
               </div>
             </div>
           </Form.Item>
@@ -115,6 +126,7 @@ export function Register(): JSX.Element {
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 0, span: 1 }}>
             <Button
+              loading={authLoading}
               className="bg-yellow-400"
               style={{ width: 325, color: "black" }}
               type="primary"

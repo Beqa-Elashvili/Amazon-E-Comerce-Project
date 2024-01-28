@@ -2,32 +2,54 @@ import { Form, Button, Input } from "antd";
 import { RegisterStyle } from "../Authstyle";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuthPRovider } from "@src/providers/AuthProvider";
+import { BaseAxios } from "@src/utils/Base_Axios";
+import { TAuthTokens } from "@src/@types/TokensTypes";
+
+export type LoginFormValue = {
+  email: string;
+  password: string;
+};
 
 export function Login(): JSX.Element {
   const [isDivVisible, setDivVisible] = useState(false);
+  const [authLoading, setAuthLoading] = useState(false);
+  const { setAuthData } = useAuthPRovider();
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
     setDivVisible(!isDivVisible);
   };
 
+  async function onfinish(values: LoginFormValue) {
+    try {
+      setAuthLoading(true);
+      const resp = await BaseAxios.post("/auth/login", values);
+      setAuthData(resp.data as TAuthTokens);
+    } catch (error) {
+    } finally {
+      setAuthLoading(false);
+    }
+  }
+
   return (
     <RegisterStyle className="flex justify-center items-center flex-col">
       <div className="content">
-        <Form
+        <Form<LoginFormValue>
+          onFinish={onfinish}
           className="flex flex-col justify-center"
           name="Sign in"
           initialValues={{ remember: true }}
           autoComplete="off"
         >
           <h1 className="mb-2">Sign in</h1>
-          <h5>Email or mobile phone number</h5>
+          <h5>Email</h5>
           <Form.Item
             name="email"
             rules={[
               {
                 required: true,
-                message: "Please input your email or mobile number!",
+                message: "Please input your email !",
               },
             ]}
           >
@@ -39,18 +61,16 @@ export function Login(): JSX.Element {
             rules={[{ required: true, message: "Please input your password!" }]}
           >
             <div>
-              <Input.Password
-                autoComplete="off"
-                placeholder="At least 6 charecters"
-              />
+              <Input.Password autoComplete="off" />
               <div className="flex mt-2">
                 <img className="h-4 w-4" src="./Images/Img-!.png" alt="" />
-                <p>Passwords must be at least 6 characters.</p>
+                <p>Passwords must be at least 8 characters.</p>
               </div>
             </div>
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 0, span: 1 }}>
             <Button
+              loading={authLoading}
               className="bg-yellow-400"
               style={{ width: 325, color: "black" }}
               type="primary"
