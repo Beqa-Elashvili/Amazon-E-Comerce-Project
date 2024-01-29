@@ -1,4 +1,4 @@
-import { Form, Button, Input } from "antd";
+import { Form, Button, Input, Alert } from "antd";
 import { RegisterStyle } from "../Authstyle";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -12,8 +12,9 @@ export type LoginFormValue = {
 };
 
 export function Login(): JSX.Element {
-  const [isDivVisible, setDivVisible] = useState(false);
-  const [authLoading, setAuthLoading] = useState(false);
+  const [isDivVisible, setDivVisible] = useState<boolean>(false);
+  const [authLoading, setAuthLoading] = useState<boolean>(false);
+  const [authError, setAuthError] = useState<boolean>(false);
   const { setAuthData } = useAuthPRovider();
   const navigate = useNavigate();
 
@@ -26,7 +27,9 @@ export function Login(): JSX.Element {
       setAuthLoading(true);
       const resp = await BaseAxios.post("/auth/login", values);
       setAuthData(resp.data as TAuthTokens);
-    } catch (error) {
+      navigate("/");
+    } catch (error: any) {
+      setAuthError(true);
     } finally {
       setAuthLoading(false);
     }
@@ -109,6 +112,13 @@ export function Login(): JSX.Element {
             <h5>Buying for work?</h5>
             <a href="">Shop on Amazon Business</a>
           </div>
+          {authError && (
+            <Alert
+              className="mt-2"
+              type="error"
+              message="მომხმარებლის იმეილი ან პაროლი არასწორია"
+            />
+          )}
         </Form>
       </div>
       <div className="flex items-center justify-center">

@@ -11,7 +11,6 @@ export function AuthProvider({ children }: PropsWithChildren) {
   const [authStatus, setAuthStatus] = useState<TAuthorizationStatus_Enum>(
     TAuthorizationStatus_Enum.UNAUTHORIZED
   );
-  console.log(userData);
 
   async function setAuthData(tokens: TAuthTokens) {
     const userData: TUserData = jwtDecode(tokens.access_token);
