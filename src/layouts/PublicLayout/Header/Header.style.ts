@@ -6,20 +6,21 @@ export const SHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  & button {
+    border: none;
+    width: max-content;
+    background-color: rgb(17 24 39);
+    cursor: pointer;
+  }
   & button:hover {
     border: solid 1px #ffffff;
     border-radius: 3%;
   }
-  & button {
-    border: none;
-    width: max-content;
-    padding: 12px 4px 0px 0px;
-    background-color: rgb(17 24 39);
-    cursor: pointer;
-  }
   & .Deliver {
     display: flex;
     margin-left: 4px;
+    min-width: 155px;
     flex-direction: column;
     color: #ffffff;
     padding: 10px;
@@ -76,6 +77,7 @@ export const SHeader = styled.div`
       outline: none;
     }
   }
+
   & .input-btn {
     position: absolute;
     right: 0;
@@ -99,6 +101,9 @@ export const SHeader = styled.div`
       margin-left: 4px;
     }
   }
+  & .border-div button {
+    border: none;
+  }
 `;
 export const Hbuttons = styled.div`
   display: flex;
@@ -112,7 +117,6 @@ export const Hbuttons = styled.div`
     height: 55px;
     padding: 20px 6px 20px 6px;
     & p {
-      font-size: 11px;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
   }

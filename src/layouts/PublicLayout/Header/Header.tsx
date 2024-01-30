@@ -1,10 +1,11 @@
 import { SHeader, Hbuttons } from "./Header.style";
 import { FormattedMessage } from "react-intl";
-import { Translate } from "./SelectLanguage";
+import { Translate } from "./HeaderComponents/SelectLanguage";
 import { useContext } from "react";
 import { GlobalContext } from "@src/providers/GlobalProvider";
-import { Category } from "./CategoryMenu";
+import { Category } from "./HeaderComponents/CategoryMenu";
 import { useNavigate } from "react-router-dom";
+import { UserAvatar } from "./HeaderComponents/UserAvatar";
 
 export function Header() {
   const navigate = useNavigate();
@@ -53,21 +54,8 @@ export function Header() {
           </button>
         </div>
         <Translate />
+        <UserAvatar />
         <Hbuttons>
-          <button onClick={() => navigate("/Login")}>
-            <p>
-              <FormattedMessage
-                id="Hello,sign in"
-                defaultMessage={"Hello, Sign in"}
-              />
-            </p>
-            <h4>
-              <FormattedMessage
-                id="Account-&-Lists"
-                defaultMessage={"Account-&-Lists"}
-              />
-            </h4>
-          </button>
           <button>
             <p>
               <FormattedMessage id="returns" defaultMessage={"returns"} />

@@ -1,0 +1,1 @@
+export { BackSlider } from "./BackGroundImages";

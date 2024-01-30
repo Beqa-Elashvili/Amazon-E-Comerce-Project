@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { BaseAxios } from "@src/utils/Base_Axios";
 import { useAuthPRovider } from "@src/providers/AuthProvider";
 import { TAuthTokens } from "@src/@types/TokensTypes";
+import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export type RegisterFormValue = {
   first_name: string;
@@ -16,6 +17,9 @@ export type RegisterFormValue = {
 };
 
 export function Register(): JSX.Element {
+  const { ChooceGender } = useGlobalProvider();
+  const { selectedGender, setSelectedGender } = useGlobalProvider();
+
   const [form] = Form.useForm();
   const [authLoading, setAuthLoading] = useState(false);
   const { setAuthData } = useAuthPRovider();
@@ -35,11 +39,18 @@ export function Register(): JSX.Element {
       setAuthLoading(true);
       const resp = await BaseAxios.post("/auth/register", values);
       setAuthData(resp.data as TAuthTokens);
-    } catch (error) {
+      navigate("/login");
+    } catch (error: any) {
+      console.log(error.message);
     } finally {
       setAuthLoading(false);
     }
   }
+
+  function handleButtonClick(genderId: any) {
+    setSelectedGender(genderId);
+  }
+  console.log(selectedGender);
 
   return (
     <RegisterStyle className="flex justify-center">
@@ -124,6 +135,27 @@ export function Register(): JSX.Element {
           >
             <Input.Password autoComplete="off" />
           </Form.Item>
+          <div className="text-center">
+            {ChooceGender.map((gender) => {
+              return (
+                <Button
+                  className={`mb-5 mt-5 gender-id w-32 border-solid rounded-md ${
+                    selectedGender === gender.label ? "selected" : ""
+                  }`}
+                  style={{
+                    backgroundColor:
+                      selectedGender === gender.label ? "#5c5dd0" : "#bbcdca",
+                    color: selectedGender === gender.label ? "white" : "black",
+                  }}
+                  key={gender.id}
+                  onClick={() => handleButtonClick(gender.label)}
+                >
+                  {gender.label}
+                </Button>
+              );
+            })}
+          </div>
+
           <Form.Item wrapperCol={{ offset: 0, span: 1 }}>
             <Button
               loading={authLoading}
