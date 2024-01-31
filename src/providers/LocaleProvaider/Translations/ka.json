@@ -4,4 +4,15 @@
 "Account-&-Lists" : "ექაუნთი & სიები",
 "returns" : "დაბრუნება",
 "Orders" : "& შეკვეთები",
-"Cart" : "კალათა"}
+"Cart" : "კალათა",
+"Create_Account": "ექაუნთის შექმნა",
+"First_Name": "სახელი",
+"Last_Name": "გვარი",
+"Phone_Number": "მობილურის ნომერი",
+"Email": "იმეილი",
+"Password": "პაროლი",
+"Re-enter_Password": "გაიმეორეთ პაროლი",
+"Continue": "გაგრძელება",
+"Sign-in": "შესვლა",
+"Create_Your_Amazon_Account":"შექმენი შენი ამაზონის ექაუნთი"
+}

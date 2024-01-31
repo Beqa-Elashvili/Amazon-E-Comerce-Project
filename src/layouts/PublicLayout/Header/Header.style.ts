@@ -70,7 +70,7 @@ export const SHeader = styled.div`
     border: 5px hidden;
     border-radius: 4px;
     transition: border-color 1s;
-    width: 800px;
+    width: 740px;
     :focus {
       border: 2px solid;
       border-color: lightcoral;

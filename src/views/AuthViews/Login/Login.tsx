@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthPRovider } from "@src/providers/AuthProvider";
 import { BaseAxios } from "@src/utils/Base_Axios";
 import { TAuthTokens } from "@src/@types/TokensTypes";
+import { FormattedMessage } from "react-intl";
 
 export type LoginFormValue = {
   email: string;
@@ -45,8 +46,12 @@ export function Login(): JSX.Element {
           initialValues={{ remember: true }}
           autoComplete="off"
         >
-          <h1 className="mb-2">Sign in</h1>
-          <h5>Email</h5>
+          <h1 className="mb-2">
+            <FormattedMessage id="Sign-in" defaultMessage={"Sign in"} />
+          </h1>
+          <h5>
+            <FormattedMessage id="Email" defaultMessage={"Email"} />
+          </h5>
           <Form.Item
             name="email"
             rules={[
@@ -58,7 +63,9 @@ export function Login(): JSX.Element {
           >
             <Input autoComplete="off" />
           </Form.Item>
-          <h5>Password</h5>
+          <h5>
+            <FormattedMessage id="Password" defaultMessage={"Password"} />
+          </h5>
           <Form.Item
             name="password"
             rules={[{ required: true, message: "Please input your password!" }]}
@@ -79,7 +86,7 @@ export function Login(): JSX.Element {
               type="primary"
               htmlType="submit"
             >
-              Continue
+              <FormattedMessage id="Continue" defaultMessage={"Continue"} />
             </Button>
           </Form.Item>
           <p>
@@ -132,7 +139,10 @@ export function Login(): JSX.Element {
         }}
         className="link-button bg-white hover:bg-gray-100 cursor-pointer"
       >
-        Create your Amazon account
+        <FormattedMessage
+          id="Create_Your_Amazon_Account"
+          defaultMessage={"Create your Amazon account"}
+        />
       </button>
     </RegisterStyle>
   );

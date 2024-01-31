@@ -6,6 +6,7 @@ import { BaseAxios } from "@src/utils/Base_Axios";
 import { useAuthPRovider } from "@src/providers/AuthProvider";
 import { TAuthTokens } from "@src/@types/TokensTypes";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
+import { FormattedMessage } from "react-intl";
 
 export type RegisterFormValue = {
   first_name: string;
@@ -50,7 +51,6 @@ export function Register(): JSX.Element {
   function handleButtonClick(genderId: any) {
     setSelectedGender(genderId);
   }
-  console.log(selectedGender);
 
   return (
     <RegisterStyle className="flex justify-center">
@@ -63,15 +63,24 @@ export function Register(): JSX.Element {
           autoComplete="off"
           onFinish={onfinish}
         >
-          <h1>Create Account</h1>
-          <h5>First Name</h5>
+          <h1 className="mb-2">
+            <FormattedMessage
+              id="Create_Account"
+              defaultMessage={"Create Account"}
+            />
+          </h1>
+          <h5>
+            <FormattedMessage id="First_Name" defaultMessage={"First Name"} />
+          </h5>
           <Form.Item
             name="first_name"
             rules={[{ required: true, message: "Please input your username!" }]}
           >
             <Input name="bb" placeholder="Enter Your Username" />
           </Form.Item>
-          <h5>Last Name</h5>
+          <h5>
+            <FormattedMessage id="Last_Name" defaultMessage={"Last Name"} />
+          </h5>
           <Form.Item
             name="last_name"
             rules={[
@@ -83,7 +92,12 @@ export function Register(): JSX.Element {
           >
             <Input placeholder="Enter Your Lastname" autoComplete="off" />
           </Form.Item>
-          <h5>Phone Number</h5>
+          <h5>
+            <FormattedMessage
+              id="Phone_Number"
+              defaultMessage={"Phone Number"}
+            />
+          </h5>
           <Form.Item
             name="phone_number"
             rules={[
@@ -98,7 +112,9 @@ export function Register(): JSX.Element {
               placeholder="mobile number must be 9 characters"
             />
           </Form.Item>
-          <h5>Email</h5>
+          <h5>
+            <FormattedMessage id="Email" defaultMessage={"Email"} />
+          </h5>
           <Form.Item
             name="email"
             rules={[
@@ -110,7 +126,9 @@ export function Register(): JSX.Element {
           >
             <Input autoComplete="off" />
           </Form.Item>
-          <h5>Password</h5>
+          <h5>
+            <FormattedMessage id="Password" defaultMessage={"Password"} />
+          </h5>
           <Form.Item
             name="password"
             rules={[{ required: true, message: "Please input your password!" }]}
@@ -126,7 +144,12 @@ export function Register(): JSX.Element {
               </div>
             </div>
           </Form.Item>
-          <h5>Re-enter password</h5>
+          <h5>
+            <FormattedMessage
+              id="Re-enter_Password"
+              defaultMessage={"Re-enter Password"}
+            />
+          </h5>
           <Form.Item
             name="repeat_password"
             rules={[
@@ -164,7 +187,7 @@ export function Register(): JSX.Element {
               type="primary"
               htmlType="submit"
             >
-              Continue
+              <FormattedMessage id="Continue" defaultMessage={"Continue"} />
             </Button>
           </Form.Item>
           <p>

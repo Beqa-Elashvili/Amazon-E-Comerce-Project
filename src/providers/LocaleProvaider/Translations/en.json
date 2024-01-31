@@ -4,4 +4,16 @@
  "Account-&-Lists" : "Account & Lists",
 "returns" : "returns",
 "Orders" : " & Orders", 
-"Cart" : "Cart"}
+"Cart" : "Cart",
+"Create_Account": "Create Account",
+"First_Name": "First Name",
+"Last_Name": "Last Name",
+"Phone_Number": "Phone Number",
+"Email": "Email",
+"Password": "Password",
+"Re-enter_Password": "Re-enter Password",
+"Continue": "Continue",
+"Sign-in": "Sign in",
+"Create_Your_Amazon_Account":"Create your Amazon account"
+
+}
