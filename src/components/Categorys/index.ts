@@ -1,0 +1,1 @@
+export { Categorys } from "./Categorys";

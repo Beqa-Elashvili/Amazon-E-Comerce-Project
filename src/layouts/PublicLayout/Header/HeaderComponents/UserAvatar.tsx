@@ -9,14 +9,15 @@ import { useGlobalProvider } from "@src/providers/GlobalProvider";
 export function UserAvatar() {
   const navigate = useNavigate();
   const { selectedGender } = useGlobalProvider();
-  console.log(selectedGender);
 
   const { authStatus, userData, logout } = useAuthPRovider();
 
   const content = (
     <div className=" flex flex-col gap-2">
       <Button onClick={() => navigate("/profile")}>Profile</Button>
-      <Button onClick={() => logout()}>Log Out</Button>
+      <Button type="primary" danger ghost onClick={() => logout()}>
+        Log Out
+      </Button>
     </div>
   );
   return (

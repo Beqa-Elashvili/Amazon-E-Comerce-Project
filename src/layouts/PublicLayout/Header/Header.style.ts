@@ -19,7 +19,6 @@ export const SHeader = styled.div`
   }
   & .Deliver {
     display: flex;
-    margin-left: 4px;
     min-width: 155px;
     flex-direction: column;
     color: #ffffff;
@@ -37,9 +36,7 @@ export const SHeader = styled.div`
     font-weight: 600;
   }
   & select {
-    text-align: center;
     position: absolute;
-    margin-left: 20px;
     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
       "Lucida Sans", Arial, sans-serif;
     background-color: #d0d1d1;
@@ -57,13 +54,7 @@ export const SHeader = styled.div`
     & option {
       background-color: #ffffff;
       color: black;
-      text-align: center;
     }
-  }
-  & .Search-input {
-    display: flex;
-    align-items: center;
-    position: relative;
   }
   & input {
     padding: 14px 120px;

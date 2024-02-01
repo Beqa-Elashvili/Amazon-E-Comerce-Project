@@ -7,13 +7,14 @@ export type TGender = {
   value: string;
   id: string;
 };
+export type TCategorys = {
+  created_at: string | undefined;
+  id: string | undefined;
+  name: string | undefined;
+  updated_at: string | undefined;
+};
 
 interface TGlobalContext {
-  categorys: {
-    category: string;
-    Id: string;
-  }[];
-
   footerLinks: {
     Destination: string;
     Name: string;
@@ -35,14 +36,8 @@ interface TGlobalContext {
     id: string;
   }[];
 
-  setCategorys: Dispatch<
-    SetStateAction<
-      {
-        category: string;
-        Id: string;
-      }[]
-    >
-  >;
+  categorys: TCategorys[] | undefined;
+  setCategorys: Dispatch<SetStateAction<TCategorys[] | undefined>>;
 
   setCategoryes: Dispatch<
     SetStateAction<
@@ -65,7 +60,7 @@ export const GlobalContext = createContext<TGlobalContext>({
   setSelectedGender: () => {},
   ChooceGender: [],
   setChooceGender: () => {},
-  categorys: [],
+  categorys: undefined,
   categoryes: [],
   footerLinks: [],
   setFooterLinks: () => {},
