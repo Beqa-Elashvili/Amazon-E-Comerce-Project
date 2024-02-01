@@ -31,22 +31,8 @@ interface TGlobalContext {
     >
   >;
 
-  categoryes: {
-    category: string;
-    id: string;
-  }[];
-
   categorys: TCategorys[] | undefined;
   setCategorys: Dispatch<SetStateAction<TCategorys[] | undefined>>;
-
-  setCategoryes: Dispatch<
-    SetStateAction<
-      {
-        category: string;
-        id: string;
-      }[]
-    >
-  >;
 
   ChooceGender: TGender[];
   setChooceGender: Dispatch<SetStateAction<TGender[]>>;
@@ -61,9 +47,7 @@ export const GlobalContext = createContext<TGlobalContext>({
   ChooceGender: [],
   setChooceGender: () => {},
   categorys: undefined,
-  categoryes: [],
   footerLinks: [],
   setFooterLinks: () => {},
   setCategorys: () => {},
-  setCategoryes: () => {},
 });

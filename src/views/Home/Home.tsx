@@ -9,7 +9,7 @@ export function Home() {
 
   return (
     <SHome>
-      {/* <Categorys /> */}
+      <Categorys />
       <BackSlider />
       <button onClick={() => toggleTheme()}>შეცვალე theme</button>
     </SHome>

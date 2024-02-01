@@ -36,7 +36,6 @@ export const SHeader = styled.div`
     font-weight: 600;
   }
   & select {
-    position: absolute;
     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
       "Lucida Sans", Arial, sans-serif;
     background-color: #d0d1d1;
@@ -58,12 +57,12 @@ export const SHeader = styled.div`
   }
   & input {
     padding: 14px 120px;
-    border: 5px hidden;
+    border: 1px hidden;
     border-radius: 4px;
     transition: border-color 1s;
     width: 740px;
     :focus {
-      border: 2px solid;
+      /* border: 2px solid; */
       border-color: lightcoral;
       outline: none;
     }
@@ -80,16 +79,6 @@ export const SHeader = styled.div`
       border: 0;
       border-radius: 0px 4px 4px 0px;
       opacity: 0.9;
-    }
-  }
-  & .lang-btn {
-    margin-left: 12px;
-    padding: 12px;
-    display: flex;
-    align-items: center;
-    color: #ffffff;
-    span {
-      margin-left: 4px;
     }
   }
   & .border-div button {
@@ -123,24 +112,5 @@ export const Hbuttons = styled.div`
     height: 45px;
     width: 45px;
     filter: brightness(0) invert(1) grayscale(1);
-  }
-`;
-export const SCategoryMenu = styled.div`
-  display: flex;
-  background-color: #232f3e;
-  justify-content: space-evenly;
-  height: 40px;
-  & button {
-    padding: 12px;
-    height: 40px;
-    color: #ffffff;
-    font-family: serif;
-    border-radius: 2px;
-    background-color: #232f3e;
-    border: none;
-    :hover {
-      cursor: pointer;
-      border: 2px white solid;
-    }
   }
 `;

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { LocaleContext } from "@src/providers/LocaleProvaider/LocaleContext";
+import { SSelectLanguage } from "./SSelectLanguage";
 
 export function Translate() {
   const { locale, toggleLocale } = useContext(LocaleContext);
@@ -9,7 +10,7 @@ export function Translate() {
   }
 
   return (
-    <>
+    <SSelectLanguage>
       <button className="lang-btn h-14" onClick={Changelocale}>
         {locale === "en" ? (
           <>
@@ -23,6 +24,6 @@ export function Translate() {
           </>
         )}
       </button>
-    </>
+    </SSelectLanguage>
   );
 }

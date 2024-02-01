@@ -1,11 +1,12 @@
 import { SHeader, Hbuttons } from "./Header.style";
 import { FormattedMessage } from "react-intl";
-import { Translate } from "./HeaderComponents/SelectLanguage";
+import { Translate } from "./HeaderComponents/CompSelectLanguage/SelectLanguage";
 import { useContext } from "react";
 import { GlobalContext } from "@src/providers/GlobalProvider";
-import { Category } from "./HeaderComponents/CategoryMenu";
+import { CategoryButtons } from "./HeaderComponents/CompCategory/CategoryMenu";
+import { Categorys } from "@src/components/Categorys";
 import { useNavigate } from "react-router-dom";
-import { UserAvatar } from "./HeaderComponents/UserAvatar";
+import { UserAvatar } from "./HeaderComponents/CompUserAvatar/UserAvatar";
 
 export function Header() {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ export function Header() {
           </h3>
         </button>
         <div className="relative">
-          <select className="" name="SelectCategory" id="all">
+          <select className="absolute" name="SelectCategory" id="all">
             {categorys?.map((category) => {
               return (
                 <option key={category.id} value={category.name}>
@@ -76,7 +77,7 @@ export function Header() {
           </button>
         </Hbuttons>
       </SHeader>
-      <Category />
+      <CategoryButtons />
     </div>
   );
 }

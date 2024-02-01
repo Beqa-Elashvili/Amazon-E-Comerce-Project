@@ -189,18 +189,6 @@ const footerAmazonLinks = [
   },
 ];
 
-const Categoryes = [
-  { category: "Best Sellers", id: uuidv4() },
-  { category: "Books", id: uuidv4() },
-  { category: "Pharmacy", id: uuidv4() },
-  { category: "Music", id: uuidv4() },
-  { category: "Today's Deals", id: uuidv4() },
-  { category: "Customer Service", id: uuidv4() },
-  { category: "Whole Foods", id: uuidv4() },
-  { category: "Technics", id: uuidv4() },
-  { category: "Gifts", id: uuidv4() },
-];
-
 const Genders = [
   { label: "Male", value: "male", id: uuidv4() },
   { label: "Female", value: "female", id: uuidv4() },
@@ -208,7 +196,6 @@ const Genders = [
 
 export function GlobalProvider({ children }: PropsWithChildren) {
   const [categorys, setCategorys] = useState<TCategorys[]>();
-  const [categoryes, setCategoryes] = useState(Categoryes);
   const [footerLinks, setFooterLinks] = useState(footerAmazonLinks);
   const [ChooceGender, setChooceGender] = useState<TGender[]>(Genders);
   const [selectedGender, setSelectedGender] = useState<string>();
@@ -224,8 +211,6 @@ export function GlobalProvider({ children }: PropsWithChildren) {
         setFooterLinks,
         categorys,
         setCategorys,
-        categoryes,
-        setCategoryes,
       }}
     >
       {children}
