@@ -3,7 +3,6 @@ import { AuthContext, TAuthorizationStatus_Enum } from "./AuthContext";
 import { TAuthTokens } from "@src/@types/TokensTypes";
 import { TUserData } from "@src/@types/TuserData";
 import { jwtDecode } from "jwt-decode";
-import { useAuthHook } from "@src/hooks/UseAutht";
 import { BaseAxios } from "@src/utils/Base_Axios";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "@src/Config/localStorageKeys";
 import { setPrivateAccessToken } from "@src/utils/PriveteAxios";
@@ -13,7 +12,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
   const [authStatus, setAuthStatus] = useState<TAuthorizationStatus_Enum>(
     TAuthorizationStatus_Enum.UNAUTHORIZED
   );
-  
+
   function setAuthData(tokens: TAuthTokens) {
     const userData: TUserData = jwtDecode(tokens.access_token);
     setUserData(userData);

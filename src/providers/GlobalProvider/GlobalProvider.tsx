@@ -1,7 +1,7 @@
 import { PropsWithChildren, useState } from "react";
 import { GlobalContext } from "./GlobalContext";
 import { v4 as uuidv4 } from "uuid";
-import { TGender, TCategorys } from "./GlobalContext";
+import { TGender, TCategorys, TProducts } from "./GlobalContext";
 
 const footerAmazonLinks = [
   { id: uuidv4(), Name: "Get to Know Us", Destination: "title" },
@@ -199,10 +199,13 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   const [footerLinks, setFooterLinks] = useState(footerAmazonLinks);
   const [ChooceGender, setChooceGender] = useState<TGender[]>(Genders);
   const [selectedGender, setSelectedGender] = useState<string>();
+  const [products, setProducts] = useState<TProducts[]>();
 
   return (
     <GlobalContext.Provider
       value={{
+        products,
+        setProducts,
         selectedGender,
         setSelectedGender,
         ChooceGender,

@@ -3,12 +3,11 @@ import styled from "styled-components";
 export const SCategoryButtonsMenu = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  background-color: #232f3e;
   justify-content: space-evenly;
-  height: 40px;
+  background-color: #232f3e;
   & button {
-    padding: 12px;
+    text-align: center;
+    padding: 0px 12px;
     height: 40px;
     color: #ffffff;
     font-family: serif;
@@ -17,7 +16,7 @@ export const SCategoryButtonsMenu = styled.div`
     border: none;
     :hover {
       cursor: pointer;
-      border: 2px white solid;
+      border: 1px white solid;
     }
   }
 `;

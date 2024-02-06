@@ -4,7 +4,7 @@ import { Translate } from "./HeaderComponents/CompSelectLanguage/SelectLanguage"
 import { useContext } from "react";
 import { GlobalContext } from "@src/providers/GlobalProvider";
 import { CategoryButtons } from "./HeaderComponents/CompCategory/CategoryMenu";
-import { Categorys } from "@src/components/Categorys";
+
 import { useNavigate } from "react-router-dom";
 import { UserAvatar } from "./HeaderComponents/CompUserAvatar/UserAvatar";
 
@@ -22,7 +22,7 @@ export function Header() {
             className="w-28 h-50 p-1"
           />
         </button>
-        <button className="Deliver ml-1 mr-1">
+        <button className="Deliver ml-1">
           <h5>
             <FormattedMessage id="Deliver-to" defaultMessage={"Deliver to"} />
           </h5>
@@ -35,8 +35,8 @@ export function Header() {
             Los Angeles
           </h3>
         </button>
-        <div className="relative">
-          <select className="absolute" name="SelectCategory" id="all">
+        <div className="relative flex items-center">
+          <select className="absolute ml-5" name="SelectCategory" id="all">
             {categorys?.map((category) => {
               return (
                 <option key={category.id} value={category.name}>
@@ -46,7 +46,7 @@ export function Header() {
             })}
           </select>
           <input className="ml-5" type="text" placeholder="Search Amazon" />
-          <button className="input-btn">
+          <button className="input-btn absolute">
             <img
               className=" w-5 h-5"
               src="./Images/search-icon.png"

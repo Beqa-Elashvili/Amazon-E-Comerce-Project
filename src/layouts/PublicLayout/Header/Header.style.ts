@@ -9,7 +9,6 @@ export const SHeader = styled.div`
 
   & button {
     border: none;
-    width: max-content;
     background-color: rgb(17 24 39);
     cursor: pointer;
   }
@@ -56,20 +55,18 @@ export const SHeader = styled.div`
     }
   }
   & input {
-    padding: 14px 120px;
+    padding: 14px 140px;
     border: 1px hidden;
     border-radius: 4px;
     transition: border-color 1s;
     width: 740px;
     :focus {
-      /* border: 2px solid; */
+      border: 2px solid;
       border-color: lightcoral;
       outline: none;
     }
   }
-
   & .input-btn {
-    position: absolute;
     right: 0;
     padding: 10px;
     background-color: orange;
@@ -78,7 +75,7 @@ export const SHeader = styled.div`
     :hover {
       border: 0;
       border-radius: 0px 4px 4px 0px;
-      opacity: 0.9;
+      opacity: 0.7;
     }
   }
   & .border-div button {

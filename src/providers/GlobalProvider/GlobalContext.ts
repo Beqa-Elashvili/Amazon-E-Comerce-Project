@@ -1,6 +1,4 @@
-import { TARGET_CLS } from "antd/es/_util/wave/interface";
 import { Dispatch, SetStateAction, createContext } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 export type TGender = {
   label: string;
@@ -12,6 +10,17 @@ export type TCategorys = {
   id: string | undefined;
   name: string | undefined;
   updated_at: string | undefined;
+};
+export type TProducts = {
+  category_name: string;
+  created_at: string;
+  description: string;
+  id: string;
+  image: string;
+  price: number;
+  salePrice: string;
+  title: string;
+  updated_at: string;
 };
 
 interface TGlobalContext {
@@ -31,6 +40,9 @@ interface TGlobalContext {
     >
   >;
 
+  products: TProducts[] | undefined;
+  setProducts: Dispatch<SetStateAction<TProducts[] | undefined>>;
+
   categorys: TCategorys[] | undefined;
   setCategorys: Dispatch<SetStateAction<TCategorys[] | undefined>>;
 
@@ -42,6 +54,8 @@ interface TGlobalContext {
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
+  products: [],
+  setProducts: () => {},
   selectedGender: undefined,
   setSelectedGender: () => {},
   ChooceGender: [],

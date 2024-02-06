@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const BackStyle = styled.div`
+z-index: -1;
   & .carousel {
     height: 600px;
     width: 100%;

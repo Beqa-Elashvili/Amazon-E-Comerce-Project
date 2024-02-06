@@ -1,9 +1,6 @@
 import { lazy, Suspense } from "react";
-import { Routes, Route, Router } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { PublicLayout } from "@src/layouts/PublicLayout";
-import { useIntl } from "react-intl";
-import { LocaleContext } from "./providers/LocaleProvaider/LocaleContext";
-import { useContext } from "react";
 import { AutLayouts } from "@src/layouts/AutLayouts";
 
 const Home = lazy(() => import("@src/views/Home"));
@@ -12,8 +9,6 @@ const Login = lazy(() => import("@src/views/AuthViews/Login"));
 const Register = lazy(() => import("@src/views/AuthViews/Register"));
 
 function App() {
-  const { toggleLocale } = useContext(LocaleContext);
-  const { formatMessage } = useIntl();
   return (
     <div>
       <Suspense fallback={<div>loading</div>}>
