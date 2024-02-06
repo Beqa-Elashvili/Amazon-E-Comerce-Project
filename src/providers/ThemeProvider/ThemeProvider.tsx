@@ -12,10 +12,10 @@ export function ThemeProvider({ children }: PropsWithChildren) {
 
   const colors = {
     [ThemeModes_Enum.LIGHT]: {
-      primary: "red",
+      primary: "#CED4DD",
     },
     [ThemeModes_Enum.DARK]: {
-      primary: "#000000",
+      primary: "#0F223D",
     },
   };
 

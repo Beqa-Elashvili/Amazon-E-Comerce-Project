@@ -5,10 +5,11 @@ import { BackSlider } from "../../components/HomeComponents/Slidder";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { BaseAxios } from "@src/utils/Base_Axios";
 import { SaleProducts } from "@src/components/HomeComponents/Sale_Products";
+import Products from "../Products";
 
 export function Home() {
   const { toggleTheme } = useContext(ThemeContext);
-  const { setCategorys, setProducts } = useGlobalProvider();
+  const { setCategorys } = useGlobalProvider();
 
   async function getCategory() {
     try {
@@ -25,15 +26,14 @@ export function Home() {
 
   return (
     <SHome>
-      <div className="relative">
-        <BackSlider />
-        <SaleProducts />
-      </div>
-      <div className="mt-44">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis
-        itaque doloribus reiciendis modi repudiandae, in molestias, rerum
-        aperiam quia ex, dolorum nostrum nemo quas excepturi minima mollitia
-        inventore quidem. Ullam.
+      <div>
+        <div className="relative">
+          <BackSlider />
+          <SaleProducts />
+        </div>
+        <div>
+          <Products />
+        </div>
       </div>
       <button onClick={() => toggleTheme()}>შეცვალე theme</button>
     </SHome>

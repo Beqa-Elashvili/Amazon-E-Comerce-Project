@@ -1,34 +1,24 @@
-import { useEffect, useState } from "react";
+import { useGlobalProvider } from "@src/providers/GlobalProvider";
+import { SProducts } from "./SProducts";
 
 export function Products() {
-  const [language, setLanguage] = useState("");
-
-  useEffect(() => {
-    if (localStorage.getItem("language")) {
-      setLanguage(localStorage.getItem("language") as string);
-    }
-  }, []);
-
+  const { products } = useGlobalProvider();
   return (
-    <div>
-      {language}
-
-      <button
-        onClick={() => {
-          localStorage.setItem("language", "ქართული");
-          setLanguage("ქართული");
-        }}
-      >
-        ქართული
-      </button>
-      <button
-        onClick={() => {
-          localStorage.setItem("language", "ინგლისური");
-          setLanguage("ინგლისური");
-        }}
-      >
-        ინგლისური
-      </button>
-    </div>
+    <SProducts className="mt-40">
+      <div className="container">
+        {products?.map((item) => {
+          return (
+            <button
+              key={item.id}
+              className="h-full border-none cursor-pointer text-start p-3 bg-cyan-50"
+            >
+              <h3>{item.title}</h3>
+              <img className="h-80" src={item.image} alt="SaleProducts" />
+              <h3>Price: {item.price}$</h3>
+            </button>
+          );
+        })}
+      </div>
+    </SProducts>
   );
 }

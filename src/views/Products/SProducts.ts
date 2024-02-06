@@ -1,15 +1,11 @@
 import styled from "styled-components";
 
-export const SSaleProducts = styled.div`
-  position: absolute;
-  top: 50%;
-  right: 50%;
-  left: 50%;
+export const SProducts = styled.div`
   & .container {
     display: grid;
     align-items: center;
     justify-content: center;
     grid-template-columns: auto auto auto auto;
-    column-gap: 25px;
+    gap: 25px;
   }
 `;
