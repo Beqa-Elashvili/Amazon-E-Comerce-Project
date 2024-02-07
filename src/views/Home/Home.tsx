@@ -6,6 +6,7 @@ import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { BaseAxios } from "@src/utils/Base_Axios";
 import { SaleProducts } from "@src/components/HomeComponents/Sale_Products";
 import Products from "../Products";
+import { ProductSlider } from "@src/components/HomeComponents/ProductSlider";
 
 export function Home() {
   const { toggleTheme } = useContext(ThemeContext);
@@ -33,6 +34,7 @@ export function Home() {
         </div>
         <div>
           <Products />
+          <ProductSlider />
         </div>
       </div>
       <button onClick={() => toggleTheme()}>შეცვალე theme</button>
