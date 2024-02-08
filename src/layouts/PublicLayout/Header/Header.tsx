@@ -1,16 +1,41 @@
 import { SHeader, Hbuttons } from "./Header.style";
 import { FormattedMessage } from "react-intl";
 import { Translate } from "./HeaderComponents/CompSelectLanguage/SelectLanguage";
-import { useContext } from "react";
-import { GlobalContext } from "@src/providers/GlobalProvider";
+import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { CategoryButtons } from "./HeaderComponents/CompCategory/CategoryMenu";
 
-import { useNavigate } from "react-router-dom";
 import { UserAvatar } from "./HeaderComponents/CompUserAvatar/UserAvatar";
+import { SetStateAction, useEffect, useState } from "react";
+import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
 
 export function Header() {
-  const navigate = useNavigate();
-  const { categorys } = useContext(GlobalContext);
+  const { categorys, products } = useGlobalProvider();
+  const [searchResult, setSearchResult] = useState<TProducts[]>();
+  const [search, setSearch] = useState("");
+  const [show, setshow] = useState<boolean>(false);
+
+  function handleInputChange(event: {
+    target: { value: SetStateAction<string> };
+  }) {
+    setSearch(event.target.value);
+    if (event.target.value === "") {
+      setshow(false);
+    } else {
+      setshow(true);
+    }
+  }
+
+  function SearchProducts() {
+    const filteredProducts = products?.filter((item) =>
+      item.title.toLowerCase().includes(search.toLowerCase())
+    );
+    return filteredProducts;
+  }
+
+  useEffect(() => {
+    const filteredProducts = SearchProducts();
+    setSearchResult(filteredProducts);
+  }, [search]);
 
   return (
     <div>
@@ -45,7 +70,34 @@ export function Header() {
               );
             })}
           </select>
-          <input className="ml-5" type="text" placeholder="Search Amazon" />
+          <input
+            value={search}
+            onChange={handleInputChange}
+            className="ml-5"
+            type="text"
+            placeholder="Search Amazon"
+          />
+
+          <div
+            style={{ display: show ? "block" : "none" }}
+            className="absolute max-h-80 top-16 left-40 bg-red-50 p-4 z-10 rounded-lg w-96 overflow-y-auto"
+          >
+            {searchResult?.map((item) => {
+              return (
+                <div className="flex gap-2 py-1">
+                  <img
+                    className="h-12 w-10"
+                    src={item.image}
+                    alt="product-image"
+                  />
+                  <div>
+                    <p>{item.title}</p>
+                    <h6>price: {item.price}$</h6>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
           <button className="input-btn absolute">
             <img
               className=" w-5 h-5"

@@ -6,10 +6,10 @@ export type TGender = {
   id: string;
 };
 export type TCategorys = {
-  created_at: string | undefined;
-  id: string | undefined;
-  name: string | undefined;
-  updated_at: string | undefined;
+  created_at: string;
+  id: string;
+  name: string;
+  updated_at: string;
 };
 export type TProducts = {
   category_name: string;
@@ -18,7 +18,7 @@ export type TProducts = {
   id: string;
   image: string;
   price: number;
-  salePrice: string;
+  salePrice: number;
   title: string;
   updated_at: string;
 };
@@ -43,6 +43,9 @@ interface TGlobalContext {
   products: TProducts[] | undefined;
   setProducts: Dispatch<SetStateAction<TProducts[] | undefined>>;
 
+  saleProducts: TProducts[] | undefined;
+  setSaleProducts: Dispatch<SetStateAction<TProducts[] | undefined>>;
+
   categorys: TCategorys[] | undefined;
   setCategorys: Dispatch<SetStateAction<TCategorys[] | undefined>>;
 
@@ -56,6 +59,8 @@ interface TGlobalContext {
 export const GlobalContext = createContext<TGlobalContext>({
   products: [],
   setProducts: () => {},
+  saleProducts: [],
+  setSaleProducts: () => {},
   selectedGender: undefined,
   setSelectedGender: () => {},
   ChooceGender: [],

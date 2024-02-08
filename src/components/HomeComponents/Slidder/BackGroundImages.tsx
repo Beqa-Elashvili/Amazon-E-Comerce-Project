@@ -3,9 +3,15 @@ import { BackStyle } from "./SBackGroundimages";
 
 export function BackSlider() {
   return (
-    <div className="relative">
+    <div className="relative z-0">
       <BackStyle className="slider">
         <Carousel autoplay>
+          <img
+            className="carousel"
+            src="../Images/Background_img/images(1).jpg"
+            alt="background_img"
+          />
+
           <img
             className="carousel"
             src="../Images/Background_img/images(2).jpg"
@@ -20,10 +26,9 @@ export function BackSlider() {
 
           <img
             className="carousel"
-            src="../Images/Background_img/images(4).jpeg"
+            src="../Images/Background_img/images(4).jpg"
             alt="background_img"
           />
-
           <img
             className="carousel"
             src="../Images/Background_img/images(5).jpeg"

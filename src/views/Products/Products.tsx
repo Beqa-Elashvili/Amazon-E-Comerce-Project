@@ -6,10 +6,10 @@ import { BaseAxios } from "@src/utils/Base_Axios";
 
 export function Products() {
   const { products, setProducts } = useGlobalProvider();
+
   async function Getproducts() {
-    const responsive = await BaseAxios.get("/product");
+    const responsive = await BaseAxios.get("/product?pageSize=25");
     setProducts(responsive.data.products);
-    console.log(responsive.data);
   }
   useEffect(() => {
     Getproducts();
@@ -18,7 +18,7 @@ export function Products() {
   return (
     <SProducts className="mt-52">
       <div className="container">
-        {products?.map((item) => {
+        {products?.slice(0, 12).map((item) => {
           if (item.salePrice === null) {
             return (
               <div

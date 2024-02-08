@@ -195,6 +195,7 @@ const Genders = [
 ];
 
 export function GlobalProvider({ children }: PropsWithChildren) {
+  const [saleProducts, setSaleProducts] = useState<TProducts[]>();
   const [categorys, setCategorys] = useState<TCategorys[]>();
   const [footerLinks, setFooterLinks] = useState(footerAmazonLinks);
   const [ChooceGender, setChooceGender] = useState<TGender[]>(Genders);
@@ -206,6 +207,8 @@ export function GlobalProvider({ children }: PropsWithChildren) {
       value={{
         products,
         setProducts,
+        saleProducts,
+        setSaleProducts,
         selectedGender,
         setSelectedGender,
         ChooceGender,
