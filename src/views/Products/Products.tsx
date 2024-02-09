@@ -3,9 +3,15 @@ import { SProducts } from "./SProducts";
 import { useEffect } from "react";
 import { Button } from "antd";
 import { BaseAxios } from "@src/utils/Base_Axios";
+import { useAuthPRovider } from "@src/providers/AuthProvider";
+import { FaCartArrowDown } from "react-icons/fa";
+import { useAddinCart } from "@src/hooks/useAddinCart/useAddinCart";
+import { PrivateAxios } from "@src/utils/PriveteAxios";
 
 export function Products() {
   const { products, setProducts } = useGlobalProvider();
+  const { authStatus } = useAuthPRovider();
+  const { addtoCart, loading: addtoCartLoading } = useAddinCart();
 
   async function Getproducts() {
     const responsive = await BaseAxios.get("/product?pageSize=25");
@@ -13,6 +19,16 @@ export function Products() {
   }
   useEffect(() => {
     Getproducts();
+  }, []);
+
+  function getCartProducts() {
+    async function cartProducts() {
+      const resp = await PrivateAxios.get("/cart");
+      console.log(resp.data);
+    }
+  }
+  useEffect(() => {
+    getCartProducts();
   }, []);
 
   return (
@@ -23,17 +39,29 @@ export function Products() {
             return (
               <div
                 key={item.id}
-                className="h-full border-none cursor-pointer text-start p-3 bg-cyan-50"
+                className="h-full border-none cursor-pointer text-start p-3 bg-white rounded-lg"
               >
                 <h3>{item.title}</h3>
-                <img className="h-80" src={item.image} alt="SaleProducts" />
-                <h3>Price: {item.price}$</h3>
-                <div className="flex justify-between">
-                  <Button type="primary" className="w-40">
-                    Buy Now
-                  </Button>
-                  <Button className="w-20">Add Cart</Button>
-                </div>
+                <img
+                  className="h-80 mt-2"
+                  src={item.image}
+                  alt="SaleProducts"
+                />
+                <h3 className="mt-2">Price: {item.price}$</h3>
+                {authStatus === "authorized" ? (
+                  <div className="flex justify-between mt-2">
+                    <Button className="w-40 bg-amber-400">Buy Now</Button>
+                    <Button
+                      loading={addtoCartLoading}
+                      icon={<FaCartArrowDown />}
+                      onClick={() => addtoCart(item.id)}
+                    >
+                      Add Cart
+                    </Button>
+                  </div>
+                ) : (
+                  <Button className="w-full bg-amber-400 mt-2">Buy Now</Button>
+                )}
               </div>
             );
           }

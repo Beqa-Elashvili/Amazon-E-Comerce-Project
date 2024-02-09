@@ -7,10 +7,13 @@ import { BaseAxios } from "@src/utils/Base_Axios";
 import { SaleProducts } from "@src/components/HomeComponents/Sale_Products";
 import Products from "../Products";
 import { ProductSlider } from "@src/components/HomeComponents/ProductSlider";
+import { getCartProducts } from "@src/hooks/useAddinCart/getCartProducts";
 
 export function Home() {
   const { toggleTheme } = useContext(ThemeContext);
   const { setCategorys } = useGlobalProvider();
+  const { cartProducts } = getCartProducts();
+  // console.log(cartProducts);
 
   async function getCategory() {
     try {
@@ -32,6 +35,9 @@ export function Home() {
           <BackSlider />
           <SaleProducts />
         </div>
+        {cartProducts?.map((item) => {
+          return <div key={item.id}>{item.cartProduct.title}</div>;
+        })}
         <div>
           <Products />
           <ProductSlider />

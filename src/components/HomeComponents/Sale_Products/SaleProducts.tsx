@@ -3,9 +3,12 @@ import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { SSaleProducts } from "./SSaleProducts";
 import { BaseAxios } from "@src/utils/Base_Axios";
 import { useEffect } from "react";
+import { useAuthPRovider } from "@src/providers/AuthProvider";
+import { FaCartArrowDown } from "react-icons/fa";
 
 export function SaleProducts() {
   const { saleProducts, setSaleProducts } = useGlobalProvider();
+  const { authStatus } = useAuthPRovider();
 
   async function GetSaleProducts() {
     const resp = await BaseAxios.get("/product?onlySales=true");
@@ -23,7 +26,7 @@ export function SaleProducts() {
             return (
               <div
                 key={item.id}
-                className="h-full border-none cursor-pointer text-start p-3 bg-cyan-50"
+                className="h-full border-none cursor-pointer text-start p-3 bg-white rounded-lg"
               >
                 <div className="text-red-800 bg-red-100 inline p-2 rounded-lg">
                   Hot Sale
@@ -34,12 +37,14 @@ export function SaleProducts() {
                   OldPrice: {item.price}
                 </p>
                 <h3>Price:{item.salePrice}$</h3>
-                <div className="flex justify-between mt-2">
-                  <Button type="primary" className="w-40">
-                    Buy Now
-                  </Button>
-                  <Button className="w-20">Add Cart</Button>
-                </div>
+                {authStatus === "authorized" ? (
+                  <div className="flex justify-between mt-2">
+                    <Button className="w-40  bg-amber-400">Buy Now</Button>
+                    <Button icon={<FaCartArrowDown />}>Add Cart</Button>
+                  </div>
+                ) : (
+                  <Button className="w-full bg-amber-400 mt-2">Buy Now</Button>
+                )}
               </div>
             );
           }

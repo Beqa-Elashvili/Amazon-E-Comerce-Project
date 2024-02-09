@@ -3,7 +3,7 @@ import { TUserData } from "@src/@types/TuserData";
 import { Dispatch, SetStateAction, createContext } from "react";
 
 export enum TAuthorizationStatus_Enum {
-  UNAUTHORIZED = "unaauthorized",
+  UNAUTHORIZED = "unauthorized",
   AUTHORIZED = "authorized",
 }
 

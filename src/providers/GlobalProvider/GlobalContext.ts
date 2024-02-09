@@ -12,6 +12,7 @@ export type TCategorys = {
   updated_at: string;
 };
 export type TProducts = {
+  cartProduct: any;
   category_name: string;
   created_at: string;
   description: string;

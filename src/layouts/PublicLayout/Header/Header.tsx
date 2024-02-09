@@ -80,11 +80,11 @@ export function Header() {
 
           <div
             style={{ display: show ? "block" : "none" }}
-            className="absolute max-h-80 top-16 left-40 bg-red-50 p-4 z-10 rounded-lg w-96 overflow-y-auto"
+            className="absolute max-h-80 top-12 left-40 bg-red-50 p-4 z-10 rounded-lg w-96 overflow-y-auto"
           >
             {searchResult?.map((item) => {
               return (
-                <div className="flex gap-2 py-1">
+                <div key={item.id} className="flex gap-2 py-1">
                   <img
                     className="h-12 w-10"
                     src={item.image}
