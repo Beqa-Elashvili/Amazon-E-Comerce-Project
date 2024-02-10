@@ -1,35 +1,15 @@
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { SProducts } from "./SProducts";
-import { useEffect } from "react";
 import { Button } from "antd";
-import { BaseAxios } from "@src/utils/Base_Axios";
 import { useAuthPRovider } from "@src/providers/AuthProvider";
 import { FaCartArrowDown } from "react-icons/fa";
-import { useAddinCart } from "@src/hooks/useAddinCart/useAddinCart";
-import { PrivateAxios } from "@src/utils/PriveteAxios";
+import { useAddinCart } from "@src/hooks/useAddtoCart/useAddinCart";
+import { useGetProducts } from "@src/hooks/useGetProducts";
 
 export function Products() {
-  const { products, setProducts } = useGlobalProvider();
+  const { products } = useGetProducts();
   const { authStatus } = useAuthPRovider();
   const { addtoCart, loading: addtoCartLoading } = useAddinCart();
-
-  async function Getproducts() {
-    const responsive = await BaseAxios.get("/product?pageSize=25");
-    setProducts(responsive.data.products);
-  }
-  useEffect(() => {
-    Getproducts();
-  }, []);
-
-  function getCartProducts() {
-    async function cartProducts() {
-      const resp = await PrivateAxios.get("/cart");
-      console.log(resp.data);
-    }
-  }
-  useEffect(() => {
-    getCartProducts();
-  }, []);
 
   return (
     <SProducts className="mt-52">

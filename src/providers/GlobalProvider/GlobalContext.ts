@@ -47,6 +47,9 @@ interface TGlobalContext {
   saleProducts: TProducts[] | undefined;
   setSaleProducts: Dispatch<SetStateAction<TProducts[] | undefined>>;
 
+  cartProducts: TProducts[] | undefined;
+  setCartProducts: Dispatch<SetStateAction<TProducts[] | undefined>>;
+
   categorys: TCategorys[] | undefined;
   setCategorys: Dispatch<SetStateAction<TCategorys[] | undefined>>;
 
@@ -62,6 +65,8 @@ export const GlobalContext = createContext<TGlobalContext>({
   setProducts: () => {},
   saleProducts: [],
   setSaleProducts: () => {},
+  cartProducts: [],
+  setCartProducts: () => {},
   selectedGender: undefined,
   setSelectedGender: () => {},
   ChooceGender: [],

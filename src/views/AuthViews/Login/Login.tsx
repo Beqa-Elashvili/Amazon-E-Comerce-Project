@@ -19,9 +19,9 @@ export function Login(): JSX.Element {
   const { setAuthData } = useAuthPRovider();
   const navigate = useNavigate();
 
-  const handleButtonClick = () => {
+  function handleButtonClick(): void {
     setDivVisible(!isDivVisible);
-  };
+  }
 
   async function onfinish(values: LoginFormValue) {
     try {

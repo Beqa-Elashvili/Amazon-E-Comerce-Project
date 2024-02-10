@@ -1,0 +1,1 @@
+export { useGetCategorys } from "./useGetCategorys";

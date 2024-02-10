@@ -1,8 +1,8 @@
-import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { SCategoryButtonsMenu } from "./SCompCategory";
+import { useGetCategorys } from "@src/hooks/useGetCategorys";
 
 export function CategoryButtons() {
-  const { categorys } = useGlobalProvider();
+  const { categorys } = useGetCategorys();
   return (
     <SCategoryButtonsMenu>
       {categorys?.map((category) => {
