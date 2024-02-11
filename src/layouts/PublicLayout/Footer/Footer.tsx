@@ -1,9 +1,8 @@
 import { SFooter } from "./Footer.style";
-import { useContext } from "react";
-import { GlobalContext } from "@src/providers/GlobalProvider";
+import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export function Footer() {
-  const { footerLinks } = useContext(GlobalContext);
+  const { footerLinks } = useGlobalProvider();
 
   return (
     <div>

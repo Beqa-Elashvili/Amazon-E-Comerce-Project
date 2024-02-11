@@ -7,7 +7,7 @@ const Home = lazy(() => import("@src/views/Home"));
 const Products = lazy(() => import("@src/views/Products"));
 const Login = lazy(() => import("@src/views/AuthViews/Login"));
 const Register = lazy(() => import("@src/views/AuthViews/Register"));
-
+const CartProductsPage = lazy(() => import("@src/views/CartProductPage"));
 function App() {
   return (
     <div>
@@ -16,6 +16,7 @@ function App() {
           <Route element={<PublicLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/CartProducts" element={<CartProductsPage />} />
           </Route>
           <Route element={<AutLayouts />}>
             <Route path="/Login" element={<Login />} />

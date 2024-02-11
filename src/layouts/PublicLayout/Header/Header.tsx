@@ -3,16 +3,19 @@ import { FormattedMessage } from "react-intl";
 import { Translate } from "./HeaderComponents/CompSelectLanguage/SelectLanguage";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { CategoryButtons } from "./HeaderComponents/CompCategory/CategoryMenu";
-
 import { UserAvatar } from "./HeaderComponents/CompUserAvatar/UserAvatar";
 import { SetStateAction, useEffect, useState } from "react";
 import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
+import { useNavigate } from "react-router-dom";
+import { useHandleAuthstatus } from "@src/hooks/useHandleAuthstatus/HandleuthStatus";
 
 export function Header() {
   const { categorys, products } = useGlobalProvider();
   const [searchResult, setSearchResult] = useState<TProducts[]>();
   const [search, setSearch] = useState("");
   const [show, setshow] = useState<boolean>(false);
+  const { HandleAuthstatus } = useHandleAuthstatus();
+  const navigate = useNavigate();
 
   function handleInputChange(event: {
     target: { value: SetStateAction<string> };
@@ -40,7 +43,7 @@ export function Header() {
   return (
     <div>
       <SHeader className="bg-gray-900">
-        <button>
+        <button className="p-1" onClick={() => navigate("/")}>
           <img
             src="./IMages/amazon logo.png"
             alt="amazon Logo"
@@ -117,7 +120,7 @@ export function Header() {
               <FormattedMessage id="Orders" defaultMessage={"Orders"} />
             </h4>
           </button>
-          <button className="shop-button">
+          <button onClick={HandleAuthstatus} className="shop-button">
             <img
               className="shopping-cart-icon"
               src="./Images/shopping-cart-icon.png"
