@@ -1,21 +1,21 @@
 import { SHeader, Hbuttons } from "./Header.style";
 import { FormattedMessage } from "react-intl";
-import { Translate } from "./HeaderComponents/CompSelectLanguage/SelectLanguage";
+import { Translate } from "../HeaderComponents/CompSelectLanguage/SelectLanguage";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
-import { CategoryButtons } from "./HeaderComponents/CompCategory/CategoryMenu";
-import { UserAvatar } from "./HeaderComponents/CompUserAvatar/UserAvatar";
-import { SetStateAction, useEffect, useState } from "react";
-import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
+import { CategoryButtons } from "../HeaderComponents/CompCategory/CategoryMenu";
+import { UserAvatar } from "../HeaderComponents/CompUserAvatar/UserAvatar";
+import { SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useHandleAuthstatus } from "@src/hooks/useHandleAuthstatus/HandleuthStatus";
+import { useHandleAuthstatus } from "@src/hooks/useHandleAuthstatus";
+import { useGetSearchResult } from "@src/hooks/useGetSearchResult";
 
 export function Header() {
-  const { categorys, products } = useGlobalProvider();
-  const [searchResult, setSearchResult] = useState<TProducts[]>();
-  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
   const [show, setshow] = useState<boolean>(false);
   const { HandleAuthstatus } = useHandleAuthstatus();
-  const navigate = useNavigate();
+  const { categorys } = useGlobalProvider();
+  const { categorySearch, setCategorySearch, setSearch, search, searchResult } =
+    useGetSearchResult();
 
   function handleInputChange(event: {
     target: { value: SetStateAction<string> };
@@ -27,18 +27,11 @@ export function Header() {
       setshow(true);
     }
   }
-
-  function SearchProducts() {
-    const filteredProducts = products?.filter((item) =>
-      item.title.toLowerCase().includes(search.toLowerCase())
-    );
-    return filteredProducts;
+  function handleSelectValue(event: {
+    target: { value: SetStateAction<string> };
+  }) {
+    setCategorySearch(event?.target.value);
   }
-
-  useEffect(() => {
-    const filteredProducts = SearchProducts();
-    setSearchResult(filteredProducts);
-  }, [search]);
 
   return (
     <div>
@@ -64,7 +57,14 @@ export function Header() {
           </h3>
         </button>
         <div className="relative flex items-center">
-          <select className="absolute ml-5" name="SelectCategory" id="all">
+          <select
+            value={categorySearch}
+            onChange={handleSelectValue}
+            className="absolute ml-5"
+            name="SelectCategory"
+            id="all"
+          >
+            <option value="All">All</option>
             {categorys?.map((category) => {
               return (
                 <option key={category.id} value={category.name}>

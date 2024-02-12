@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 export function useHandleAuthstatus() {
   const { authStatus } = useAuthPRovider();
   const navigate = useNavigate();
-  function HandleAuthstatus() {
+
+  function HandleAuthstatus(): void {
     if (authStatus === "authorized") {
       navigate("/cartProducts");
     }
