@@ -1,0 +1,1 @@
+export { useDeleteCartProduct } from "./useDeleteCartProduct";

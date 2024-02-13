@@ -6,8 +6,8 @@ export const SCartProducts = styled.div`
     background-color: ${props.theme.colors["primary"]};
   `}
   & button:hover {
-    background-color:gray;
-    border-radius:100%;
+    background-color: gray;
+    border-radius: 100%;
     cursor: pointer;
   }
 `;
