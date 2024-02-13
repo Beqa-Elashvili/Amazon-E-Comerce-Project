@@ -5,7 +5,7 @@ import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
 export function useGetSearchResult() {
   const { products } = useGlobalProvider();
   const [categorySearch, setCategorySearch] = useState<string>("All");
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState<string>("");
   const [searchResult, setSearchResult] = useState<TProducts[]>();
 
   function getCategorySearch() {

@@ -1,1 +1,1 @@
-import { useAddinCart } from "./useAddinCart";
+export { useAddinCart } from "./useAddinCart";

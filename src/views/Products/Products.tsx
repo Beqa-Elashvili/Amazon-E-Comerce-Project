@@ -3,7 +3,7 @@ import { SProducts } from "./SProducts";
 import { Button } from "antd";
 import { useAuthPRovider } from "@src/providers/AuthProvider";
 import { FaCartArrowDown } from "react-icons/fa";
-import { useAddinCart } from "@src/hooks/useAddtoCart/useAddinCart";
+import { useAddinCart } from "@src/hooks/useAddtoCart";
 import { useGetProducts } from "@src/hooks/useGetProducts";
 
 export function Products() {
