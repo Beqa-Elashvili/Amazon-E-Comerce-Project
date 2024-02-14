@@ -4,10 +4,12 @@ import { SSaleProducts } from "./SSaleProducts";
 import { useAuthPRovider } from "@src/providers/AuthProvider";
 import { FaCartArrowDown } from "react-icons/fa";
 import { useGetSaleProducts } from "@src/hooks/useGetSaleProducts";
+import { useAddinCart } from "@src/hooks/useAddtoCart";
 
 export function SaleProducts() {
-  const { saleProducts } = useGetSaleProducts();
   const { authStatus } = useAuthPRovider();
+  const { addtoCart, loading: addToCartLoading } = useAddinCart();
+  const { saleProducts } = useGetSaleProducts();
 
   return (
     <SSaleProducts className="absolute">
@@ -30,7 +32,13 @@ export function SaleProducts() {
               {authStatus === "authorized" ? (
                 <div className="flex justify-between mt-2">
                   <Button className="w-40  bg-amber-400">Buy Now</Button>
-                  <Button icon={<FaCartArrowDown />}>Add Cart</Button>
+                  <Button
+                    onClick={() => addtoCart(item.id)}
+                    icon={<FaCartArrowDown />}
+                    loading={addToCartLoading}
+                  >
+                    Add Cart
+                  </Button>
                 </div>
               ) : (
                 <Button className="w-full bg-amber-400 mt-2">Buy Now</Button>

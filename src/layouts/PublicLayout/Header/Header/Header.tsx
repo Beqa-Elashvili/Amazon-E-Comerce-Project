@@ -6,7 +6,6 @@ import { CategoryButtons } from "../HeaderComponents/CompCategory/CategoryMenu";
 import { UserAvatar } from "../HeaderComponents/CompUserAvatar/UserAvatar";
 import { SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useHandleAuthstatus } from "@src/hooks/useHandleAuthstatus";
 import { useGetSearchResult } from "@src/hooks/useGetSearchResult";
 import { useCartCount } from "@src/hooks/useCartCount";
 
@@ -15,7 +14,6 @@ export function Header() {
   const { categorys } = useGlobalProvider();
   const { addProductsCount } = useCartCount();
   const [show, setshow] = useState<boolean>(false);
-  const { HandleAuthstatus } = useHandleAuthstatus();
   const { categorySearch, setCategorySearch, setSearch, search, searchResult } =
     useGetSearchResult();
 
@@ -123,7 +121,10 @@ export function Header() {
             </h4>
           </button>
           <div className="relative">
-            <button onClick={HandleAuthstatus} className="shop-button">
+            <button
+              onClick={() => navigate("/cartProducts")}
+              className="shop-button"
+            >
               <img
                 className="shopping-cart-icon"
                 src="./Images/shopping-cart-icon.png"

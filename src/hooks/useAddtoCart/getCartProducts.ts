@@ -1,4 +1,4 @@
-import { PrivateAxios } from "@src/utils/PriveteAxios";
+import { BaseAxios } from "@src/utils/Base_Axios";
 import { useEffect } from "react";
 import { useAuthPRovider } from "@src/providers/AuthProvider";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
@@ -8,13 +8,11 @@ export function useGetCartProducts() {
   const { authStatus } = useAuthPRovider();
 
   async function getcartProducts() {
-    const resp = await PrivateAxios.get("/cart");
+    const resp = await BaseAxios.get("/cart");
     setCartProducts(resp.data);
   }
   useEffect(() => {
-    if (authStatus === "authorized") {
-      getcartProducts();
-    }
-  }, [authStatus]);
+    getcartProducts();
+  }, []);
   return { cartProducts };
 }

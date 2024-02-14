@@ -17,11 +17,10 @@ export function useCartCount() {
     }
   }
   useEffect(() => {
-    if (authStatus === "authorized") {
-        setAddProductCount(getCount);
-    } else {
-        setAddProductCount(0)
+    if (cartProducts === undefined) {
+      setAddProductCount(0);
     }
+    setAddProductCount(getCount);
   }, [cartProducts, authStatus]);
 
   return { addProductsCount };

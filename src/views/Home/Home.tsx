@@ -4,7 +4,6 @@ import { ThemeContext } from "@src/providers/ThemeProvider/ThemeContext";
 import { BackSlider } from "../../components/HomeComponents/Slidder";
 import { SaleProducts } from "@src/components/HomeComponents/Sale_Products";
 import Products from "../Products";
-import { useGetCartProducts } from "@src/hooks/useAddtoCart/getCartProducts";
 
 export function Home() {
   const { toggleTheme } = useContext(ThemeContext);
