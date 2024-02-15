@@ -16,5 +16,5 @@ export function useGetCartProducts() {
       getcartProducts();
     }
   }, [authStatus]);
-  return { cartProducts };
+  return { cartProducts, getcartProducts };
 }
