@@ -1,10 +1,9 @@
 import { Button } from "antd";
-import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { SSaleProducts } from "./SSaleProducts";
 import { useAuthPRovider } from "@src/providers/AuthProvider";
 import { FaCartArrowDown } from "react-icons/fa";
 import { useGetSaleProducts } from "@src/hooks/useGetSaleProducts";
-import { useAddinCart } from "@src/hooks/useAddtoCart";
+import { useAddinCart } from "@src/hooks/useAddAndGetCart";
 
 export function SaleProducts() {
   const { authStatus } = useAuthPRovider();

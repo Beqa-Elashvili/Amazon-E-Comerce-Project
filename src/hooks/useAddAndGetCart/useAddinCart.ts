@@ -4,7 +4,7 @@ import { useGetCartProducts } from "./getCartProducts";
 
 export function useAddinCart() {
   const [loading, setLoading] = useState<boolean>(false);
-  const { getcartProducts, cartProducts } = useGetCartProducts();
+  const { getcartProducts } = useGetCartProducts();
 
   async function addtoCart(productId: string) {
     try {

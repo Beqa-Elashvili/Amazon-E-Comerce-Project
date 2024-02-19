@@ -1,6 +1,6 @@
 import { PrivateAxios } from "@src/utils/PriveteAxios";
 import { useState } from "react";
-import { useGetCartProducts } from "../useAddtoCart/getCartProducts";
+import { useGetCartProducts } from "../useAddAndGetCart/getCartProducts";
 
 export function useDeleteCartProduct() {
   const [loading, setLoading] = useState(false);

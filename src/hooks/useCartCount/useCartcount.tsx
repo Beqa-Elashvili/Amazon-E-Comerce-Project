@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useGetCartProducts } from "../useAddtoCart/getCartProducts";
+import { useGetCartProducts } from "../useAddAndGetCart/getCartProducts";
 import { useAuthPRovider } from "@src/providers/AuthProvider";
 
 export function useCartCount() {

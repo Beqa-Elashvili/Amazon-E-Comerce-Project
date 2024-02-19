@@ -42,6 +42,9 @@ interface TGlobalContext {
     >
   >;
 
+  likedProducts: TProducts[] | undefined;
+  setLikedProducts: Dispatch<SetStateAction<TProducts[] | undefined>>;
+
   products: TProducts[] | undefined;
   setProducts: Dispatch<SetStateAction<TProducts[] | undefined>>;
 
@@ -62,6 +65,8 @@ interface TGlobalContext {
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
+  likedProducts: [],
+  setLikedProducts: () => {},
   products: [],
   setProducts: () => {},
   saleProducts: [],

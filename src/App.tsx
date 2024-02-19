@@ -8,6 +8,8 @@ const Products = lazy(() => import("@src/views/Products"));
 const Login = lazy(() => import("@src/views/AuthViews/Login"));
 const Register = lazy(() => import("@src/views/AuthViews/Register"));
 const CartProductsPage = lazy(() => import("@src/views/CartProductPage"));
+const LikedProductsPage = lazy(() => import("@src/views/LikedProductsPage"));
+
 function App() {
   return (
     <div>
@@ -17,6 +19,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
             <Route path="/CartProducts" element={<CartProductsPage />} />
+            <Route path="/Liked_products" element={<LikedProductsPage />} />
           </Route>
           <Route element={<AutLayouts />}>
             <Route path="/Login" element={<Login />} />

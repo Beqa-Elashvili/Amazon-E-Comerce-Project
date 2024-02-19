@@ -7,7 +7,6 @@ import Products from "../Products";
 
 export function Home() {
   const { toggleTheme } = useContext(ThemeContext);
-
   return (
     <SHome>
       <div>

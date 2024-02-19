@@ -1,4 +1,4 @@
-import { useGetCartProducts } from "@src/hooks/useAddtoCart/getCartProducts";
+import { useGetCartProducts } from "@src/hooks/useAddAndGetCart/getCartProducts";
 import { SCartProducts } from "./SCartProductsPage";
 import { MdDeleteForever } from "react-icons/md";
 import { useDeleteCartProduct } from "@src/hooks/useDeleteCartProduct";
@@ -6,7 +6,7 @@ import { useCartCount } from "@src/hooks/useCartCount";
 import { Button, Card } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useAuthPRovider } from "@src/providers/AuthProvider";
-import { useAddinCart } from "@src/hooks/useAddtoCart";
+import { useAddinCart } from "@src/hooks/useAddAndGetCart";
 
 export function CartProductsPage() {
   const navigate = useNavigate();
