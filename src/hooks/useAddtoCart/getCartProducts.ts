@@ -8,8 +8,12 @@ export function useGetCartProducts() {
   const { authStatus } = useAuthPRovider();
 
   async function getcartProducts() {
-    const resp = await PrivateAxios.get("/cart");
-    setCartProducts(resp.data);
+    try {
+      const resp = await PrivateAxios.get("/cart");
+      setCartProducts(resp.data);
+    } catch (error) {
+      alert("fetch data failed");
+    }
   }
   useEffect(() => {
     if (authStatus === "authorized") {

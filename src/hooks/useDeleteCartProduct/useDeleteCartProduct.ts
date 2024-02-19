@@ -6,10 +6,12 @@ export function useDeleteCartProduct() {
   const [loading, setLoading] = useState(false);
   const { getcartProducts } = useGetCartProducts();
 
-  async function deleteCartProduct(productId: string) {
+  async function deleteCartProduct(productId: string, all: boolean) {
     try {
       setLoading(true);
-      const resp = await PrivateAxios.delete(`/cart/${productId}`);
+      const resp = await PrivateAxios.delete(
+        `/cart/${productId}?removeAll=${all}`
+      );
       await getcartProducts();
     } catch (error) {
       console.error("Failed to delete product", error);

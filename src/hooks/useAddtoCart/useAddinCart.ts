@@ -9,14 +9,6 @@ export function useAddinCart() {
   async function addtoCart(productId: string) {
     try {
       setLoading(true);
-      if (
-        cartProducts?.some(
-          (item) => item.cartProduct.id.toString() === productId
-        )
-      ) {
-        alert("Product is already in the cart");
-        return;
-      }
       const resp = await PrivateAxios.post("/cart", {
         product_id: productId,
       });

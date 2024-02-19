@@ -13,6 +13,7 @@ export type TCategorys = {
 };
 export type TProducts = {
   cartProduct: any;
+  count: number;
   category_name: string;
   created_at: string;
   description: string;

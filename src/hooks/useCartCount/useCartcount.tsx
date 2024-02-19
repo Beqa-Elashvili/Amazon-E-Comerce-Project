@@ -6,12 +6,11 @@ export function useCartCount() {
   const { authStatus } = useAuthPRovider();
   const { cartProducts } = useGetCartProducts();
   const [addProductsCount, setAddProductCount] = useState<number>();
+
   function getCount() {
     if (cartProducts) {
       let count = 0;
-      for (let i = 0; i <= cartProducts.length; i++) {
-        count = i;
-      }
+      const totalCount = cartProducts.forEach((item) => (count += item.count));
       return count;
     }
   }
