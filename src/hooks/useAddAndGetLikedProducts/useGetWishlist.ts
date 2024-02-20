@@ -3,16 +3,16 @@ import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { useEffect, useState } from "react";
 import { useAuthPRovider } from "@src/providers/AuthProvider";
 
-export function useGetLikedProducts() {
-  const { likedProducts, setLikedProducts } = useGlobalProvider();
+export function useGetWishlist() {
+  const { wishlist, setwishlist } = useGlobalProvider();
   const [loading, setLoading] = useState<boolean>(false);
   const { authStatus } = useAuthPRovider();
 
-  async function GetLikedProducts() {
+  async function GetWishlist() {
     try {
       setLoading(true);
       const resp = await PrivateAxios.get("/liked-products");
-      setLikedProducts(resp.data);
+      setwishlist(resp.data);
     } catch (error) {
       alert("get liked products failed");
     } finally {
@@ -21,9 +21,9 @@ export function useGetLikedProducts() {
   }
   useEffect(() => {
     if (authStatus === "authorized") {
-      GetLikedProducts();
+      GetWishlist();
     }
   }, [authStatus]);
 
-  return { likedProducts, loading };
+  return { GetWishlist, wishlist, loading };
 }

@@ -202,7 +202,7 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   const [selectedGender, setSelectedGender] = useState<string>();
   const [products, setProducts] = useState<TProducts[]>();
   const [cartProducts, setCartProducts] = useState<TProducts[]>();
-  const [likedProducts, setLikedProducts] = useState<TProducts[]>();
+  const [wishlist, setwishlist] = useState<TProducts[]>();
 
   return (
     <GlobalContext.Provider
@@ -215,8 +215,8 @@ export function GlobalProvider({ children }: PropsWithChildren) {
         setSaleProducts,
         selectedGender,
         setSelectedGender,
-        likedProducts,
-        setLikedProducts,
+        wishlist,
+        setwishlist,
         ChooceGender,
         setChooceGender,
         footerLinks,

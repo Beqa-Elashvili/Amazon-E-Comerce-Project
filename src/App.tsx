@@ -8,7 +8,7 @@ const Products = lazy(() => import("@src/views/Products"));
 const Login = lazy(() => import("@src/views/AuthViews/Login"));
 const Register = lazy(() => import("@src/views/AuthViews/Register"));
 const CartProductsPage = lazy(() => import("@src/views/CartProductPage"));
-const LikedProductsPage = lazy(() => import("@src/views/LikedProductsPage"));
+const LikedProductsPage = lazy(() => import("@src/views/Wishlist"));
 
 function App() {
   return (

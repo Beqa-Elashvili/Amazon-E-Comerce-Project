@@ -1,7 +1,7 @@
 import { useGetCartProducts } from "@src/hooks/useAddAndGetCart/getCartProducts";
 import { SCartProducts } from "./SCartProductsPage";
 import { MdDeleteForever } from "react-icons/md";
-import { useDeleteCartProduct } from "@src/hooks/useDeleteCartProduct";
+import { useDeleteCartProduct } from "@src/hooks/useAddAndGetCart/useDeleteCartProduct";
 import { useCartCount } from "@src/hooks/useCartCount";
 import { Button, Card } from "antd";
 import { useNavigate } from "react-router-dom";

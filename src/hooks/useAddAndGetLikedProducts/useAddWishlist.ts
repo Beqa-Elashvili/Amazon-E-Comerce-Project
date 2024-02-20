@@ -1,9 +1,9 @@
 import { PrivateAxios } from "@src/utils/PriveteAxios";
 import { useState } from "react";
 
-export function useAddLikedProducts() {
+export function useAddWishlist() {
   const [loading, setLoading] = useState<boolean>(false);
-  async function AddLikedProducts(productId: string) {
+  async function AddWishlist(productId: string) {
     try {
       setLoading(true);
       const resp = await PrivateAxios.post("/liked-products", {
@@ -16,5 +16,5 @@ export function useAddLikedProducts() {
       setLoading(false);
     }
   }
-  return { AddLikedProducts, loading };
+  return { AddWishlist, loading };
 }

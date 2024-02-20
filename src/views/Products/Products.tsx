@@ -4,13 +4,13 @@ import { useAuthPRovider } from "@src/providers/AuthProvider";
 import { FaCartArrowDown } from "react-icons/fa";
 import { useAddinCart } from "@src/hooks/useAddAndGetCart";
 import { useGetProducts } from "@src/hooks/useGetProducts";
-import { useAddLikedProducts } from "@src/hooks/useAddAndGetLikedProducts";
+import { useAddWishlist } from "@src/hooks/useAddAndGetLikedProducts";
 
 export function Products() {
   const { products } = useGetProducts();
   const { authStatus } = useAuthPRovider();
   const { addtoCart, loading: addtoCartLoading } = useAddinCart();
-  const { AddLikedProducts } = useAddLikedProducts();
+  const { AddWishlist } = useAddWishlist();
 
   return (
     <SProducts className="mt-52">
@@ -39,9 +39,7 @@ export function Products() {
                     >
                       Add Cart
                     </Button>
-                    <button onClick={() => AddLikedProducts(item.id)}>
-                      123
-                    </button>
+                    <button onClick={() => AddWishlist(item.id)}>123</button>
                   </div>
                 ) : (
                   <Button className="w-full bg-amber-400 mt-2">Buy Now</Button>

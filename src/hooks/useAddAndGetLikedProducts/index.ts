@@ -1,2 +1,2 @@
-export { useGetLikedProducts } from "./useGetLikedProducts";
-export { useAddLikedProducts } from "./useAddLikedProducts";
+export { useGetWishlist } from "./useGetWishlist";
+export { useAddWishlist } from "./useAddWishlist";

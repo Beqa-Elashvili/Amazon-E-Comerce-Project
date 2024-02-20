@@ -3,18 +3,18 @@ import { TAuthorizationStatus_Enum } from "@src/providers/AuthProvider/AuthConte
 import { FormattedMessage } from "react-intl";
 import { useNavigate } from "react-router-dom";
 import { UserOutlined } from "@ant-design/icons";
-import { Avatar, Popover, Button } from "antd";
+import { Avatar, Popover, Button, Divider } from "antd";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export function UserAvatar() {
   const navigate = useNavigate();
   const { selectedGender } = useGlobalProvider();
-
   const { authStatus, userData, logout } = useAuthPRovider();
 
   const content = (
     <div className=" flex flex-col gap-2">
       <Button onClick={() => navigate("/profile")}>Profile</Button>
+      <Button onClick={() => navigate("/liked_products")}>Wishlist</Button>
       <Button type="primary" danger ghost onClick={() => logout()}>
         Log Out
       </Button>
