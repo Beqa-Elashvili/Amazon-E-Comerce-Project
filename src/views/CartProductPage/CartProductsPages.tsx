@@ -58,20 +58,9 @@ export function CartProductsPage() {
         <div className="flex flex-col">
           {cartProducts?.map((item) => {
             return (
-              <Card
+              <div
                 key={item.id}
                 className="bg-slate-400 p-2 m-3 rounded-xl w-1/2 border-none"
-                title={`${item.cartProduct.title}... ${item.count} ცალი`}
-                extra={
-                  <>
-                    <Button onClick={() => addtoCart(item.cartProduct.id)}>
-                      +
-                    </Button>
-                    <Button onClick={() => deleteCartProduct(item.id, false)}>
-                      -
-                    </Button>
-                  </>
-                }
               >
                 <div className="flex justify-between items-center">
                   <div className="bg-grey-200 flex">
@@ -83,18 +72,37 @@ export function CartProductsPage() {
                       />
                     </div>
                     <div className="ml-5">
-                      <h4>{item.cartProduct.price}$</h4>
-                      <p className="mt-5">{item.cartProduct.description}</p>
+                      <h4>{item.cartProduct.title}</h4>
+                      <h5 className="mt-4">{item.cartProduct.price}</h5>
                     </div>
                   </div>
-                  <button
-                    onClick={() => deleteCartProduct(item.id, true)}
-                    className="rounded-full h-16 w-16 border-none bg-slate-400"
-                  >
-                    {<MdDeleteForever className="w-10 h-10" />}
-                  </button>
+                  <div className="flex items-center">
+                    <div className="flex">
+                      <Button
+                        onClick={() => addtoCart(item.cartProduct.id)}
+                        className=" w-12 h-7 rounded-full border-none"
+                      >
+                        +
+                      </Button>
+                      <p className="bg-slate-500 rounded-xl px-3">
+                        {item.count}
+                      </p>
+                      <Button
+                        onClick={() => deleteCartProduct(item.id, false)}
+                        className=" w-12 h-7 rounded-full border-none"
+                      >
+                        -
+                      </Button>
+                    </div>
+                    <button
+                      onClick={() => deleteCartProduct(item.id, true)}
+                      className="rounded-full h-16 w-16 border-none bg-slate-400"
+                    >
+                      {<MdDeleteForever className="w-10 h-10" />}
+                    </button>
+                  </div>
                 </div>
-              </Card>
+              </div>
             );
           })}
         </div>
