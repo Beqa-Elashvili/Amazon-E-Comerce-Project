@@ -5,6 +5,7 @@ import { FaCartArrowDown } from "react-icons/fa";
 import { useAddinCart } from "@src/hooks/useAddAndGetCart";
 import { useGetProducts } from "@src/hooks/useGetProducts";
 import { useAddWishlist } from "@src/hooks/useAddAndGetLikedProducts";
+import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
 
 export function Products() {
   const { products } = useGetProducts();
@@ -39,7 +40,12 @@ export function Products() {
                     >
                       Add Cart
                     </Button>
-                    <button onClick={() => AddWishlist(item.id)}>123</button>
+                    <button
+                      className="border-none bg-white cursor-pointer"
+                      onClick={() => AddWishlist(item.id)}
+                    >
+                      <IoIosHeart className="text-orange-600 size-8 " />
+                    </button>
                   </div>
                 ) : (
                   <Button className="w-full bg-amber-400 mt-2">Buy Now</Button>

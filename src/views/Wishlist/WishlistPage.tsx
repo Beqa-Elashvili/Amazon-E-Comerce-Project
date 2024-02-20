@@ -35,7 +35,7 @@ export function LikedProductsPage(): JSX.Element {
         <div className="p-2 flex flex-col gap-2">
           {wishlist?.map((item) => {
             return (
-              <div className="flex justify-between items-center rounded-xl w-1/2 bg-slate-400">
+              <div key={item.id} className="flex justify-between items-center rounded-xl w-1/2 bg-slate-400">
                 <div className="bg-grey-200 flex p-2">
                   <div className="bg-white p-2 rounded-xl inline-flex">
                     <img
