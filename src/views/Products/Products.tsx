@@ -6,12 +6,18 @@ import { useAddinCart } from "@src/hooks/useAddAndGetCart";
 import { useGetProducts } from "@src/hooks/useGetProducts";
 import { useAddWishlist } from "@src/hooks/useAddAndGetLikedProducts";
 import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
+import { useGetWishlist } from "@src/hooks/useAddAndGetLikedProducts";
 
 export function Products() {
   const { products } = useGetProducts();
   const { authStatus } = useAuthPRovider();
   const { addtoCart } = useAddinCart();
   const { AddWishlist } = useAddWishlist();
+  const { wishlist } = useGetWishlist();
+
+  const isProductInWishlist = (productId: string) => {
+    return wishlist?.some((item) => item.likedProduct.id === productId);
+  };
 
   return (
     <SProducts className="mt-52">
@@ -43,7 +49,11 @@ export function Products() {
                       className="border-none bg-white cursor-pointer"
                       onClick={() => AddWishlist(item.id)}
                     >
-                      <IoIosHeart className="text-orange-600 size-8 hover:text-yellow-400" />
+                      {isProductInWishlist(item.id) ? (
+                        <IoIosHeart className="text-red-600 size-8 hover:text-yellow-400" />
+                      ) : (
+                        <IoIosHeartEmpty className="text-orange-600 size-8 hover:text-orange-400" />
+                      )}
                     </button>
                   </div>
                 ) : (
