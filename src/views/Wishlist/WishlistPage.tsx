@@ -3,16 +3,18 @@ import { MdDeleteForever } from "react-icons/md";
 import { SLikedProducts } from "./SWishlist";
 import { useDeleteWishlist } from "@src/hooks/useAddAndGetLikedProducts/useDeleteWishlist";
 import { Button } from "antd";
+import { useAuthPRovider } from "@src/providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
 export function LikedProductsPage(): JSX.Element {
   const { wishlist } = useGetWishlist();
   const { DeleteWishlist } = useDeleteWishlist();
   const navigate = useNavigate();
+  const { authStatus } = useAuthPRovider();
 
   return (
     <SLikedProducts>
-      {wishlist?.length === 0 ? (
+      {wishlist?.length === 0 || authStatus === "unauthorized" ? (
         <div className="flex justify-center items-center">
           <img
             className="w-full relative"
@@ -35,7 +37,10 @@ export function LikedProductsPage(): JSX.Element {
         <div className="p-2 flex flex-col gap-2">
           {wishlist?.map((item) => {
             return (
-              <div key={item.id} className="flex justify-between items-center rounded-xl w-1/2 bg-slate-400">
+              <div
+                key={item.id}
+                className="flex justify-between items-center rounded-xl w-1/2 bg-slate-400"
+              >
                 <div className="bg-grey-200 flex p-2">
                   <div className="bg-white p-2 rounded-xl inline-flex">
                     <img

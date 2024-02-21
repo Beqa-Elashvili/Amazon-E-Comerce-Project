@@ -7,7 +7,7 @@ import { useAddinCart } from "@src/hooks/useAddAndGetCart";
 
 export function SaleProducts() {
   const { authStatus } = useAuthPRovider();
-  const { addtoCart, loading: addToCartLoading } = useAddinCart();
+  const { addtoCart } = useAddinCart();
   const { saleProducts } = useGetSaleProducts();
 
   return (
@@ -34,7 +34,6 @@ export function SaleProducts() {
                   <Button
                     onClick={() => addtoCart(item.id)}
                     icon={<FaCartArrowDown />}
-                    loading={addToCartLoading}
                   >
                     Add Cart
                   </Button>
