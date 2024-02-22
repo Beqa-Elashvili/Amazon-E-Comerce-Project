@@ -11,13 +11,13 @@ export function useAddWishlist() {
   async function AddWishlist(productId: string) {
     try {
       setLoading(true);
-      // const isInWishlist = wishlist?.some(
-      //   (item) => item.likedProduct.id === productId
-      // );
-      // if (isInWishlist) {
-      //   await DeleteWishlist(productId);
-      // } else {
-      // }
+      const isInWishlist = wishlist?.some(
+        (item) => item.likedProduct.id === productId
+      );
+      if (isInWishlist) {
+        await DeleteWishlist(productId);
+      } else {
+      }
       const resp = await PrivateAxios.post("/liked-products", {
         product_id: productId,
       });

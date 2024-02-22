@@ -4,11 +4,17 @@ import { useAuthPRovider } from "@src/providers/AuthProvider";
 import { FaCartArrowDown } from "react-icons/fa";
 import { useGetSaleProducts } from "@src/hooks/useGetSaleProducts";
 import { useAddinCart } from "@src/hooks/useAddAndGetCart";
+import { useIsProductInWishlist } from "@src/hooks/useAddAndGetLikedProducts";
+import { useAddWishlist } from "@src/hooks/useAddAndGetLikedProducts";
+import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
+
 
 export function SaleProducts() {
   const { authStatus } = useAuthPRovider();
   const { addtoCart } = useAddinCart();
   const { saleProducts } = useGetSaleProducts();
+  const { isInWishlist } = useIsProductInWishlist();
+  const { AddWishlist } = useAddWishlist();
 
   return (
     <SSaleProducts className="absolute">
@@ -37,6 +43,16 @@ export function SaleProducts() {
                   >
                     Add Cart
                   </Button>
+                  <button
+                    className="border-none bg-white cursor-pointer"
+                    onClick={() => AddWishlist(item.id)}
+                  >
+                    {isInWishlist(item.id) ? (
+                      <IoIosHeart className="text-red-600 size-8 hover:text-yellow-400" />
+                    ) : (
+                      <IoIosHeartEmpty className="text-orange-600 size-8 hover:text-orange-400" />
+                    )}
+                  </button>
                 </div>
               ) : (
                 <Button className="w-full bg-amber-400 mt-2">Buy Now</Button>

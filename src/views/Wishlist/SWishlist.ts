@@ -9,7 +9,6 @@ export const SLikedProducts = styled.div`
   `}
   & button:hover {
     color: #ffff;
-    background-color: gray;
     cursor: pointer;
   }
 `;

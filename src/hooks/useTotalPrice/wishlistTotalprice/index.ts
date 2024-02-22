@@ -1,0 +1,1 @@
+export { usewishTotalPrice } from "./usewishTotalPrice";
