@@ -134,7 +134,7 @@ export function Header() {
                 <FormattedMessage id="Cart" defaultMessage={"Cart"} />
               </h4>
             </button>
-            <div className="absolute top-1 right-2 text-white border-solid border-amber-500 rounded-full h-6 w-6 text-center">
+            <div className="absolute top-1 right-2 text-white border-solid border-amber-500 rounded-full h-6 min-w-6 text-center">
               {addProductsCount}
             </div>
           </div>

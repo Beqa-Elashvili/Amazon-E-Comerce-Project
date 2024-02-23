@@ -14,6 +14,15 @@
 "Re-enter_Password": "Re-enter Password",
 "Continue": "Continue",
 "Sign-in": "Sign in",
-"Create_Your_Amazon_Account":"Create your Amazon account"
+"Create_Your_Amazon_Account":"Create your Amazon account",
+"Your_Amazon_Cart_is_empty":"Your Amazon Cart is empty",
+"Authorization":"Sign in to your account",
+"Registration":"Sign up now",
+"Add_products_Here":"Add products Here",
+"The_number_of_products_in_the_Cart":"The number of products in the Cart",
+"Total_Cost":"Total Cost",
+"Amount_to_be_paid":"Amount to be paid",
+"Go_to_Checkout":"Go to Checkout"
+
 
 }

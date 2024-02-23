@@ -14,5 +14,13 @@
 "Re-enter_Password": "გაიმეორეთ პაროლი",
 "Continue": "გაგრძელება",
 "Sign-in": "შესვლა",
-"Create_Your_Amazon_Account":"შექმენი შენი ამაზონის ექაუნთი"
+"Create_Your_Amazon_Account":"შექმენი შენი ამაზონის ექაუნთი",
+"Your_Amazon_Cart_is_empty":"შენი კალათა ცარიელია",
+"Authorization":"შედი შენს ექაუნთზე",
+"Registration":"რეგისტრაცია",
+"Add_products_Here":"დაამატე პროდუქტები",
+"The_number_of_products_in_the_Cart":"კალათის პროდუქტების რაოდენობა",
+"Total_Cost":"საერთო ღირებულება",
+"Amount_to_be_paid":"გადასახელი თანხა",
+"Go_to_Checkout":"ყიდვა"
 }
