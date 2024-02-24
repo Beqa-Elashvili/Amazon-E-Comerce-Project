@@ -18,14 +18,14 @@ export function Products() {
   return (
     <SProducts className="mt-52">
       <div className="container">
-        {products?.slice(0, 12).map((item) => {
+        {products?.map((item) => {
           if (item.salePrice === null) {
             return (
               <div
                 key={item.id}
                 className="h-full border-none cursor-pointer text-start p-3 bg-white rounded-lg"
               >
-                <h3>{item.title}</h3>
+                <h3 className="w-80 h-8">{item.title}</h3>
                 <img
                   className="h-80 mt-2"
                   src={item.image}

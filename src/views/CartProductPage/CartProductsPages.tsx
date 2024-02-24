@@ -73,7 +73,7 @@ export function CartProductsPage() {
         </div>
       ) : (
         <div>
-          <h1 className="p-4 flex">
+          <h1 className="p-2 rounded-xl flex bg-gray-200 inline-flex m-4 ">
             <FormattedMessage
               id="The_number_of_products_in_the_Cart"
               defaultMessage={"The number of products in the Cart"}

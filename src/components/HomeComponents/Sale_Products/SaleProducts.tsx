@@ -28,7 +28,7 @@ export function SaleProducts() {
               <div className="text-red-800 bg-red-100 inline p-2 rounded-lg">
                 Hot Sale
               </div>
-              <h3 className="mt-2">{item.title}</h3>
+              <h3 className="mt-2 h-12">{item.title}</h3>
               <img className="h-80" src={item.image} alt="SaleProducts" />
               <p className="line-through text-red-700">
                 OldPrice: {item.price}

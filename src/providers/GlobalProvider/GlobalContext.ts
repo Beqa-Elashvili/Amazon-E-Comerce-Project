@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, createContext } from "react";
+import { Dispatch, ReactNode, SetStateAction, createContext } from "react";
 
 export type TGender = {
   label: string;
@@ -6,6 +6,7 @@ export type TGender = {
   id: string;
 };
 export type TCategorys = {
+  icon: ReactNode;
   created_at: string;
   id: string;
   name: string;
@@ -44,6 +45,9 @@ interface TGlobalContext {
     >
   >;
 
+  categoryProducts: TProducts[] | undefined;
+  setCategoryProducts: Dispatch<SetStateAction<TProducts[] | undefined>>;
+
   wishlist: TProducts[] | undefined;
   setwishlist: Dispatch<SetStateAction<TProducts[] | undefined>>;
 
@@ -56,8 +60,8 @@ interface TGlobalContext {
   cartProducts: TProducts[] | undefined;
   setCartProducts: Dispatch<SetStateAction<TProducts[] | undefined>>;
 
-  categorys: TCategorys[] | undefined;
-  setCategorys: Dispatch<SetStateAction<TCategorys[] | undefined>>;
+  categorys: TCategorys[];
+  setCategorys: Dispatch<SetStateAction<TCategorys[]>>;
 
   ChooceGender: TGender[];
   setChooceGender: Dispatch<SetStateAction<TGender[]>>;
@@ -67,6 +71,8 @@ interface TGlobalContext {
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
+  categoryProducts: [],
+  setCategoryProducts: () => {},
   wishlist: [],
   setwishlist: () => {},
   products: [],
@@ -79,7 +85,7 @@ export const GlobalContext = createContext<TGlobalContext>({
   setSelectedGender: () => {},
   ChooceGender: [],
   setChooceGender: () => {},
-  categorys: undefined,
+  categorys: [],
   footerLinks: [],
   setFooterLinks: () => {},
   setCategorys: () => {},

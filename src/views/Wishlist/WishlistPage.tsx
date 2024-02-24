@@ -42,7 +42,7 @@ export function LikedProductsPage(): JSX.Element {
               return (
                 <div
                   key={item.id}
-                  className="flex justify-between items-center rounded-xl p-2 w-2/3 bg-slate-400"
+                  className="flex justify-between items-center rounded-xl overflow-hidden p-2 w-2/3 bg-slate-400"
                 >
                   <div className="bg-grey-200 flex">
                     <div className="bg-white p-2 rounded-xl inline-flex">
@@ -54,14 +54,16 @@ export function LikedProductsPage(): JSX.Element {
                     </div>
                     <div className="ml-5">
                       <h4>{item.likedProduct.price}$</h4>
-                      <p className="mt-5">{item.likedProduct.description}</p>
+                      <p className="mt-5">
+                        {item.likedProduct.description.slice(0, 120)}...
+                      </p>
                     </div>
                   </div>
                   <button
                     onClick={() => DeleteWishlist(item.id)}
-                    className="rounded-full h-16 w-16 border-none bg-slate-400 hover:bg-gray-800"
+                    className="rounded-full h-16 w-16 border-none flex justify-center items-center bg-slate-400 hover:bg-gray-800"
                   >
-                    {<MdDeleteForever className="w-10 h-10" />}
+                    {<MdDeleteForever className="w-20 h-10" />}
                   </button>
                 </div>
               );
