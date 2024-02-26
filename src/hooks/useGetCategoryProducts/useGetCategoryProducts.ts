@@ -1,6 +1,5 @@
 import { BaseAxios } from "@src/utils/Base_Axios";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
-import { useState } from "react";
 
 export function useGetCategoryProducts() {
   const { categoryProducts, setCategoryProducts } = useGlobalProvider();

@@ -4,6 +4,7 @@ import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export function useGetCategorys() {
   const { categorys, setCategorys } = useGlobalProvider();
+
   async function getCategory() {
     try {
       const resp = await BaseAxios.get("/product-category");

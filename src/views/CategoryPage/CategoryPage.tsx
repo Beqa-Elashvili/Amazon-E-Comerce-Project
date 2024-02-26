@@ -14,14 +14,16 @@ export function CategoryPage() {
   function getItem(
     label: React.ReactNode,
     key: React.Key,
-    icon?: React.ReactNode,
+    image?: React.ReactNode,
+    size?: string,
     children?: MenuItem[],
     type?: "group",
     onClick?: () => void
   ): MenuItem {
     return {
       key,
-      icon,
+      image,
+      size,
       children,
       label,
       type,
@@ -32,12 +34,13 @@ export function CategoryPage() {
   const items: MenuItem[] = categorys?.map((category) => {
     return getItem(
       category.name,
-      category.id.toString(),
-      category.icon,
+      category.id,
+      category.image,
+      "50px",
       undefined,
       undefined,
       () => {
-        console.log(category.name);
+        console.log(category.image);
       }
     );
   });

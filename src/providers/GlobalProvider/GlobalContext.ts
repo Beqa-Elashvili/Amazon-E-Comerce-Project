@@ -6,6 +6,7 @@ export type TGender = {
   id: string;
 };
 export type TCategorys = {
+  image: ReactNode;
   icon: ReactNode;
   created_at: string;
   id: string;
