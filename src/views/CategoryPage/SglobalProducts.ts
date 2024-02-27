@@ -1,9 +1,10 @@
 import styled, { css } from "styled-components";
 
 export const SglobalProducts = styled.div`
-  width: 98%;
-  margin: auto;
-  ${(props) => css`
+  /* ${(props) => css`
     background-color: ${props.theme.colors["primary"]};
-  `}
+  `} */
+  & img {
+    width: 20px;
+  }
 `;

@@ -204,10 +204,13 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   const [cartProducts, setCartProducts] = useState<TProducts[]>();
   const [wishlist, setwishlist] = useState<TProducts[]>();
   const [categoryProducts, setCategoryProducts] = useState<TProducts[]>();
+  const [CategoryName,setCategoryName] = useState<string>()
 
   return (
     <GlobalContext.Provider
       value={{
+        CategoryName,
+        setCategoryName,
         products,
         setProducts,
         saleProducts,

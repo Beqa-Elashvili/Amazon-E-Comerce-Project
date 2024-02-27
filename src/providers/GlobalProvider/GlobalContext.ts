@@ -45,6 +45,8 @@ interface TGlobalContext {
       }[]
     >
   >;
+  CategoryName: string | undefined;
+  setCategoryName: Dispatch<SetStateAction<string | undefined>>;
 
   categoryProducts: TProducts[] | undefined;
   setCategoryProducts: Dispatch<SetStateAction<TProducts[] | undefined>>;
@@ -61,8 +63,8 @@ interface TGlobalContext {
   cartProducts: TProducts[] | undefined;
   setCartProducts: Dispatch<SetStateAction<TProducts[] | undefined>>;
 
-  categorys: TCategorys[];
-  setCategorys: Dispatch<SetStateAction<TCategorys[]>>;
+  categorys: TCategorys[] | undefined;
+  setCategorys: Dispatch<SetStateAction<TCategorys[] | undefined>>;
 
   ChooceGender: TGender[];
   setChooceGender: Dispatch<SetStateAction<TGender[]>>;
@@ -72,6 +74,8 @@ interface TGlobalContext {
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
+  CategoryName: undefined,
+  setCategoryName: () => {},
   categoryProducts: [],
   setCategoryProducts: () => {},
   wishlist: [],

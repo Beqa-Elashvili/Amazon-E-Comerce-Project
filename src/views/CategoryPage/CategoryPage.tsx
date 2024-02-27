@@ -1,53 +1,58 @@
 import { useGetCategorys } from "@src/hooks/useGetCategorys";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { SglobalProducts } from "./SglobalProducts";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Button, Menu } from "antd";
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { SglobalProducts } from "./SglobalProducts";
+import { useGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
 
 export function CategoryPage() {
   const { categorys } = useGetCategorys();
   const [collapsed, setCollapsed] = useState(true);
+  const { CategoryName, setCategoryName } = useGetCategoryProducts();
 
   type MenuItem = Required<MenuProps>["items"][number];
 
   function getItem(
     label: React.ReactNode,
     key: React.Key,
-    image?: React.ReactNode,
-    size?: string,
-    children?: MenuItem[],
-    type?: "group",
+    icon?: React.ReactNode,
+    name?: string,
+    id?: string,
     onClick?: () => void
   ): MenuItem {
     return {
       key,
-      image,
-      size,
-      children,
+      name,
+      id,
+      icon,
       label,
-      type,
       onClick,
     } as MenuItem;
   }
 
-  const items: MenuItem[] = categorys?.map((category) => {
-    return getItem(
-      category.name,
-      category.id,
-      category.image,
-      "50px",
+  const items: MenuItem[] | undefined = categorys?.map((item) =>
+    getItem(
+      item.name,
+      item.id,
+      <img src={item.image} alt="category_icon" />,
       undefined,
       undefined,
       () => {
-        console.log(category.image);
+        setCategoryName(item.name);
       }
-    );
-  });
+    )
+  );
 
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
   };
+
+  useEffect(() => {
+    if (collapsed === false) {
+      setCollapsed(true);
+    }
+  }, [CategoryName]);
 
   return (
     <SglobalProducts>
@@ -61,7 +66,7 @@ export function CategoryPage() {
       <div className="flex">
         <div className="w-60">
           <Button
-            className="mb-2 mt-2"
+            className="mb-2 mt-2 ml-2"
             type="primary"
             onClick={toggleCollapsed}
           >
@@ -69,8 +74,6 @@ export function CategoryPage() {
             Categorys
           </Button>
           <Menu
-            defaultSelectedKeys={["1"]}
-            defaultOpenKeys={["sub1"]}
             mode="inline"
             theme="dark"
             inlineCollapsed={collapsed}
