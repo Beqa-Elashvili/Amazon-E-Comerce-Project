@@ -1,7 +1,10 @@
 import { SglobalProducts } from "./SglobalProducts";
 import { CategoryMenu } from "@src/components/CategoryMenu";
+import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export function CategoryPage() {
+  const { categoryProducts } = useGlobalProvider();
+
   return (
     <SglobalProducts>
       <div className="ml-2">

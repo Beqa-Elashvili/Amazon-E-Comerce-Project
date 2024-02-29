@@ -6,9 +6,9 @@ import { Button, Menu } from "antd";
 import { useGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
 
 export function CategoryMenu() {
-  const { categorys } = useGetCategorys();
   const [collapsed, setCollapsed] = useState(true);
-  const { CategoryName, setCategoryName } = useGetCategoryProducts();
+  const { categorys } = useGetCategorys();
+  const { CategoryName, getCategoryProducts } = useGetCategoryProducts();
 
   type MenuItem = Required<MenuProps>["items"][number];
 
@@ -38,7 +38,7 @@ export function CategoryMenu() {
       undefined,
       undefined,
       () => {
-        setCategoryName(item.name);
+        getCategoryProducts(item.name);
       }
     )
   );
