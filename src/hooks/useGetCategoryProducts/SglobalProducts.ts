@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const SglobalProducts = styled.div`
+export const SmenuImages = styled.div`
   /* ${(props) => css`
     background-color: ${props.theme.colors["primary"]};
   `} */

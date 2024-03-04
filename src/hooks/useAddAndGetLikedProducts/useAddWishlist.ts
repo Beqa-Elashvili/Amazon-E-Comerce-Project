@@ -1,11 +1,9 @@
 import { PrivateAxios } from "@src/utils/PriveteAxios";
 import { useState } from "react";
 import { useGetWishlist } from "./useGetWishlist";
-import { useDeleteWishlist } from "./useDeleteWishlist";
 
 export function useAddWishlist() {
   const { wishlist, GetWishlist } = useGetWishlist();
-  const { DeleteWishlist } = useDeleteWishlist();
   const [loading, setLoading] = useState<boolean>(false);
 
   async function AddWishlist(productId: string) {
@@ -15,8 +13,8 @@ export function useAddWishlist() {
         (item) => item.likedProduct.id === productId
       );
       if (isInWishlist) {
-        await DeleteWishlist(productId);
-      } else {
+        alert("product alredy in wishlist");
+        return;
       }
       const resp = await PrivateAxios.post("/liked-products", {
         product_id: productId,

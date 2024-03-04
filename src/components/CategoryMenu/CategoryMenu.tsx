@@ -4,6 +4,7 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Button, Menu } from "antd";
 import { useGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
+import { SmenuImages } from "@src/hooks/useGetCategoryProducts/SglobalProducts";
 
 export function CategoryMenu() {
   const [collapsed, setCollapsed] = useState(true);
@@ -54,7 +55,7 @@ export function CategoryMenu() {
   }, [CategoryName]);
 
   return (
-    <div className="w-60">
+    <SmenuImages className="w-60">
       <Button
         className="mb-2 mt-2 ml-2"
         type="primary"
@@ -64,11 +65,12 @@ export function CategoryMenu() {
         Categorys
       </Button>
       <Menu
+        className="h-full"
         mode="inline"
         theme="dark"
         inlineCollapsed={collapsed}
         items={items}
       />
-    </div>
+    </SmenuImages>
   );
 }

@@ -45,36 +45,36 @@ interface TGlobalContext {
       }[]
     >
   >;
-  CategoryName: string | undefined;
-  setCategoryName: Dispatch<SetStateAction<string | undefined>>;
+  CategoryName: string;
+  setCategoryName: Dispatch<SetStateAction<string>>;
 
-  categoryProducts: TProducts[] | undefined;
-  setCategoryProducts: Dispatch<SetStateAction<TProducts[] | undefined>>;
+  categoryProducts: TProducts[];
+  setCategoryProducts: Dispatch<SetStateAction<TProducts[]>>;
 
-  wishlist: TProducts[] | undefined;
-  setwishlist: Dispatch<SetStateAction<TProducts[] | undefined>>;
+  wishlist: TProducts[];
+  setwishlist: Dispatch<SetStateAction<TProducts[]>>;
 
-  products: TProducts[] | undefined;
-  setProducts: Dispatch<SetStateAction<TProducts[] | undefined>>;
+  products: TProducts[];
+  setProducts: Dispatch<SetStateAction<TProducts[]>>;
 
-  saleProducts: TProducts[] | undefined;
-  setSaleProducts: Dispatch<SetStateAction<TProducts[] | undefined>>;
+  saleProducts: TProducts[];
+  setSaleProducts: Dispatch<SetStateAction<TProducts[]>>;
 
-  cartProducts: TProducts[] | undefined;
-  setCartProducts: Dispatch<SetStateAction<TProducts[] | undefined>>;
+  cartProducts: TProducts[];
+  setCartProducts: Dispatch<SetStateAction<TProducts[]>>;
 
-  categorys: TCategorys[] | undefined;
-  setCategorys: Dispatch<SetStateAction<TCategorys[] | undefined>>;
+  categorys: TCategorys[];
+  setCategorys: Dispatch<SetStateAction<TCategorys[]>>;
 
   ChooceGender: TGender[];
   setChooceGender: Dispatch<SetStateAction<TGender[]>>;
 
   selectedGender: string | undefined;
-  setSelectedGender: Dispatch<SetStateAction<string | undefined>>;
+  setSelectedGender: Dispatch<SetStateAction<string>>;
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
-  CategoryName: undefined,
+  CategoryName: "",
   setCategoryName: () => {},
   categoryProducts: [],
   setCategoryProducts: () => {},

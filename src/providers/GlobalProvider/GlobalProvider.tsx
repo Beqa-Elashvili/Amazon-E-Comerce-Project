@@ -195,16 +195,16 @@ const Genders = [
 ];
 
 export function GlobalProvider({ children }: PropsWithChildren) {
-  const [saleProducts, setSaleProducts] = useState<TProducts[]>();
-  const [categorys, setCategorys] = useState<TCategorys[]>();
+  const [saleProducts, setSaleProducts] = useState<TProducts[]>([]);
+  const [categorys, setCategorys] = useState<TCategorys[]>([]);
   const [footerLinks, setFooterLinks] = useState(footerAmazonLinks);
   const [ChooceGender, setChooceGender] = useState<TGender[]>(Genders);
-  const [selectedGender, setSelectedGender] = useState<string>();
-  const [products, setProducts] = useState<TProducts[]>();
-  const [cartProducts, setCartProducts] = useState<TProducts[]>();
-  const [wishlist, setwishlist] = useState<TProducts[]>();
-  const [categoryProducts, setCategoryProducts] = useState<TProducts[]>();
-  const [CategoryName,setCategoryName] = useState<string>()
+  const [selectedGender, setSelectedGender] = useState<string>("");
+  const [products, setProducts] = useState<TProducts[]>([]);
+  const [cartProducts, setCartProducts] = useState<TProducts[]>([]);
+  const [wishlist, setwishlist] = useState<TProducts[]>([]);
+  const [categoryProducts, setCategoryProducts] = useState<TProducts[]>([]);
+  const [CategoryName, setCategoryName] = useState<string>("");
 
   return (
     <GlobalContext.Provider
