@@ -8,7 +8,6 @@ export function useGetCategoryProducts() {
     setCategoryName,
     CategoryName,
   } = useGlobalProvider();
-  console.log(CategoryName);
 
   useEffect(() => {
     const name = localStorage.getItem("category_name");

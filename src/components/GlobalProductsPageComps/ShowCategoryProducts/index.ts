@@ -1,0 +1,1 @@
+export { ShowCategoryProducts } from "./ShowCategoryProducts";

@@ -16,7 +16,7 @@ export function CategoryMenu() {
   function getItem(
     label: React.ReactNode,
     key: React.Key,
-    icon?: React.ReactNode,
+    icon?: React.ReactNode | undefined,
     name?: string,
     id?: string,
     onClick?: () => void
@@ -31,11 +31,13 @@ export function CategoryMenu() {
     } as MenuItem;
   }
 
-  const items: MenuItem[] | undefined = categorys?.map((item) =>
+  const items: MenuItem[] = categorys?.map((item) =>
     getItem(
       item.name,
       item.id,
-      <img src={item.image} alt="category_icon" />,
+      typeof item.image === "string" ? (
+        <img src={item.image} alt="category_icon" />
+      ) : null,
       undefined,
       undefined,
       () => {
@@ -55,7 +57,7 @@ export function CategoryMenu() {
   }, [CategoryName]);
 
   return (
-    <SmenuImages className="w-60">
+    <SmenuImages>
       <Button
         className="mb-2 mt-2 ml-2"
         type="primary"
@@ -64,8 +66,9 @@ export function CategoryMenu() {
         {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         Categorys
       </Button>
+
       <Menu
-        className="h-full"
+        className="object-cover"
         mode="inline"
         theme="dark"
         inlineCollapsed={collapsed}
