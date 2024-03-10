@@ -44,9 +44,21 @@ export function ShowCartProcuts() {
             {cartProducts?.map((item) => {
               return (
                 <div className="text-center" key={item.id}>
-                  <img className="w-32" src={item.cartProduct.image} alt="" />
+                  <img
+                    className="w-32"
+                    src={item.cartProduct.image}
+                    alt="product_image"
+                  />
                   <div className="flex justify-between p-2 items-center">
-                    <h3>${item.cartProduct.price}</h3>
+                    {item.cartProduct.salePrice !== null ? (
+                      <div>
+                        <h3 className="text-red-600">${item.cartProduct.salePrice}</h3>
+                      </div>
+                    ) : (
+                      <div>
+                        <h3>${item.cartProduct.price}</h3>
+                      </div>
+                    )}
                     <p className="border-solid border rounded-xl h-full px-1 bg-yellow-400">
                       {item.count}
                     </p>

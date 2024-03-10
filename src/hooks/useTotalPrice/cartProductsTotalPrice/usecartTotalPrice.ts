@@ -10,7 +10,11 @@ export function usecartTotalPrice() {
       return 0;
     }
     const totalPrice = cartProducts.reduce((accumulator, currentItem) => {
-      return accumulator + currentItem.cartProduct.price * currentItem.count;
+      const price =
+        currentItem.cartProduct.salePrice !== null
+          ? currentItem.cartProduct.salePrice
+          : currentItem.cartProduct.price;
+      return accumulator + price * currentItem.count;
     }, 0);
     setCartTotalprice(totalPrice);
   }
