@@ -1,14 +1,17 @@
 import { useGetCategorys } from "@src/hooks/useGetCategorys";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Button, Menu, Slider } from "antd";
 import { useGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
 import { SmenuImages } from "@src/hooks/useGetCategoryProducts/SglobalProducts";
+import { useGlobalProvider } from "@src/providers/GlobalProvider";
+import { usePriceFilter } from "@src/hooks/usePriceFilter";
 
 export function CategoryMenu() {
   const [collapsed, setCollapsed] = useState(true);
-  const { categorys } = useGetCategorys();
+  const { categorys } = useGlobalProvider();
+  const { sliderValue, setSliderValue } = usePriceFilter();
   const { CategoryName, getCategoryProducts } = useGetCategoryProducts();
 
   type MenuItem = Required<MenuProps>["items"][number];
@@ -56,6 +59,10 @@ export function CategoryMenu() {
     }
   }, [CategoryName]);
 
+  const handleSliderChange = (value: SetStateAction<number[]>) => {
+    setSliderValue(value);
+  };
+
   return (
     <SmenuImages>
       <Button
@@ -65,7 +72,7 @@ export function CategoryMenu() {
       >
         {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
       </Button>
-      <div className="bg-gray-400 h-5/6 rounded-r-lg">
+      <div className="bg-gray-400 h-auto min-h-96 rounded-r-lg">
         <Menu
           className="object-cover bg-gray-400 rounded-r-lg"
           mode="inline"
@@ -75,12 +82,26 @@ export function CategoryMenu() {
         />
         {!collapsed && (
           <div className="px-2">
-            <div className="bg-white p-2 rounded-xl">
+            <div className="bg-white p-2 rounded-xl mt-2">
               <div className="flex justify-between text-red-600">
                 <p>MIN</p>
                 <p>MAX</p>
               </div>
-              <Slider range defaultValue={[20, 50]} />
+              <Slider
+                min={0}
+                max={5000}
+                onChange={handleSliderChange}
+                range
+                defaultValue={[200, 4000]}
+              />
+            </div>
+            <div className="flex items-center justify-between text-center p-2">
+              <div className="border-solid bg-white border-orange-500  rounded-md border py-2 px-2 w-20">
+                {sliderValue[0]} $
+              </div>
+              <div className="border-solid bg-white border-orange-500 rounded-md border py-2 px-2 w-20">
+                {sliderValue[1]} $
+              </div>
             </div>
           </div>
         )}

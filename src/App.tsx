@@ -20,6 +20,8 @@ function App() {
   useEffect(() => {
     if (authStatus === "authorized") {
       setIsAuthorized(true);
+    } else {
+      setIsAuthorized(false);
     }
   }, [authStatus]);
 

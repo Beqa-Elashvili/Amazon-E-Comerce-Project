@@ -12,7 +12,7 @@ export function CategoryPage() {
           </p>
           <hr className="w-4/5 m-auto mt-2" />
         </div>
-        <div className="flex justify-between">
+        <div className="flex">
           <CategoryMenu />
           <ShowCategoryProducts />
         </div>

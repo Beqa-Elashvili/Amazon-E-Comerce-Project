@@ -1,4 +1,4 @@
-import { PropsWithChildren, useState } from "react";
+import { PropsWithChildren, SetStateAction, useState } from "react";
 import { GlobalContext } from "./GlobalContext";
 import { v4 as uuidv4 } from "uuid";
 import { TGender, TCategorys, TProducts } from "./GlobalContext";
@@ -205,10 +205,13 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   const [wishlist, setwishlist] = useState<TProducts[]>([]);
   const [categoryProducts, setCategoryProducts] = useState<TProducts[]>([]);
   const [CategoryName, setCategoryName] = useState<string>("");
+  const [sliderValue, setSliderValue] = useState<number[]>([0, 0]);
 
   return (
     <GlobalContext.Provider
       value={{
+        sliderValue,
+        setSliderValue,
         CategoryName,
         setCategoryName,
         products,

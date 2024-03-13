@@ -45,6 +45,10 @@ interface TGlobalContext {
       }[]
     >
   >;
+
+  sliderValue: number[];
+  setSliderValue: Dispatch<SetStateAction<number[]>>;
+
   CategoryName: string;
   setCategoryName: Dispatch<SetStateAction<string>>;
 
@@ -74,6 +78,8 @@ interface TGlobalContext {
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
+  sliderValue: [],
+  setSliderValue: () => {},
   CategoryName: "",
   setCategoryName: () => {},
   categoryProducts: [],
