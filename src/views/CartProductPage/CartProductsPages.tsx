@@ -102,7 +102,13 @@ export function CartProductsPage() {
                         </div>
                         <div className="ml-5">
                           <h4>{item.cartProduct.title}</h4>
-                          <h5 className="mt-4">{item.cartProduct.price}</h5>
+                          {item.cartProduct.salePrice === null ? (
+                            <h5 className="mt-4">{item.cartProduct.price} $</h5>
+                          ) : (
+                            <h5 className="mt-4">
+                              {item.cartProduct.salePrice} $
+                            </h5>
+                          )}
                         </div>
                       </div>
                       <div className="flex items-center">

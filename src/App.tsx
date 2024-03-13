@@ -1,8 +1,9 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { PublicLayout } from "@src/layouts/PublicLayout/setOutlet";
 import { AutLayouts } from "@src/layouts/AutLayouts/setOutlet";
-import { Divider, Spin } from "antd";
+import { Spin } from "antd";
+import { useAuthPRovider } from "./providers/AuthProvider";
 
 const Home = lazy(() => import("@src/views/Home"));
 const Products = lazy(() => import("@src/views/Products"));
@@ -13,6 +14,15 @@ const LikedProductsPage = lazy(() => import("@src/views/Wishlist"));
 const CategoryPage = lazy(() => import("@src/views/CategoryPage"));
 
 function App() {
+  const { authStatus } = useAuthPRovider();
+  const [isAuthorized, setIsAuthorized] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (authStatus === "authorized") {
+      setIsAuthorized(true);
+    }
+  }, [authStatus]);
+
   return (
     <div>
       <Suspense
@@ -34,7 +44,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
             <Route path="/CartProducts" element={<CartProductsPage />} />
-            <Route path="/Liked_products" element={<LikedProductsPage />} />
+            {isAuthorized && (
+              <Route path="/Liked_products" element={<LikedProductsPage />} />
+            )}
             <Route path="/Category_Products_Page" element={<CategoryPage />} />
           </Route>
           <Route element={<AutLayouts />}>

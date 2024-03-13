@@ -2,7 +2,7 @@ import { useGetCategorys } from "@src/hooks/useGetCategorys";
 import { useEffect, useState } from "react";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Button, Menu } from "antd";
+import { Button, Menu, Slider } from "antd";
 import { useGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
 import { SmenuImages } from "@src/hooks/useGetCategoryProducts/SglobalProducts";
 
@@ -64,16 +64,27 @@ export function CategoryMenu() {
         onClick={toggleCollapsed}
       >
         {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-        Categorys
       </Button>
-
-      <Menu
-        className="object-cover"
-        mode="inline"
-        theme="dark"
-        inlineCollapsed={collapsed}
-        items={items}
-      />
+      <div className="bg-gray-400 h-5/6 rounded-r-lg">
+        <Menu
+          className="object-cover bg-gray-400 rounded-r-lg"
+          mode="inline"
+          theme="dark"
+          inlineCollapsed={collapsed}
+          items={items}
+        />
+        {!collapsed && (
+          <div className="px-2">
+            <div className="bg-white p-2 rounded-xl">
+              <div className="flex justify-between text-red-600">
+                <p>MIN</p>
+                <p>MAX</p>
+              </div>
+              <Slider range defaultValue={[20, 50]} />
+            </div>
+          </div>
+        )}
+      </div>
     </SmenuImages>
   );
 }

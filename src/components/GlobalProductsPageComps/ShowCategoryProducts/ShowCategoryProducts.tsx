@@ -11,7 +11,7 @@ export function ShowCategoryProducts() {
   return (
     <div className="p-2">
       {CategoryName ? <h1>{CategoryName}</h1> : undefined}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-7 gap-y-2">
         {categoryProducts.map((item) => {
           return (
             <div key={item.id} className="p-2 text-center relative">
@@ -33,14 +33,14 @@ export function ShowCategoryProducts() {
                     <div>
                       <h4 className="text-blue-900 flex mt-2">
                         SalePrice:
-                        <p className="ml-2 text-red-600">{item.salePrice} $</p>
+                        <p className="ml-2 text-red-600">{item.salePrice}$</p>
                       </h4>
                     </div>
                   ) : (
                     <div>
                       <h4 className="text-blue-900 flex mt-2">
                         Price:
-                        <p className="ml-2 text-red-600">{item.price} $</p>
+                        <p className="ml-2">{item.price}$</p>
                       </h4>
                     </div>
                   )}

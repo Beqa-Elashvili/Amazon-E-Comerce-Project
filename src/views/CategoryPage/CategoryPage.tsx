@@ -1,7 +1,6 @@
 import { CategoryMenu } from "@src/components/CategoryMenu";
 import { ShowCartProcuts } from "@src/components/GlobalProductsPageComps/ShowCartProducts";
 import { ShowCategoryProducts } from "@src/components/GlobalProductsPageComps/ShowCategoryProducts";
-
 export function CategoryPage() {
   return (
     <div className="flex">
@@ -11,9 +10,9 @@ export function CategoryPage() {
           <p className="text-gray-800">
             Our most popular products based on sales. Updated frequently.
           </p>
+          <hr className="w-4/5 m-auto mt-2" />
         </div>
-        <hr className="w-4/5 m-auto mt-2" />
-        <div className="flex">
+        <div className="flex justify-between">
           <CategoryMenu />
           <ShowCategoryProducts />
         </div>
