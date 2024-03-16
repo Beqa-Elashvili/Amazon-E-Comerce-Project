@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { useGetCartProducts } from "@src/hooks/useAddAndGetCart";
+import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export function usecartTotalPrice() {
-  const { cartProducts } = useGetCartProducts();
-  const [CartTotalprice, setCartTotalprice] = useState<number>();
+  const { cartProducts } = useGlobalProvider();
+  const [CartTotalprice, setCartTotalprice] = useState<number>(0);
 
   function sumPrices() {
     if (!cartProducts || cartProducts.length === 0) {

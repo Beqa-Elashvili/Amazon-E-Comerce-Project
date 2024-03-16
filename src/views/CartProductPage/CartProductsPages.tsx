@@ -9,19 +9,27 @@ import { useAuthPRovider } from "@src/providers/AuthProvider";
 import { useAddinCart } from "@src/hooks/useAddAndGetCart";
 import { usecartTotalPrice } from "@src/hooks/useTotalPrice/cartProductsTotalPrice";
 import { FormattedMessage } from "react-intl";
+import { usePurchaseItems } from "@src/hooks/usePurchaseItems";
 
 export function CartProductsPage() {
   const navigate = useNavigate();
-  const { addProductsCount } = useCartCount();
   const { cartProducts } = useGetCartProducts();
   const { deleteCartProduct } = useDeleteCartProduct();
   const { authStatus } = useAuthPRovider();
   const { addtoCart } = useAddinCart();
+  const { ProductsCount } = useCartCount();
   const { CartTotalprice } = usecartTotalPrice();
+  const { PurchaseItems } = usePurchaseItems();
+
+  const handlePurchase = () => {
+    if (CartTotalprice || ProductsCount) {
+      PurchaseItems(CartTotalprice, ProductsCount);
+    }
+  };
 
   return (
     <SCartProducts>
-      {addProductsCount === 0 ? (
+      {ProductsCount === 0 ? (
         <div className="flex justify-center items-center">
           <img
             className="w-full"
@@ -79,7 +87,7 @@ export function CartProductsPage() {
               defaultMessage={"The number of products in the Cart"}
             />
             <p className="ml-2 bg-slate-400 rounded-xl min-w-10 text-center">
-              {addProductsCount}
+              {ProductsCount}
             </p>
           </h1>
           <hr className="w-4/5 m-auto" />
@@ -163,6 +171,7 @@ export function CartProductsPage() {
               <Button
                 type="primary"
                 className="flex items-center bg-yellow-400 border-none justify-center hover:bg-yellow-600"
+                onClick={() => handlePurchase()}
               >
                 <h3 className="text-gray-700">
                   <FormattedMessage

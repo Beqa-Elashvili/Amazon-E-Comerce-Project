@@ -12,7 +12,7 @@ import { useCartCount } from "@src/hooks/useCartCount";
 export function Header() {
   const navigate = useNavigate();
   const { categorys } = useGlobalProvider();
-  const { addProductsCount } = useCartCount();
+  const { ProductsCount } = useCartCount();
   const [show, setshow] = useState<boolean>(false);
   const { categorySearch, setCategorySearch, setSearch, search, searchResult } =
     useGetSearchResult();
@@ -135,7 +135,7 @@ export function Header() {
               </h4>
             </button>
             <div className="absolute top-1 right-2 text-white border-solid border-amber-500 rounded-full h-6 min-w-6 text-center">
-              {addProductsCount}
+              {ProductsCount}
             </div>
           </div>
         </Hbuttons>
