@@ -1,6 +1,7 @@
 import { CategoryMenu } from "@src/components/CategoryMenu";
 import { ShowCartProcuts } from "@src/components/GlobalProductsPageComps/ShowCartProducts";
 import { ShowCategoryProducts } from "@src/components/GlobalProductsPageComps/ShowCategoryProducts";
+
 export function CategoryPage() {
   return (
     <div className="flex">

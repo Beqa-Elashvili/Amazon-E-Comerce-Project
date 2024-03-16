@@ -3019,6 +3019,11 @@ react-router@6.21.1:
   dependencies:
     "@remix-run/router" "1.14.1"
 
+react-simply-carousel@^9.1.1:
+  version "9.1.1"
+  resolved "https://registry.yarnpkg.com/react-simply-carousel/-/react-simply-carousel-9.1.1.tgz#61855f4ed311f18a9402ea7fdbc775e630f79ddf"
+  integrity sha512-8vLadCNYRKML+uo6t8SNUybhhkABIJHz79zKbFpxeWW6cwXNBFpyUd5JOU3etoGpqaTzCxuYbMrpM5gGmzbV/Q==
+
 react-slick@^0.30.1:
   version "0.30.1"
   resolved "https://registry.npmjs.org/react-slick/-/react-slick-0.30.1.tgz"

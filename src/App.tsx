@@ -6,11 +6,12 @@ import { Spin } from "antd";
 import { useAuthPRovider } from "./providers/AuthProvider";
 
 const Home = lazy(() => import("@src/views/Home"));
-const Products = lazy(() => import("@src/views/Products"));
+const ProfilePage = lazy(() => import("@src/views/ProfilePage"));
+const Products = lazy(() => import("@src/views/ProductsPage"));
 const Login = lazy(() => import("@src/views/AuthViews/Login"));
 const Register = lazy(() => import("@src/views/AuthViews/Register"));
 const CartProductsPage = lazy(() => import("@src/views/CartProductPage"));
-const LikedProductsPage = lazy(() => import("@src/views/Wishlist"));
+const LikedProductsPage = lazy(() => import("@src/views/WishlistPage"));
 const CategoryPage = lazy(() => import("@src/views/CategoryPage"));
 
 function App() {
@@ -46,8 +47,11 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
             <Route path="/CartProducts" element={<CartProductsPage />} />
+            <Route path="/Profile_Page" element={<ProfilePage />} />
             {isAuthorized && (
-              <Route path="/Liked_products" element={<LikedProductsPage />} />
+              <>
+                <Route path="/Liked_products" element={<LikedProductsPage />} />
+              </>
             )}
             <Route path="/Category_Products_Page" element={<CategoryPage />} />
           </Route>
