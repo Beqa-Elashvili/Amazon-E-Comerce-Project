@@ -6,7 +6,7 @@ export function useAddinCart() {
   const [loading, setLoading] = useState<boolean>(false);
   const { getcartProducts } = useGetCartProducts();
 
-  async function addtoCart(productId: string) {
+  async function addToCart(productId: string) {
     try {
       setLoading(true);
       const resp = await PrivateAxios.post("/cart", {
@@ -24,5 +24,5 @@ export function useAddinCart() {
     }
   }
 
-  return { loading, addtoCart };
+  return { loading, addToCart };
 }

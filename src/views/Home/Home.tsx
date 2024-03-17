@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { SHome } from "./Home.styled";
 import { ThemeContext } from "@src/providers/ThemeProvider/ThemeContext";
 import { BackSlider } from "../../components/HomeComponents/Slidder";
@@ -11,11 +11,11 @@ export function Home() {
   return (
     <SHome>
       <div>
-        <div className="relative">
+        <div>
           <BackSlider />
           <SaleProducts />
         </div>
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col gap-14 justify-center">
           <ProductsSlider />
           <Products />
         </div>

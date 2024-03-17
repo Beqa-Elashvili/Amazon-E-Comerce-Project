@@ -4,7 +4,7 @@ import { useGetProducts } from "@src/hooks/useGetProducts";
 import { Button, Rate } from "antd";
 import { useAddinCart } from "@src/hooks/useAddAndGetCart";
 import { FaCartArrowDown } from "react-icons/fa";
-import { useAuthPRovider } from "@src/providers/AuthProvider";
+import { useAuthProvider } from "@src/providers/AuthProvider"; // Fixed typo here
 import { useNavigate } from "react-router-dom";
 import { RiBookmark3Fill } from "react-icons/ri";
 
@@ -12,20 +12,20 @@ export function ProductsSlider() {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const { products } = useGetProducts();
   const navigate = useNavigate();
-  const { addtoCart } = useAddinCart();
-  const { authStatus } = useAuthPRovider();
+  const { addToCart } = useAddinCart();
+  const { authStatus } = useAuthProvider();
 
-  function hanldeOnClick(id: string) {
+  function handleOnClick(id: string) {
     if (authStatus === "authorized") {
-      addtoCart(id);
+      addToCart(id);
     } else {
       navigate("/login");
     }
   }
 
   return (
-    <div className=" mt-40 text-center bg-white inline ">
-      <div className="relative inline-flex justify-center">
+    <div className=" mt-56 text-center">
+      <div className="relative inline-flex bg-white rounded-lg justify-center">
         <ReactSimplyCarousel
           activeSlideIndex={activeSlideIndex}
           onRequestChange={setActiveSlideIndex}
@@ -35,36 +35,42 @@ export function ProductsSlider() {
             className:
               "border-none h-full opacity-0  hover:opacity-20 absolute top-1/2 right-0 p-5 transform -translate-y-1/2  ",
             children: (
-              <h1 className="p-2 z-10 bg-black text-white rounded-xl inline ">{`>`}</h1>
+              <h1 className="p-2 bg-black text-white rounded-xl">{`>`}</h1>
             ),
           }}
           backwardBtnProps={{
             className:
               "border-none opacity-0 z-10 h-full hover:opacity-20 absolute top-1/2 left-0 p-5 transform -translate-y-1/2 ",
             children: (
-              <h1 className="p-2 z-10 bg-black text-white rounded-xl inline ">{`<`}</h1>
+              <h1 className="p-2  bg-black text-white rounded-xl  ">{`<`}</h1>
             ),
           }}
           responsiveProps={[
             {
-              itemsToShow: 4,
-              itemsToScroll: 2,
-              minWidth: 768,
+              itemsToShow: 6,
+              itemsToScroll: 1,
+              minWidth: 600,
             },
           ]}
           speed={400}
           easing="linear"
+          autoplay={true}
+          autoplayDelay={2500}
         >
           {products?.map((item) => {
             return (
-              <div key={item.id} className="p-2 text-center relative">
+              <div
+                key={item.id}
+                onClick={() => console.log(item.id, "clicked")}
+                className="p-2 cursor-pointer text-center relative"
+              >
                 {item.salePrice !== null && (
                   <div className="flex absolute">
                     <RiBookmark3Fill className="size-8 text-yellow-400" />
                   </div>
                 )}
                 <img
-                  className="object-cover h-60"
+                  className="object-cover h-56"
                   src={item.image}
                   alt="product_image"
                 />
@@ -90,7 +96,7 @@ export function ProductsSlider() {
                     <Button
                       className="p-1"
                       icon={<FaCartArrowDown />}
-                      onClick={() => hanldeOnClick(item.id)}
+                      onClick={() => handleOnClick(item.id)} // Fixed typo here
                     >
                       Add Cart
                     </Button>

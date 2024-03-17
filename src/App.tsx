@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { PublicLayout } from "@src/layouts/PublicLayout/setOutlet";
 import { AutLayouts } from "@src/layouts/AutLayouts/setOutlet";
 import { Spin } from "antd";
-import { useAuthPRovider } from "./providers/AuthProvider";
+import { useAuthProvider } from "./providers/AuthProvider";
 
 const Home = lazy(() => import("@src/views/Home"));
 const ProfilePage = lazy(() => import("@src/views/ProfilePage"));
@@ -15,7 +15,7 @@ const LikedProductsPage = lazy(() => import("@src/views/WishlistPage"));
 const CategoryPage = lazy(() => import("@src/views/CategoryPage"));
 
 function App() {
-  const { authStatus } = useAuthPRovider();
+  const { authStatus } = useAuthProvider();
   const [isAuthorized, setIsAuthorized] = useState<boolean>(false);
 
   useEffect(() => {
@@ -47,10 +47,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
             <Route path="/CartProducts" element={<CartProductsPage />} />
-            <Route path="/Profile_Page" element={<ProfilePage />} />
-            {isAuthorized && (
+            {authStatus === "authorized" && (
               <>
                 <Route path="/Liked_products" element={<LikedProductsPage />} />
+                <Route path="/Profile_Page" element={<ProfilePage />} />
               </>
             )}
             <Route path="/Category_Products_Page" element={<CategoryPage />} />

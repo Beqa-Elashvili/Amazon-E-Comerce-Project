@@ -3,7 +3,7 @@ import { Button, Form, Input } from "antd";
 import { RegisterStyle } from "../Authstyle";
 import { useNavigate } from "react-router-dom";
 import { BaseAxios } from "@src/utils/Base_Axios";
-import { useAuthPRovider } from "@src/providers/AuthProvider";
+import { useAuthProvider } from "@src/providers/AuthProvider";
 import { TAuthTokens } from "@src/@types/TokensTypes";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { FormattedMessage } from "react-intl";
@@ -23,7 +23,7 @@ export function Register(): JSX.Element {
 
   const [form] = Form.useForm();
   const [authLoading, setAuthLoading] = useState(false);
-  const { setAuthData } = useAuthPRovider();
+  const { setAuthData } = useAuthProvider();
   const navigate = useNavigate();
 
   async function onfinish(values: RegisterFormValue) {

@@ -1,17 +1,17 @@
 import { Button } from "antd";
 import { SSaleProducts } from "./SSaleProducts";
-import { useAuthPRovider } from "@src/providers/AuthProvider";
+import { useAuthProvider } from "@src/providers/AuthProvider";
 import { FaCartArrowDown } from "react-icons/fa";
 import { useGetSaleProducts } from "@src/hooks/useGetSaleProducts";
 import { useAddinCart } from "@src/hooks/useAddAndGetCart";
 import { useIsProductInWishlist } from "@src/hooks/useAddAndGetLikedProducts";
 import { useAddWishlist } from "@src/hooks/useAddAndGetLikedProducts";
 import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
-
+import { RiBookmark3Fill } from "react-icons/ri";
 
 export function SaleProducts() {
-  const { authStatus } = useAuthPRovider();
-  const { addtoCart } = useAddinCart();
+  const { authStatus } = useAuthProvider();
+  const { addToCart } = useAddinCart();
   const { saleProducts } = useGetSaleProducts();
   const { isInWishlist } = useIsProductInWishlist();
   const { AddWishlist } = useAddWishlist();
@@ -23,22 +23,29 @@ export function SaleProducts() {
           return (
             <div
               key={item.id}
-              className="h-full border-none cursor-pointer text-start p-3 bg-white rounded-lg"
+              className="border-none cursor-pointer text-center p-2 bg-white rounded-lg"
             >
-              <div className="text-red-800 bg-red-100 inline p-2 rounded-lg">
-                Hot Sale
+              <div className="flex absolute top-0">
+                <RiBookmark3Fill className="size-12 text-yellow-400" />
               </div>
-              <h3 className="mt-2 h-12">{item.title}</h3>
-              <img className="h-80" src={item.image} alt="SaleProducts" />
-              <p className="line-through text-red-700">
-                OldPrice: {item.price}
-              </p>
-              <h3>Price:{item.salePrice}$</h3>
+
+              <h3 className="mt-10 h-10 text-blue-900">{item.title}</h3>
+              <img
+                className="xl:h-80 lg:h-40 md:h-20"
+                src={item.image}
+                alt="SaleProducts"
+              />
+              <div className="text-start">
+                <p className="line-through text-red-700">
+                  OldPrice: {item.price}
+                </p>
+                <h3>Price:{item.salePrice}$</h3>
+              </div>
               {authStatus === "authorized" ? (
                 <div className="flex justify-between mt-2">
                   <Button className="w-40  bg-amber-400">Buy Now</Button>
                   <Button
-                    onClick={() => addtoCart(item.id)}
+                    onClick={() => addToCart(item.id)}
                     icon={<FaCartArrowDown />}
                   >
                     Add Cart

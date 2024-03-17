@@ -3,18 +3,18 @@ import { Button, Rate } from "antd";
 import { useAddinCart } from "@src/hooks/useAddAndGetCart";
 import { FaCartArrowDown } from "react-icons/fa";
 import { RiBookmark3Fill } from "react-icons/ri";
-import { useAuthPRovider } from "@src/providers/AuthProvider";
+import { useAuthProvider } from "@src/providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
 export function ShowCategoryProducts() {
   const navigate = useNavigate();
-  const { addtoCart } = useAddinCart();
-  const { authStatus } = useAuthPRovider();
+  const { addToCart } = useAddinCart();
+  const { authStatus } = useAuthProvider();
   const { categoryProducts, CategoryName } = useGlobalProvider();
 
   function hanldeOnClick(id: string) {
     if (authStatus === "authorized") {
-      addtoCart(id);
+      addToCart(id);
     } else {
       navigate("/login");
     }
@@ -33,7 +33,7 @@ export function ShowCategoryProducts() {
                 </div>
               )}
               <img
-                className="object-cover h-60 w-full"
+                className="object-cover xl:h-60 md:h-40 w-full"
                 src={item.image}
                 alt="product_image"
               />

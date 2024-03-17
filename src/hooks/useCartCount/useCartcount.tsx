@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 // import { useGetCartProducts } from "../useAddAndGetCart/getCartProducts";
-import { useAuthPRovider } from "@src/providers/AuthProvider";
+import { useAuthProvider } from "@src/providers/AuthProvider";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export function useCartCount() {
-  const { authStatus } = useAuthPRovider();
+  const { authStatus } = useAuthProvider();
   const { cartProducts } = useGlobalProvider();
   const [ProductsCount, setAddProductCount] = useState<number>();
 

@@ -1,2 +1,2 @@
-export { useAuthPRovider } from "./UseAuthProvider";
+export { useAuthProvider } from "./UseAuthProvider";
 export { AuthProvider } from "./AuthProvider";

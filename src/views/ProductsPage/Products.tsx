@@ -1,6 +1,6 @@
 import { SProducts } from "./SProducts";
 import { Button } from "antd";
-import { useAuthPRovider } from "@src/providers/AuthProvider";
+import { useAuthProvider } from "@src/providers/AuthProvider";
 import { FaCartArrowDown } from "react-icons/fa";
 import { useAddinCart } from "@src/hooks/useAddAndGetCart";
 import { useGetProducts } from "@src/hooks/useGetProducts";
@@ -10,13 +10,13 @@ import { useIsProductInWishlist } from "@src/hooks/useAddAndGetLikedProducts";
 
 export function Products() {
   const { products } = useGetProducts();
-  const { authStatus } = useAuthPRovider();
-  const { addtoCart } = useAddinCart();
+  const { authStatus } = useAuthProvider();
+  const { addToCart } = useAddinCart();
   const { AddWishlist } = useAddWishlist();
   const { isInWishlist } = useIsProductInWishlist();
 
   return (
-    <SProducts className="mt-52">
+    <SProducts>
       <div className="container">
         {products?.map((item) => {
           if (item.salePrice === null) {
@@ -37,7 +37,7 @@ export function Products() {
                     <Button className="w-40 bg-amber-400">Buy Now</Button>
                     <Button
                       icon={<FaCartArrowDown />}
-                      onClick={() => addtoCart(item.id)}
+                      onClick={() => addToCart(item.id)}
                     >
                       Add Cart
                     </Button>

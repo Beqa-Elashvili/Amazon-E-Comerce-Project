@@ -1,4 +1,4 @@
-import { useAuthPRovider } from "@src/providers/AuthProvider";
+import { useAuthProvider } from "@src/providers/AuthProvider";
 import { TAuthorizationStatus_Enum } from "@src/providers/AuthProvider/AuthContext";
 import { FormattedMessage } from "react-intl";
 import { useNavigate } from "react-router-dom";
@@ -9,13 +9,18 @@ import { useGlobalProvider } from "@src/providers/GlobalProvider";
 export function UserAvatar() {
   const navigate = useNavigate();
   const { selectedGender } = useGlobalProvider();
-  const { authStatus, userData, logout } = useAuthPRovider();
+  const { authStatus, userData, logout } = useAuthProvider();
+
+  const hanldeLogOut = () => {
+    logout();
+    navigate("/");
+  };
 
   const content = (
     <div className=" flex flex-col gap-2">
-      <Button onClick={() => navigate("/profile")}>Profile</Button>
+      <Button onClick={() => navigate("/Profile_Page")}>Profile</Button>
       <Button onClick={() => navigate("/liked_products")}>Wishlist</Button>
-      <Button type="primary" danger ghost onClick={() => logout()}>
+      <Button type="primary" danger ghost onClick={() => hanldeLogOut()}>
         Log Out
       </Button>
     </div>

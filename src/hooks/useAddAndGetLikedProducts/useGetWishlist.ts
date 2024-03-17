@@ -1,12 +1,12 @@
 import { PrivateAxios } from "@src/utils/PriveteAxios";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { useEffect, useState } from "react";
-import { useAuthPRovider } from "@src/providers/AuthProvider";
+import { useAuthProvider } from "@src/providers/AuthProvider";
 
 export function useGetWishlist() {
   const { wishlist, setwishlist } = useGlobalProvider();
   const [loading, setLoading] = useState<boolean>(false);
-  const { authStatus } = useAuthPRovider();
+  const { authStatus } = useAuthProvider();
 
   async function GetWishlist() {
     try {

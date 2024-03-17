@@ -2,7 +2,7 @@ import { Form, Button, Input, Alert } from "antd";
 import { RegisterStyle } from "../Authstyle";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthPRovider } from "@src/providers/AuthProvider";
+import { useAuthProvider } from "@src/providers/AuthProvider";
 import { BaseAxios } from "@src/utils/Base_Axios";
 import { TAuthTokens } from "@src/@types/TokensTypes";
 import { FormattedMessage } from "react-intl";
@@ -16,7 +16,7 @@ export function Login(): JSX.Element {
   const [isDivVisible, setDivVisible] = useState<boolean>(false);
   const [authLoading, setAuthLoading] = useState<boolean>(false);
   const [authError, setAuthError] = useState<boolean>(false);
-  const { setAuthData } = useAuthPRovider();
+  const { setAuthData } = useAuthProvider();
   const navigate = useNavigate();
 
   function handleButtonClick(): void {

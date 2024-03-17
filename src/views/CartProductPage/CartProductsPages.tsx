@@ -5,7 +5,7 @@ import { useDeleteCartProduct } from "@src/hooks/useAddAndGetCart/useDeleteCartP
 import { useCartCount } from "@src/hooks/useCartCount";
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useAuthPRovider } from "@src/providers/AuthProvider";
+import { useAuthProvider } from "@src/providers/AuthProvider";
 import { useAddinCart } from "@src/hooks/useAddAndGetCart";
 import { usecartTotalPrice } from "@src/hooks/useTotalPrice/cartProductsTotalPrice";
 import { FormattedMessage } from "react-intl";
@@ -15,8 +15,8 @@ export function CartProductsPage() {
   const navigate = useNavigate();
   const { cartProducts } = useGetCartProducts();
   const { deleteCartProduct } = useDeleteCartProduct();
-  const { authStatus } = useAuthPRovider();
-  const { addtoCart } = useAddinCart();
+  const { authStatus } = useAuthProvider();
+  const { addToCart } = useAddinCart();
   const { ProductsCount } = useCartCount();
   const { CartTotalprice } = usecartTotalPrice();
   const { PurchaseItems } = usePurchaseItems();
@@ -122,7 +122,7 @@ export function CartProductsPage() {
                       <div className="flex items-center">
                         <div className="flex">
                           <Button
-                            onClick={() => addtoCart(item.cartProduct.id)}
+                            onClick={() => addToCart(item.cartProduct.id)}
                             className=" w-12 h-7 rounded-full border-none"
                           >
                             +
