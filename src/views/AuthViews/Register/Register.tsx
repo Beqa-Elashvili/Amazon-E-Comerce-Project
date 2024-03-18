@@ -54,7 +54,7 @@ export function Register(): JSX.Element {
 
   return (
     <RegisterStyle className="flex justify-center">
-      <div className="content">
+      <div className="content border-slate-300 border-solid border">
         <Form<RegisterFormValue>
           form={form}
           className="flex flex-col justify-center"

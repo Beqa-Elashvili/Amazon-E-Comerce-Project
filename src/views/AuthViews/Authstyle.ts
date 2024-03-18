@@ -13,7 +13,6 @@ export const RegisterStyle = styled.div`
       sans-serif;
   }
   & .content {
-    border: 1px solid grey;
     padding: 12px;
     border-radius: 10px;
     width: 350px;

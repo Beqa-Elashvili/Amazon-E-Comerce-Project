@@ -1,5 +1,10 @@
 import { Dispatch, ReactNode, SetStateAction, createContext } from "react";
 
+export type TUserChangeValues = {
+  kay: string | number | undefined;
+  value: string | number | undefined;
+};
+
 export type TGender = {
   label: string;
   value: string;
@@ -45,6 +50,8 @@ interface TGlobalContext {
       }[]
     >
   >;
+  forChange: TUserChangeValues | undefined;
+  setForChange: Dispatch<SetStateAction<TUserChangeValues | undefined>>;
 
   sliderValue: number[];
   setSliderValue: Dispatch<SetStateAction<number[]>>;
@@ -78,6 +85,10 @@ interface TGlobalContext {
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
+  forChange: undefined,
+  setForChange: () => {},
+  selectedGender: undefined,
+  setSelectedGender: () => {},
   sliderValue: [],
   setSliderValue: () => {},
   CategoryName: "",
@@ -92,8 +103,6 @@ export const GlobalContext = createContext<TGlobalContext>({
   setSaleProducts: () => {},
   cartProducts: [],
   setCartProducts: () => {},
-  selectedGender: undefined,
-  setSelectedGender: () => {},
   ChooceGender: [],
   setChooceGender: () => {},
   categorys: [],

@@ -13,18 +13,10 @@ const Register = lazy(() => import("@src/views/AuthViews/Register"));
 const CartProductsPage = lazy(() => import("@src/views/CartProductPage"));
 const LikedProductsPage = lazy(() => import("@src/views/WishlistPage"));
 const CategoryPage = lazy(() => import("@src/views/CategoryPage"));
+const ChangeUserInfo = lazy(() => import("@src/views/ChangeUserInfo"));
 
 function App() {
   const { authStatus } = useAuthProvider();
-  const [isAuthorized, setIsAuthorized] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (authStatus === "authorized") {
-      setIsAuthorized(true);
-    } else {
-      setIsAuthorized(false);
-    }
-  }, [authStatus]);
 
   return (
     <div>
@@ -58,6 +50,9 @@ function App() {
           <Route element={<AutLayouts />}>
             <Route path="/Login" element={<Login />} />
             <Route path="/Register" element={<Register />} />
+            {authStatus === "authorized" && (
+              <Route path="/User&Info&Change" element={<ChangeUserInfo />} />
+            )}
           </Route>
         </Routes>
       </Suspense>

@@ -38,7 +38,7 @@ export function Login(): JSX.Element {
 
   return (
     <RegisterStyle className="flex justify-center items-center flex-col">
-      <div className="content">
+      <div className="content border-slate-300 border-solid border">
         <Form<LoginFormValue>
           onFinish={onfinish}
           className="flex flex-col justify-center"
