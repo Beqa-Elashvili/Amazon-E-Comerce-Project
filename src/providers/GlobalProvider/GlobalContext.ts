@@ -1,3 +1,4 @@
+import { TUserData } from "@src/@types/TuserData";
 import { Dispatch, ReactNode, SetStateAction, createContext } from "react";
 
 export type TUserChangeValues = {
@@ -50,6 +51,12 @@ interface TGlobalContext {
       }[]
     >
   >;
+  collapsed: boolean | undefined;
+  setCollapsed: Dispatch<SetStateAction<boolean | undefined>>;
+
+  userdata: TUserData | undefined;
+  setUserData: Dispatch<SetStateAction<TUserData | undefined>>;
+
   forChange: TUserChangeValues | undefined;
   setForChange: Dispatch<SetStateAction<TUserChangeValues | undefined>>;
 
@@ -85,6 +92,10 @@ interface TGlobalContext {
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
+  collapsed: undefined,
+  setCollapsed: () => {},
+  userdata: undefined,
+  setUserData: () => {},
   forChange: undefined,
   setForChange: () => {},
   selectedGender: undefined,

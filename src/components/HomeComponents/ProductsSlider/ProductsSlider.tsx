@@ -1,17 +1,26 @@
 import { useState } from "react";
 import ReactSimplyCarousel from "react-simply-carousel";
-import { useGetProducts } from "@src/hooks/useGetProducts";
 import { Button, Rate } from "antd";
 import { useAddinCart } from "@src/hooks/useAddAndGetCart";
 import { FaCartArrowDown } from "react-icons/fa";
 import { useAuthProvider } from "@src/providers/AuthProvider"; // Fixed typo here
 import { useNavigate } from "react-router-dom";
 import { RiBookmark3Fill } from "react-icons/ri";
+import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
 
-export function ProductsSlider() {
-  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
-  const { products } = useGetProducts();
+export function ProductsSlider({
+  relativeProp,
+  imgHeight,
+  products,
+  itemsSHow,
+}: {
+  relativeProp: "relative" | undefined;
+  imgHeight: number;
+  products: TProducts[];
+  itemsSHow: number | undefined;
+}) {
   const navigate = useNavigate();
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const { addToCart } = useAddinCart();
   const { authStatus } = useAuthProvider();
 
@@ -22,10 +31,12 @@ export function ProductsSlider() {
       navigate("/login");
     }
   }
-
   return (
-    <div className=" mt-56 text-center">
-      <div className="relative inline-flex bg-white rounded-lg justify-center">
+    <div className="text-center">
+      <div
+        style={{ position: relativeProp }}
+        className="inline-flex bg-white rounded-lg justify-center"
+      >
         <ReactSimplyCarousel
           activeSlideIndex={activeSlideIndex}
           onRequestChange={setActiveSlideIndex}
@@ -47,9 +58,9 @@ export function ProductsSlider() {
           }}
           responsiveProps={[
             {
-              itemsToShow: 6,
+              itemsToShow: itemsSHow,
               itemsToScroll: 1,
-              minWidth: 600,
+              minWidth: 500,
             },
           ]}
           speed={400}
@@ -57,7 +68,7 @@ export function ProductsSlider() {
           autoplay={true}
           autoplayDelay={2500}
         >
-          {products?.map((item) => {
+          {products?.map((item: TProducts) => {
             return (
               <div
                 key={item.id}
@@ -70,17 +81,20 @@ export function ProductsSlider() {
                   </div>
                 )}
                 <img
-                  className="object-cover h-56"
+                  className="object-cover"
+                  style={{ height: imgHeight }}
                   src={item.image}
                   alt="product_image"
                 />
                 <div className="text-start">
-                  <h4 className="flex w-48 text-blue-900 h-12">{item.title}</h4>
+                  <h4 className="flex text-balance text-blue-900 h-12">
+                    {item.title}
+                  </h4>
                   <Rate className="mt-2" allowHalf defaultValue={2.5} />
                   <div className="mt-2 flex justify-between">
                     {item.salePrice !== null ? (
                       <div>
-                        <h4 className="text-blue-900 flex mt-2">
+                        <h4 className="text-blue-900 object-cover flex mt-2">
                           SalePrice:
                           <p className="ml-2 text-red-600">{item.salePrice}$</p>
                         </h4>
@@ -96,7 +110,7 @@ export function ProductsSlider() {
                     <Button
                       className="p-1"
                       icon={<FaCartArrowDown />}
-                      onClick={() => handleOnClick(item.id)} // Fixed typo here
+                      onClick={() => handleOnClick(item.id)}
                     >
                       Add Cart
                     </Button>

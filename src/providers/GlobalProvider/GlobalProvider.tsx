@@ -1,12 +1,14 @@
-import { PropsWithChildren, SetStateAction, useState } from "react";
+import { PropsWithChildren, useState } from "react";
 import { GlobalContext } from "./GlobalContext";
 import { v4 as uuidv4 } from "uuid";
+
 import {
   TGender,
   TCategorys,
   TProducts,
   TUserChangeValues,
 } from "./GlobalContext";
+import { TUserData } from "@src/@types/TuserData";
 
 const footerAmazonLinks = [
   { id: uuidv4(), Name: "Get to Know Us", Destination: "title" },
@@ -212,10 +214,16 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   const [CategoryName, setCategoryName] = useState<string>("");
   const [sliderValue, setSliderValue] = useState<number[]>([0, 0]);
   const [forChange, setForChange] = useState<TUserChangeValues>();
+  const [userdata, setUserData] = useState<TUserData>();
+  const [collapsed, setCollapsed] = useState<boolean | undefined>(true);
 
   return (
     <GlobalContext.Provider
       value={{
+        collapsed,
+        setCollapsed,
+        userdata,
+        setUserData,
         forChange,
         setForChange,
         sliderValue,

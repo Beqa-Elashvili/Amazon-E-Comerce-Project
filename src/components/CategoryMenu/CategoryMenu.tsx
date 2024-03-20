@@ -9,8 +9,7 @@ import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { usePriceFilter } from "@src/hooks/usePriceFilter";
 
 export function CategoryMenu() {
-  const [collapsed, setCollapsed] = useState(true);
-  const { categorys } = useGlobalProvider();
+  const { categorys, collapsed, setCollapsed } = useGlobalProvider();
   const { sliderValue, setSliderValue } = usePriceFilter();
   const { CategoryName, getCategoryProducts } = useGetCategoryProducts();
 

@@ -5,12 +5,18 @@ import { FaCartArrowDown } from "react-icons/fa";
 import { RiBookmark3Fill } from "react-icons/ri";
 import { useAuthProvider } from "@src/providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
+import { useAddWishlist } from "@src/hooks/useAddAndGetLikedProducts";
+import { useIsProductInWishlist } from "@src/hooks/useAddAndGetLikedProducts";
+import { ProductsSlider } from "@src/components/HomeComponents/ProductsSlider";
 
 export function ShowCategoryProducts() {
   const navigate = useNavigate();
+  const { AddWishlist } = useAddWishlist();
   const { addToCart } = useAddinCart();
   const { authStatus } = useAuthProvider();
-  const { categoryProducts, CategoryName } = useGlobalProvider();
+  const { isInWishlist } = useIsProductInWishlist();
+  const { categoryProducts, CategoryName, collapsed } = useGlobalProvider();
 
   function hanldeOnClick(id: string) {
     if (authStatus === "authorized") {
@@ -39,7 +45,20 @@ export function ShowCategoryProducts() {
               />
               <div className="text-start">
                 <h4 className="flex w-48 text-blue-900">{item.title}</h4>
-                <Rate className="mt-2" allowHalf defaultValue={2.5} />
+                <div className="flex justify-between items-center">
+                  <Rate className="mt-2" allowHalf defaultValue={2.5} />
+                  <button
+                    className="border-none bg-white cursor-pointer"
+                    onClick={() => AddWishlist(item.id)}
+                  >
+                    {isInWishlist(item.id) ? (
+                      <IoIosHeart className="text-red-600 size-8 hover:text-yellow-400" />
+                    ) : (
+                      <IoIosHeartEmpty className="text-orange-600 size-8 hover:text-orange-400" />
+                    )}
+                  </button>
+                </div>
+
                 <div className="mt-2 flex justify-between">
                   {item.salePrice !== null ? (
                     <div>
@@ -68,6 +87,23 @@ export function ShowCategoryProducts() {
             </div>
           );
         })}
+      </div>
+      <div className=" relative shadow-xl p-2 bg-slate-20 rounded-xl">
+        {collapsed ? (
+          <ProductsSlider
+            relativeProp={undefined}
+            imgHeight={195}
+            itemsSHow={6}
+            products={categoryProducts}
+          />
+        ) : (
+          <ProductsSlider
+            relativeProp={undefined}
+            imgHeight={215}
+            itemsSHow={5}
+            products={categoryProducts}
+          />
+        )}
       </div>
     </div>
   );

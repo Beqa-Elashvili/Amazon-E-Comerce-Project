@@ -22,6 +22,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
     setAuthStatus(TAuthorizationStatus_Enum.AUTHORIZED);
   }
 
+
   async function getNewTokens(refreshToken: string) {
     try {
       const resp = await BaseAxios.post<TAuthTokens>("/auth/update-tokens", {

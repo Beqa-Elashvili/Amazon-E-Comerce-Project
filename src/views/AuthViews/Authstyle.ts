@@ -13,9 +13,9 @@ export const RegisterStyle = styled.div`
       sans-serif;
   }
   & .content {
-    padding: 12px;
+    padding: 16px;
     border-radius: 10px;
-    width: 350px;
+    max-width: 358px;
     h5 {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",

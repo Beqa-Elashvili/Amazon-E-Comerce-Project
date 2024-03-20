@@ -7,6 +7,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { useNavigate } from "react-router-dom";
+import { ImAmazon } from "react-icons/im";
 
 export function ProfilePage() {
   const navigate = useNavigate();
@@ -24,13 +25,18 @@ export function ProfilePage() {
   };
 
   return (
-    <div className="flex justify-center p-10">
+    <div className="flex justify-center p-12">
       <div className="w-2/5 lg:2/5">
-        <div className="flex items-center">
-          <h3 className="text-start text-blue-900">Profile {">"}</h3>
-          <p className="text-orange-700 ml-2">Login & Security</p>
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="flex">
+              <h3 className="text-start text-blue-900">Profile {">"}</h3>
+              <p className="text-orange-700 ml-2">Login & Security</p>
+            </div>
+            <h2 className="mt-2">Login & Security</h2>
+          </div>
+          <ImAmazon className="size-12 text-orange-600" />
         </div>
-        <h2 className="mt-2">Login & Security</h2>
         <div className=" flex-col border-solid border rounded-lg border-slate-300 mt-1">
           <div className="p-5 flex justify-between">
             <div>
