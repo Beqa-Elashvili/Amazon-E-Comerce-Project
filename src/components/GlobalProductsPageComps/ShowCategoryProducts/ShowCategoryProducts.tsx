@@ -9,14 +9,16 @@ import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
 import { useAddWishlist } from "@src/hooks/useAddAndGetLikedProducts";
 import { useIsProductInWishlist } from "@src/hooks/useAddAndGetLikedProducts";
 import { ProductsSlider } from "@src/components/HomeComponents/ProductsSlider";
+import { useParams } from "react-router-dom";
 
 export function ShowCategoryProducts() {
+  const { id } = useParams();
   const navigate = useNavigate();
   const { AddWishlist } = useAddWishlist();
   const { addToCart } = useAddinCart();
   const { authStatus } = useAuthProvider();
   const { isInWishlist } = useIsProductInWishlist();
-  const { categoryProducts, CategoryName, collapsed } = useGlobalProvider();
+  const { categoryProducts, collapsed } = useGlobalProvider();
 
   function hanldeOnClick(id: string) {
     if (authStatus === "authorized") {
@@ -25,10 +27,9 @@ export function ShowCategoryProducts() {
       navigate("/login");
     }
   }
-
   return (
     <div className="p-2">
-      {CategoryName ? <h1>{CategoryName}</h1> : undefined}
+      <h1>{id}</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-7 gap-y-2">
         {categoryProducts.map((item) => {
           return (

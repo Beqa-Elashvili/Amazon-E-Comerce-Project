@@ -17,8 +17,8 @@ export function Home() {
           <BackSlider />
           <SaleProducts />
         </div>
-        <div className="flex flex-col gap-14 justify-center">
-          <div className="mt-52">
+        <div className="flex items-center flex-col gap-14 justify-center">
+          <div className="mt-52 shadow-xl bg-slate-700 rounded-xl">
             <ProductsSlider
               relativeProp={"relative"}
               imgHeight={225}

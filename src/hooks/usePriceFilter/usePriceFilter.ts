@@ -1,24 +1,24 @@
 import { useEffect, useRef } from "react";
 import { BaseAxios } from "@src/utils/Base_Axios";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
-
+import { useParams } from "react-router-dom";
 export function usePriceFilter() {
-  const { CategoryName, sliderValue, setSliderValue, setCategoryProducts } =
+  const { sliderValue, setSliderValue, setCategoryProducts } =
     useGlobalProvider();
+  const { id } = useParams();
 
   async function filterPrice() {
     const resp = await BaseAxios.get(
-      `http://localhost:3000/product?categoryName=${CategoryName}&minPrice=${sliderValue[0]}&maxPrice=${sliderValue[1]}`
+      `/product?categoryName=${id}&minPrice=${sliderValue[0]}&maxPrice=${sliderValue[1]}`
     );
     setCategoryProducts(resp.data.products);
   }
 
   useEffect(() => {
     let timer: number;
-
     const delayedFilterPrice = () => {
       timer = setTimeout(() => {
-        if (CategoryName) {
+        if (id) {
           filterPrice();
         }
       }, 500);

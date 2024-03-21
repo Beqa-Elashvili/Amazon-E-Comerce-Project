@@ -7,11 +7,15 @@ import { useGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
 import { SmenuImages } from "@src/hooks/useGetCategoryProducts/SglobalProducts";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { usePriceFilter } from "@src/hooks/usePriceFilter";
+import { useNavigate, useParams } from "react-router-dom";
 
 export function CategoryMenu() {
   const { categorys, collapsed, setCollapsed } = useGlobalProvider();
   const { sliderValue, setSliderValue } = usePriceFilter();
-  const { CategoryName, getCategoryProducts } = useGetCategoryProducts();
+  const { getCategoryProducts } = useGetCategoryProducts();
+  const { id } = useParams();
+
+  const navigate = useNavigate();
 
   type MenuItem = Required<MenuProps>["items"][number];
 
@@ -32,6 +36,10 @@ export function CategoryMenu() {
       onClick,
     } as MenuItem;
   }
+  const handleCategory = (id: string) => {
+    getCategoryProducts(id);
+    navigate(`/Category_Products_Page/${id}`);
+  };
 
   const items: MenuItem[] = categorys?.map((item) =>
     getItem(
@@ -43,7 +51,7 @@ export function CategoryMenu() {
       undefined,
       undefined,
       () => {
-        getCategoryProducts(item.name);
+        handleCategory(item.name);
       }
     )
   );
@@ -56,7 +64,7 @@ export function CategoryMenu() {
     if (collapsed === false) {
       setCollapsed(true);
     }
-  }, [CategoryName]);
+  }, [id]);
 
   const handleSliderChange = (value: SetStateAction<number[]>) => {
     setSliderValue(value);

@@ -17,7 +17,7 @@ const ChangeUserInfo = lazy(() => import("@src/views/ChangeUserInfo"));
 
 function App() {
   const { authStatus } = useAuthProvider();
-
+  
   return (
     <div>
       <Suspense
@@ -45,7 +45,10 @@ function App() {
                 <Route path="/Profile_Page" element={<ProfilePage />} />
               </>
             )}
-            <Route path="/Category_Products_Page" element={<CategoryPage />} />
+            <Route
+              path="/Category_Products_Page/:id"
+              element={<CategoryPage />}
+            />
           </Route>
           <Route element={<AutLayouts />}>
             <Route path="/Login" element={<Login />} />

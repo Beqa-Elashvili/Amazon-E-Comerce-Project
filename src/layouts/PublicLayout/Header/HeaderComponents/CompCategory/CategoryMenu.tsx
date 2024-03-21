@@ -10,7 +10,7 @@ export function CategoryButtons() {
 
   function handleButtonCategory(category: string) {
     getCategoryProducts(category);
-    navigate("/Category_Products_Page")
+    navigate(`/Category_Products_Page/${category}`);
   }
   return (
     <SCategoryButtonsMenu>

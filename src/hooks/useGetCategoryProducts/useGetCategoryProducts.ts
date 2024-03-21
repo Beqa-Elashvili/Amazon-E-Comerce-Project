@@ -1,30 +1,15 @@
 import { BaseAxios } from "@src/utils/Base_Axios";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 export function useGetCategoryProducts() {
-  const {
-    categoryProducts,
-    setCategoryProducts,
-    setCategoryName,
-    CategoryName,
-  } = useGlobalProvider();
- 
+  const { categoryProducts, setCategoryProducts } = useGlobalProvider();
+  const { id } = useParams();
 
-
-
-  useEffect(() => {
-    const name = localStorage.getItem("category_name");
-    if (name) {
-      setCategoryName(name);
-    }
-  }, [CategoryName]);
-
-  async function getCategoryProducts(category: string) {
+  async function getCategoryProducts(id: string) {
     try {
-      setCategoryName(category);
-      localStorage.setItem("category_name", category);
       const resp = await BaseAxios.get(
-        `/product?pageSize=20&categoryName=${category}`
+        `/product?pageSize=20&categoryName=${id}`
       );
       setCategoryProducts(resp.data.products);
     } catch (error) {
@@ -33,14 +18,13 @@ export function useGetCategoryProducts() {
     }
   }
   useEffect(() => {
-    if (CategoryName) {
-      getCategoryProducts(CategoryName);
+    if (id) {
+      getCategoryProducts(id);
     }
-  }, [CategoryName]);
+  }, [id]);
 
   return {
     getCategoryProducts,
     categoryProducts,
-    CategoryName,
   };
 }

@@ -23,7 +23,7 @@ export function Products() {
             return (
               <div
                 key={item.id}
-                className="h-full border-none cursor-pointer text-start p-3 bg-white rounded-lg"
+                className="h-full border-none shadow-xl cursor-pointer text-start p-3 bg-white rounded-lg"
               >
                 <h3 className="w-80 h-8">{item.title}</h3>
                 <img
