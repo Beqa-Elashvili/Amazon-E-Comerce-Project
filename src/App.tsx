@@ -26,7 +26,7 @@ function App() {
             <div className="inline-flex rounded-xl p-2 items-center">
               <img
                 className="h-20 w-60"
-                src="./Images/Amazon_logo(Black).png"
+                src="/Images/Amazon_logo(Black).png"
                 alt="amazon-logo"
               />
               <Spin className="height-40 flex justify-center align-center" />

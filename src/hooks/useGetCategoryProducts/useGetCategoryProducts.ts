@@ -9,7 +9,7 @@ export function useGetCategoryProducts() {
   async function getCategoryProducts(id: string) {
     try {
       const resp = await BaseAxios.get(
-        `/product?pageSize=20&categoryName=${id}`
+        `/product?categoryName=${id}&pageSize=25`
       );
       setCategoryProducts(resp.data.products);
     } catch (error) {

@@ -14,12 +14,12 @@ export function Translate() {
       <button className="lang-btn h-14" onClick={Changelocale}>
         {locale === "en" ? (
           <>
-            <img className="w-8 h-5" src="./Images/American-flag.png" alt="" />
+            <img className="w-8 h-5" src="/Images/American-flag.png" alt="" />
             <span>EN</span>
           </>
         ) : (
           <>
-            <img className="w-8 h-7" src="./Images/Georgia-flag.png" alt="" />
+            <img className="w-8 h-7" src="/Images/Georgia-flag.png" alt="" />
             <span>KA</span>
           </>
         )}
