@@ -108,11 +108,11 @@ export function ProductsSlider({
                       </div>
                     )}
                     <Button
-                      className="p-1"
+                      className="px-2"
                       icon={<FaCartArrowDown />}
                       onClick={() => handleOnClick(item.id)}
                     >
-                      Add Cart
+                      ADD
                     </Button>
                   </div>
                 </div>

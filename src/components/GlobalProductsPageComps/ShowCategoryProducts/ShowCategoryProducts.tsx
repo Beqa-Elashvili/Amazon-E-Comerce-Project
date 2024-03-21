@@ -76,11 +76,11 @@ export function ShowCategoryProducts() {
                     </div>
                   )}
                   <Button
-                    className="p-1"
+                    className="px-2"
                     icon={<FaCartArrowDown />}
                     onClick={() => hanldeOnClick(item.id)}
                   >
-                    Add Cart
+                    ADD
                   </Button>
                 </div>
               </div>

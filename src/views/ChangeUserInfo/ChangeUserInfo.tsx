@@ -1,5 +1,6 @@
 import { RegisterStyle } from "../AuthViews/Authstyle";
-import { Form, Input, Button, Checkbox, Modal, ModalProps } from "antd";
+import { Form, Input, Button, Checkbox, Modal, CheckboxProps } from "antd";
+
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { useEffect, useState } from "react";
 import { FaCircleUser } from "react-icons/fa6";
@@ -7,17 +8,27 @@ import { PrivateAxios } from "@src/utils/PriveteAxios";
 import { useGetUserData } from "@src/hooks/useGetUserData";
 import { useNavigate } from "react-router-dom";
 import { AiFillAmazonSquare } from "react-icons/ai";
+import { useAuthProvider } from "@src/providers/AuthProvider";
 
 export function ChangeUserInfo() {
   const { GetUserData } = useGetUserData();
+  const { logout } = useAuthProvider();
   const { forChange, setForChange, userdata } = useGlobalProvider();
   const [loading, setLoading] = useState<boolean>(false);
   const [oldValue, setOldValue] = useState<string | number>();
   const [newValue, setNewValue] = useState<string | number>();
-  const [successModalVisible, setSuccessModalVisible] = useState(false);
+  const [check, setChecked] = useState<boolean>(false);
+  const [successModalVisible, setSuccessModalVisible] =
+    useState<boolean>(false);
+  console.log(check);
+
   const [kay, setKay] = useState<string>("");
   const [form] = Form.useForm();
   const navigate = useNavigate();
+
+  const onChange: CheckboxProps["onChange"] = (e) => {
+    setChecked(!check);
+  };
 
   const handlekay = () => {
     if (forChange?.kay) {
@@ -57,10 +68,18 @@ export function ChangeUserInfo() {
       localStorage.setItem("value", String(newValue));
       setOldValue(newValue);
       setSuccessModalVisible(true);
-      setTimeout(() => {
-        setSuccessModalVisible(false);
-        navigate("/profile_page");
-      }, 3000);
+      if (!check) {
+        setTimeout(() => {
+          setSuccessModalVisible(false);
+          logout();
+          navigate("/");
+        }, 3000);
+      } else {
+        setTimeout(() => {
+          setSuccessModalVisible(false);
+          navigate("/profile_page");
+        }, 3000);
+      }
     } catch (error: any) {
       console.log(error.message);
     } finally {
@@ -146,10 +165,13 @@ export function ChangeUserInfo() {
               >
                 Submit
               </Button>
-              <div className="flex items-center gap-2 mt-2 ml-2">
-                <Checkbox />
-                <p>Keep me signed in. </p>
-              </div>
+              <Checkbox
+                defaultChecked={false}
+                className="w-40 mt-2 ml-2"
+                onChange={onChange}
+              >
+                Keep me signed in.
+              </Checkbox>
             </Form.Item>
           </Form>
         </div>
