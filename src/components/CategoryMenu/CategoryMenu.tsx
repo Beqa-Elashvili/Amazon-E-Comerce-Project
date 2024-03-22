@@ -13,7 +13,7 @@ export function CategoryMenu() {
   const { categorys, collapsed, setCollapsed } = useGlobalProvider();
   const { sliderValue, setSliderValue } = usePriceFilter();
   const { getCategoryProducts } = useGetCategoryProducts();
-  const { id } = useParams();
+  const { category } = useParams();
 
   const navigate = useNavigate();
 
@@ -36,9 +36,9 @@ export function CategoryMenu() {
       onClick,
     } as MenuItem;
   }
-  const handleCategory = (id: string) => {
-    getCategoryProducts(id);
-    navigate(`/Category_Products_Page/${id}`);
+  const handleCategory = (category: string) => {
+    getCategoryProducts(category);
+    navigate(`/Category_Products_Page/${category}`);
   };
 
   const items: MenuItem[] = categorys?.map((item) =>
@@ -64,7 +64,7 @@ export function CategoryMenu() {
     if (collapsed === false) {
       setCollapsed(true);
     }
-  }, [id]);
+  }, [category]);
 
   const handleSliderChange = (value: SetStateAction<number[]>) => {
     setSliderValue(value);

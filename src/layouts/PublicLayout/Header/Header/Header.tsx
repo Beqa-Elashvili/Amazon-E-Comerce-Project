@@ -1,6 +1,6 @@
 import { SHeader, Hbuttons } from "./Header.style";
 import { FormattedMessage } from "react-intl";
-import { Translate } from "../HeaderComponents/CompSelectLanguage/SelectLanguage";
+import { Translate } from "../HeaderComponents/CompSelectLanguage";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { CategoryButtons } from "../HeaderComponents/CompCategory/CategoryMenu";
 import { UserAvatar } from "../HeaderComponents/CompUserAvatar/UserAvatar";

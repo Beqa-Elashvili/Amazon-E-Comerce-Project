@@ -216,10 +216,13 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   const [forChange, setForChange] = useState<TUserChangeValues>();
   const [userdata, setUserData] = useState<TUserData>();
   const [collapsed, setCollapsed] = useState<boolean | undefined>(true);
+  const [product, setProduct] = useState<TProducts>();
 
   return (
     <GlobalContext.Provider
       value={{
+        product,
+        setProduct,
         collapsed,
         setCollapsed,
         userdata,

@@ -21,8 +21,8 @@ export type TCategorys = {
 };
 export type TProducts = {
   product_id: string;
-  likedProduct: any;
-  cartProduct: any;
+  likedProduct: TProducts[];
+  cartProduct: TProducts[];
   count: number;
   category_name: string;
   created_at: string;
@@ -51,6 +51,9 @@ interface TGlobalContext {
       }[]
     >
   >;
+  product: TProducts | undefined;
+  setProduct: Dispatch<SetStateAction<TProducts | undefined>>;
+
   collapsed: boolean | undefined;
   setCollapsed: Dispatch<SetStateAction<boolean | undefined>>;
 
@@ -92,6 +95,8 @@ interface TGlobalContext {
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
+  product: undefined,
+  setProduct: () => {},
   collapsed: undefined,
   setCollapsed: () => {},
   userdata: undefined,

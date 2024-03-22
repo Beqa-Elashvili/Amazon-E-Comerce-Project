@@ -4,12 +4,12 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 export function useGetCategoryProducts() {
   const { categoryProducts, setCategoryProducts } = useGlobalProvider();
-  const { id } = useParams();
+  const { category } = useParams();
 
-  async function getCategoryProducts(id: string) {
+  async function getCategoryProducts(category: string) {
     try {
       const resp = await BaseAxios.get(
-        `/product?categoryName=${id}&pageSize=25`
+        `/product?categoryName=${category}&pageSize=25`
       );
       setCategoryProducts(resp.data.products);
     } catch (error) {
@@ -18,10 +18,10 @@ export function useGetCategoryProducts() {
     }
   }
   useEffect(() => {
-    if (id) {
-      getCategoryProducts(id);
+    if (category) {
+      getCategoryProducts(category);
     }
-  }, [id]);
+  }, [category]);
 
   return {
     getCategoryProducts,

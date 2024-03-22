@@ -8,6 +8,7 @@ import { TAuthTokens } from "@src/@types/TokensTypes";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { FormattedMessage } from "react-intl";
 
+
 export type RegisterFormValue = {
   first_name: string;
   last_name: string;
@@ -48,7 +49,7 @@ export function Register(): JSX.Element {
     }
   }
 
-  function handleButtonClick(genderId: any) {
+  function handleButtonClick(genderId: string) {
     setSelectedGender(genderId);
   }
 

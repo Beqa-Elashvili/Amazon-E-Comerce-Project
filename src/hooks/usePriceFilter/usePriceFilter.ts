@@ -5,11 +5,11 @@ import { useParams } from "react-router-dom";
 export function usePriceFilter() {
   const { sliderValue, setSliderValue, setCategoryProducts } =
     useGlobalProvider();
-  const { id } = useParams();
+  const { category } = useParams();
 
   async function filterPrice() {
     const resp = await BaseAxios.get(
-      `/product?categoryName=${id}&minPrice=${sliderValue[0]}&maxPrice=${sliderValue[1]}`
+      `/product?categoryName=${category}&minPrice=${sliderValue[0]}&maxPrice=${sliderValue[1]}`
     );
     setCategoryProducts(resp.data.products);
   }
@@ -18,7 +18,7 @@ export function usePriceFilter() {
     let timer: number;
     const delayedFilterPrice = () => {
       timer = setTimeout(() => {
-        if (id) {
+        if (category) {
           filterPrice();
         }
       }, 500);

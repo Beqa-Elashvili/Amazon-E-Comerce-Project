@@ -12,12 +12,13 @@ const Login = lazy(() => import("@src/views/AuthViews/Login"));
 const Register = lazy(() => import("@src/views/AuthViews/Register"));
 const CartProductsPage = lazy(() => import("@src/views/CartProductPage"));
 const LikedProductsPage = lazy(() => import("@src/views/WishlistPage"));
+const OneProductPage = lazy(() => import("@src/views/OneProductPage"));
 const CategoryPage = lazy(() => import("@src/views/CategoryPage"));
 const ChangeUserInfo = lazy(() => import("@src/views/ChangeUserInfo"));
 
 function App() {
   const { authStatus } = useAuthProvider();
-  
+
   return (
     <div>
       <Suspense
@@ -39,16 +40,17 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
             <Route path="/CartProducts" element={<CartProductsPage />} />
+            <Route
+              path="/Category_Products_Page/:category"
+              element={<CategoryPage />}
+            />
+            <Route path="/OneProductPage/:id" element={<OneProductPage />} />
             {authStatus === "authorized" && (
               <>
                 <Route path="/Liked_products" element={<LikedProductsPage />} />
                 <Route path="/Profile_Page" element={<ProfilePage />} />
               </>
             )}
-            <Route
-              path="/Category_Products_Page/:id"
-              element={<CategoryPage />}
-            />
           </Route>
           <Route element={<AutLayouts />}>
             <Route path="/Login" element={<Login />} />
