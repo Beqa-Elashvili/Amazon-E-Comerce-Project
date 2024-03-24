@@ -8,10 +8,12 @@ import { SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetSearchResult } from "@src/hooks/useGetSearchResult";
 import { useCartCount } from "@src/hooks/useCartCount";
+import { LocationDeliverModal } from "@src/components/LocationDeliverModal";
 
 export function Header() {
   const navigate = useNavigate();
-  const { categorys } = useGlobalProvider();
+  const { categorys, setOpenLocationModal, location, zipCode } =
+    useGlobalProvider();
   const { ProductsCount } = useCartCount();
   const [show, setshow] = useState<boolean>(false);
   const { categorySearch, setCategorySearch, setSearch, search, searchResult } =
@@ -43,18 +45,24 @@ export function Header() {
             className="w-28 h-50 p-1"
           />
         </button>
-        <button className="Deliver ml-1">
+        <button
+          onClick={() => setOpenLocationModal(true)}
+          className="Deliver ml-1"
+        >
           <h5>
             <FormattedMessage id="Deliver-to" defaultMessage={"Deliver to"} />
           </h5>
-          <h3>
+
+          <h3 className="flex">
             <img
               src="/Images/map cursor.png"
               alt="cursor"
               className="Map w-4 h-4 mr-0.5"
             />
-            Los Angeles
+            <p>{location.slice(0, 6)}...</p>
+            <p>{zipCode}</p>
           </h3>
+          <LocationDeliverModal />
         </button>
         <div className="relative flex items-center">
           <select

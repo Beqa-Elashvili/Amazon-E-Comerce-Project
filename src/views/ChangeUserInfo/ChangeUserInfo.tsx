@@ -20,7 +20,7 @@ export function ChangeUserInfo() {
   const [check, setChecked] = useState<boolean>(false);
   const [successModalVisible, setSuccessModalVisible] =
     useState<boolean>(false);
-  console.log(check);
+
 
   const [kay, setKay] = useState<string>("");
   const [form] = Form.useForm();

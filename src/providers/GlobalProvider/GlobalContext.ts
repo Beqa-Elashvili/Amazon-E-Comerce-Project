@@ -1,4 +1,5 @@
 import { TUserData } from "@src/@types/TuserData";
+import { TourProps } from "antd";
 import { Dispatch, ReactNode, SetStateAction, createContext } from "react";
 
 export type TUserChangeValues = {
@@ -21,8 +22,8 @@ export type TCategorys = {
 };
 export type TProducts = {
   product_id: string;
-  likedProduct: TProducts[];
-  cartProduct: TProducts[];
+  likedProduct: TProducts;
+  cartProduct: TProducts;
   count: number;
   category_name: string;
   created_at: string;
@@ -51,6 +52,27 @@ interface TGlobalContext {
       }[]
     >
   >;
+
+  countries: {
+    country: string;
+  }[];
+
+  setcountries: Dispatch<
+    SetStateAction<
+      {
+        country: string;
+      }[]
+    >
+  >;
+  openLocationModal: boolean;
+  setOpenLocationModal: Dispatch<SetStateAction<boolean>>;
+
+  zipCode: string;
+  setZipCode: Dispatch<SetStateAction<string>>;
+
+  location: string;
+  setLocation: Dispatch<SetStateAction<string>>;
+
   product: TProducts | undefined;
   setProduct: Dispatch<SetStateAction<TProducts | undefined>>;
 
@@ -95,6 +117,14 @@ interface TGlobalContext {
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
+  openLocationModal: false,
+  setOpenLocationModal: () => {},
+  zipCode: "",
+  setZipCode: () => {},
+  location: "",
+  setLocation: () => {},
+  countries: [],
+  setcountries: () => {},
   product: undefined,
   setProduct: () => {},
   collapsed: undefined,

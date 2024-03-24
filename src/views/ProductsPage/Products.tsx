@@ -12,8 +12,6 @@ import { useGetOneProduct } from "@src/hooks/useGetOneProduct";
 
 export function Products() {
   const { products } = useGetProducts();
-  console.log(products);
-
   const { authStatus } = useAuthProvider();
   const { addToCart } = useAddinCart();
   const { AddWishlist } = useAddWishlist();
