@@ -15,9 +15,6 @@ export const SProductPage = styled.div`
   .containerTwo {
     display: flex;
   }
-  .ant-modal-content {
-    padding: 0;
-  }
   .box {
     display: flex;
     flex-direction: column;
@@ -29,8 +26,12 @@ export const SProductPage = styled.div`
   .sale {
     color: #df0202;
   }
-  .modal {
-    padding: 0px;
-    width: 100px;
+  .popover {
+    p {
+      color: gray;
+    }
+    .cart {
+      height: 100%;
+    }
   }
 `;

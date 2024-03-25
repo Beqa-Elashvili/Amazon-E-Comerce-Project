@@ -24,13 +24,18 @@ export function ProductsSlider({
   const { addToCart } = useAddinCart();
   const { authStatus } = useAuthProvider();
 
-  function handleOnClick(id: string) {
+  const handleOnClick = (id: string) => {
     if (authStatus === "authorized") {
       addToCart(id);
     } else {
       navigate("/login");
     }
-  }
+  };
+
+  const handleProducts = (id: string) => {
+    navigate(`/OneProductPage/${id}`);
+  };
+
   return (
     <div className="text-center">
       <div
@@ -60,7 +65,6 @@ export function ProductsSlider({
             {
               itemsToShow: itemsSHow,
               itemsToScroll: 1,
-              minWidth: 500,
             },
           ]}
           speed={400}
@@ -70,27 +74,28 @@ export function ProductsSlider({
         >
           {products?.map((item: TProducts) => {
             return (
-              <div
-                key={item.id}
-                onClick={() => console.log(item.id, "clicked")}
-                className="p-2 cursor-pointer text-center relative"
-              >
-                {item.salePrice !== null && (
-                  <div className="flex absolute">
-                    <RiBookmark3Fill className="size-8 text-yellow-400" />
-                  </div>
-                )}
-                <img
-                  className="object-cover"
-                  style={{ height: imgHeight }}
-                  src={item.image}
-                  alt="product_image"
-                />
-                <div className="text-start">
-                  <h4 className="flex text-balance text-blue-900 h-12">
+              <div key={item.id} className="p-2 text-center relative">
+                <div
+                  className="cursor-pointer"
+                  onClick={() => handleProducts(item.id)}
+                >
+                  {item.salePrice !== null && (
+                    <div className="flex absolute">
+                      <RiBookmark3Fill className="size-8 text-yellow-400" />
+                    </div>
+                  )}
+                  <img
+                    className="object-contain"
+                    style={{ height: imgHeight }}
+                    src={item.image}
+                    alt="product_image"
+                  />
+                  <h4 className=" h-14 text-balance text-start text-blue-900">
                     {item.title}
                   </h4>
-                  <Rate className="mt-2" allowHalf defaultValue={2.5} />
+                </div>
+                <div className="text-start">
+                  <Rate className="pt-2" allowHalf defaultValue={2.5} />
                   <div className="mt-2 flex justify-between">
                     {item.salePrice !== null ? (
                       <div>

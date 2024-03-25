@@ -22,6 +22,9 @@ export function ShowCartProcuts() {
     }
   }, [cartProducts]);
 
+  const handleProducts = (id: string) => {
+    navigate(`/OneProductPage/${id}`);
+  };
   return (
     <div>
       {isEmpty && (
@@ -45,11 +48,16 @@ export function ShowCartProcuts() {
             {cartProducts?.map((item: TProducts) => {
               return (
                 <div className="text-center" key={item.id}>
-                  <img
-                    className="w-32"
-                    src={item.cartProduct.image}
-                    alt="product_image"
-                  />
+                  <div
+                    className="cursor-pointer"
+                    onClick={() => handleProducts(item.cartProduct.id)}
+                  >
+                    <img
+                      className="w-32"
+                      src={item.cartProduct.image}
+                      alt="product_image"
+                    />
+                  </div>
                   <div className="flex justify-between p-2 items-center">
                     {item.cartProduct.salePrice !== null ? (
                       <div>

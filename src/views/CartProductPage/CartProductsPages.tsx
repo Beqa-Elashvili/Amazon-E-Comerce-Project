@@ -27,6 +27,10 @@ export function CartProductsPage() {
     }
   };
 
+  const handleProducts = (id: string) => {
+    navigate(`/OneProductPage/${id}`);
+  };
+
   return (
     <SCartProducts>
       {ProductsCount === 0 ? (
@@ -102,11 +106,16 @@ export function CartProductsPage() {
                     <div className="flex justify-between items-center">
                       <div className="bg-grey-200 flex">
                         <div className="bg-white p-2 rounded-xl inline-flex">
-                          <img
-                            className="w-16"
-                            src={item.cartProduct.image}
-                            alt="img"
-                          />
+                          <div
+                            className="cursor-pointer"
+                            onClick={() => handleProducts(item.cartProduct.id)}
+                          >
+                            <img
+                              className="w-16"
+                              src={item.cartProduct.image}
+                              alt="img"
+                            />
+                          </div>
                         </div>
                         <div className="ml-5">
                           <h4>{item.cartProduct.title}</h4>

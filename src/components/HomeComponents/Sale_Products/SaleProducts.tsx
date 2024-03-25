@@ -8,6 +8,8 @@ import { useIsProductInWishlist } from "@src/hooks/useAddAndGetLikedProducts";
 import { useAddWishlist } from "@src/hooks/useAddAndGetLikedProducts";
 import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
 import { RiBookmark3Fill } from "react-icons/ri";
+import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
+import { useNavigate } from "react-router-dom";
 
 export function SaleProducts() {
   const { authStatus } = useAuthProvider();
@@ -15,26 +17,36 @@ export function SaleProducts() {
   const { saleProducts } = useGetSaleProducts();
   const { isInWishlist } = useIsProductInWishlist();
   const { AddWishlist } = useAddWishlist();
+  const naviagte = useNavigate();
+
+  const handleProducts = (id: string) => {
+    naviagte(`/OneProductPage/${id}`);
+  };
 
   return (
     <SSaleProducts className="absolute">
       <div className="container">
-        {saleProducts?.map((item) => {
+        {saleProducts?.map((item: TProducts) => {
           return (
             <div
               key={item.id}
-              className="border-none cursor-pointer text-center p-2 bg-white rounded-lg"
+              className="border-none text-center p-2 bg-white rounded-lg"
             >
-              <div className="flex absolute top-0">
-                <RiBookmark3Fill className="size-12 text-yellow-400" />
-              </div>
+              <div
+                className="cursor-pointer"
+                onClick={() => handleProducts(item.id)}
+              >
+                <div className="flex absolute top-0">
+                  <RiBookmark3Fill className="size-12 text-yellow-400" />
+                </div>
 
-              <h3 className="mt-10 h-10 text-blue-900">{item.title}</h3>
-              <img
-                className="xl:h-80 lg:h-40 md:h-20"
-                src={item.image}
-                alt="SaleProducts"
-              />
+                <h3 className="mt-10 h-10 text-blue-900">{item.title}</h3>
+                <img
+                  className="xl:h-80 lg:h-40 md:h-20"
+                  src={item.image}
+                  alt="SaleProducts"
+                />
+              </div>
               <div className="text-start">
                 <p className="line-through text-red-700">
                   OldPrice: {item.price}

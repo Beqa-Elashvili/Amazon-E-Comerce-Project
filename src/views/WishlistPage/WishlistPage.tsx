@@ -13,6 +13,12 @@ export function LikedProductsPage(): JSX.Element {
   const { authStatus } = useAuthProvider();
   const { wishlistTotalprice } = usewishTotalPrice();
   const navigate = useNavigate();
+  console.log(wishlist);
+  
+
+  const handleProduct = (id: string) => {
+    navigate(`/OneProductPage/${id}`);
+  };
 
   return (
     <SLikedProducts>
@@ -45,7 +51,10 @@ export function LikedProductsPage(): JSX.Element {
                   className="flex justify-between items-center rounded-xl overflow-hidden p-2 w-2/3 bg-slate-400"
                 >
                   <div className="bg-grey-200 flex">
-                    <div className="bg-white p-2 rounded-xl inline-flex">
+                    <div
+                      onClick={() => handleProduct(item.likedProduct.id)}
+                      className="bg-white p-2 rounded-xl inline-flex"
+                    >
                       <img
                         className="w-16"
                         src={item.likedProduct.image}

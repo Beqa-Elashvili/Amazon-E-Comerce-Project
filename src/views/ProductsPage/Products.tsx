@@ -7,8 +7,7 @@ import { useGetProducts } from "@src/hooks/useGetProducts";
 import { useAddWishlist } from "@src/hooks/useAddAndGetLikedProducts";
 import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
 import { useIsProductInWishlist } from "@src/hooks/useAddAndGetLikedProducts";
-import { useNavigate, useParams } from "react-router-dom";
-import { useGetOneProduct } from "@src/hooks/useGetOneProduct";
+import { useNavigate } from "react-router-dom";
 
 export function Products() {
   const { products } = useGetProducts();
@@ -16,11 +15,9 @@ export function Products() {
   const { addToCart } = useAddinCart();
   const { AddWishlist } = useAddWishlist();
   const { isInWishlist } = useIsProductInWishlist();
-  const { GetOneProduct } = useGetOneProduct();
   const navigate = useNavigate();
 
   const handleProduct = (id: string) => {
-    GetOneProduct(id);
     navigate(`/OneProductPage/${id}`);
   };
 
@@ -30,12 +27,20 @@ export function Products() {
         {products?.map((item) => {
           return (
             <div
-              onClick={() => handleProduct(item.id)}
               key={item.id}
-              className="h-full border-none shadow-xl cursor-pointer text-start p-3 bg-white rounded-lg"
+              className="h-full border-none shadow-xl text-start p-3 bg-white rounded-lg"
             >
-              <h3 className="w-80 h-8">{item.title}</h3>
-              <img className="h-80 mt-2" src={item.image} alt="SaleProducts" />
+              <div
+                className="cursor-pointer"
+                onClick={() => handleProduct(item.id)}
+              >
+                <h3 className="w-80 h-8">{item.title}</h3>
+                <img
+                  className="h-80 mt-2"
+                  src={item.image}
+                  alt="SaleProducts"
+                />
+              </div>
               <h3 className="mt-2">Price: {item.price}$</h3>
               {authStatus === "authorized" ? (
                 <div className="flex justify-between mt-2">

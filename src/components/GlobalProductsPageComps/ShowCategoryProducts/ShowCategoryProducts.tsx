@@ -10,6 +10,7 @@ import { useAddWishlist } from "@src/hooks/useAddAndGetLikedProducts";
 import { useIsProductInWishlist } from "@src/hooks/useAddAndGetLikedProducts";
 import { ProductsSlider } from "@src/components/HomeComponents/ProductsSlider";
 import { useParams } from "react-router-dom";
+import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
 
 export function ShowCategoryProducts() {
   const { category } = useParams();
@@ -20,18 +21,22 @@ export function ShowCategoryProducts() {
   const { isInWishlist } = useIsProductInWishlist();
   const { categoryProducts, collapsed } = useGlobalProvider();
 
-  function hanldeOnClick(id: string) {
+  const hanldeOnClick = (id: string) => {
     if (authStatus === "authorized") {
       addToCart(id);
     } else {
       navigate("/login");
     }
-  }
+  };
+
+  const handleProducts = (id: string) => {
+    navigate(`/OneProductPage/${id}`);
+  };
   return (
     <div className="p-2">
       <h1>{category}</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-7 gap-y-2">
-        {categoryProducts.map((item) => {
+        {categoryProducts.map((item: TProducts) => {
           return (
             <div key={item.id} className="p-2 text-center relative">
               {item.salePrice !== null && (
@@ -39,13 +44,17 @@ export function ShowCategoryProducts() {
                   <RiBookmark3Fill className="size-8 text-yellow-400" />
                 </div>
               )}
-              <img
-                className="object-cover xl:h-60 md:h-40 w-full"
-                src={item.image}
-                alt="product_image"
-              />
+              <div className="cursor-pointer" onClick={() => handleProducts(item.id)}>
+                <img
+                  className="object-cover xl:h-60 md:h-40 w-full"
+                  src={item.image}
+                  alt="product_image"
+                />
+                <h4 className="flex text-start w-48 text-blue-900">
+                  {item.title}
+                </h4>
+              </div>
               <div className="text-start">
-                <h4 className="flex w-48 text-blue-900">{item.title}</h4>
                 <div className="flex justify-between items-center">
                   <Rate className="mt-2" allowHalf defaultValue={2.5} />
                   <button
