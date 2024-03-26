@@ -64,6 +64,20 @@ interface TGlobalContext {
       }[]
     >
   >;
+
+  states: {
+    id: string;
+    Name: string;
+  }[];
+  setStates: Dispatch<
+    SetStateAction<
+      {
+        id: string;
+        Name: string;
+      }[]
+    >
+  >;
+
   openLocationModal: boolean;
   setOpenLocationModal: Dispatch<SetStateAction<boolean>>;
 
@@ -117,6 +131,8 @@ interface TGlobalContext {
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
+  states: [],
+  setStates: () => {},
   openLocationModal: false,
   setOpenLocationModal: () => {},
   zipCode: "",

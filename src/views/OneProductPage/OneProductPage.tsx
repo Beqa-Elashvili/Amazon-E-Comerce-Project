@@ -9,10 +9,13 @@ import { LocationDeliverModal } from "@src/components/LocationDeliverModal";
 import { FaCartArrowDown } from "react-icons/fa6";
 import { useGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
 import { ProductsSlider } from "@src/components/HomeComponents/ProductsSlider";
+import { useAuthProvider } from "@src/providers/AuthProvider";
+import { Navigate, useNavigate } from "react-router-dom";
+import Item from "antd/es/list/Item";
 
 export function OneProductPage() {
   const { product } = useGetOneProduct();
-
+  const { authStatus } = useAuthProvider();
   const [open, setOpen] = useState<boolean>(false);
   const [opentwo, setOpenTwo] = useState<boolean>(false);
   const { addToCart } = useAddinCart();
@@ -20,6 +23,7 @@ export function OneProductPage() {
     useGlobalProvider();
   const [randomNumber, setRandomNumber] = useState<number>(0);
   const { getCategoryProducts } = useGetCategoryProducts();
+  const navigate = useNavigate();
 
   const Brand = product?.title.split(" ")[0];
 
@@ -75,6 +79,14 @@ export function OneProductPage() {
       </p>
     </div>
   );
+
+  const handleAddtoCart = (id: string) => {
+    if (authStatus === "unauthorized") {
+      navigate("/Login");
+    } else {
+      addToCart(id);
+    }
+  };
 
   return (
     <SProductPage>
@@ -178,7 +190,7 @@ export function OneProductPage() {
                       <Button
                         className="mt-2 bg-yellow-400"
                         icon={<FaCartArrowDown />}
-                        onClick={() => addToCart(product.id)}
+                        onClick={() => handleAddtoCart(product.id)}
                       >
                         Add Cart
                       </Button>

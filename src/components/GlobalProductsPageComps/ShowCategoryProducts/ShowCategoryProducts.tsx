@@ -32,6 +32,7 @@ export function ShowCategoryProducts() {
   const handleProducts = (id: string) => {
     navigate(`/OneProductPage/${id}`);
   };
+
   return (
     <div className="p-2">
       <h1>{category}</h1>
@@ -44,7 +45,10 @@ export function ShowCategoryProducts() {
                   <RiBookmark3Fill className="size-8 text-yellow-400" />
                 </div>
               )}
-              <div className="cursor-pointer" onClick={() => handleProducts(item.id)}>
+              <div
+                className="cursor-pointer"
+                onClick={() => handleProducts(item.id)}
+              >
                 <img
                   className="object-cover xl:h-60 md:h-40 w-full"
                   src={item.image}
@@ -55,19 +59,21 @@ export function ShowCategoryProducts() {
                 </h4>
               </div>
               <div className="text-start">
-                <div className="flex justify-between items-center">
-                  <Rate className="mt-2" allowHalf defaultValue={2.5} />
-                  <button
-                    className="border-none bg-white cursor-pointer"
-                    onClick={() => AddWishlist(item.id)}
-                  >
-                    {isInWishlist(item.id) ? (
-                      <IoIosHeart className="text-red-600 size-8 hover:text-yellow-400" />
-                    ) : (
-                      <IoIosHeartEmpty className="text-orange-600 size-8 hover:text-orange-400" />
-                    )}
-                  </button>
-                </div>
+                {authStatus === "authorized" && (
+                  <div className="flex justify-between items-center">
+                    <Rate className="mt-2" allowHalf defaultValue={2.5} />
+                    <button
+                      className="border-none bg-white cursor-pointer"
+                      onClick={() => AddWishlist(item.id)}
+                    >
+                      {isInWishlist(item.id) ? (
+                        <IoIosHeart className="text-red-600 size-8 hover:text-yellow-400" />
+                      ) : (
+                        <IoIosHeartEmpty className="text-orange-600 size-8 hover:text-orange-400" />
+                      )}
+                    </button>
+                  </div>
+                )}
 
                 <div className="mt-2 flex justify-between">
                   {item.salePrice !== null ? (

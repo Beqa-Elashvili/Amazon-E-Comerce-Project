@@ -13,7 +13,7 @@ export function LikedProductsPage(): JSX.Element {
   const { authStatus } = useAuthProvider();
   const { wishlistTotalprice } = usewishTotalPrice();
   const navigate = useNavigate();
-  console.log(wishlist);
+
   
 
   const handleProduct = (id: string) => {

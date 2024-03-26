@@ -10,7 +10,7 @@ import {
 } from "./GlobalContext";
 import { TUserData } from "@src/@types/TuserData";
 
-const footerAmazonLinks = [
+const footerAmazonLinks: { id: string; Name: string; Destination: string }[] = [
   { id: uuidv4(), Name: "Get to Know Us", Destination: "title" },
   { id: uuidv4(), Name: "Make Money with Us", Destination: "title" },
   { id: uuidv4(), Name: "Amazon Payment Products", Destination: "title" },
@@ -196,6 +196,71 @@ const footerAmazonLinks = [
   },
 ];
 
+const statesArray: { id: string; Name: string }[] = [
+  { id: uuidv4(), Name: "Alabama" },
+  { id: uuidv4(), Name: "Alaska" },
+  { id: uuidv4(), Name: "American Samoa" },
+  { id: uuidv4(), Name: "Arizona" },
+  { id: uuidv4(), Name: "Arkansas" },
+  { id: uuidv4(), Name: "California" },
+  { id: uuidv4(), Name: "Colorado" },
+  { id: uuidv4(), Name: "Connecticut" },
+  { id: uuidv4(), Name: "Delaware" },
+  { id: uuidv4(), Name: "District of Columbia" },
+  { id: uuidv4(), Name: "Federated States of Micronesia" },
+  { id: uuidv4(), Name: "Florida" },
+  { id: uuidv4(), Name: "Georgia" },
+  { id: uuidv4(), Name: "Guam" },
+  { id: uuidv4(), Name: "Hawaii" },
+  { id: uuidv4(), Name: "Idaho" },
+  { id: uuidv4(), Name: "Illinois" },
+  { id: uuidv4(), Name: "Indiana" },
+  { id: uuidv4(), Name: "Iowa" },
+  { id: uuidv4(), Name: "Kansas" },
+  { id: uuidv4(), Name: "Kentucky" },
+  { id: uuidv4(), Name: "Louisiana" },
+  { id: uuidv4(), Name: "Maine" },
+  { id: uuidv4(), Name: "Marshall Islands" },
+  { id: uuidv4(), Name: "Maryland" },
+  { id: uuidv4(), Name: "Massachusetts" },
+  { id: uuidv4(), Name: "Michigan" },
+  { id: uuidv4(), Name: "Minnesota" },
+  { id: uuidv4(), Name: "Mississippi" },
+  { id: uuidv4(), Name: "Missouri" },
+  { id: uuidv4(), Name: "Montana" },
+  { id: uuidv4(), Name: "Nebraska" },
+  { id: uuidv4(), Name: "Nevada" },
+  { id: uuidv4(), Name: "New Hampshire" },
+  { id: uuidv4(), Name: "New Jersey" },
+  { id: uuidv4(), Name: "New Mexico" },
+  { id: uuidv4(), Name: "New York" },
+  { id: uuidv4(), Name: "North Carolina" },
+  { id: uuidv4(), Name: "North Dakota" },
+  { id: uuidv4(), Name: "Northern Mariana Islands" },
+  { id: uuidv4(), Name: "Ohio" },
+  { id: uuidv4(), Name: "Oklahoma" },
+  { id: uuidv4(), Name: "Oregon" },
+  { id: uuidv4(), Name: "Palau" },
+  { id: uuidv4(), Name: "Pennsylvania" },
+  { id: uuidv4(), Name: "Puerto Rico" },
+  { id: uuidv4(), Name: "Rhode Island" },
+  { id: uuidv4(), Name: "South Carolina" },
+  { id: uuidv4(), Name: "South Dakota" },
+  { id: uuidv4(), Name: "Tennessee" },
+  { id: uuidv4(), Name: "Texas" },
+  { id: uuidv4(), Name: "Utah" },
+  { id: uuidv4(), Name: "Vermont" },
+  { id: uuidv4(), Name: "Virgin Islands" },
+  { id: uuidv4(), Name: "Virginia" },
+  { id: uuidv4(), Name: "Washington" },
+  { id: uuidv4(), Name: "West Virginia" },
+  { id: uuidv4(), Name: "Wisconsin" },
+  { id: uuidv4(), Name: "Wyoming" },
+  { id: uuidv4(), Name: "Armed Forces - AA" },
+  { id: uuidv4(), Name: "Armed Forces - AE" },
+  { id: uuidv4(), Name: "Armed Forces - AP" },
+];
+
 const countriesArray: { country: string }[] = [
   { country: "Australia" },
   { country: "Canada" },
@@ -374,13 +439,15 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   const [zipCode, setZipCode] = useState<string>("");
   const [location, setLocation] = useState<string>("");
   const [openLocationModal, setOpenLocationModal] = useState<boolean>(false);
+  const [states, setStates] = useState(statesArray);
 
-  const [countries, setcountries] =
-    useState<{ country: string }[]>(countriesArray);
+  const [countries, setcountries] =useState(countriesArray);
 
   return (
     <GlobalContext.Provider
       value={{
+        states,
+        setStates,
         openLocationModal,
         setOpenLocationModal,
         zipCode,

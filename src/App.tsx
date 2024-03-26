@@ -4,6 +4,7 @@ import { PublicLayout } from "@src/layouts/PublicLayout/setOutlet";
 import { AutLayouts } from "@src/layouts/AutLayouts/setOutlet";
 import { Spin } from "antd";
 import { useAuthProvider } from "./providers/AuthProvider";
+import { CheckoutLayout } from "./layouts/CheckoutLayout/setOutlat";
 
 const Home = lazy(() => import("@src/views/Home"));
 const ProfilePage = lazy(() => import("@src/views/ProfilePage"));
@@ -15,6 +16,7 @@ const LikedProductsPage = lazy(() => import("@src/views/WishlistPage"));
 const OneProductPage = lazy(() => import("@src/views/OneProductPage"));
 const CategoryPage = lazy(() => import("@src/views/CategoryPage"));
 const ChangeUserInfo = lazy(() => import("@src/views/ChangeUserInfo"));
+const PurchasePage = lazy(() => import("@src/views/PurchasePage"));
 
 function App() {
   const { authStatus } = useAuthProvider();
@@ -51,6 +53,9 @@ function App() {
                 <Route path="/Profile_Page" element={<ProfilePage />} />
               </>
             )}
+          </Route>
+          <Route element={<CheckoutLayout />}>
+            <Route path="/Buy/Checkout" element={<PurchasePage />} />
           </Route>
           <Route element={<AutLayouts />}>
             <Route path="/Login" element={<Login />} />
