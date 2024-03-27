@@ -3,7 +3,7 @@ import ReactSimplyCarousel from "react-simply-carousel";
 import { Button, Rate } from "antd";
 import { useAddinCart } from "@src/hooks/useAddAndGetCart";
 import { FaCartArrowDown } from "react-icons/fa";
-import { useAuthProvider } from "@src/providers/AuthProvider"; // Fixed typo here
+import { useAuthProvider } from "@src/providers/AuthProvider"; 
 import { useNavigate } from "react-router-dom";
 import { RiBookmark3Fill } from "react-icons/ri";
 import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
