@@ -77,6 +77,8 @@ interface TGlobalContext {
       }[]
     >
   >;
+  CartTotalprice: number | null;
+  setCartTotalprice: Dispatch<SetStateAction<number>>;
 
   openLocationModal: boolean;
   setOpenLocationModal: Dispatch<SetStateAction<boolean>>;
@@ -131,6 +133,8 @@ interface TGlobalContext {
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
+  CartTotalprice: null,
+  setCartTotalprice: () => {},
   states: [],
   setStates: () => {},
   openLocationModal: false,

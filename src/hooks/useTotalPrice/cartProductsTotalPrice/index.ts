@@ -1,1 +1,0 @@
-export { usecartTotalPrice } from "./usecartTotalPrice";

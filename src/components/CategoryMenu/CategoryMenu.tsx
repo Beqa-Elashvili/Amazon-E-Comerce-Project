@@ -12,7 +12,7 @@ import { useNavigate, useParams } from "react-router-dom";
 export function CategoryMenu() {
   const { categorys, collapsed, setCollapsed } = useGlobalProvider();
   const { sliderValue, setSliderValue } = usePriceFilter();
-  const { getCategoryProducts } = useGetCategoryProducts();
+const { getCategoryProducts } = useGetCategoryProducts();
   const { category } = useParams();
 
   const navigate = useNavigate();

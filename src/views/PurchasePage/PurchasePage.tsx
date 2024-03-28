@@ -1,13 +1,18 @@
-import { SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { SPurchasePage } from "./SPurchasePage";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import Input from "antd/es/input/Input";
 import { Select, Checkbox, Skeleton, Button } from "antd";
-import { FaLeaf } from "react-icons/fa";
-
 export function PurchasePage() {
-  const { location, setLocation, zipCode, setZipCode, countries, states } =
-    useGlobalProvider();
+  const {
+    location,
+    CartTotalprice,
+    setLocation,
+    zipCode,
+    setZipCode,
+    countries,
+    states,
+  } = useGlobalProvider();
   const [isChange, setChange] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [newLocation, setNewLocation] = useState<string>("");
@@ -15,7 +20,16 @@ export function PurchasePage() {
   const [turnBack, setTurnBack] = useState<Boolean>(false);
   const [iseveryValue, setIsEveryValue] = useState<boolean>(false);
 
-  const [userData, setUserData] = useState({
+  type DeliverData = {
+    phoneNumber: string;
+    address: string;
+    addressTwo: string;
+    fullName: string;
+    city: string;
+    region: string;
+  };
+
+  const [deliverData, setDeliverdata] = useState<DeliverData>({
     phoneNumber: "",
     address: "",
     addressTwo: "",
@@ -24,17 +38,29 @@ export function PurchasePage() {
     region: "",
   });
 
+  const ClearDeliverData = () => {
+    const clearedData: DeliverData = {
+      phoneNumber: "",
+      address: "",
+      addressTwo: "",
+      fullName: "",
+      city: "",
+      region: "",
+    };
+    setDeliverdata(clearedData);
+  };
+
   const handleUserData = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     if (name === "phoneNumber" && value.length > 9) {
       const newValue = value.slice(0, -1);
-      setUserData((prevState) => ({
+      setDeliverdata((prevState) => ({
         ...prevState,
         [name]: newValue,
       }));
       return;
     }
-    setUserData((prevState) => ({
+    setDeliverdata((prevState) => ({
       ...prevState,
       [name]: value,
     }));
@@ -67,6 +93,7 @@ export function PurchasePage() {
   };
 
   const handleChangeBtn = () => {
+    ClearDeliverData();
     setNewLocation(location);
     setChange(true);
   };
@@ -83,7 +110,7 @@ export function PurchasePage() {
 
   function handleOk() {
     if (
-      Object.values(userData).every((value) => value !== "") &&
+      Object.values(deliverData).every((value: string) => value !== "") &&
       newLocation !== "" &&
       newZipCode !== ""
     ) {
@@ -94,6 +121,7 @@ export function PurchasePage() {
       if (newzipCode && newlocation) {
         setLocation(newlocation);
         setZipCode(newzipCode);
+        ClearDeliverData();
       }
       setChange(false);
     } else {
@@ -118,6 +146,7 @@ export function PurchasePage() {
           <p className="py-2 text-xl font-medium text-red-800">
             Enter a your shipping address
           </p>
+          <p>{CartTotalprice}</p>
           <div className="content-2 flex justify-between gap-6">
             <div className="border-solid border-slate-400 p-6 border rounded-lg border w-full">
               <div className="w-5/6">
@@ -156,7 +185,7 @@ export function PurchasePage() {
                             Full name (First and Last name)
                           </p>
                           <Input
-                            value={userData.fullName}
+                            value={deliverData.fullName}
                             type="text"
                             name="fullName"
                             placeholder="Full Name"
@@ -168,14 +197,14 @@ export function PurchasePage() {
                             Street Address
                           </p>
                           <Input
-                            value={userData.address}
+                            value={deliverData.address}
                             name="address"
                             type="text"
                             placeholder="Street address or P.O Box"
                             onChange={handleUserData}
                           />
                           <Input
-                            value={userData.addressTwo}
+                            value={deliverData.addressTwo}
                             name="addressTwo"
                             className="mt-1"
                             type="text"
@@ -187,7 +216,7 @@ export function PurchasePage() {
                           <p className="text-base font-medium">City</p>
                           <Input
                             onChange={handleUserData}
-                            value={userData.city}
+                            value={deliverData.city}
                             name="city"
                           />
                         </div>
@@ -198,7 +227,7 @@ export function PurchasePage() {
                           <Input
                             onChange={handleUserData}
                             name="region"
-                            value={userData.region}
+                            value={deliverData.region}
                           />
                         </div>
                         <div>
@@ -213,7 +242,7 @@ export function PurchasePage() {
                         <div>
                           <p className="text-base font-medium">Phone number</p>
                           <Input
-                            value={userData.phoneNumber}
+                            value={deliverData.phoneNumber}
                             name="phoneNumber"
                             onChange={handleUserData}
                             type="number"
@@ -283,11 +312,23 @@ export function PurchasePage() {
                           <p className="text-base font-medium">
                             Full name (First and Last name)
                           </p>
-                          <Input type="text" placeholder="Full Name" />
+                          <Input
+                            name="fullName"
+                            value={deliverData.fullName}
+                            onChange={handleUserData}
+                            type="text"
+                            placeholder="Full Name"
+                          />
                         </div>
                         <div>
                           <p className="text-base font-medium">Phone number</p>
-                          <Input type="text" placeholder="Phone number" />
+                          <Input
+                            name="phoneNumber"
+                            type="number"
+                            value={deliverData.phoneNumber}
+                            onChange={handleUserData}
+                            placeholder="Phone number"
+                          />
                           <p className="text-xs mt-1 font-normal">
                             May be used to assist delivery
                           </p>
@@ -295,10 +336,16 @@ export function PurchasePage() {
                         <div>
                           <p className="text-base font-medium">Address</p>
                           <Input
+                            name="address"
+                            value={deliverData.address}
+                            onChange={handleUserData}
                             type="text"
                             placeholder="Street address or P.O Box"
                           />
                           <Input
+                            name="addressTwo"
+                            value={deliverData.addressTwo}
+                            onChange={handleUserData}
                             className="mt-1"
                             type="text"
                             placeholder="Apt, suite, unit, builidings, floor, etc."
@@ -307,7 +354,11 @@ export function PurchasePage() {
                         <div className="flex items-center gap-2">
                           <div>
                             <p className="text-base font-medium">City</p>
-                            <Input />
+                            <Input
+                              name="city"
+                              value={deliverData.city}
+                              onChange={handleUserData}
+                            />
                           </div>
                           <div>
                             <div>

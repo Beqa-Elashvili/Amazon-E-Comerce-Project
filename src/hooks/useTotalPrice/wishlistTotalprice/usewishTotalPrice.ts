@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { useGetWishlist } from "../../useAddAndGetLikedProducts";
+import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export function usewishTotalPrice() {
-  const { wishlist } = useGetWishlist();
+  const { wishlist } = useGlobalProvider();
   const [wishlistTotalprice, setWishlistTotalprice] = useState<number>();
 
   function sumPrices() {

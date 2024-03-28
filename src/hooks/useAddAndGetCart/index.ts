@@ -1,2 +1,2 @@
+export { getcartProducts } from "./getCartProducts";
 export { useAddinCart } from "./useAddinCart";
-export { useGetCartProducts } from "./getCartProducts";

@@ -14,14 +14,15 @@ export function AuthProvider({ children }: PropsWithChildren) {
   );
 
   function setAuthData(tokens: TAuthTokens) {
-    const userData: TUserData = jwtDecode(tokens.access_token);
-    setUserData(userData);
-    localStorage.setItem(ACCESS_TOKEN, tokens.access_token);
-    localStorage.setItem(REFRESH_TOKEN, tokens.refresh_token);
-    setPrivateAccessToken(tokens.access_token);
-    setAuthStatus(TAuthorizationStatus_Enum.AUTHORIZED);
+    if (tokens) {
+      const userData: TUserData = jwtDecode(tokens.access_token);
+      setUserData(userData);
+      localStorage.setItem(ACCESS_TOKEN, tokens.access_token);
+      localStorage.setItem(REFRESH_TOKEN, tokens.refresh_token);
+      setPrivateAccessToken(tokens.access_token);
+      setAuthStatus(TAuthorizationStatus_Enum.AUTHORIZED);
+    }
   }
-
 
   async function getNewTokens(refreshToken: string) {
     try {

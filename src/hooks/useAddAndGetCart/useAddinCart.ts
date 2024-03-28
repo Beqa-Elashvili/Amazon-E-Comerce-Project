@@ -1,10 +1,11 @@
 import { PrivateAxios } from "@src/utils/PriveteAxios";
 import { useState } from "react";
-import { useGetCartProducts } from "./getCartProducts";
+import { getcartProducts } from "./getCartProducts";
+import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export function useAddinCart() {
   const [loading, setLoading] = useState<boolean>(false);
-  const { getcartProducts } = useGetCartProducts();
+  const { setCartProducts } = useGlobalProvider();
 
   async function addToCart(productId: string) {
     try {
@@ -12,7 +13,7 @@ export function useAddinCart() {
       const resp = await PrivateAxios.post("/cart", {
         product_id: productId,
       });
-      await getcartProducts();
+      await getcartProducts(setCartProducts);
     } catch (error) {
       console.error(
         "An error occurred while adding the product to the cart:",

@@ -1,3 +1,3 @@
-export { useGetWishlist } from "./useGetWishlist";
+export { getWishlist } from "./GetWishlist";
 export { useAddWishlist } from "./useAddWishlist";
 export { useIsProductInWishlist } from "./isInwishlist";

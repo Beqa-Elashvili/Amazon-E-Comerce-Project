@@ -1,7 +1,12 @@
 import { PropsWithChildren, useState } from "react";
 import { GlobalContext } from "./GlobalContext";
 import { v4 as uuidv4 } from "uuid";
-
+import { useEffect } from "react";
+import { useAuthProvider } from "../AuthProvider";
+import { getcartProducts } from "@src/hooks/useAddAndGetCart/getCartProducts";
+import { getWishlist } from "@src/hooks/useAddAndGetLikedProducts/GetWishlist";
+import { Getproducts } from "@src/hooks/useGetProducts";
+import { GetSaleProducts } from "@src/hooks/useGetSaleProducts";
 import {
   TGender,
   TCategorys,
@@ -9,6 +14,7 @@ import {
   TUserChangeValues,
 } from "./GlobalContext";
 import { TUserData } from "@src/@types/TuserData";
+import { useParams } from "react-router-dom";
 
 const footerAmazonLinks: { id: string; Name: string; Destination: string }[] = [
   { id: uuidv4(), Name: "Get to Know Us", Destination: "title" },
@@ -440,12 +446,50 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   const [location, setLocation] = useState<string>("");
   const [openLocationModal, setOpenLocationModal] = useState<boolean>(false);
   const [states, setStates] = useState(statesArray);
+  const [CartTotalprice, setCartTotalprice] = useState<number>(0);
+  const [countries, setcountries] = useState(countriesArray);
 
-  const [countries, setcountries] =useState(countriesArray);
+  const { authStatus } = useAuthProvider();
+
+  function sumPrices() {
+    if (!cartProducts || cartProducts.length === 0) {
+      return 0;
+    }
+    const totalPrice = cartProducts.reduce((accumulator, currentItem) => {
+      const price =
+        currentItem.cartProduct.salePrice !== null
+          ? currentItem.cartProduct.salePrice
+          : currentItem.cartProduct.price;
+      return accumulator + price * currentItem.count;
+    }, 0);
+    setCartTotalprice(totalPrice);
+  }
+  useEffect(() => {
+    Getproducts(setProducts);
+    GetSaleProducts(setSaleProducts);
+  }, []);
+  const { category } = useParams();
+
+
+
+  useEffect(() => {
+    if (authStatus === "authorized") {
+      getWishlist(setwishlist);
+      getcartProducts(setCartProducts);
+    }
+  }, [authStatus]);
+
+  useEffect(() => {
+    if (cartProducts.length !== 0) {
+      sumPrices();
+    }
+  }, [cartProducts]);
 
   return (
     <GlobalContext.Provider
       value={{
+        CartTotalprice,
+        setCartTotalprice,
         states,
         setStates,
         openLocationModal,

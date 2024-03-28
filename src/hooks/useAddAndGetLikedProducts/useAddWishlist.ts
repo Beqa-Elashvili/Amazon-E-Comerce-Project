@@ -1,9 +1,10 @@
 import { PrivateAxios } from "@src/utils/PriveteAxios";
 import { useState } from "react";
-import { useGetWishlist } from "./useGetWishlist";
+import { getWishlist } from "./GetWishlist";
+import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export function useAddWishlist() {
-  const { wishlist, GetWishlist } = useGetWishlist();
+  const { wishlist, setwishlist } = useGlobalProvider();
   const [loading, setLoading] = useState<boolean>(false);
 
   async function AddWishlist(productId: string) {
@@ -19,7 +20,7 @@ export function useAddWishlist() {
       const resp = await PrivateAxios.post("/liked-products", {
         product_id: productId,
       });
-      await GetWishlist();
+      await getWishlist(setwishlist);
     } catch (error) {
       console.error("add like failed");
       alert("failed");

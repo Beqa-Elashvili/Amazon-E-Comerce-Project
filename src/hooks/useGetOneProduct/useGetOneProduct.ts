@@ -24,5 +24,5 @@ export function useGetOneProduct() {
       GetOneProduct(id);
     }
   }, [id]);
-  return { GetOneProduct, product };
+  return { GetOneProduct, loading, product };
 }

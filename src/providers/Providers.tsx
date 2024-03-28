@@ -8,13 +8,13 @@ import { AuthProvider } from "./AuthProvider";
 export function Providers({ children }: PropsWithChildren) {
   return (
     <BrowserRouter>
-      <GlobalProvider>
-        <LocaleProvider>
-          <AuthProvider>
+      <AuthProvider>
+        <GlobalProvider>
+          <LocaleProvider>
             <ThemeProvider>{children}</ThemeProvider>
-          </AuthProvider>
-        </LocaleProvider>
-      </GlobalProvider>
+          </LocaleProvider>
+        </GlobalProvider>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

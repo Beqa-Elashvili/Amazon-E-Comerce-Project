@@ -2,6 +2,7 @@ import { SCategoryButtonsMenu } from "./SCompCategory";
 import { useGetCategorys } from "@src/hooks/useGetCategorys";
 import { useGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
 import { useNavigate } from "react-router-dom";
+import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export function CategoryButtons() {
   const navigate = useNavigate();

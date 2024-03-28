@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
-import { usecartTotalPrice } from "@src/hooks/useTotalPrice/cartProductsTotalPrice";
 import { Button } from "antd";
 import { useDeleteCartProduct } from "@src/hooks/useAddAndGetCart/useDeleteCartProduct";
 import { MdDeleteForever } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
-
 export function ShowCartProcuts() {
   const navigate = useNavigate();
-  const { cartProducts } = useGlobalProvider();
-  const { CartTotalprice } = usecartTotalPrice();
+  const { cartProducts, CartTotalprice } = useGlobalProvider();
   const [isEmpty, setIsEmpty] = useState<boolean>(false);
   const { deleteCartProduct } = useDeleteCartProduct();
 

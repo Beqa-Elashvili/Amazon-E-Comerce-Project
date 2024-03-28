@@ -1,16 +1,12 @@
 import { BaseAxios } from "@src/utils/Base_Axios";
-import { useEffect } from "react";
-import { useGlobalProvider } from "@src/providers/GlobalProvider";
+import { Dispatch, SetStateAction } from "react";
+import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
 
-export function useGetProducts() {
-  const { products, setProducts } = useGlobalProvider();
-
-  async function Getproducts() {
+export async function Getproducts(setProducts: Dispatch<SetStateAction<TProducts[]>>) {
+  try {
     const responsive = await BaseAxios.get("/product?pageSize=25");
     setProducts(responsive.data.products);
+  } catch (error) {
+    console.error("failed  to get products");
   }
-  useEffect(() => {
-    Getproducts();
-  }, []);
-  return { products };
 }

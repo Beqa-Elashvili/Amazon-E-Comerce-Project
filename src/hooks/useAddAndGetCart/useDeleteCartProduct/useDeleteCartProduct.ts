@@ -1,10 +1,11 @@
 import { PrivateAxios } from "@src/utils/PriveteAxios";
 import { useState } from "react";
-import { useGetCartProducts } from "../getCartProducts";
+import { getcartProducts } from "../getCartProducts";
+import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export function useDeleteCartProduct() {
   const [loading, setLoading] = useState(false);
-  const { getcartProducts } = useGetCartProducts();
+  const { setCartProducts } = useGlobalProvider();
 
   async function deleteCartProduct(productId: string, all: boolean) {
     try {
@@ -12,7 +13,7 @@ export function useDeleteCartProduct() {
       const resp = await PrivateAxios.delete(
         `/cart/${productId}?removeAll=${all}`
       );
-      await getcartProducts();
+      await getcartProducts(setCartProducts);
     } catch (error) {
       console.error("Failed to delete product", error);
       alert("Failed to delete product");

@@ -1,20 +1,18 @@
-import { useGetWishlist } from "@src/hooks/useAddAndGetLikedProducts";
 import { MdDeleteForever } from "react-icons/md";
 import { SLikedProducts } from "./SWishlist";
 import { useDeleteWishlist } from "@src/hooks/useAddAndGetLikedProducts/useDeleteWishlist";
 import { Button } from "antd";
 import { useAuthProvider } from "@src/providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { usewishTotalPrice } from "@src/hooks/useTotalPrice/wishlistTotalprice";
 
 export function LikedProductsPage(): JSX.Element {
-  const { wishlist } = useGetWishlist();
+  const { wishlist } = useGlobalProvider();
   const { DeleteWishlist } = useDeleteWishlist();
   const { authStatus } = useAuthProvider();
   const { wishlistTotalprice } = usewishTotalPrice();
   const navigate = useNavigate();
-
-  
 
   const handleProduct = (id: string) => {
     navigate(`/OneProductPage/${id}`);

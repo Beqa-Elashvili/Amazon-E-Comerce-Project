@@ -3,14 +3,14 @@ import { Button } from "antd";
 import { useAuthProvider } from "@src/providers/AuthProvider";
 import { FaCartArrowDown } from "react-icons/fa";
 import { useAddinCart } from "@src/hooks/useAddAndGetCart";
-import { useGetProducts } from "@src/hooks/useGetProducts";
 import { useAddWishlist } from "@src/hooks/useAddAndGetLikedProducts";
 import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
 import { useIsProductInWishlist } from "@src/hooks/useAddAndGetLikedProducts";
 import { useNavigate } from "react-router-dom";
+import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export function Products() {
-  const { products } = useGetProducts();
+  const { products } = useGlobalProvider();
   const { authStatus } = useAuthProvider();
   const { addToCart } = useAddinCart();
   const { AddWishlist } = useAddWishlist();

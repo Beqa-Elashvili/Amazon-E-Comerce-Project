@@ -1,15 +1,10 @@
-import { useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { BaseAxios } from "@src/utils/Base_Axios";
-import { useGlobalProvider } from "@src/providers/GlobalProvider";
+import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
 
-export function useGetSaleProducts() {
-  const { saleProducts, setSaleProducts } = useGlobalProvider();
-  async function GetSaleProducts() {
-    const resp = await BaseAxios.get("/product?onlySales=true");
-    setSaleProducts(resp.data.products.slice(0, 4));
-  }
-  useEffect(() => {
-    GetSaleProducts();
-  }, []);
-  return { saleProducts };
+export async function GetSaleProducts(
+  setSaleProducts: Dispatch<SetStateAction<TProducts[]>>
+) {
+  const resp = await BaseAxios.get("/product?onlySales=true");
+  setSaleProducts(resp.data.products.slice(0, 4));
 }

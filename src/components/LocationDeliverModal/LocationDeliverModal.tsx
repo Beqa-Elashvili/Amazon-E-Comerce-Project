@@ -3,7 +3,7 @@ import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { Modal, Input } from "antd";
 import { AiFillAmazonSquare } from "react-icons/ai";
 
-export function LocationDeliverModal() {
+export function LocationDeliverModal(): JSX.Element {
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [tempZipCode, setTempZipCode] = useState<string>("");
   const [tempLocation, setTempLocation] = useState<string>("");
@@ -13,9 +13,11 @@ export function LocationDeliverModal() {
   const {
     countries,
     openLocationModal,
-    setOpenLocationModal,
     setZipCode,
+    setOpenLocationModal,
     setLocation,
+    location,
+    zipCode,
   } = useGlobalProvider();
 
   const handleOk = () => {
@@ -26,14 +28,17 @@ export function LocationDeliverModal() {
       return;
     }
     if (tempZipCode.length !== 5) {
-      alert("ZipCode must be 5 charecters");
+      alert("zip Code must be 5 charecters");
       setConfirmLoading(false);
       return;
-    } else if (tempZipCode && tempLocation) {
+    }
+    if (tempZipCode && tempLocation) {
       setZipCode(tempZipCode);
       setLocation(tempLocation);
       localStorage.setItem("location", tempLocation);
       localStorage.setItem("zipCode", tempZipCode);
+      setTempLocation("");
+      setTempZipCode("");
       setConfirmLoading(false);
       setOpenLocationModal(false);
       setSuccessModalVisible(true);
@@ -53,9 +58,13 @@ export function LocationDeliverModal() {
     }
   }, []);
 
-  const handleZipcode = (event: {
-    target: { value: SetStateAction<string> };
-  }) => {
+  const handleZipcode = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    if (value.length > 5) {
+      const sliced = value.slice(0, -1);
+      setTempZipCode(sliced);
+      return;
+    }
     setTempZipCode(event.target.value);
   };
 
@@ -65,6 +74,12 @@ export function LocationDeliverModal() {
     setTempLocation(event.target.value);
   };
 
+  const handleCancel = () => {
+    setTempLocation("");
+    setTempZipCode("");
+    setOpenLocationModal(false);
+  };
+
   return (
     <>
       <Modal
@@ -72,10 +87,20 @@ export function LocationDeliverModal() {
         title="Choose your location"
         open={openLocationModal}
         onOk={handleOk}
-        onCancel={() => setOpenLocationModal(false)}
+        onCancel={handleCancel}
         confirmLoading={confirmLoading}
       >
         <div>
+          <div className="text-center my-2 text-base text-blue-800 flex justify-around bg-orange-300 p-2 rounded-xl">
+            <div>
+              <p className="">Your Current Location:</p>
+              <p className="text-start">your Zip Code:</p>
+            </div>
+            <div>
+              <p>{location.slice(0, 10)}...</p>
+              <p className="text-start">{zipCode}</p>
+            </div>
+          </div>
           <p>
             Delivery options and delivery speeds may vary for different
             locations

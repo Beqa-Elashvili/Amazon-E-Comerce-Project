@@ -1,4 +1,3 @@
-import { useGetCartProducts } from "@src/hooks/useAddAndGetCart/getCartProducts";
 import { SCartProducts } from "./SCartProductsPage";
 import { MdDeleteForever } from "react-icons/md";
 import { useDeleteCartProduct } from "@src/hooks/useAddAndGetCart/useDeleteCartProduct";
@@ -7,22 +6,21 @@ import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useAuthProvider } from "@src/providers/AuthProvider";
 import { useAddinCart } from "@src/hooks/useAddAndGetCart";
-import { usecartTotalPrice } from "@src/hooks/useTotalPrice/cartProductsTotalPrice";
 import { FormattedMessage } from "react-intl";
 import { usePurchaseItems } from "@src/hooks/usePurchaseItems";
+import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export function CartProductsPage() {
+  const { CartTotalprice, cartProducts } = useGlobalProvider();
   const navigate = useNavigate();
-  const { cartProducts } = useGetCartProducts();
   const { deleteCartProduct } = useDeleteCartProduct();
   const { authStatus } = useAuthProvider();
   const { addToCart } = useAddinCart();
   const { ProductsCount } = useCartCount();
-  const { CartTotalprice } = usecartTotalPrice();
   const { PurchaseItems } = usePurchaseItems();
 
   const handlePurchase = () => {
-    if (CartTotalprice || ProductsCount) {
+    if (CartTotalprice && ProductsCount) {
       PurchaseItems(CartTotalprice, ProductsCount);
     }
   };
