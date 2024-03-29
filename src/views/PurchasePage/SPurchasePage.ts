@@ -6,16 +6,13 @@ export const SPurchasePage = styled.div`
   padding-bottom: 12px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  .mmg {
-    float: right;
-  }
   .content-2 {
-    width: 98%;
+    width: 100%;
     margin: auto;
   }
   .current-Address {
     width: 100%;
-    border-radius: 12px;
+    border-radius: 12px 0px 0px 12px;
     padding: 6px;
     border: solid orange;
   }
@@ -23,7 +20,7 @@ export const SPurchasePage = styled.div`
     border: none;
     font-size: 20px;
     padding: 6px;
-    border-radius: 4px;
+    border-radius: 0px 4px 4px 0px;
     cursor: pointer;
   }
   .inputs {

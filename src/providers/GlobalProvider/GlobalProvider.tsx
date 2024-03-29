@@ -448,7 +448,7 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   const [states, setStates] = useState(statesArray);
   const [CartTotalprice, setCartTotalprice] = useState<number>(0);
   const [countries, setcountries] = useState(countriesArray);
-
+  const [ProductsCount, setAddProductCount] = useState<number | null>(0);
   const { authStatus } = useAuthProvider();
 
   function sumPrices() {
@@ -464,13 +464,28 @@ export function GlobalProvider({ children }: PropsWithChildren) {
     }, 0);
     setCartTotalprice(totalPrice);
   }
+
+  function getCount() {
+    if (cartProducts) {
+      let count = 0;
+      const totalCount: void = cartProducts.forEach(
+        (item) => (count += item.count)
+      );
+      setAddProductCount(count);
+    }
+  }
+  useEffect(() => {
+    if (authStatus === "unauthorized") {
+      setAddProductCount(0);
+    } else {
+      getCount();
+    }
+  }, [cartProducts, authStatus]);
+
   useEffect(() => {
     Getproducts(setProducts);
     GetSaleProducts(setSaleProducts);
   }, []);
-  const { category } = useParams();
-
-
 
   useEffect(() => {
     if (authStatus === "authorized") {
@@ -488,6 +503,8 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   return (
     <GlobalContext.Provider
       value={{
+        ProductsCount,
+        setAddProductCount,
         CartTotalprice,
         setCartTotalprice,
         states,

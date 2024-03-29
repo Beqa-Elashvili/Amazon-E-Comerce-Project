@@ -1,7 +1,6 @@
 import { SCartProducts } from "./SCartProductsPage";
 import { MdDeleteForever } from "react-icons/md";
 import { useDeleteCartProduct } from "@src/hooks/useAddAndGetCart/useDeleteCartProduct";
-import { useCartCount } from "@src/hooks/useCartCount";
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useAuthProvider } from "@src/providers/AuthProvider";
@@ -16,7 +15,7 @@ export function CartProductsPage() {
   const { deleteCartProduct } = useDeleteCartProduct();
   const { authStatus } = useAuthProvider();
   const { addToCart } = useAddinCart();
-  const { ProductsCount } = useCartCount();
+  const { ProductsCount } = useGlobalProvider();
   const { PurchaseItems } = usePurchaseItems();
 
   const handlePurchase = () => {

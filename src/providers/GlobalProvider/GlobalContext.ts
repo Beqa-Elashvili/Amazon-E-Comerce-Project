@@ -130,9 +130,14 @@ interface TGlobalContext {
 
   selectedGender: string | undefined;
   setSelectedGender: Dispatch<SetStateAction<string>>;
+
+  ProductsCount: number | null;
+  setAddProductCount: Dispatch<SetStateAction<number | null>>;
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
+  ProductsCount: null,
+  setAddProductCount: () => {},
   CartTotalprice: null,
   setCartTotalprice: () => {},
   states: [],

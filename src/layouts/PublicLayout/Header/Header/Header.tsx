@@ -7,14 +7,13 @@ import { UserAvatar } from "../HeaderComponents/CompUserAvatar/UserAvatar";
 import { SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetSearchResult } from "@src/hooks/useGetSearchResult";
-import { useCartCount } from "@src/hooks/useCartCount";
 import { LocationDeliverModal } from "@src/components/LocationDeliverModal";
 
 export function Header() {
   const navigate = useNavigate();
   const { categorys, setOpenLocationModal, location, zipCode } =
     useGlobalProvider();
-  const { ProductsCount } = useCartCount();
+  const { ProductsCount } = useGlobalProvider();
   const [show, setshow] = useState<boolean>(false);
   const { categorySearch, setCategorySearch, setSearch, search, searchResult } =
     useGetSearchResult();

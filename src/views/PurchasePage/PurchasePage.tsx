@@ -3,6 +3,7 @@ import { SPurchasePage } from "./SPurchasePage";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import Input from "antd/es/input/Input";
 import { Select, Checkbox, Skeleton, Button } from "antd";
+import { MdOutlineRotateRight } from "react-icons/md";
 export function PurchasePage() {
   const {
     location,
@@ -12,6 +13,7 @@ export function PurchasePage() {
     setZipCode,
     countries,
     states,
+    ProductsCount,
   } = useGlobalProvider();
   const [isChange, setChange] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
@@ -131,6 +133,36 @@ export function PurchasePage() {
       }, 3000);
     }
   }
+  const [numberOne, setNumberOne] = useState<number>();
+  const [numberTwo, setNumberTwo] = useState<number>();
+  const [numberThree, setNumberThree] = useState<number>();
+  const [SumTotal, setSumTotal] = useState<number>();
+
+  const getRandomNumber = (min: number, max: number): number => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
+  useEffect(() => {
+    const randomNumberOne = getRandomNumber(0, 50);
+    const randomNumberTwo = getRandomNumber(0, 50);
+    const randomNumberThree = getRandomNumber(0, 50);
+    setNumberOne(randomNumberOne);
+    setNumberTwo(randomNumberTwo);
+    setNumberThree(randomNumberThree);
+  }, []);
+
+  useEffect(() => {
+    function sumTotalPrices() {
+      setLoading(true);
+      let totalPrices = 0;
+      if (numberOne && numberTwo && numberThree && CartTotalprice) {
+        totalPrices = CartTotalprice + numberOne + numberTwo + numberThree;
+        setSumTotal(totalPrices);
+        setLoading(false);
+      }
+    }
+    sumTotalPrices();
+  }, [CartTotalprice, numberOne, numberTwo, numberThree]);
 
   return (
     <SPurchasePage>
@@ -146,7 +178,6 @@ export function PurchasePage() {
           <p className="py-2 text-xl font-medium text-red-800">
             Enter a your shipping address
           </p>
-          <p>{CartTotalprice}</p>
           <div className="content-2 flex justify-between gap-6">
             <div className="border-solid border-slate-400 p-6 border rounded-lg border w-full">
               <div className="w-5/6">
@@ -283,7 +314,7 @@ export function PurchasePage() {
                         onClick={handleChangeBtn}
                         className="address-btn bg-yellow-400 hover:bg-yellow-500"
                       >
-                        Change
+                        <MdOutlineRotateRight className="size-12 text-yellow-900" />
                       </button>
                     </div>
                     <div>
@@ -398,8 +429,52 @@ export function PurchasePage() {
                 )}
               </div>
             </div>
-            <div className="border-solid p-5 border rounded-lg border">
-              fhgfhdghdgggdfgetg3regeged
+            <div>
+              <div className="sticky top-4">
+                <div className="border-solid border max-w-[400px] text-center rounded-t-lg border-slate-400 p-6">
+                  <p className="text-balance text-xs font-medium">
+                    Choose a shipping address to continue checking out. You'll
+                    still have a chance to review and edit your order before
+                    it's final.
+                  </p>
+                  <hr className="mt-2" />
+                  <h3 className="text-start mt-2">Order Summary</h3>
+                  <div className="text-balance flex flex-col gap-1 text-xs font-medium">
+                    <div className="flex justify-between">
+                      <p>items</p>
+                      <p>({ProductsCount})</p>
+                    </div>
+                    <div className="flex justify-between">
+                      <p>Shipping & handling:</p>
+                      <p>${numberOne}</p>
+                    </div>
+                    <div>
+                      <hr className="w-2/6 float-end" />
+                    </div>
+                    <div className="flex justify-between">
+                      <p>Total before tax:</p>
+                      <p>${numberTwo}</p>
+                    </div>
+                    <div className="flex justify-between">
+                      <p>Estimate tax to be Collected</p>
+                      <p>${numberThree}</p>
+                    </div>
+                  </div>
+                  <hr className="mb-2 mt-1" />
+                  <div className="flex justify-between">
+                    <h3 className="text-red-800">Order Total</h3>
+                    <h3 className="text-red-800">${SumTotal}</h3>
+                  </div>
+                </div>
+                <div className="p-6 bg-slate-200 border-solid border border-t-0 border-slate-400 rounded-b-lg text-center">
+                  <a
+                    className="text-xs font-medium no-underline hover:underline"
+                    href="https://www.amazon.com/gp/help/customer/display.html/ref=chk_help_shipcosts_pri?nodeId=GGE5X8EV7VNVTK6R&ie=UTF8&ref_=chk_help_shipcosts_pri"
+                  >
+                    How are shipping costs calculated?
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
