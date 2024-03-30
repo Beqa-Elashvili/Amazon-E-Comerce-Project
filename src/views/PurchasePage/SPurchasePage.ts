@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const SPurchasePage = styled.div`
   width: 65%;
   margin: auto;
-  padding-bottom: 12px;
+  padding-bottom: 180px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   .content-2 {
@@ -45,6 +45,18 @@ export const SPurchasePage = styled.div`
     transition: box-shadow 0.3s ease-in-out;
     :focus {
       box-shadow: 0px 0 6px 0 goldenrod;
+    }
+  }
+  .CreditCard input {
+    max-width: 70%;
+    padding: 4px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid burlywood;
+    transition: box-shadow 0.3s ease-in-out;
+    :focus {
+      border: 1px solid blue;
+      box-shadow: 0px 0 6px 0 blue;
     }
   }
 `;

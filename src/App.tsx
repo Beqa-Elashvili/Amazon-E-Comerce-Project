@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { PublicLayout } from "@src/layouts/PublicLayout/setOutlet";
 import { AutLayouts } from "@src/layouts/AutLayouts/setOutlet";
@@ -55,7 +55,10 @@ function App() {
             )}
           </Route>
           <Route element={<CheckoutLayout />}>
-            <Route path="/Buy/Checkout" element={<PurchasePage />} />
+            <Route
+              path="/Buy/Checkout/:price/:caunt"
+              element={<PurchasePage />}
+            />
           </Route>
           <Route element={<AutLayouts />}>
             <Route path="/Login" element={<Login />} />

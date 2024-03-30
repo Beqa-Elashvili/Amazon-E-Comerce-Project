@@ -10,7 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export function Products() {
-  const { products } = useGlobalProvider();
+  const { products, setCartTotalprice, setAddProductCount } =
+    useGlobalProvider();
   const { authStatus } = useAuthProvider();
   const { addToCart } = useAddinCart();
   const { AddWishlist } = useAddWishlist();
@@ -19,6 +20,10 @@ export function Products() {
 
   const handleProduct = (id: string) => {
     navigate(`/OneProductPage/${id}`);
+  };
+
+  const hanldeBuy = (price: number) => {
+    navigate(`/Buy/Checkout/${price}/${[1]}`);
   };
 
   return (
@@ -44,7 +49,12 @@ export function Products() {
               <h3 className="mt-2">Price: {item.price}$</h3>
               {authStatus === "authorized" ? (
                 <div className="flex justify-between mt-2">
-                  <Button className="w-40 bg-amber-400">Buy Now</Button>
+                  <Button
+                    onClick={() => hanldeBuy(item.price)}
+                    className="w-40 bg-amber-400"
+                  >
+                    Buy Now
+                  </Button>
                   <Button
                     icon={<FaCartArrowDown />}
                     onClick={() => addToCart(item.id)}

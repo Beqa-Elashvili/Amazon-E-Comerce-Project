@@ -6,26 +6,21 @@ import { useNavigate } from "react-router-dom";
 import { useAuthProvider } from "@src/providers/AuthProvider";
 import { useAddinCart } from "@src/hooks/useAddAndGetCart";
 import { FormattedMessage } from "react-intl";
-import { usePurchaseItems } from "@src/hooks/usePurchaseItems";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export function CartProductsPage() {
-  const { CartTotalprice, cartProducts } = useGlobalProvider();
+  const { CartTotalprice, cartProducts, ProductsCount } = useGlobalProvider();
   const navigate = useNavigate();
   const { deleteCartProduct } = useDeleteCartProduct();
   const { authStatus } = useAuthProvider();
   const { addToCart } = useAddinCart();
-  const { ProductsCount } = useGlobalProvider();
-  const { PurchaseItems } = usePurchaseItems();
 
-  const handlePurchase = () => {
-    if (CartTotalprice && ProductsCount) {
-      PurchaseItems(CartTotalprice, ProductsCount);
-    }
-  };
 
   const handleProducts = (id: string) => {
     navigate(`/OneProductPage/${id}`);
+  };
+  const hanldeBuy = () => {
+    navigate(`/Buy/Checkout/${CartTotalprice}/${[ProductsCount]}`);
   };
 
   return (
@@ -177,7 +172,7 @@ export function CartProductsPage() {
               <Button
                 type="primary"
                 className="flex items-center bg-yellow-400 border-none justify-center hover:bg-yellow-600"
-                onClick={() => handlePurchase()}
+                onClick={hanldeBuy}
               >
                 <h3 className="text-gray-700">
                   <FormattedMessage
