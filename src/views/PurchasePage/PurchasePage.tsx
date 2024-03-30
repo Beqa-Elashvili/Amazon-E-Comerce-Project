@@ -243,15 +243,9 @@ export function PurchasePage() {
         const ProductCaunt = parseInt(caunt);
         setProductsPrice(ProductPrice);
         setProductsCaunt(ProductCaunt);
-        const totalNumericPrice = ProductPrice * ProductCaunt;
-        if (
-          numberes.numberOne &&
-          numberes.numberTwo &&
-          numberes.numberThree &&
-          totalNumericPrice
-        ) {
+        if (numberes.numberOne && numberes.numberTwo && numberes.numberThree) {
           totalPrices =
-            totalNumericPrice +
+            ProductPrice +
             numberes.numberOne +
             numberes.numberTwo +
             numberes.numberThree;
@@ -332,13 +326,17 @@ export function PurchasePage() {
         />
       ) : (
         <div>
-          {isEverythingOkay ? (
+          {isChange ? (
             <p className="py-2 text-xl font-medium text-red-800">
-              Checkout & Buy
+              2 Add a New Shipping Address
+            </p>
+          ) : isEverythingOkay ? (
+            <p className="py-2 text-xl font-medium text-red-800">
+              3 Checkout & Buy
             </p>
           ) : (
             <p className="py-2 text-xl font-medium text-red-800">
-              Enter a your shipping address
+              1 Enter your shipping address
             </p>
           )}
           <div className="content-2 flex justify-between gap-6">
@@ -429,314 +427,346 @@ export function PurchasePage() {
                 </Modal>
               </div>
             ) : (
-              <div className="border-solid border-slate-400 p-6 border rounded-lg border w-full">
-                <p></p>
-                <div className="w-5/6">
-                  {isChange ? (
-                    <div>
-                      <div className="flex flex-col gap-4">
-                        {!turnBack && (
-                          <a
-                            onClick={handleTurnBack}
-                            className="text-blue-400 cursor-pointer hover:text-blue-500"
-                          >
-                            {"<"} turn back
-                          </a>
-                        )}
-                        <h2>Add a New Address</h2>
-                        <div>
-                          <p className="text-base font-medium">
-                            Country/Region
-                          </p>
-                          <Select
-                            value={newLocation}
-                            onChange={handleChangeSelect}
-                            placeholder={"Choose the Country"}
-                            className="w-full rounded-lg shadow-md  bg-gray-100  cursor-pointer"
-                          >
-                            {countries.map(
-                              (item: { country: string }, index: number) => (
-                                <Select.Option value={item.country} key={index}>
-                                  {item.country}
-                                </Select.Option>
-                              )
-                            )}
-                          </Select>
-                        </div>
-                        <div className="inputs">
-                          <div>
-                            <p className="text-base font-medium">
-                              Full name (First and Last name)
-                            </p>
-                            <Input
-                              value={deliverData.fullName}
-                              type="text"
-                              name="fullName"
-                              placeholder="Full Name"
-                              onChange={handleUserData}
-                            />
-                          </div>
-                          <div>
-                            <p className="text-base font-medium">
-                              Street Address
-                            </p>
-                            <Input
-                              value={deliverData.address}
-                              name="address"
-                              type="text"
-                              placeholder="Street address or P.O Box"
-                              onChange={handleUserData}
-                            />
-                            <Input
-                              value={deliverData.addressTwo}
-                              name="addressTwo"
-                              className="mt-1"
-                              type="text"
-                              placeholder="Apt, suite, unit, builidings, floor, etc."
-                              onChange={handleUserData}
-                            />
-                          </div>
-                          <div>
-                            <p className="text-base font-medium">City</p>
-                            <Input
-                              onChange={handleUserData}
-                              value={deliverData.city}
-                              name="city"
-                            />
-                          </div>
-                          <div>
-                            <p className="text-base font-medium">
-                              State / Province / Region
-                            </p>
-                            <Input
-                              onChange={handleUserData}
-                              name="region"
-                              value={deliverData.region}
-                            />
-                          </div>
-                          <div>
-                            <p className="text-base font-medium">Zip Code</p>
-                            <Input
-                              type="number"
-                              maxLength={5}
-                              value={newZipCode}
-                              onChange={handleNewZipCode}
-                            />
-                          </div>
-                          <div>
-                            <p className="text-base font-medium">
-                              Phone number
-                            </p>
-                            <Input
-                              value={deliverData.phoneNumber}
-                              name="phoneNumber"
-                              onChange={handleUserData}
-                              type="number"
-                              maxLength={9}
-                              placeholder="Phone number"
-                            />
-                            <p className="text-xs mt-1 text-slate-600">
-                              May be used to assist delivery
-                            </p>
-                          </div>
-                          <div>
-                            <p className="text-base font-medium">State</p>
-                            <Select
-                              className="border-slate-300 shadow rounded-md"
-                              id="state"
-                              value={locState}
-                              onChange={handleLocState}
-                              disabled={isEverythingOkay}
-                              style={{ width: 200 }}
+              <div className="w-full">
+                <div className="border-solid border-slate-400 p-6 border rounded-lg border w-11/12">
+                  <div className="w-5/6">
+                    {isChange ? (
+                      <div>
+                        <div className="flex flex-col gap-4">
+                          {!turnBack && (
+                            <a
+                              onClick={handleTurnBack}
+                              className="text-blue-400 cursor-pointer hover:text-blue-500"
                             >
-                              {states.map(
-                                (item: { Name: string; id: string }) => {
-                                  return (
-                                    <Select.Option
-                                      value={item.Name}
-                                      key={item.id}
-                                    >
-                                      {item.Name}
-                                    </Select.Option>
-                                  );
-                                }
+                              {"<"} turn back
+                            </a>
+                          )}
+                          <h2>Add a New Address</h2>
+                          <div>
+                            <p className="text-base font-medium">
+                              Country/Region
+                            </p>
+                            <Select
+                              value={newLocation}
+                              onChange={handleChangeSelect}
+                              placeholder={"Choose the Country"}
+                              className="w-full rounded-lg shadow-md  bg-gray-100  cursor-pointer"
+                            >
+                              {countries.map(
+                                (item: { country: string }, index: number) => (
+                                  <Select.Option
+                                    value={item.country}
+                                    key={index}
+                                  >
+                                    {item.country}
+                                  </Select.Option>
+                                )
                               )}
                             </Select>
                           </div>
-                        </div>
-                        {iseveryValue && (
-                          <div className="bg-red-200 border-solid border-2 border-red-700 w-3/5 rounded-xl px-6 py-2 pb-10">
-                            <p className="opacity-100">
-                              Please provide all necessary information
-                            </p>
-                          </div>
-                        )}
-                        <Button
-                          onClick={handleOk}
-                          className="btn text-base w-2/5"
-                        >
-                          Use this address
-                        </Button>
-                      </div>
-                    </div>
-                  ) : (
-                    <div>
-                      <div className="flex gap-2 mb-4">
-                        <div className="current-Address">
-                          <p className="text-sm text-gray-400">
-                            Country/Region
-                          </p>
-                          <p className="text-lg">{location}</p>
-                          <div className="bg-gray-400 w-full h-px"></div>
-                          <p className="text-sm text-gray-400">ZipCode</p>
-                          <p className="text-lg">{zipCode}</p>
-                        </div>
-                        <button
-                          onClick={handleChangeBtn}
-                          className="address-btn bg-yellow-400 hover:bg-yellow-500"
-                        >
-                          <MdOutlineRotateRight className="size-12 text-yellow-900" />
-                        </button>
-                      </div>
-                      <div>
-                        <div>
-                          <p className="text-base font-medium">
-                            Country/Region
-                          </p>
-                          <Select
-                            value={location}
-                            onChange={handleChangeSelectTwo}
-                            className="w-full shadow-md rounded-lg cursor-pointer"
-                          >
-                            {countries.map(
-                              (item: { country: string }, index: number) => (
-                                <Select.Option
-                                  value={item.country}
-                                  className="bg-white px-8"
-                                  key={index}
-                                >
-                                  {item.country}
-                                </Select.Option>
-                              )
-                            )}
-                          </Select>
-                        </div>
-                        <div className="inputs mt-4">
-                          <div>
-                            <p className="text-base font-medium">
-                              Full name (First and Last name)
-                            </p>
-                            <Input
-                              name="fullName"
-                              value={deliverData.fullName}
-                              onChange={handleUserData}
-                              disabled={isEverythingOkay}
-                              type="text"
-                              placeholder="Full Name"
-                            />
-                          </div>
-                          <div>
-                            <p className="text-base font-medium">
-                              Phone number
-                            </p>
-                            <Input
-                              name="phoneNumber"
-                              type="number"
-                              value={deliverData.phoneNumber}
-                              onChange={handleUserData}
-                              placeholder="Phone number"
-                            />
-                            <p className="text-xs mt-1 font-normal">
-                              May be used to assist delivery
-                            </p>
-                          </div>
-                          <div>
-                            <p className="text-base font-medium">Address</p>
-                            <Input
-                              name="address"
-                              value={deliverData.address}
-                              onChange={handleUserData}
-                              type="text"
-                              placeholder="Street address or P.O Box"
-                            />
-                            <Input
-                              name="addressTwo"
-                              value={deliverData.addressTwo}
-                              onChange={handleUserData}
-                              className="mt-1"
-                              type="text"
-                              placeholder="Apt, suite, unit, builidings, floor, etc."
-                            />
-                          </div>
-                          <div className="flex items-center gap-2">
+                          <div className="inputs">
                             <div>
-                              <p className="text-base font-medium">City</p>
+                              <p className="text-base font-medium">
+                                Full name (First and Last name)
+                              </p>
                               <Input
-                                name="city"
-                                value={deliverData.city}
+                                value={deliverData.fullName}
+                                type="text"
+                                name="fullName"
+                                placeholder="Full Name"
                                 onChange={handleUserData}
                               />
                             </div>
                             <div>
-                              <div>
-                                <p className="text-base font-medium">State</p>
-                                <Select
-                                  defaultValue={"Alabama"}
-                                  className="border-slate-300 shadow rounded-md"
-                                  id="state"
-                                  value={locState}
-                                  onChange={handleLocState}
-                                  style={{ width: 200 }}
-                                >
-                                  {states.map(
-                                    (item: { Name: string; id: string }) => {
-                                      return (
-                                        <Select.Option
-                                          value={item.Name}
-                                          key={item.id}
-                                        >
-                                          {item.Name}
-                                        </Select.Option>
-                                      );
-                                    }
-                                  )}
-                                </Select>
-                              </div>
+                              <p className="text-base font-medium">
+                                Street Address
+                              </p>
+                              <Input
+                                value={deliverData.address}
+                                name="address"
+                                type="text"
+                                placeholder="Street address or P.O Box"
+                                onChange={handleUserData}
+                              />
+                              <Input
+                                value={deliverData.addressTwo}
+                                name="addressTwo"
+                                className="mt-1"
+                                type="text"
+                                placeholder="Apt, suite, unit, builidings, floor, etc."
+                                onChange={handleUserData}
+                              />
                             </div>
                             <div>
+                              <p className="text-base font-medium">City</p>
+                              <Input
+                                onChange={handleUserData}
+                                value={deliverData.city}
+                                name="city"
+                              />
+                            </div>
+                            <div>
+                              <p className="text-base font-medium">
+                                State / Province / Region
+                              </p>
+                              <Input
+                                onChange={handleUserData}
+                                name="region"
+                                value={deliverData.region}
+                              />
+                            </div>
+                            <div>
+                              <p className="text-base font-medium">Zip Code</p>
+                              <Input
+                                type="number"
+                                maxLength={5}
+                                value={newZipCode}
+                                onChange={handleNewZipCode}
+                              />
+                            </div>
+                            <div>
+                              <p className="text-base font-medium">
+                                Phone number
+                              </p>
+                              <Input
+                                value={deliverData.phoneNumber}
+                                name="phoneNumber"
+                                onChange={handleUserData}
+                                type="number"
+                                maxLength={9}
+                                placeholder="Phone number"
+                              />
+                              <p className="text-xs mt-1 text-slate-600">
+                                May be used to assist delivery
+                              </p>
+                            </div>
+                            <div>
+                              <p className="text-base font-medium">State</p>
+                              <Select
+                                className="border-slate-300 shadow rounded-md"
+                                id="state"
+                                value={locState}
+                                onChange={handleLocState}
+                                disabled={isEverythingOkay}
+                                style={{ width: 200 }}
+                              >
+                                {states.map(
+                                  (item: { Name: string; id: string }) => {
+                                    return (
+                                      <Select.Option
+                                        value={item.Name}
+                                        key={item.id}
+                                      >
+                                        {item.Name}
+                                      </Select.Option>
+                                    );
+                                  }
+                                )}
+                              </Select>
+                            </div>
+                          </div>
+                          {iseveryValue && (
+                            <div className="bg-red-200 border-solid border-2 border-red-700 w-3/5 rounded-xl px-6 py-2 pb-10">
+                              <p className="opacity-100">
+                                Please provide all necessary information
+                              </p>
+                            </div>
+                          )}
+                          <Button
+                            onClick={handleOk}
+                            className="btn text-base w-2/5"
+                          >
+                            Use this address
+                          </Button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <div className="flex gap-2 mb-4">
+                          <div className="current-Address">
+                            <p className="text-sm text-gray-400">
+                              Country/Region
+                            </p>
+                            <p className="text-lg">{location}</p>
+                            <div className="bg-gray-400 w-full h-px"></div>
+                            <p className="text-sm text-gray-400">ZipCode</p>
+                            <p className="text-lg">{zipCode}</p>
+                          </div>
+                          <button
+                            onClick={handleChangeBtn}
+                            className="address-btn bg-yellow-400 hover:bg-yellow-500"
+                          >
+                            <MdOutlineRotateRight className="size-12 text-yellow-900" />
+                          </button>
+                        </div>
+                        <div>
+                          <div>
+                            <p className="text-base font-medium">
+                              Country/Region
+                            </p>
+                            <Select
+                              value={location}
+                              onChange={handleChangeSelectTwo}
+                              className="w-full shadow-md rounded-lg cursor-pointer"
+                            >
+                              {countries.map(
+                                (item: { country: string }, index: number) => (
+                                  <Select.Option
+                                    value={item.country}
+                                    className="bg-white px-8"
+                                    key={index}
+                                  >
+                                    {item.country}
+                                  </Select.Option>
+                                )
+                              )}
+                            </Select>
+                          </div>
+                          <div className="inputs mt-4">
+                            <div>
+                              <p className="text-base font-medium">
+                                Full name (First and Last name)
+                              </p>
+                              <Input
+                                name="fullName"
+                                value={deliverData.fullName}
+                                onChange={handleUserData}
+                                disabled={isEverythingOkay}
+                                type="text"
+                                placeholder="Full Name"
+                              />
+                            </div>
+                            <div>
+                              <p className="text-base font-medium">
+                                Phone number
+                              </p>
+                              <Input
+                                name="phoneNumber"
+                                type="number"
+                                value={deliverData.phoneNumber}
+                                onChange={handleUserData}
+                                placeholder="Phone number"
+                              />
+                              <p className="text-xs mt-1 font-normal">
+                                May be used to assist delivery
+                              </p>
+                            </div>
+                            <div>
+                              <p className="text-base font-medium">Address</p>
+                              <Input
+                                name="address"
+                                value={deliverData.address}
+                                onChange={handleUserData}
+                                type="text"
+                                placeholder="Street address or P.O Box"
+                              />
+                              <Input
+                                name="addressTwo"
+                                value={deliverData.addressTwo}
+                                onChange={handleUserData}
+                                className="mt-1"
+                                type="text"
+                                placeholder="Apt, suite, unit, builidings, floor, etc."
+                              />
+                            </div>
+                            <div className="flex items-center gap-2">
                               <div>
-                                <p className="text-base font-medium">
-                                  ZIP Code
-                                </p>
-                                <Input disabled value={zipCode} />
+                                <p className="text-base font-medium">City</p>
+                                <Input
+                                  name="city"
+                                  value={deliverData.city}
+                                  onChange={handleUserData}
+                                />
+                              </div>
+                              <div>
+                                <div>
+                                  <p className="text-base font-medium">State</p>
+                                  <Select
+                                    defaultValue={"Alabama"}
+                                    className="border-slate-300 shadow rounded-md"
+                                    id="state"
+                                    value={locState}
+                                    onChange={handleLocState}
+                                    style={{ width: 200 }}
+                                  >
+                                    {states.map(
+                                      (item: { Name: string; id: string }) => {
+                                        return (
+                                          <Select.Option
+                                            value={item.Name}
+                                            key={item.id}
+                                          >
+                                            {item.Name}
+                                          </Select.Option>
+                                        );
+                                      }
+                                    )}
+                                  </Select>
+                                </div>
+                              </div>
+                              <div>
+                                <div>
+                                  <p className="text-base font-medium">
+                                    ZIP Code
+                                  </p>
+                                  <Input disabled value={zipCode} />
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        <div className=" mt-2 flex gap-2">
-                          <Checkbox />
-                          <p>Make this my default address</p>
-                        </div>
-                        {iseveryValue && (
-                          <div className="bg-red-200 m-2 border-solid border-2 border-red-700 w-3/5 rounded-xl px-6 py-2 pb-10">
-                            <p className="opacity-100">
-                              Please provide all necessary information
-                            </p>
+                          <div className=" mt-2 flex gap-2">
+                            <Checkbox />
+                            <p>Make this my default address</p>
                           </div>
-                        )}
-                        <Button
-                          onClick={handleOk}
-                          className="btn mt-2 text-base w-2/5"
-                        >
-                          Use this address
-                        </Button>
+                          {iseveryValue && (
+                            <div className="bg-red-200 m-2 border-solid border-2 border-red-700 w-3/5 rounded-xl px-6 py-2 pb-10">
+                              <p className="opacity-100">
+                                Please provide all necessary information
+                              </p>
+                            </div>
+                          )}
+                          <Button
+                            onClick={handleOk}
+                            className="btn mt-2 text-base w-2/5"
+                          >
+                            Use this address
+                          </Button>
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
+                </div>
+                <div className="Footer">
+                  <hr className="shadow" />
+                  <h3 className="text-slate-600 mt-1">
+                    2 Add a New Shipping Address
+                  </h3>
+                  <hr className="shadow" />
+                  <h3 className="text-slate-600 mt-1">3 Payment Method</h3>
+                  <p> Need help? Check our Help pages or contact us</p>
+                  <p>
+                    For an item sold by Amazon.com: When you click the "Place
+                    your order" button, we'll send you an email message
+                    acknowledging receipt of your order. Your contract to
+                    purchase an item will not be complete until we send you an
+                    email notifying you that the item has been shipped.
+                  </p>
+                  <p>
+                    Important information about sales tax you may owe in your
+                    state
+                  </p>
+                  <p>
+                    You may return new, unopened merchandise in original
+                    condition within 30 days of delivery. Exceptions and
+                    restrictions apply. See Amazon.com's Returns Policy.
+                  </p>
+                  <p>
+                    Need to add more items to your order? Continue shopping on
+                    the <a href="/"> Amazon.com homepage.</a>
+                  </p>
                 </div>
               </div>
             )}
-
             <div>
               <div className="sticky top-4">
                 <div className="border-solid border max-w-[400px] text-center rounded-t-lg border-slate-400 p-6">

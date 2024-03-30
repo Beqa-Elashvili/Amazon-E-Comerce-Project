@@ -38,7 +38,7 @@ export function ShowCategoryProducts() {
   return (
     <div className="p-2">
       <h1>{category}</h1>
-      <div className="">
+      <div>
         {loading ? (
           <Skeleton
             avatar={true}

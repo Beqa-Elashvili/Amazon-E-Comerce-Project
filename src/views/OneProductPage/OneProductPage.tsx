@@ -26,10 +26,6 @@ export function OneProductPage() {
 
   const Brand = product?.title.split(" ")[0];
 
-  const onChange: CheckboxProps["onChange"] = (e) => {
-    console.log(`checked = ${e.target.checked}`);
-  };
-
   const calculatePercentageOff = () => {
     if (product?.salePrice !== null) {
       if (product) {
@@ -137,7 +133,7 @@ export function OneProductPage() {
               </div>
               <div className="box mt-16">
                 <div className="flex items-start bg-blue-200 relative p-2 rounded ">
-                  <Checkbox onChange={onChange}></Checkbox>
+                  <Checkbox />
                   <div className="flex ml-2">
                     <p>
                       Add your free 30-day trial of Prime and get fast, free

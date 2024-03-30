@@ -10,8 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export function Products() {
-  const { products, setCartTotalprice, setAddProductCount } =
-    useGlobalProvider();
+  const { products } = useGlobalProvider();
   const { authStatus } = useAuthProvider();
   const { addToCart } = useAddinCart();
   const { AddWishlist } = useAddWishlist();

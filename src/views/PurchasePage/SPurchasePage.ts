@@ -59,4 +59,19 @@ export const SPurchasePage = styled.div`
       box-shadow: 0px 0 6px 0 blue;
     }
   }
+  .Footer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 18px;
+    p{
+      color: darkslategray;
+      font-size:small;
+      font-weight: 400;
+    }
+    a {
+      color: darkcyan;
+      text-decoration: none;
+    }
+  }
 `;

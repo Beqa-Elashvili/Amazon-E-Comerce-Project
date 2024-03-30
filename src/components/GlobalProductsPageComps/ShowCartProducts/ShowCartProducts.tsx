@@ -5,11 +5,13 @@ import { useDeleteCartProduct } from "@src/hooks/useAddAndGetCart/useDeleteCartP
 import { MdDeleteForever } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
+
 export function ShowCartProcuts() {
   const navigate = useNavigate();
   const { cartProducts, CartTotalprice } = useGlobalProvider();
   const [isEmpty, setIsEmpty] = useState<boolean>(false);
   const { deleteCartProduct } = useDeleteCartProduct();
+
 
   useEffect(() => {
     if (cartProducts.length === 0) {
