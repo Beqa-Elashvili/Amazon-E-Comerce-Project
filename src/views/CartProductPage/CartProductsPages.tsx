@@ -15,9 +15,8 @@ export function CartProductsPage() {
   const { authStatus } = useAuthProvider();
   const { addToCart } = useAddinCart();
 
-
-  const handleProducts = (id: string) => {
-    navigate(`/OneProductPage/${id}`);
+  const handleProducts = (category: string, id: string) => {
+    navigate(`/OneProductPage/${id}/${category}`);
   };
   const hanldeBuy = () => {
     navigate(`/Buy/Checkout/${CartTotalprice}/${[ProductsCount]}`);
@@ -100,7 +99,12 @@ export function CartProductsPage() {
                         <div className="bg-white p-2 rounded-xl inline-flex">
                           <div
                             className="cursor-pointer"
-                            onClick={() => handleProducts(item.cartProduct.id)}
+                            onClick={() =>
+                              handleProducts(
+                                item.cartProduct.category_name,
+                                item.cartProduct.id
+                              )
+                            }
                           >
                             <img
                               className="w-16"

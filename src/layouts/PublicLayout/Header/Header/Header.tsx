@@ -8,6 +8,11 @@ import { SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetSearchResult } from "@src/hooks/useGetSearchResult";
 import { LocationDeliverModal } from "@src/components/LocationDeliverModal";
+import {
+  TCategorys,
+  TProducts,
+} from "@src/providers/GlobalProvider/GlobalContext";
+import { Input } from "antd";
 
 export function Header() {
   const navigate = useNavigate();
@@ -67,12 +72,13 @@ export function Header() {
           <select
             value={categorySearch}
             onChange={handleSelectValue}
-            className="absolute ml-5"
+            className="absolute z-10 ml-5"
             name="SelectCategory"
             id="all"
+            style={{ width: 'auto' }}
           >
             <option value="All">All</option>
-            {categorys?.map((category) => {
+            {categorys?.map((category: TCategorys) => {
               return (
                 <option key={category.id} value={category.name}>
                   {category.name}
@@ -80,7 +86,7 @@ export function Header() {
               );
             })}
           </select>
-          <input
+          <Input
             value={search}
             onChange={handleInputChange}
             className="ml-5"
@@ -92,7 +98,7 @@ export function Header() {
             style={{ display: show ? "block" : "none" }}
             className="absolute max-h-80 top-12 left-40 bg-red-50 p-4 z-10 rounded-lg w-96 overflow-y-auto"
           >
-            {searchResult?.map((item) => {
+            {searchResult?.map((item: TProducts) => {
               return (
                 <div key={item.id} className="flex gap-2 py-1">
                   <img

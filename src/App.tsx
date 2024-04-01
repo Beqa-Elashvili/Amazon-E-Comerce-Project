@@ -43,10 +43,13 @@ function App() {
             <Route path="/products" element={<Products />} />
             <Route path="/CartProducts" element={<CartProductsPage />} />
             <Route
-              path="/Category_Products_Page/:category"
+              path="/Category_Products_Page/:categoryName"
               element={<CategoryPage />}
             />
-            <Route path="/OneProductPage/:id" element={<OneProductPage />} />
+            <Route
+              path="/OneProductPage/:id/:category"
+              element={<OneProductPage />}
+            />
             {authStatus === "authorized" && (
               <>
                 <Route path="/Liked_products" element={<LikedProductsPage />} />

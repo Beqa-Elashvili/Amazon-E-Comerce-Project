@@ -15,6 +15,7 @@ import {
 } from "./GlobalContext";
 import { TUserData } from "@src/@types/TuserData";
 import { useParams } from "react-router-dom";
+import { BaseAxios } from "@src/utils/Base_Axios";
 
 const footerAmazonLinks: { id: string; Name: string; Destination: string }[] = [
   { id: uuidv4(), Name: "Get to Know Us", Destination: "title" },
@@ -449,6 +450,7 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   const [CartTotalprice, setCartTotalprice] = useState<number>(0);
   const [countries, setcountries] = useState(countriesArray);
   const [ProductsCount, setAddProductCount] = useState<number | null>(0);
+  const [loading, setLoading] = useState<boolean>(false);
   const { authStatus } = useAuthProvider();
 
   function sumPrices() {
@@ -474,6 +476,7 @@ export function GlobalProvider({ children }: PropsWithChildren) {
       setAddProductCount(count);
     }
   }
+
   useEffect(() => {
     if (authStatus === "unauthorized") {
       setAddProductCount(0);
@@ -503,6 +506,9 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   return (
     <GlobalContext.Provider
       value={{
+        loading,
+        setLoading,
+
         ProductsCount,
         setAddProductCount,
         CartTotalprice,

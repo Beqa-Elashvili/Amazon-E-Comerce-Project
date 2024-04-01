@@ -7,12 +7,13 @@ import { useAddinCart } from "@src/hooks/useAddAndGetCart";
 import { ShowCartProcuts } from "@src/components/GlobalProductsPageComps/ShowCartProducts";
 import { LocationDeliverModal } from "@src/components/LocationDeliverModal";
 import { FaCartArrowDown } from "react-icons/fa6";
-import { useGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
 import { ProductsSlider } from "@src/components/HomeComponents/ProductsSlider";
 import { useAuthProvider } from "@src/providers/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { UseGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
 
 export function OneProductPage() {
+  const { getCategoryProducts } = UseGetCategoryProducts();
   const { product, loading } = useGetOneProduct();
   const { authStatus } = useAuthProvider();
   const [open, setOpen] = useState<boolean>(false);
@@ -21,11 +22,10 @@ export function OneProductPage() {
   const { setOpenLocationModal, zipCode, location, categoryProducts } =
     useGlobalProvider();
   const [randomNumber, setRandomNumber] = useState<number>(0);
-  const { getCategoryProducts } = useGetCategoryProducts();
   const navigate = useNavigate();
+  const { categoryName } = useParams();
 
   const Brand = product?.title.split(" ")[0];
-
   const calculatePercentageOff = () => {
     if (product?.salePrice !== null) {
       if (product) {
@@ -43,16 +43,13 @@ export function OneProductPage() {
   useEffect(() => {
     const newRandomNumber = getRandomNumber(50, 400);
     setRandomNumber(newRandomNumber);
-    if (product) {
-      localStorage.setItem("productCategory", product?.category_name);
-      getCategoryProducts(product?.category_name);
-    } else {
-      const category = localStorage.getItem("productCategory");
-      if (category) {
-        getCategoryProducts(category);
-      }
-    }
   }, [product]);
+
+  useEffect(() => {
+    if (categoryName) {
+      getCategoryProducts(categoryName);
+    }
+  }, [categoryName]);
 
   const content = (
     <div>

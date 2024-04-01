@@ -3,7 +3,7 @@ import ReactSimplyCarousel from "react-simply-carousel";
 import { Button, Rate } from "antd";
 import { useAddinCart } from "@src/hooks/useAddAndGetCart";
 import { FaCartArrowDown } from "react-icons/fa";
-import { useAuthProvider } from "@src/providers/AuthProvider"; 
+import { useAuthProvider } from "@src/providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { RiBookmark3Fill } from "react-icons/ri";
 import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
@@ -31,9 +31,8 @@ export function ProductsSlider({
       navigate("/login");
     }
   };
-
-  const handleProducts = (id: string) => {
-    navigate(`/OneProductPage/${id}`);
+  const handleProducts = (category: string, id: string) => {
+    navigate(`/OneProductPage/${id}/${category}`);
   };
 
   return (
@@ -74,10 +73,13 @@ export function ProductsSlider({
         >
           {products?.map((item: TProducts) => {
             return (
-              <div key={item.id} className="p-2 text-center relative">
+              <div
+                key={item.id}
+                className="p-2 hover:shadow-inner hover:rounded-lg text-center relative"
+              >
                 <div
                   className="cursor-pointer"
-                  onClick={() => handleProducts(item.id)}
+                  onClick={() => handleProducts(item.category_name,item.id)}
                 >
                   {item.salePrice !== null && (
                     <div className="flex absolute">

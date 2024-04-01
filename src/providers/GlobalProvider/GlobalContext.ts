@@ -133,9 +133,16 @@ interface TGlobalContext {
 
   ProductsCount: number | null;
   setAddProductCount: Dispatch<SetStateAction<number | null>>;
+
+  loading: boolean;
+  setLoading: Dispatch<SetStateAction<boolean>>;
+
+
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
+  loading: false,
+  setLoading: () => {},
   ProductsCount: null,
   setAddProductCount: () => {},
   CartTotalprice: null,

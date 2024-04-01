@@ -8,20 +8,18 @@ import { useNavigate } from "react-router-dom";
 import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
 import { useAddWishlist } from "@src/hooks/useAddAndGetLikedProducts";
 import { useIsProductInWishlist } from "@src/hooks/useAddAndGetLikedProducts";
-import { ProductsSlider } from "@src/components/HomeComponents/ProductsSlider";
 import { useParams } from "react-router-dom";
 import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
-import { useGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
+import { UseGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
 
 export function ShowCategoryProducts() {
-  const { category } = useParams();
+  const { categoryName } = useParams();
   const navigate = useNavigate();
   const { AddWishlist } = useAddWishlist();
   const { addToCart } = useAddinCart();
   const { authStatus } = useAuthProvider();
   const { isInWishlist } = useIsProductInWishlist();
-  const { categoryProducts, collapsed } = useGlobalProvider();
-  const { loading } = useGetCategoryProducts();
+  const { categoryProducts, loading } = UseGetCategoryProducts();
 
   const hanldeOnClick = (id: string) => {
     if (authStatus === "authorized") {
@@ -31,13 +29,13 @@ export function ShowCategoryProducts() {
     }
   };
 
-  const handleProducts = (id: string) => {
-    navigate(`/OneProductPage/${id}`);
+  const handleProducts = (id: string, category: string) => {
+    navigate(`/OneProductPage/${category}/${id}`);
   };
 
   return (
     <div className="p-2">
-      <h1>{category}</h1>
+      <h1>{categoryName}</h1>
       <div>
         {loading ? (
           <Skeleton
@@ -58,7 +56,7 @@ export function ShowCategoryProducts() {
                   )}
                   <div
                     className="cursor-pointer"
-                    onClick={() => handleProducts(item.id)}
+                    onClick={() => handleProducts(item.category_name, item.id)}
                   >
                     <img
                       className="object-cover xl:h-60 md:h-40 w-full"
@@ -119,23 +117,14 @@ export function ShowCategoryProducts() {
           </div>
         )}
       </div>
-      <div className=" relative shadow-xl p-2 bg-slate-20 rounded-xl">
-        {collapsed ? (
-          <ProductsSlider
-            relativeProp={undefined}
-            imgHeight={195}
-            itemsSHow={6}
-            products={categoryProducts}
-          />
-        ) : (
-          <ProductsSlider
-            relativeProp={undefined}
-            imgHeight={215}
-            itemsSHow={5}
-            products={categoryProducts}
-          />
-        )}
-      </div>
+      {/* <div className=" relative shadow-xl p-2 bg-slate-20 rounded-xl">
+        <ProductsSlider
+          relativeProp={undefined}
+          imgHeight={210}
+          itemsSHow={5}
+          products={categoryProducts}
+        />
+      </div> */}
     </div>
   );
 }

@@ -35,12 +35,15 @@ export const SHeader = styled.div`
     font-weight: 600;
   }
   & select {
-    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-      "Lucida Sans", Arial, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
     background-color: #d0d1d1;
+    width: fit-content;
     height: 44px;
     border-radius: 4px 0px 0px 4px;
     border: none;
+    width: auto;
     border-right: 1px grey solid;
     color: #515452;
     transition: border-color 1s;
@@ -54,16 +57,17 @@ export const SHeader = styled.div`
       color: black;
     }
   }
-  & input {
-    padding: 14px 140px;
-    border: 1px hidden;
+  & Input {
+    padding: 11px 140px;
+    z-index: 0;
+    border: hidden;
     border-radius: 4px;
     transition: border-color 1s;
     width: 740px;
+    box-shadow: 0px 0 2px 0 rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
     :focus {
-      border: 2px solid;
-      border-color: lightcoral;
-      outline: none;
+      box-shadow: 0px 0 10px 0 goldenrod;
     }
   }
   & .input-btn {

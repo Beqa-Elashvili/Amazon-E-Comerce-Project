@@ -17,12 +17,11 @@ export function SaleProducts() {
   const { saleProducts } = useGlobalProvider();
   const { isInWishlist } = useIsProductInWishlist();
   const { AddWishlist } = useAddWishlist();
-  const naviagte = useNavigate();
+  const navigate = useNavigate();
 
-  const handleProducts = (id: string) => {
-    naviagte(`/OneProductPage/${id}`);
+  const handleProducts = (category: string, id: string) => {
+    navigate(`/OneProductPage/${id}/${category}`);
   };
-
   return (
     <SSaleProducts className="absolute">
       <div className="container">
@@ -34,7 +33,7 @@ export function SaleProducts() {
             >
               <div
                 className="cursor-pointer"
-                onClick={() => handleProducts(item.id)}
+                onClick={() => handleProducts(item.category_name, item.id)}
               >
                 <div className="flex absolute top-0">
                   <RiBookmark3Fill className="size-12 text-yellow-400" />

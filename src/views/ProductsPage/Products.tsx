@@ -17,8 +17,8 @@ export function Products() {
   const { isInWishlist } = useIsProductInWishlist();
   const navigate = useNavigate();
 
-  const handleProduct = (id: string) => {
-    navigate(`/OneProductPage/${id}`);
+  const handleProduct = (id: string, category: string) => {
+    navigate(`/OneProductPage/${category}/${id}`);
   };
 
   const hanldeBuy = (price: number) => {
@@ -36,7 +36,7 @@ export function Products() {
             >
               <div
                 className="cursor-pointer"
-                onClick={() => handleProduct(item.id)}
+                onClick={() => handleProduct(item.category_name, item.id)}
               >
                 <h3 className="w-80 h-8">{item.title}</h3>
                 <img

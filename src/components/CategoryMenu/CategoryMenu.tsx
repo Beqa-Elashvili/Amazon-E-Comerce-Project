@@ -1,10 +1,8 @@
-import { useGetCategorys } from "@src/hooks/useGetCategorys";
 import { SetStateAction, useEffect, useState } from "react";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Button, Menu, Slider } from "antd";
-import { useGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
-import { SmenuImages } from "@src/hooks/useGetCategoryProducts/SglobalProducts";
+import { SmenuImages } from "./SglobalProducts";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { usePriceFilter } from "@src/hooks/usePriceFilter";
 import { useNavigate, useParams } from "react-router-dom";
@@ -12,9 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 export function CategoryMenu() {
   const { categorys, collapsed, setCollapsed } = useGlobalProvider();
   const { sliderValue, setSliderValue } = usePriceFilter();
-const { getCategoryProducts } = useGetCategoryProducts();
-  const { category } = useParams();
-
+  const { categoryName } = useParams();
   const navigate = useNavigate();
 
   type MenuItem = Required<MenuProps>["items"][number];
@@ -36,9 +32,8 @@ const { getCategoryProducts } = useGetCategoryProducts();
       onClick,
     } as MenuItem;
   }
-  const handleCategory = (category: string) => {
-    getCategoryProducts(category);
-    navigate(`/Category_Products_Page/${category}`);
+  const handleCategory = (categoryName: string) => {
+    navigate(`/Category_Products_Page/${categoryName}`);
   };
 
   const items: MenuItem[] = categorys?.map((item) =>
@@ -63,8 +58,9 @@ const { getCategoryProducts } = useGetCategoryProducts();
   useEffect(() => {
     if (collapsed === false) {
       setCollapsed(true);
+      console.log("fddf");
     }
-  }, [category]);
+  }, [categoryName]);
 
   const handleSliderChange = (value: SetStateAction<number[]>) => {
     setSliderValue(value);
@@ -79,7 +75,7 @@ const { getCategoryProducts } = useGetCategoryProducts();
       >
         {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
       </Button>
-      <div className="bg-gray-400 h-auto min-h-96 rounded-r-lg">
+      <div className="bg-gray-400 opacity-70 h-auto min-h-96 rounded-r-lg">
         <Menu
           className="object-cover bg-gray-400 rounded-r-lg"
           mode="inline"

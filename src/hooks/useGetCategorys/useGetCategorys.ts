@@ -1,7 +1,6 @@
 import { BaseAxios } from "@src/utils/Base_Axios";
 import { useEffect } from "react";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
-import { Divider } from "antd";
 
 export function useGetCategorys() {
   const { categorys, setCategorys } = useGlobalProvider();

@@ -6,12 +6,14 @@ import { useEffect, useState } from "react";
 export function useGetOneProduct() {
   const [loading, setLoading] = useState<boolean>(false);
   const { product, setProduct } = useGlobalProvider();
-  const { id } = useParams();
+  const { category, id } = useParams();
 
-  async function GetOneProduct(id: string) {
+  async function GetOneProduct(category: string, id: string) {
     try {
       setLoading(true);
-      const resp = await BaseAxios.get(`/product/${id}`);
+      const resp = await BaseAxios.get(
+        `/product/${id}?categoryName=${category}`
+      );
       setProduct(resp.data);
     } catch (error) {
       console.error("getOneProduct failed");
@@ -20,8 +22,8 @@ export function useGetOneProduct() {
     }
   }
   useEffect(() => {
-    if (id) {
-      GetOneProduct(id);
+    if (category && id) {
+      GetOneProduct(category, id);
     }
   }, [id]);
   return { GetOneProduct, loading, product };
