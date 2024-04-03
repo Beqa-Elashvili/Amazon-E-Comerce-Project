@@ -43,7 +43,7 @@ function App() {
             <Route path="/products" element={<Products />} />
             <Route path="/CartProducts" element={<CartProductsPage />} />
             <Route
-              path="/Category_Products_Page/:categoryName"
+              path="/Category_Products_Page/:categoryName/:productName"
               element={<CategoryPage />}
             />
             <Route

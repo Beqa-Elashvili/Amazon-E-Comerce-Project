@@ -6,30 +6,35 @@ import { useGlobalProvider } from "@src/providers/GlobalProvider";
 export function UseGetCategoryProducts() {
   const { setCategoryProducts, categoryProducts } = useGlobalProvider();
   const [loading, setLoading] = useState<boolean>(false);
-  const { categoryName } = useParams();
+  const { categoryName, productName } = useParams();
 
-  async function getCategoryProducts(category: string): Promise<void> {
+  async function getCategoryProducts(
+    category: string,
+    productName: string
+  ): Promise<void> {
     try {
       setLoading(true);
       const resp = await BaseAxios.get(
-        `/product?pageSize=25&categoryName=${category}`
+        `/product?categoryName=${category}&pageSize=25&${productName}`
       );
       setCategoryProducts(resp.data.products);
       setTimeout(() => {
         setLoading(false);
-      }, 3000);
+      }, 1500);
     } catch (error) {
       console.error("Get Category Products Failed");
       alert("Get Category Products Failed");
     } finally {
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1500);
     }
   }
   useEffect(() => {
-    if (categoryName) {
-      console.log("gfgfgf");
-      getCategoryProducts(categoryName);
+    if (categoryName && productName) {
+      getCategoryProducts(categoryName, productName);
     }
-  }, [categoryName]);
+  }, [categoryName, productName]);
+
   return { getCategoryProducts, categoryProducts, loading };
 }

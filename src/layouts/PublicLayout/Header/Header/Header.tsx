@@ -6,8 +6,8 @@ import { CategoryButtons } from "../HeaderComponents/CompCategory/CategoryMenu";
 import { UserAvatar } from "../HeaderComponents/CompUserAvatar/UserAvatar";
 import { SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGetSearchResult } from "@src/hooks/useGetSearchResult";
 import { LocationDeliverModal } from "@src/components/LocationDeliverModal";
+import { useGetSearchResult } from "@src/hooks/useGetSearchResult";
 import {
   TCategorys,
   TProducts,
@@ -15,13 +15,26 @@ import {
 import { Input } from "antd";
 
 export function Header() {
+  const {
+    search,
+    searchResult,
+    setSearchResult,
+    setSearch,
+    categorySearch,
+    setCategorySearch,
+  } = useGetSearchResult();
+
+  const hanldeSearchValue = (categorySearch: string, search: string) => {
+    navigate(`/Category_Products_Page/${categorySearch}/${search}`);
+    setSearch("");
+    setSearchResult([]);
+  };
+
   const navigate = useNavigate();
   const { categorys, setOpenLocationModal, location, zipCode } =
     useGlobalProvider();
   const { ProductsCount } = useGlobalProvider();
   const [show, setshow] = useState<boolean>(false);
-  const { categorySearch, setCategorySearch, setSearch, search, searchResult } =
-    useGetSearchResult();
 
   function handleInputChange(event: {
     target: { value: SetStateAction<string> };
@@ -38,6 +51,12 @@ export function Header() {
   }) {
     setCategorySearch(event?.target.value);
   }
+
+  const handleProducts = (id: string, category: string) => {
+    navigate(`/OneProductPage/${category}/${id}`);
+    setSearch("");
+    setSearchResult([]);
+  };
 
   return (
     <div>
@@ -75,7 +94,7 @@ export function Header() {
             className="absolute z-10 ml-5"
             name="SelectCategory"
             id="all"
-            style={{ width: 'auto' }}
+            style={{ width: "auto" }}
           >
             <option value="All">All</option>
             {categorys?.map((category: TCategorys) => {
@@ -100,9 +119,13 @@ export function Header() {
           >
             {searchResult?.map((item: TProducts) => {
               return (
-                <div key={item.id} className="flex gap-2 py-1">
+                <div
+                  key={item.id}
+                  onClick={() => handleProducts(item.category_name, item.id)}
+                  className="flex gap-2 py-1 cursor-pointer"
+                >
                   <img
-                    className="h-12 w-10"
+                    className="h-12 w-10 hover:shadow"
                     src={item.image}
                     alt="product-image"
                   />
@@ -114,7 +137,12 @@ export function Header() {
               );
             })}
           </div>
-          <button className="input-btn absolute">
+          <button
+            onClick={() =>
+              hanldeSearchValue(categorySearch, `productName=${search}`)
+            }
+            className="input-btn absolute"
+          >
             <img
               className=" w-5 h-5"
               src="/Images/search-icon.png"

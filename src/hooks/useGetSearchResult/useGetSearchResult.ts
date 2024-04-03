@@ -34,5 +34,5 @@ export function useGetSearchResult() {
     }
   }, [search, categorySearch]);
 
-  return { categorySearch, setCategorySearch, search, setSearch, searchResult };
+  return { categorySearch,setSearchResult, setCategorySearch, search, setSearch, searchResult };
 }

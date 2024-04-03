@@ -23,7 +23,7 @@ export function OneProductPage() {
     useGlobalProvider();
   const [randomNumber, setRandomNumber] = useState<number>(0);
   const navigate = useNavigate();
-  const { categoryName } = useParams();
+  const { category } = useParams();
 
   const Brand = product?.title.split(" ")[0];
   const calculatePercentageOff = () => {
@@ -46,10 +46,10 @@ export function OneProductPage() {
   }, [product]);
 
   useEffect(() => {
-    if (categoryName) {
-      getCategoryProducts(categoryName);
+    if (category) {
+      getCategoryProducts(category, "productName");
     }
-  }, [categoryName]);
+  }, [category]);
 
   const content = (
     <div>

@@ -1,4 +1,3 @@
-import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { Button, Rate, Skeleton } from "antd";
 import { useAddinCart } from "@src/hooks/useAddAndGetCart";
 import { FaCartArrowDown } from "react-icons/fa";
@@ -11,7 +10,6 @@ import { useIsProductInWishlist } from "@src/hooks/useAddAndGetLikedProducts";
 import { useParams } from "react-router-dom";
 import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
 import { UseGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
-
 export function ShowCategoryProducts() {
   const { categoryName } = useParams();
   const navigate = useNavigate();
