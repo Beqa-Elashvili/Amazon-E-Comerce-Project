@@ -135,13 +135,16 @@ interface TGlobalContext {
   ProductsCount: number | null;
   setAddProductCount: Dispatch<SetStateAction<number | null>>;
 
+  productsSlider: TProducts[];
+  setProductsSlider: Dispatch<SetStateAction<TProducts[]>>;
+
   loading: boolean;
   setLoading: Dispatch<SetStateAction<boolean>>;
-
-
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
+  productsSlider: [],
+  setProductsSlider: () => {},
   loading: false,
   setLoading: () => {},
   ProductsCount: null,

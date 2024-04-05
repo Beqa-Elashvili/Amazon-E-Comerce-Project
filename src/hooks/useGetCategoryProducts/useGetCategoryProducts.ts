@@ -4,7 +4,8 @@ import { useParams } from "react-router-dom";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export function UseGetCategoryProducts() {
-  const { setCategoryProducts, categoryProducts } = useGlobalProvider();
+  const { setCategoryProducts, categoryProducts, setProductsSlider } =
+    useGlobalProvider();
   const [loading, setLoading] = useState<boolean>(false);
   const { categoryName, productName } = useParams();
 
@@ -18,6 +19,9 @@ export function UseGetCategoryProducts() {
         `/product?categoryName=${category}&pageSize=25&${productName}`
       );
       setCategoryProducts(resp.data.products);
+      if (categoryName && productName === "productName") {
+        setProductsSlider(resp.data.products);
+      }
       setTimeout(() => {
         setLoading(false);
       }, 1500);
@@ -33,6 +37,7 @@ export function UseGetCategoryProducts() {
   useEffect(() => {
     if (categoryName && productName) {
       getCategoryProducts(categoryName, productName);
+      console.log("gaeshva");
     }
   }, [categoryName, productName]);
 

@@ -27,7 +27,7 @@ export function Header() {
   const hanldeSearchValue = (categorySearch: string, search: string) => {
     navigate(`/Category_Products_Page/${categorySearch}/${search}`);
     setSearch("");
-    setSearchResult([]);
+    setshow(false);
   };
 
   const navigate = useNavigate();
@@ -125,7 +125,7 @@ export function Header() {
                   className="flex gap-2 py-1 cursor-pointer"
                 >
                   <img
-                    className="h-12 w-10 hover:shadow"
+                    className="h-12 w-10 rounded hover:shadow"
                     src={item.image}
                     alt="product-image"
                   />

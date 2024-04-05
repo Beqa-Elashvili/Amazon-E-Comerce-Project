@@ -5,7 +5,8 @@ import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { ProductsSlider } from "@src/components/HomeComponents/ProductsSlider";
 import { Skeleton } from "antd";
 export function CategoryPage() {
-  const { categoryProducts, loading } = useGlobalProvider();
+  const { categoryProducts, loading,productsSlider } = useGlobalProvider();
+
 
   return (
     <div className="w-full">
@@ -43,7 +44,7 @@ export function CategoryPage() {
               relativeProp={undefined}
               imgHeight={210}
               itemsSHow={6}
-              products={categoryProducts}
+              products={productsSlider}
             />
           </div>
         </div>

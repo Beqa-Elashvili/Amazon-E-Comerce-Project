@@ -18,13 +18,10 @@ export function usePriceFilter() {
     let timer: number;
     const delayedFilterPrice = () => {
       timer = setTimeout(() => {
-        if (categoryName) {
           filterPrice();
-        }
       }, 500);
     };
     delayedFilterPrice();
-
     return () => clearTimeout(timer);
   }, [sliderValue]);
 

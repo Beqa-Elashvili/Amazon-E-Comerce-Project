@@ -19,6 +19,8 @@ export function ShowCategoryProducts() {
   const { isInWishlist } = useIsProductInWishlist();
   const { categoryProducts, loading } = UseGetCategoryProducts();
 
+
+
   const hanldeOnClick = (id: string) => {
     if (authStatus === "authorized") {
       addToCart(id);
@@ -115,14 +117,6 @@ export function ShowCategoryProducts() {
           </div>
         )}
       </div>
-      {/* <div className=" relative shadow-xl p-2 bg-slate-20 rounded-xl">
-        <ProductsSlider
-          relativeProp={undefined}
-          imgHeight={210}
-          itemsSHow={5}
-          products={categoryProducts}
-        />
-      </div> */}
     </div>
   );
 }

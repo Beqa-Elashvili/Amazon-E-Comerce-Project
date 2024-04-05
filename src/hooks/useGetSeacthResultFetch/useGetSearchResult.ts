@@ -1,3 +1,4 @@
+import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
 import { BaseAxios } from "@src/utils/Base_Axios";
 import { useState } from "react";
