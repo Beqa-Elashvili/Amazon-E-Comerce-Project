@@ -4,8 +4,12 @@ import { useParams } from "react-router-dom";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export function UseGetCategoryProducts() {
-  const { setCategoryProducts, categoryProducts, setProductsSlider } =
-    useGlobalProvider();
+  const {
+    setCategoryProducts,
+    categoryProducts,
+    setSliderValue,
+    setProductsSlider,
+  } = useGlobalProvider();
   const [loading, setLoading] = useState<boolean>(false);
   const { categoryName, productName } = useParams();
 
@@ -14,6 +18,7 @@ export function UseGetCategoryProducts() {
     productName: string
   ): Promise<void> {
     try {
+      setSliderValue([0, 0]);
       setLoading(true);
       const resp = await BaseAxios.get(
         `/product?categoryName=${category}&pageSize=25&${productName}`
@@ -37,7 +42,6 @@ export function UseGetCategoryProducts() {
   useEffect(() => {
     if (categoryName && productName) {
       getCategoryProducts(categoryName, productName);
-      console.log("gaeshva");
     }
   }, [categoryName, productName]);
 

@@ -109,24 +109,24 @@ export function PurchasePage() {
         break;
       case "expiry":
         if (value.length > 4) {
-          const slicedCVC = value.slice(0, -1);
-          setState({ ...state, expiry: slicedCVC });
+          const sliced = value.slice(0, -1);
+          setState({ ...state, expiry: sliced });
           break;
         }
         setState({ ...state, expiry: value });
         break;
       case "name":
         if (value.length > 18) {
-          const slicedCVC = value.slice(0, -1);
-          setState({ ...state, name: slicedCVC });
+          const sliced = value.slice(0, -1);
+          setState({ ...state, name: sliced });
           break;
         }
         setState({ ...state, name: value });
         break;
       case "number":
         if (value.length > 16) {
-          const slicedCVC = value.slice(0, -1);
-          setState({ ...state, number: slicedCVC });
+          const sliced = value.slice(0, -1);
+          setState({ ...state, number: sliced });
           break;
         }
         setState({ ...state, number: value });
@@ -299,6 +299,9 @@ export function PurchasePage() {
     }
     if (state.number.length < 16) {
       alert("Card number must be 16 charecters");
+    } else if (state.name === "") {
+      alert("Please input Name");
+      return;
     } else if (state.cvc.length < 3) {
       alert("CvC must be 3 charecters");
       return;

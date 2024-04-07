@@ -6,23 +6,25 @@ import { useParams } from "react-router-dom";
 export function usePriceFilter() {
   const { sliderValue, setSliderValue, setCategoryProducts } =
     useGlobalProvider();
-  const { categoryName } = useParams();
+
+  const { categoryName, productName } = useParams();
   async function filterPrice() {
     const resp = await BaseAxios.get(
       `/product?categoryName=${categoryName}&minPrice=${sliderValue[0]}&maxPrice=${sliderValue[1]}`
     );
     setCategoryProducts(resp.data.products);
   }
-
   useEffect(() => {
-    let timer: number;
-    const delayedFilterPrice = () => {
-      timer = setTimeout(() => {
+    if (productName === "productName") {
+      let timer: number;
+      const delayedFilterPrice = () => {
+        timer = setTimeout(() => {
           filterPrice();
-      }, 500);
-    };
-    delayedFilterPrice();
-    return () => clearTimeout(timer);
+        }, 500);
+      };
+      delayedFilterPrice();
+      return () => clearTimeout(timer);
+    }
   }, [sliderValue]);
 
   return { sliderValue, setSliderValue };

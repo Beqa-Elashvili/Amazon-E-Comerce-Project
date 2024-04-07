@@ -3,20 +3,41 @@ import { ShowCartProcuts } from "@src/components/GlobalProductsPageComps/ShowCar
 import { ShowCategoryProducts } from "@src/components/GlobalProductsPageComps/ShowCategoryProducts";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { ProductsSlider } from "@src/components/HomeComponents/ProductsSlider";
-import { Skeleton } from "antd";
+import { Skeleton, SkeletonProps } from "antd";
+import { UseGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
 export function CategoryPage() {
-  const { categoryProducts, loading,productsSlider } = useGlobalProvider();
-
+  const { productsSlider } = useGlobalProvider();
+  const { loading } = UseGetCategoryProducts();
 
   return (
     <div className="w-full">
       {loading ? (
-        <Skeleton
-          avatar={true}
-          paragraph={{ rows: 10, width: ["100%", "75%", "60%"] }}
-          loading={true}
-          active
-        />
+        <>
+          <Skeleton
+            avatar={true}
+            className="p-2"
+            paragraph={{ rows: 3, width: ["100%", "100%", "100%"] }}
+            loading={true}
+            active
+          />
+          <div className="w-5/6 m-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-7 gap-y-2">
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+          </div>
+        </>
       ) : (
         <div>
           <div className="flex">
