@@ -21,8 +21,8 @@ export function ShowCartProcuts() {
     }
   }, [cartProducts]);
 
-  const handleProducts = (id: string) => {
-    navigate(`/OneProductPage/${id}`);
+  const handleProduct = (id: string, category: string) => {
+    navigate(`/OneProductPage/${category}/${id}`);
   };
 
   return (
@@ -50,7 +50,12 @@ export function ShowCartProcuts() {
                 <div className="text-center" key={item.id}>
                   <div
                     className="cursor-pointer"
-                    onClick={() => handleProducts(item.cartProduct.id)}
+                    onClick={() =>
+                      handleProduct(
+                        item.cartProduct.category_name,
+                        item.cartProduct.id
+                      )
+                    }
                   >
                     <img
                       className="w-32"

@@ -40,6 +40,11 @@ export function OneProductPage() {
   const getRandomNumber = (min: number, max: number): number => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
+
+  const hanldeBuy = (price: number) => {
+    navigate(`/Buy/Checkout/${price}/${[1]}`);
+  };
+
   useEffect(() => {
     const newRandomNumber = getRandomNumber(50, 400);
     setRandomNumber(newRandomNumber);
@@ -198,7 +203,12 @@ export function OneProductPage() {
                         >
                           Add Cart
                         </Button>
-                        <Button className="mt-2 bg-orange-500">Buy Now</Button>
+                        <Button
+                          onClick={() => hanldeBuy(product.price)}
+                          className="mt-2 bg-orange-500"
+                        >
+                          Buy Now
+                        </Button>
                       </>
                     )}
                   </div>
