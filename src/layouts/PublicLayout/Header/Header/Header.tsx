@@ -4,10 +4,10 @@ import { Translate } from "../HeaderComponents/CompSelectLanguage";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { CategoryButtons } from "../HeaderComponents/CompCategory/CategoryMenu";
 import { UserAvatar } from "../HeaderComponents/CompUserAvatar/UserAvatar";
-import { SetStateAction, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LocationDeliverModal } from "@src/components/LocationDeliverModal";
-import { useGetSearchResult } from "@src/hooks/useGetSearchResult";
+import { useGetSearchResult } from "@src/hooks/useGetSeacthResultFetch/useGetSearchResult";
 import {
   TCategorys,
   TProducts,
@@ -15,47 +15,55 @@ import {
 import { Input } from "antd";
 
 export function Header() {
-  const {
-    search,
-    searchResult,
-    setSearchResult,
-    setSearch,
-    categorySearch,
-    setCategorySearch,
-  } = useGetSearchResult();
+  const [search, setSearch] = useState<string>("");
+  const { GetSearchResult, SearchResults } = useGetSearchResult();
+  const [categorySearch, setCategorySearch] = useState<string>("All");
+  const { categorys, ProductsCount, setOpenLocationModal, location, zipCode } =
+    useGlobalProvider();
+  const [show, setshow] = useState<boolean>(false);
+  const navigate = useNavigate();
 
-  const hanldeSearchValue = (categorySearch: string, search: string) => {
-    navigate(`/Category_Products_Page/${categorySearch}/${search}`);
+  const hanldeSearchValue = (
+    categorySearch: string,
+    search: string,
+    page: number
+  ) => {
+    navigate(`/Category_Products_Page/${categorySearch}/${search}/${page}`);
     setSearch("");
     setshow(false);
   };
 
-  const navigate = useNavigate();
-  const { categorys, setOpenLocationModal, location, zipCode } =
-    useGlobalProvider();
-  const { ProductsCount } = useGlobalProvider();
-  const [show, setshow] = useState<boolean>(false);
+  useEffect(() => {
+    let timer: number;
+    const delayedFilterPrice = () => {
+      timer = setTimeout(() => {
+        GetSearchResult(categorySearch, `productName=${search}`);
+      }, 500);
+    };
+    delayedFilterPrice();
+    return () => clearTimeout(timer);
+  }, [search, categorySearch]);
 
-  function handleInputChange(event: {
+  const handleInputChange = (event: {
     target: { value: SetStateAction<string> };
-  }) {
+  }) => {
     setSearch(event.target.value);
     if (event.target.value === "") {
       setshow(false);
     } else {
       setshow(true);
     }
-  }
-  function handleSelectValue(event: {
+  };
+  const handleSelectValue = (event: {
     target: { value: SetStateAction<string> };
-  }) {
+  }) => {
     setCategorySearch(event?.target.value);
-  }
+  };
 
   const handleProducts = (id: string, category: string) => {
     navigate(`/OneProductPage/${category}/${id}`);
     setSearch("");
-    setSearchResult([]);
+    setshow(false);
   };
 
   return (
@@ -117,7 +125,7 @@ export function Header() {
             style={{ display: show ? "block" : "none" }}
             className="absolute max-h-80 top-12 left-40 bg-red-50 p-4 z-10 rounded-lg w-96 overflow-y-auto"
           >
-            {searchResult?.map((item: TProducts) => {
+            {SearchResults?.map((item: TProducts) => {
               return (
                 <div
                   key={item.id}
@@ -139,7 +147,7 @@ export function Header() {
           </div>
           <button
             onClick={() =>
-              hanldeSearchValue(categorySearch, `productName=${search}`)
+              hanldeSearchValue(categorySearch, `productName=${search}`, 1)
             }
             className="input-btn absolute"
           >

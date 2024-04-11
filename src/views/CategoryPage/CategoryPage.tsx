@@ -20,7 +20,7 @@ export function CategoryPage() {
             loading={true}
             active
           />
-          <div className="w-5/6 m-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-7 gap-y-2">
+          <div className="w-5/6 m-auto p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-7 gap-y-2">
             <Skeleton.Image active />
             <Skeleton.Image active />
             <Skeleton.Image active />

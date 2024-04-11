@@ -32,8 +32,12 @@ export function CategoryMenu() {
       onClick,
     } as MenuItem;
   }
-  const handleCategory = (categoryName: string, productsName: string) => {
-    navigate(`/Category_Products_Page/${categoryName}/${productsName}`);
+  const handleCategory = (
+    categoryName: string,
+    productsName: string,
+    page: number
+  ) => {
+    navigate(`/Category_Products_Page/${categoryName}/${productsName}/${page}`);
   };
 
   const items: MenuItem[] = categorys?.map((item) =>
@@ -46,7 +50,7 @@ export function CategoryMenu() {
       undefined,
       undefined,
       () => {
-        handleCategory(item.name, "productName");
+        handleCategory(item.name, "productName", 1);
       }
     )
   );

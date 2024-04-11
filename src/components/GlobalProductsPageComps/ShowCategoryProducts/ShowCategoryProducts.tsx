@@ -1,4 +1,4 @@
-import { Button, Rate, Skeleton } from "antd";
+import { Button, Rate, Pagination } from "antd";
 import { useAddinCart } from "@src/hooks/useAddAndGetCart";
 import { FaCartArrowDown } from "react-icons/fa";
 import { RiBookmark3Fill } from "react-icons/ri";
@@ -11,13 +11,13 @@ import { useParams } from "react-router-dom";
 import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
 import { UseGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
 export function ShowCategoryProducts() {
-  const { categoryName } = useParams();
+  const { categoryName, productName } = useParams();
   const navigate = useNavigate();
   const { AddWishlist } = useAddWishlist();
   const { addToCart } = useAddinCart();
   const { authStatus } = useAuthProvider();
   const { isInWishlist } = useIsProductInWishlist();
-  const { categoryProducts, loading } = UseGetCategoryProducts();
+  const { categoryProducts, dataTotal, pageSize } = UseGetCategoryProducts();
 
   const hanldeOnClick = (id: string) => {
     if (authStatus === "authorized") {
@@ -29,6 +29,13 @@ export function ShowCategoryProducts() {
 
   const handleProducts = (id: string, category: string) => {
     navigate(`/OneProductPage/${category}/${id}`);
+  };
+
+  const { page: pagNum } = useParams();
+  const page = Number(pagNum);
+
+  const handlePagination = (pages: number) => {
+    navigate(`/Category_Products_Page/${categoryName}/${productName}/${pages}`);
   };
 
   return (
@@ -102,6 +109,13 @@ export function ShowCategoryProducts() {
           );
         })}
       </div>
+      <Pagination
+        className="text-center"
+        current={page}
+        pageSize={pageSize}
+        onChange={handlePagination}
+        total={dataTotal}
+      />
     </div>
   );
 }

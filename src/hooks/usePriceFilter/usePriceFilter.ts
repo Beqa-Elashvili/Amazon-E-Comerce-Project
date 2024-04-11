@@ -7,16 +7,25 @@ export function usePriceFilter() {
   const { sliderValue, setSliderValue, setCategoryProducts } =
     useGlobalProvider();
 
-  const { categoryName, productName } = useParams();
+  const { categoryName, productName, page } = useParams();
+
   async function filterPrice() {
+    if (categoryName === "All") {
+      const resp = await BaseAxios.get(
+        `/product?minPrice=${sliderValue[0]}&page=${page}&pageSize=10&maxPrice=${sliderValue[1]}`
+      );
+      setCategoryProducts(resp.data.products);
+      return;
+    }
     const resp = await BaseAxios.get(
-      `/product?categoryName=${categoryName}&minPrice=${sliderValue[0]}&maxPrice=${sliderValue[1]}`
+      `/product?page=${page}&pageSize=20&categoryName=${categoryName}&minPrice=${sliderValue[0]}&maxPrice=${sliderValue[1]}`
     );
     setCategoryProducts(resp.data.products);
   }
+
   useEffect(() => {
-    if (productName === "productName") {
-      let timer: number;
+    let timer: number;
+    if (productName === "productName" || productName === "productName=") {
       const delayedFilterPrice = () => {
         timer = setTimeout(() => {
           filterPrice();
