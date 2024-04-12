@@ -1,7 +1,6 @@
 import { PrivateAxios } from "@src/utils/PriveteAxios";
 import { useEffect, useState } from "react";
 import { useAuthProvider } from "@src/providers/AuthProvider";
-import { TUserData } from "@src/@types/TuserData";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export function useGetUserData() {

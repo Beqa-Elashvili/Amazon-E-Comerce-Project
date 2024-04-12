@@ -7,6 +7,14 @@ export type TUserChangeValues = {
   value: string | number | undefined;
 };
 
+export type TOrders = {
+  created_at: string;
+  id: string;
+  totalItems: number;
+  totalPrice: number;
+  update_at: string;
+};
+
 export type TGender = {
   label: string;
   value: string;
@@ -141,9 +149,14 @@ interface TGlobalContext {
 
   loading: boolean;
   setLoading: Dispatch<SetStateAction<boolean>>;
+
+  Orders: TOrders[];
+  setOrders: Dispatch<SetStateAction<TOrders[]>>;
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
+  Orders: [],
+  setOrders: () => {},
   productsSlider: [],
   setProductsSlider: () => {},
   loading: false,

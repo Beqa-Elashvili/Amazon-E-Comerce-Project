@@ -36,6 +36,21 @@ export function CategoryPage() {
             <Skeleton.Image active />
             <Skeleton.Image active />
             <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
+            <Skeleton.Image active />
           </div>
         </>
       ) : (

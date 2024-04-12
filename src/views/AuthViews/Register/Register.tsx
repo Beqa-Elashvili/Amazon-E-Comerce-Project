@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Slider } from "antd";
 import { RegisterStyle } from "../Authstyle";
 import { useNavigate } from "react-router-dom";
 import { BaseAxios } from "@src/utils/Base_Axios";
@@ -7,7 +7,6 @@ import { useAuthProvider } from "@src/providers/AuthProvider";
 import { TAuthTokens } from "@src/@types/TokensTypes";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { FormattedMessage } from "react-intl";
-
 
 export type RegisterFormValue = {
   first_name: string;
@@ -28,6 +27,15 @@ export function Register(): JSX.Element {
   const navigate = useNavigate();
 
   async function onfinish(values: RegisterFormValue) {
+    if (values.phone_number.length !== 9) {
+      form.setFields([
+        {
+          name: "phone_number",
+          errors: ["ნომერი უნდა შედგებოდეს 9 რიცხვისაგან"],
+        },
+      ]);
+      return;
+    }
     if (values.password !== values.repeat_password) {
       form.setFields([
         {
@@ -37,6 +45,7 @@ export function Register(): JSX.Element {
       ]);
       return;
     }
+
     try {
       setAuthLoading(true);
       const resp = await BaseAxios.post("/auth/register", values);
@@ -109,6 +118,8 @@ export function Register(): JSX.Element {
             ]}
           >
             <Input
+              type="number"
+              maxLength={9}
               autoComplete="off"
               placeholder="mobile number must be 9 characters"
             />
@@ -136,8 +147,10 @@ export function Register(): JSX.Element {
           >
             <div className="flex-col">
               <Input.Password
+                name="password"
+                minLength={8}
                 autoComplete="off"
-                placeholder="At least 6 characters"
+                placeholder="At least 8 characters"
               />
               <div className="flex mt-2">
                 <img className="h-4 w-4" src="./Images/Img-!.png" alt="!-Img" />
@@ -157,7 +170,11 @@ export function Register(): JSX.Element {
               { required: true, message: "Please input your re-password!" },
             ]}
           >
-            <Input.Password autoComplete="off" />
+            <Input.Password
+              minLength={8}
+              name="repeat_password"
+              autoComplete="off"
+            />
           </Form.Item>
           <div className="text-center">
             {ChooceGender.map((gender) => {

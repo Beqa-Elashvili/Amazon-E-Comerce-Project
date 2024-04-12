@@ -17,6 +17,7 @@ const OneProductPage = lazy(() => import("@src/views/OneProductPage"));
 const CategoryPage = lazy(() => import("@src/views/CategoryPage"));
 const ChangeUserInfo = lazy(() => import("@src/views/ChangeUserInfo"));
 const PurchasePage = lazy(() => import("@src/views/PurchasePage"));
+const OrdersPage = lazy(() => import("@src/views/OrdersPage"));
 
 function App() {
   const { authStatus } = useAuthProvider();
@@ -42,6 +43,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
             <Route path="/CartProducts" element={<CartProductsPage />} />
+            <Route path="/OrdersPage" element={<OrdersPage />} />
             <Route
               path="/Category_Products_Page/:categoryName/:productName/:page"
               element={<CategoryPage />}

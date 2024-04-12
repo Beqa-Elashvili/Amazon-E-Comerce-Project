@@ -1,5 +1,4 @@
 import { PropsWithChildren, useState } from "react";
-import { GlobalContext } from "./GlobalContext";
 import { v4 as uuidv4 } from "uuid";
 import { useEffect } from "react";
 import { useAuthProvider } from "../AuthProvider";
@@ -12,6 +11,8 @@ import {
   TCategorys,
   TProducts,
   TUserChangeValues,
+  GlobalContext,
+  TOrders,
 } from "./GlobalContext";
 import { TUserData } from "@src/@types/TuserData";
 
@@ -450,6 +451,8 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   const [ProductsCount, setAddProductCount] = useState<number | null>(0);
   const [loading, setLoading] = useState<boolean>(false);
   const [productsSlider, setProductsSlider] = useState<TProducts[]>([]);
+  const [Orders, setOrders] = useState<TOrders[]>([]);
+
   const { authStatus } = useAuthProvider();
 
   function sumPrices() {
@@ -505,6 +508,8 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   return (
     <GlobalContext.Provider
       value={{
+        Orders,
+        setOrders,
         loading,
         setLoading,
         productsSlider,

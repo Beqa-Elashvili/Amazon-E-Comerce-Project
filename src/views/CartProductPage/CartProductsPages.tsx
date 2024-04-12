@@ -63,7 +63,7 @@ export function CartProductsPage() {
               <div className=" mt-2 bg-slate-700 rounded-full p-4 text-center">
                 <Button
                   onClick={() => navigate("/")}
-                  className="bg-yellow-400 border-none w-full"
+                  className="bg-yellow-400 text-base border-none w-full"
                 >
                   <FormattedMessage
                     id="Add_products_Here"
@@ -154,7 +154,7 @@ export function CartProductsPage() {
                 );
               })}
             </div>
-            <div className="flex flex-col gap-5 m-3 rounded-xl w-1/3 bg-slate-400 p-4 absolute sticky top-5 self-start">
+            <div className="flex flex-col gap-5 m-3 rounded-xl w-1/3 border-solid border border-slate-400 p-4 absolute sticky top-5 self-start">
               <div className="flex justify-between">
                 <h3 className="text-gray-700">
                   <FormattedMessage
@@ -164,6 +164,7 @@ export function CartProductsPage() {
                 </h3>
                 <p>{CartTotalprice}$</p>
               </div>
+              <hr />
               <div className="flex justify-between">
                 <h3 className="text-gray-700">
                   <FormattedMessage

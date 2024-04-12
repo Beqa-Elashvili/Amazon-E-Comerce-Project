@@ -18,7 +18,7 @@ export function usePriceFilter() {
       return;
     }
     const resp = await BaseAxios.get(
-      `/product?page=${page}&pageSize=20&categoryName=${categoryName}&minPrice=${sliderValue[0]}&maxPrice=${sliderValue[1]}`
+      `/product?page=${page}&pageSize=10&categoryName=${categoryName}&minPrice=${sliderValue[0]}&maxPrice=${sliderValue[1]}`
     );
     setCategoryProducts(resp.data.products);
   }

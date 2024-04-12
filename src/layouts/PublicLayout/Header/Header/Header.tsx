@@ -120,7 +120,6 @@ export function Header() {
             type="text"
             placeholder="Search Amazon"
           />
-
           <div
             style={{ display: show ? "block" : "none" }}
             className="absolute max-h-80 top-12 left-40 bg-red-50 p-4 z-10 rounded-lg w-96 overflow-y-auto"
@@ -139,7 +138,11 @@ export function Header() {
                   />
                   <div>
                     <p>{item.title}</p>
-                    <h6>price: {item.price}$</h6>
+                    {item.salePrice !== null ? (
+                      <h6 className="text-red-600">price: {item.salePrice}$</h6>
+                    ) : (
+                      <h6>price: {item.price}$</h6>
+                    )}
                   </div>
                 </div>
               );
@@ -161,7 +164,7 @@ export function Header() {
         <Translate />
         <UserAvatar />
         <Hbuttons>
-          <button>
+          <button onClick={() => navigate("/OrdersPage")}>
             <p>
               <FormattedMessage id="returns" defaultMessage={"returns"} />
             </p>
