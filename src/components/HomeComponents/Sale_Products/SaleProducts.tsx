@@ -25,7 +25,7 @@ export function SaleProducts() {
   return (
     <SSaleProducts className="absolute">
       <div className="container">
-        {saleProducts?.map((item: TProducts) => {
+        {saleProducts?.slice(0, 4).map((item: TProducts) => {
           return (
             <div
               key={item.id}

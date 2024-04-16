@@ -6,5 +6,5 @@ export async function GetSaleProducts(
   setSaleProducts: Dispatch<SetStateAction<TProducts[]>>
 ) {
   const resp = await BaseAxios.get("/product?onlySales=true");
-  setSaleProducts(resp.data.products.slice(0, 4));
+  setSaleProducts(resp.data.products);
 }

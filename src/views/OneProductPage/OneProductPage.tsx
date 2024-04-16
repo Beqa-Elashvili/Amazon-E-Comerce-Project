@@ -52,7 +52,7 @@ export function OneProductPage() {
 
   useEffect(() => {
     if (category) {
-      getCategoryProducts(category, "productName");
+      getCategoryProducts(category, "productName", 1);
     }
   }, [category]);
 
@@ -203,12 +203,21 @@ export function OneProductPage() {
                         >
                           Add Cart
                         </Button>
-                        <Button
-                          onClick={() => hanldeBuy(product.price)}
-                          className="mt-2 bg-orange-500"
-                        >
-                          Buy Now
-                        </Button>
+                        {product.salePrice !== null ? (
+                          <Button
+                            onClick={() => hanldeBuy(product.salePrice)}
+                            className="mt-2 bg-orange-500"
+                          >
+                            Buy Now
+                          </Button>
+                        ) : (
+                          <Button
+                            onClick={() => hanldeBuy(product.price)}
+                            className="mt-2 bg-orange-500"
+                          >
+                            Buy Now
+                          </Button>
+                        )}
                       </>
                     )}
                   </div>
