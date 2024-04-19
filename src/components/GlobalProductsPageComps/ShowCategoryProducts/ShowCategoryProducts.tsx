@@ -10,7 +10,6 @@ import { useIsProductInWishlist } from "@src/hooks/useAddAndGetLikedProducts";
 import { useParams } from "react-router-dom";
 import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
 import { UseGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
-import { useState } from "react";
 export function ShowCategoryProducts() {
   const { categoryName, productName } = useParams();
   const navigate = useNavigate();
@@ -19,7 +18,6 @@ export function ShowCategoryProducts() {
   const { authStatus } = useAuthProvider();
   const { isInWishlist } = useIsProductInWishlist();
   const { categoryProducts, dataTotal, pageSize } = UseGetCategoryProducts();
-  // const [categoryProducts, setcategory] = useState([]);
 
   const hanldeOnClick = (id: string) => {
     if (authStatus === "authorized") {

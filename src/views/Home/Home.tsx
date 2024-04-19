@@ -14,7 +14,7 @@ export function Home() {
   return (
     <SHome>
       <div>
-        <div>
+        <div className="relative">
           <BackSlider />
           <SaleProducts />
         </div>
