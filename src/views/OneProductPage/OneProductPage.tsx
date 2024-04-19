@@ -249,17 +249,17 @@ export function OneProductPage() {
                   </div>
                   <div>
                     <h4>Add a Protection Plan:</h4>
-                    <div className="flex gap-2">
-                      <div className="flex gap-2 flex-col">
+                    <div className="mt-2">
+                      <div className="flex gap-2 items-start">
                         <Checkbox />
-                        <Checkbox />
-                      </div>
-                      <div className="flex flex-col gap-2">
                         <div className="flex text-green-700 gap-1">
-                          2-Year Protection{" "}
+                          2-Year Protection
                           <span className="text-black">for</span>
                           <p className="text-red-700">$39.99</p>
                         </div>
+                      </div>
+                      <div className="flex gap-2 items-start">
+                        <Checkbox />
                         <div className="max-w-80 text-green-700">
                           Asurion Complete Protect: One plan covers all eligible
                           past and future purchases (Renews Monthly Until
@@ -269,7 +269,7 @@ export function OneProductPage() {
                         </div>
                       </div>
                     </div>
-                    <div className="flex mt-2 gap-2">
+                    <div className="flex mt-2 gap-2 items-start">
                       <Checkbox />
                       <p>Add a gift receipt for easy returns</p>
                     </div>
@@ -277,10 +277,10 @@ export function OneProductPage() {
                 </div>
               </div>
             </div>
-            <div className="p-2 shadow-xl rounded-xl">
+            <div className="p-2 shadow-xl relative rounded-xl">
               <ProductsSlider
                 itemsSHow={6}
-                relativeProp="relative"
+                relativeProp={undefined}
                 imgHeight={210}
                 products={categoryProducts}
               />

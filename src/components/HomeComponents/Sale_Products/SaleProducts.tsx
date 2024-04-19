@@ -9,31 +9,25 @@ export function SaleProducts() {
   };
   return (
     <SSaleProducts className="absolute">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-12">
-        <img
-          onClick={() => handleProducts("TV | მონიტორები")}
-          className="w-80 cursor-pointer border-solid rounded-lg border-white"
-          src="\Images\onFloImages\imageSix.jpg"
-          alt="img"
-        />
-        <img
-          onClick={() => handleProducts("ტაბები")}
-          className="w-80  cursor-pointer border-solid rounded-lg border-white"
-          src="\Images\onFloImages\imageThree.webp"
-          alt="img"
-        />
-        <img
-          onClick={() => handleProducts("ფოტო | ვიდეო")}
-          className="w-80 cursor-pointer border-solid rounded-lg border-white"
-          src="\Images\onFloImages\ImageFour.webp"
-          alt="img"
-        />
-        <img
-          onClick={() => handleProducts("აუდიო")}
-          className="w-80 cursor-pointer border-solid rounded-lg border-white"
-          src="\Images\onFloImages\imageFive.jpg"
-          alt="img"
-        />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-2">
+        <div className="relative">
+          <img src="\Images\onFloImages\imageSix.jpg" alt="img" />
+          <h2 onClick={() => handleProducts("TV | მონიტორები")}>
+            TV | Monitores
+          </h2>
+        </div>
+        <div className="relative">
+          <img src="\Images\onFloImages\imageThree.webp" alt="img" />
+          <h2 onClick={() => handleProducts("ტაბები")}>Tabs</h2>
+        </div>
+        <div className="relative">
+          <img src="\Images\onFloImages\ImageFour.webp" alt="img" />
+          <h2 onClick={() => handleProducts("ფოტო | ვიდეო")}>Photo | Video</h2>
+        </div>
+        <div className="relative">
+          <img src="\Images\onFloImages\imageFive.jpg" alt="img" />
+          <h2 onClick={() => handleProducts("აუდიო")}>Audio</h2>
+        </div>
       </div>
     </SSaleProducts>
   );

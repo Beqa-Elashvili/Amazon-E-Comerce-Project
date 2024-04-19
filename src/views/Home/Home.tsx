@@ -19,7 +19,7 @@ export function Home() {
           <SaleProducts />
         </div>
         <div className="flex items-center flex-col gap-14 justify-center">
-          <div className="mt-52 shadow-xl bg-white p-2 bg-slate-700 rounded-xl">
+          <div className="mt-20 shadow-xl bg-white p-2 bg-slate-700 rounded-xl">
             <ProductsSlider
               relativeProp={"relative"}
               imgHeight={225}
