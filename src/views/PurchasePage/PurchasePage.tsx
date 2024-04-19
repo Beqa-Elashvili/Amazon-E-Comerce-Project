@@ -309,7 +309,9 @@ export function PurchasePage() {
       alert("Expiry must be 4 charecters");
       return;
     } else {
-      PurchaseItems(ProductsPrice, ProductsCaunt);
+      {
+        SumTotal && PurchaseItems(SumTotal, ProductsCaunt);
+      }
       setIsModalOpen(true);
       setTimeout(() => {
         setIsModalOpen(false);

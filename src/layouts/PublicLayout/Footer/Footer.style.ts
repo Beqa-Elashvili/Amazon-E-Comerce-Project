@@ -1,35 +1,65 @@
 import styled from "styled-components";
 
 export const SFooter = styled.div`
-  padding: 30px 0px 30px 0px;
   color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  & .links {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    gap: 15px;
-    column-gap: 70px;
-    margin-top: 0px;
+  font-family: system-ui;
+  .FooterBackgroundOne {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0px 10px 0px 10px;
+    width: 100%;
+    background-color: #232f3e;
   }
-  & .grid-item {
-    padding: 5px;
+
+  .grid-item {
     text-align: center;
-    border-radius: 5px;
-    color: grey;
     text-decoration: none;
-    font-family: system-ui;
     font-size: 14px;
     font-weight: 600;
+    :hover {
+      text-decoration: underline;
+    }
   }
-  & .line {
+  .line {
     background-color: grey;
     width: 100%;
     height: 0.1px;
     opacity: 0.3;
+  }
+
+  .underLInks {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    .links {
+      display: flex;
+      gap: 12px;
+      p:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+  .lang-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #232f3e;
+    border: solid 1px white;
+    width: 130px;
+    height: 34px;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  .rotated {
+    transition: transform 0.5s ease;
+    transform: rotate(360deg);
   }
 `;

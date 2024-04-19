@@ -7,6 +7,7 @@ import { getWishlist } from "@src/hooks/useAddAndGetLikedProducts/GetWishlist";
 import { Getproducts } from "@src/hooks/useGetProducts";
 import { GetSaleProducts } from "@src/hooks/useGetSaleProducts";
 import {
+  TFooterLInks,
   TGender,
   TCategorys,
   TProducts,
@@ -202,6 +203,138 @@ const footerAmazonLinks: { id: string; Name: string; Destination: string }[] = [
   },
 ];
 
+const amazonServices = [
+  {
+    id: uuidv4(),
+    Name: "Amazon Music",
+    Destination: "Stream millions of songs",
+  },
+  {
+    id: uuidv4(),
+    Name: "Amazon Ads",
+    Destination: "Reach customers wherever they spend their time",
+  },
+  {
+    id: uuidv4(),
+    Name: "6pm",
+    Destination: "Score deals on fashion brands",
+  },
+  {
+    id: uuidv4(),
+    Name: "AbeBooks",
+    Destination: "Books, art & collectibles",
+  },
+  {
+    id: uuidv4(),
+    Name: "ACX",
+    Destination: "Audiobook Publishing Made Easy",
+  },
+  {
+    id: uuidv4(),
+    Name: "Sell on Amazon",
+    Destination: "Start a Selling Account",
+  },
+  {
+    id: uuidv4(),
+    Name: "Amazon Business",
+    Destination: "Everything For Your Business",
+  },
+  {
+    id: uuidv4(),
+    Name: "AmazonGlobal",
+    Destination: "Ship Orders Internationally",
+  },
+  {
+    id: uuidv4(),
+    Name: "Home Services",
+    Destination: "Experienced Pros, Happiness Guarantee",
+  },
+  {
+    id: uuidv4(),
+    Name: "Amazon Web Services",
+    Destination: "Scalable Cloud Computing Services",
+  },
+  {
+    id: uuidv4(),
+    Name: "Audible",
+    Destination: "Listen to Books & Original Audio Performances",
+  },
+  {
+    id: uuidv4(),
+    Name: "Box Office Mojo",
+    Destination: "Find Movie Box Office Data",
+  },
+  {
+    id: uuidv4(),
+    Name: "Goodreads",
+    Destination: "Book reviews & recommendations",
+  },
+  {
+    id: uuidv4(),
+    Name: "IMDb",
+    Destination: "Movies, TV & Celebrities",
+  },
+  {
+    id: uuidv4(),
+    Name: "IMDbPro",
+    Destination: "Get Info Entertainment Professionals Need",
+  },
+  {
+    id: uuidv4(),
+    Name: "Kindle Direct Publishing",
+    Destination: "Indie Digital & Print Publishing Made Easy",
+  },
+  {
+    id: uuidv4(),
+    Name: "Prime Video Direct",
+    Destination: "Video Distribution Made Easy",
+  },
+  {
+    id: uuidv4(),
+    Name: "Shopbop",
+    Destination: "Designer Fashion Brands",
+  },
+  {
+    id: uuidv4(),
+    Name: "Woot!",
+    Destination: "Deals and Shenanigans",
+  },
+  {
+    id: uuidv4(),
+    Name: "Zappos",
+    Destination: "Shoes & Clothing",
+  },
+  {
+    id: uuidv4(),
+    Name: "Ring",
+    Destination: "Smart Home Security Systems",
+  },
+  {
+    id: uuidv4(),
+    Name: "eero WiFi",
+    Destination: "Stream 4K Video in Every Room",
+  },
+  {
+    id: uuidv4(),
+    Name: "Blink",
+    Destination: "Smart Security for Every Home",
+  },
+  {
+    id: uuidv4(),
+    Name: "Neighbors App",
+    Destination: "Real-Time Crime & Safety Alerts",
+  },
+  {
+    id: uuidv4(),
+    Name: "Amazon Subscription Boxes",
+    Destination: "Top subscription boxes – right to your door",
+  },
+  {
+    id: uuidv4(),
+    Name: "PillPack",
+    Destination: "Pharmacy Simplified",
+  },
+];
 const statesArray: { id: string; Name: string }[] = [
   { id: uuidv4(), Name: "Alabama" },
   { id: uuidv4(), Name: "Alaska" },
@@ -429,7 +562,8 @@ const Genders = [
 export function GlobalProvider({ children }: PropsWithChildren) {
   const [saleProducts, setSaleProducts] = useState<TProducts[]>([]);
   const [categorys, setCategorys] = useState<TCategorys[]>([]);
-  const [footerLinks, setFooterLinks] = useState(footerAmazonLinks);
+  const [footerLinks, setFooterLinks] =
+    useState<TFooterLInks[]>(footerAmazonLinks);
   const [ChooceGender, setChooceGender] = useState<TGender[]>(Genders);
   const [selectedGender, setSelectedGender] = useState<string>("");
   const [products, setProducts] = useState<TProducts[]>([]);
@@ -451,6 +585,9 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   const [ProductsCount, setAddProductCount] = useState<number | null>(0);
   const [loading, setLoading] = useState<boolean>(false);
   const [productsSlider, setProductsSlider] = useState<TProducts[]>([]);
+  const [FooterLinksTwo, setFooterLinksTwo] =
+    useState<TFooterLInks[]>(amazonServices);
+
   const [Orders, setOrders] = useState<TOrders[]>([]);
 
   const { authStatus } = useAuthProvider();
@@ -508,6 +645,8 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   return (
     <GlobalContext.Provider
       value={{
+        FooterLinksTwo,
+        setFooterLinksTwo,
         Orders,
         setOrders,
         loading,

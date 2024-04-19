@@ -1,1 +1,1 @@
-export { SaleProducts } from "./SaleProducts";
+export { CategoryShablons } from "./CategoryShablons";

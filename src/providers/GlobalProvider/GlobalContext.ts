@@ -14,6 +14,11 @@ export type TOrders = {
   totalPrice: number;
   update_at: string;
 };
+export type TFooterLInks = {
+  Name: string;
+  id: string;
+  Destination: string;
+};
 
 export type TGender = {
   label: string;
@@ -47,22 +52,6 @@ export type TProducts = {
 };
 
 interface TGlobalContext {
-  footerLinks: {
-    Destination: string;
-    Name: string;
-    id: string;
-  }[];
-
-  setFooterLinks: Dispatch<
-    SetStateAction<
-      {
-        Destination: string;
-        Name: string;
-        id: string;
-      }[]
-    >
-  >;
-
   countries: {
     country: string;
   }[];
@@ -87,6 +76,12 @@ interface TGlobalContext {
       }[]
     >
   >;
+  footerLinks: TFooterLInks[];
+  setFooterLinks: Dispatch<SetStateAction<TFooterLInks[]>>;
+
+  FooterLinksTwo: TFooterLInks[];
+  setFooterLinksTwo: Dispatch<SetStateAction<TFooterLInks[]>>;
+
   CartTotalprice: number | null;
   setCartTotalprice: Dispatch<SetStateAction<number>>;
 
@@ -155,6 +150,8 @@ interface TGlobalContext {
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
+  FooterLinksTwo: [],
+  setFooterLinksTwo: () => {},
   Orders: [],
   setOrders: () => {},
   productsSlider: [],

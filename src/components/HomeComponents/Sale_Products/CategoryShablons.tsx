@@ -1,7 +1,7 @@
 import { SSaleProducts } from "./SSaleProducts";
 import { useNavigate } from "react-router-dom";
 
-export function SaleProducts() {
+export function CategoryShablons() {
   const navigate = useNavigate();
 
   const handleProducts = (categoryName: string) => {
