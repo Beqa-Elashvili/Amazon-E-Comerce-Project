@@ -1,8 +1,6 @@
-import { useContext } from "react";
 import { SHome } from "./Home.styled";
-import { ThemeContext } from "@src/providers/ThemeProvider/ThemeContext";
 import { BackSlider } from "../../components/HomeComponents/Slidder";
-import { CategoryShablons } from "@src/components/HomeComponents/Sale_Products";
+import { CategoryShablons } from "@src/components/HomeComponents/Category_shablons";
 import Products from "../ProductsPage";
 import { ProductsSlider } from "@src/components/HomeComponents/ProductsSlider";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
