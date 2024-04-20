@@ -11,11 +11,13 @@ import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
 export function ProductsSlider({
   relativeProp,
   imgHeight,
+  imgwidth,
   products,
   itemsSHow,
 }: {
   relativeProp: "relative" | undefined;
   imgHeight: number;
+  imgwidth: number | undefined;
   products: TProducts[];
   itemsSHow: number | undefined;
 }) {
@@ -79,7 +81,7 @@ export function ProductsSlider({
               >
                 <div
                   className="cursor-pointer"
-                  onClick={() => handleProducts(item.category_name,item.id)}
+                  onClick={() => handleProducts(item.category_name, item.id)}
                 >
                   {item.salePrice !== null && (
                     <div className="flex absolute">
@@ -87,13 +89,13 @@ export function ProductsSlider({
                     </div>
                   )}
                   <img
-                    className="object-contain"
-                    style={{ height: imgHeight }}
+                    className="object-contain max-w-60"
+                    style={{ height: imgHeight, maxWidth: imgwidth }}
                     src={item.image}
                     alt="product_image"
                   />
-                  <h4 className=" h-14 text-balance text-start text-blue-900">
-                    {item.title}
+                  <h4 className="h-16 overflow-hidden text-balance text-start text-blue-900">
+                    {item.title.slice(0,50)}...
                   </h4>
                 </div>
                 <div className="text-start">

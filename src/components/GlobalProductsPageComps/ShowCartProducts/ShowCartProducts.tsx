@@ -28,7 +28,7 @@ export function ShowCartProcuts() {
   return (
     <div>
       {isEmpty && (
-        <div className="flex flex-col border-solid h-full border-slate-400 border-y-0 border-r-0 border-l max-w-40">
+        <div className=" flex flex-col border-solid h-full border-slate-400 border-y-0 border-r-0 border-l max-w-40">
           <div className=" p-2 flex flex-col items-center justify-center">
             <p className="text-gray-700 text-sm">Subtotal</p>
             <h3 className="text-red-600">${CartTotalprice}</h3>
@@ -44,7 +44,7 @@ export function ShowCartProcuts() {
             </Button>
           </div>
           <div className="bg-slate-400 h-px"></div>
-          <div className="overflow-y-auto ">
+          <div className=" overflow-y-auto ">
             {cartProducts?.map((item: TProducts) => {
               return (
                 <div className="text-center" key={item.id}>

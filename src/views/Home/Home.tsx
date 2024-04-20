@@ -21,6 +21,7 @@ export function Home() {
             <ProductsSlider
               relativeProp={"relative"}
               imgHeight={225}
+              imgwidth={undefined}
               itemsSHow={6}
               products={products}
             />
@@ -33,6 +34,7 @@ export function Home() {
             <ProductsSlider
               relativeProp={undefined}
               imgHeight={225}
+              imgwidth={undefined}
               itemsSHow={6}
               products={saleProducts}
             />

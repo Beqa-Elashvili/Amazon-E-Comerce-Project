@@ -92,13 +92,13 @@ export function CartProductsPage() {
                 return (
                   <div
                     key={item.id}
-                    className="bg-slate-400 p-2 rounded-xl w-1/2 border-none"
+                    className="bg-slate-400 p-2 rounded-xl w-2/3 border-none"
                   >
                     <div className="flex justify-between items-center">
                       <div className="bg-grey-200 flex">
                         <div className="bg-white p-2 rounded-xl inline-flex">
                           <div
-                            className="cursor-pointer"
+                            className="cursor-pointer flex items-center"
                             onClick={() =>
                               handleProducts(
                                 item.cartProduct.category_name,
@@ -107,18 +107,18 @@ export function CartProductsPage() {
                             }
                           >
                             <img
-                              className="w-16"
+                              className="w-16 object-contain"
                               src={item.cartProduct.image}
                               alt="img"
                             />
                           </div>
                         </div>
-                        <div className="ml-5">
-                          <h4>{item.cartProduct.title}</h4>
+                        <div className="ml-4">
+                          <h4  className="h-12">{item.cartProduct.title.slice(0,80)}...</h4>
                           {item.cartProduct.salePrice === null ? (
-                            <h5 className="mt-4">{item.cartProduct.price} $</h5>
+                            <h5 className="mt-2">{item.cartProduct.price} $</h5>
                           ) : (
-                            <h5 className="mt-4">
+                            <h5 className="mt-2">
                               {item.cartProduct.salePrice} $
                             </h5>
                           )}
@@ -144,7 +144,7 @@ export function CartProductsPage() {
                         </div>
                         <button
                           onClick={() => deleteCartProduct(item.id, true)}
-                          className="rounded-full h-16 w-16 border-none bg-slate-400"
+                          className=" ml-2 rounded-full h-16 w-16 border-none bg-slate-400"
                         >
                           {<MdDeleteForever className="w-10 h-10" />}
                         </button>

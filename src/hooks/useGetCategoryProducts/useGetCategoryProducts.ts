@@ -9,12 +9,14 @@ export function UseGetCategoryProducts() {
     categoryProducts,
     setSliderValue,
     setProductsSlider,
+    productsSlider
   } = useGlobalProvider();
   const [loading, setLoading] = useState<boolean>(false);
   const { categoryName, productName, page: pageParam } = useParams();
   const page = Number(pageParam);
   const [dataTotal, setDataTotal] = useState<number>(15);
   const pageSize = 10;
+
 
   async function getCategoryProducts(
     category: string,

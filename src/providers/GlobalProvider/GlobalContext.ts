@@ -1,5 +1,4 @@
 import { TUserData } from "@src/@types/TuserData";
-import { TourProps } from "antd";
 import { Dispatch, ReactNode, SetStateAction, createContext } from "react";
 
 export type TUserChangeValues = {

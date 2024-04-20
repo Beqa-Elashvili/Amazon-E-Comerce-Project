@@ -79,6 +79,7 @@ export function CategoryPage() {
             <ProductsSlider
               relativeProp={undefined}
               imgHeight={210}
+              imgwidth={220}
               itemsSHow={6}
               products={productsSlider}
             />

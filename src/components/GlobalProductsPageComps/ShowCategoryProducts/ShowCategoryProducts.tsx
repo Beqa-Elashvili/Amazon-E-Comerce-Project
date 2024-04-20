@@ -65,12 +65,12 @@ export function ShowCategoryProducts() {
                     onClick={() => handleProducts(item.category_name, item.id)}
                   >
                     <img
-                      className="object-cover xl:h-60 md:h-40 w-full"
+                      className="object-contain xl:h-60 md:h-40 w-full"
                       src={item.image}
                       alt="product_image"
                     />
-                    <h4 className="flex text-start w-48 text-blue-900">
-                      {item.title}
+                    <h4 className= "h-20 flex text-start w-48 text-blue-900">
+                      {item.title.slice(0,90)}...
                     </h4>
                   </div>
                   <div className="text-start">

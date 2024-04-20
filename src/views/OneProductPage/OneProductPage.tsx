@@ -99,7 +99,7 @@ export function OneProductPage() {
           <div className="flex flex-col gap-4 p-2">
             <div className="container">
               <img
-                className="size-auto object-contain "
+                className="size-auto object-contain"
                 src={product?.image}
                 alt="product_img"
               />
@@ -281,7 +281,8 @@ export function OneProductPage() {
               <ProductsSlider
                 itemsSHow={6}
                 relativeProp={undefined}
-                imgHeight={210}
+                imgHeight={200}
+                imgwidth={205}
                 products={categoryProducts}
               />
             </div>
