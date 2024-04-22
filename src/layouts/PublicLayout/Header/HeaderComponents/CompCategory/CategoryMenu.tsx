@@ -17,7 +17,7 @@ export function CategoryButtons() {
     <SCategoryButtonsMenu>
       {categorys?.map((category) => {
         return (
-          <div key={category.id}>
+          <div className="hidden lg:block" key={category.id}>
             <button
               className="flex items-center"
               onClick={() =>

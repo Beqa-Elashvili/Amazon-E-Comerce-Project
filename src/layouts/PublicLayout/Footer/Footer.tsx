@@ -18,7 +18,7 @@ export function Footer() {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth' // Smooth scrolling
+      behavior: "smooth",
     });
   };
   useEffect(() => {
@@ -29,7 +29,12 @@ export function Footer() {
   return (
     <SFooter>
       <div className="FooterBackgroundOne">
-        <div onClick={scrollToTop} className="bg-gray-700 hover:bg-gray-600 cursor-pointer p-4 w-full  text-center">Back to top</div>
+        <div
+          onClick={scrollToTop}
+          className="bg-gray-700 hover:bg-gray-600 cursor-pointer p-4 w-full  text-center"
+        >
+          Back to top
+        </div>
         <div className="w-4/6 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-12 gap-y-2">
           {footerLinks.map((link: TFooterLInks) => (
             <div key={link.id}>
@@ -53,7 +58,7 @@ export function Footer() {
         <div className="line"></div>
         <div className="flex items-center my-8 gap-2">
           <img className="h-6" src="\Images\amazon logo.png" alt="" />
-          <Translate  />
+          <Translate />
           <button className="lang-btn" onClick={toggles}>
             Change theme
             <span className="border-solid flex items-center ml-2 border rounded-full">

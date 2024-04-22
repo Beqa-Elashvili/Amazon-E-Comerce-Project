@@ -76,30 +76,40 @@ export function Header() {
             className="w-28 h-50 p-1"
           />
         </button>
-        <button
-          onClick={() => setOpenLocationModal(true)}
-          className="Deliver ml-1"
-        >
-          <h5>
-            <FormattedMessage id="Deliver-to" defaultMessage={"Deliver to"} />
-          </h5>
-
-          <h3 className="flex">
+        <div className="hidden lg:block">
+          <button
+            onClick={() => setOpenLocationModal(true)}
+            className="Deliver ml-1 "
+          >
+            <h5>
+              <FormattedMessage id="Deliver-to" defaultMessage={"Deliver to"} />
+            </h5>
+            <h3 className="flex">
+              <img
+                src="/Images/map cursor.png"
+                alt="cursor"
+                className="Map w-4 h-4 mr-0.5"
+              />
+              <p>{location.slice(0, 6)}...</p>
+              <p>{zipCode}</p>
+            </h3>
+            <LocationDeliverModal />
+          </button>
+        </div>
+        <div className="block lg:hidden">
+          <button className="ml-2 resp-serch-btn">
             <img
-              src="/Images/map cursor.png"
-              alt="cursor"
-              className="Map w-4 h-4 mr-0.5"
+              className=" w-5 h-5"
+              src="/Images/search-icon.png"
+              alt="search-icon"
             />
-            <p>{location.slice(0, 6)}...</p>
-            <p>{zipCode}</p>
-          </h3>
-          <LocationDeliverModal />
-        </button>
-        <div className="relative flex items-center">
+          </button>
+        </div>
+        <div className="w-full relative flex items-center  ">
           <select
             value={categorySearch}
             onChange={handleSelectValue}
-            className="absolute z-10 ml-5"
+            className="absolute z-10 ml-5 hidden lg:block "
             name="SelectCategory"
             id="all"
             style={{ width: "auto" }}
@@ -116,7 +126,7 @@ export function Header() {
           <Input
             value={search}
             onChange={handleInputChange}
-            className="ml-5"
+            className="ml-5 hidden lg:block"
             type="text"
             placeholder="Search Amazon"
           />
@@ -152,7 +162,7 @@ export function Header() {
             onClick={() =>
               hanldeSearchValue(categorySearch, `productName=${search}`, 1)
             }
-            className="input-btn absolute"
+            className="input-btn absolute hidden lg:block"
           >
             <img
               className=" w-5 h-5"
@@ -164,15 +174,17 @@ export function Header() {
         <Translate />
         <UserAvatar />
         <Hbuttons>
-          <button onClick={() => navigate("/OrdersPage")}>
-            <p>
-              <FormattedMessage id="returns" defaultMessage={"returns"} />
-            </p>
-            <h4>
-              <FormattedMessage id="Orders" defaultMessage={"Orders"} />
-            </h4>
-          </button>
-          <div className="relative">
+          <div className="hidden lg:block">
+            <button onClick={() => navigate("/OrdersPage")}>
+              <p>
+                <FormattedMessage id="returns" defaultMessage={"returns"} />
+              </p>
+              <h4>
+                <FormattedMessage id="Orders" defaultMessage={"Orders"} />
+              </h4>
+            </button>
+          </div>
+          <div className="relative hidden lg:block">
             <button
               onClick={() => navigate("/cartProducts")}
               className="shop-button"
@@ -189,6 +201,18 @@ export function Header() {
             <div className="absolute top-1 right-2 text-white border-solid border-amber-500 rounded-full h-6 min-w-6 text-center">
               {ProductsCount}
             </div>
+          </div>
+          <div className="block lg:hidden">
+            <button
+              onClick={() => navigate("/cartProducts")}
+              className="shop-button"
+            >
+              <img
+                className="shopping-cart-icon"
+                src="/Images/shopping-cart-icon.png"
+                alt="Shopping-cart-icon"
+              />
+            </button>
           </div>
         </Hbuttons>
       </SHeader>

@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 export const SHeader = styled.div`
-  padding: 4px 12px;
+  padding: 4px 80px;
   max-height: 62px;
   display: flex;
   align-items: center;
   justify-content: center;
-
   & button {
     border: none;
     background-color: rgb(17 24 39);
@@ -57,19 +56,19 @@ export const SHeader = styled.div`
       color: black;
     }
   }
-  & Input {
-    padding: 11px 140px;
+  Input {
+    padding: 11px 0px 11px 140px;
     z-index: 0;
     border: hidden;
     border-radius: 4px;
     transition: border-color 1s;
-    width: 740px;
     box-shadow: 0px 0 2px 0 rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.3s ease-in-out;
     :focus {
       box-shadow: 0px 0 10px 0 goldenrod;
     }
   }
+
   & .input-btn {
     right: 0;
     padding: 10px;
@@ -80,6 +79,14 @@ export const SHeader = styled.div`
       border: 0;
       border-radius: 0px 4px 4px 0px;
       opacity: 0.7;
+    }
+  }
+  .resp-serch-btn {
+    padding: 8px;
+    background-color: orange;
+    border-radius: 20%;
+    :hover {
+      border-radius: 20%;
     }
   }
   & .border-div button {

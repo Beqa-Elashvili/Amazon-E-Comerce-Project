@@ -38,7 +38,7 @@ export function ProductsSlider({
   };
 
   return (
-    <div className="text-center">
+    <div className="text-center hidden lg:block">
       <div
         style={{ position: relativeProp }}
         className="inline-flex bg-white rounded-lg justify-center"

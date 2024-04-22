@@ -27,7 +27,7 @@ export function Products() {
 
   return (
     <SProducts>
-      <div className="container">
+      <div className="grid grid-cols-1 p-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-7 gap-y-2">
         {products?.map((item) => {
           return (
             <div

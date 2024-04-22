@@ -2,9 +2,6 @@ import styled from "styled-components";
 
 export const SFooter = styled.div`
   color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   font-family: system-ui;
   .FooterBackgroundOne {
     display: flex;
