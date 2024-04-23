@@ -3,7 +3,7 @@ import { ShowCartProcuts } from "@src/components/GlobalProductsPageComps/ShowCar
 import { ShowCategoryProducts } from "@src/components/GlobalProductsPageComps/ShowCategoryProducts";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { ProductsSlider } from "@src/components/HomeComponents/ProductsSlider";
-import { Skeleton, SkeletonProps } from "antd";
+import { Skeleton } from "antd";
 import { UseGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
 export function CategoryPage() {
   const { productsSlider } = useGlobalProvider();

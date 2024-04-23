@@ -26,7 +26,7 @@ export function ShowCartProcuts() {
   };
 
   return (
-    <div>
+    <div className="hidden lg:block">
       {isEmpty && (
         <div className=" flex flex-col border-solid h-full border-slate-400 border-y-0 border-r-0 border-l max-w-40">
           <div className=" p-2 flex flex-col items-center justify-center">
@@ -49,7 +49,7 @@ export function ShowCartProcuts() {
               return (
                 <div className="text-center" key={item.id}>
                   <div
-                    className="cursor-pointer"
+                    className="cursor-pointer p-2"
                     onClick={() =>
                       handleProduct(
                         item.cartProduct.category_name,

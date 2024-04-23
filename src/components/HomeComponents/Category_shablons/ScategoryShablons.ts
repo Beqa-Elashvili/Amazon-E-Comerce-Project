@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 export const SCategoryShablons = styled.div`
   img {
-    height: 340px;
+    width: 100%;
+    min-height: 300px;
+    height: auto;
     transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
     object-fit: cover;
     border: solid 3px white;

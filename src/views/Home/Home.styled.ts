@@ -6,7 +6,7 @@ export const SHome = styled.div`
   `}
   @media (min-width: 374px) {
     .resp-height {
-      height: 2000px;
+      height: 1100px;
     }
   }
   @media (min-width: 768px) {

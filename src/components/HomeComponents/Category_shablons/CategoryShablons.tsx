@@ -5,11 +5,11 @@ export function CategoryShablons() {
   const navigate = useNavigate();
 
   const handleCategory = (categoryName: string) => {
-    navigate(`/Category_Products_Page/${categoryName}/Productname/${1}`);
+    navigate(`/Category_Products_Page/${categoryName}/productName/${1}`);
   };
   return (
     <SCategoryShablons className="absolute top-80 left-10 right-10">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-2">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-2">
         <div className="relative">
           <img src="\Images\onFloImages\imageSix.jpg" alt="img" />
           <h2 onClick={() => handleCategory("TV | მონიტორები")}>

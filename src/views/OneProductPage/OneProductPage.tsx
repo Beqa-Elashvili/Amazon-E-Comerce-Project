@@ -95,14 +95,16 @@ export function OneProductPage() {
           active
         />
       ) : (
-        <div className="flex">
-          <div className="flex flex-col gap-4 p-2">
-            <div className="container">
-              <img
-                className="size-auto object-contain"
-                src={product?.image}
-                alt="product_img"
-              />
+        <div className="flex justify-between">
+          <div className="w-full flex flex-col gap-4 p-2">
+            <div className="container w-full">
+              <div className="imgs flex items-start mt-20">
+                <img
+                  className=" max-h-96 object-contain"
+                  src={product?.image}
+                  alt="product_img"
+                />
+              </div>
               <div className="box">
                 <h1 className="text-blue-900 mt-16">{product?.title}</h1>
                 <h3 className="text-balance">{product?.description}</h3>
@@ -277,7 +279,7 @@ export function OneProductPage() {
                 </div>
               </div>
             </div>
-            <div className="p-2 shadow-xl relative rounded-xl">
+            <div className="sliders p-2 shadow-xl relative rounded-xl">
               <ProductsSlider
                 itemsSHow={6}
                 relativeProp={undefined}
