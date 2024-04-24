@@ -36,6 +36,12 @@ export const SProductPage = styled.div`
       display: block;
     }
   }
+  .resp-Products img {
+    transition: transform 1.5s ease;
+  }
+  .resp-Products:hover img {
+    transform: scale(1.2);
+  }
 
   .box {
     display: flex;

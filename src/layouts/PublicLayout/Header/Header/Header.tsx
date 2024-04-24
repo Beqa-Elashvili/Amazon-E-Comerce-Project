@@ -151,12 +151,12 @@ export function Header() {
                     className=" flex gap-2 py-1 cursor-pointer"
                   >
                     <img
-                      className="h-12 w-10 rounded hover:shadow"
+                      className="h-12 w-10 object-contain rounded-xl hover:shadow"
                       src={item.image}
                       alt="product-image"
                     />
                     <div>
-                      <p>{item.title}</p>
+                      <p>{item.title.slice(0,65)}...</p>
                       {item.salePrice !== null ? (
                         <h6 className="text-red-600">
                           price: {item.salePrice}$
@@ -223,7 +223,7 @@ export function Header() {
                     className="flex gap-2 py-1 cursor-pointer"
                   >
                     <img
-                      className="h-12 w-10 rounded hover:shadow"
+                      className="h-12 w-10 object-contain rounded-xl hover:shadow"
                       src={item.image}
                       alt="product-image"
                     />

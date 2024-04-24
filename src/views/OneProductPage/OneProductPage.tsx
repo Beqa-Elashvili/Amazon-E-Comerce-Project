@@ -2,7 +2,7 @@ import { useGetOneProduct } from "@src/hooks/useGetOneProduct";
 import { SProductPage } from "./SProductPage";
 import { useEffect, useState } from "react";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
-import { Checkbox, Rate, CheckboxProps, Popover, Button, Skeleton } from "antd";
+import { Checkbox, Rate, Popover, Button, Skeleton } from "antd";
 import { useAddinCart } from "@src/hooks/useAddAndGetCart";
 import { ShowCartProcuts } from "@src/components/GlobalProductsPageComps/ShowCartProducts";
 import { LocationDeliverModal } from "@src/components/LocationDeliverModal";
@@ -43,6 +43,10 @@ export function OneProductPage() {
 
   const hanldeBuy = (price: number) => {
     navigate(`/Buy/Checkout/${price}/${[1]}`);
+  };
+
+  const handleProducts = (category: string, id: string) => {
+    navigate(`/OneProductPage/${id}/${category}`);
   };
 
   useEffect(() => {
@@ -96,11 +100,11 @@ export function OneProductPage() {
         />
       ) : (
         <div className="flex justify-between">
-          <div className="w-full flex flex-col gap-4 p-2">
+          <div className="w-full flex flex-col items-center gap-4 p-2">
             <div className="container w-full">
               <div className="imgs flex items-start mt-20">
                 <img
-                  className=" max-h-96 object-contain"
+                  className="h-60 w-80 lg:h-96 lg:w-[600px]  object-contain"
                   src={product?.image}
                   alt="product_img"
                 />
@@ -277,6 +281,32 @@ export function OneProductPage() {
                     </div>
                   </div>
                 </div>
+              </div>
+              <div className="text-center grid gap-x-20 gap-y-4 grid-cols-2 md:grid-cols-3 lg:hidden">
+                {categoryProducts.slice(0, 6).map((item) => {
+                  return (
+                    <div
+                      onClick={() =>
+                        handleProducts(item.category_name, item.id)
+                      }
+                      className="resp-Products border-solid border rounded border-slate-200 p-2 cursor-pointer"
+                    >
+                      <img
+                        className="h-20 w-20 object-contain"
+                        src={item.image}
+                        alt="product_img"
+                      />
+                      <p>{item.title.split(" ").slice(0, 4).join(" ")}</p>
+                      {item.salePrice !== null ? (
+                        <p className="text-lg text-red-600">
+                          ${item.salePrice}
+                        </p>
+                      ) : (
+                        <p className="text-lg">${item.price}</p>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
             <div className="sliders p-2 shadow-xl relative rounded-xl">
