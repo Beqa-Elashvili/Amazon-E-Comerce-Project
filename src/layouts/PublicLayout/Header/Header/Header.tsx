@@ -12,7 +12,7 @@ import {
   TCategorys,
   TProducts,
 } from "@src/providers/GlobalProvider/GlobalContext";
-import { Input } from "antd";
+import { Button, Input, Modal } from "antd";
 
 export function Header() {
   const [search, setSearch] = useState<string>("");
@@ -21,6 +21,8 @@ export function Header() {
   const { categorys, ProductsCount, setOpenLocationModal, location, zipCode } =
     useGlobalProvider();
   const [show, setshow] = useState<boolean>(false);
+  const [showRespInput, setshowRespInput] = useState<boolean>(false);
+
   const navigate = useNavigate();
 
   const hanldeSearchValue = (
@@ -31,6 +33,7 @@ export function Header() {
     navigate(`/Category_Products_Page/${categorySearch}/${search}/${page}`);
     setSearch("");
     setshow(false);
+    setshowRespInput(false);
   };
 
   useEffect(() => {
@@ -64,6 +67,10 @@ export function Header() {
     navigate(`/OneProductPage/${category}/${id}`);
     setSearch("");
     setshow(false);
+    setshowRespInput(false);
+  };
+  const ToggleShowRespInput = () => {
+    setshowRespInput(!showRespInput);
   };
 
   return (
@@ -96,80 +103,157 @@ export function Header() {
             <LocationDeliverModal />
           </button>
         </div>
+
         <div className="block lg:hidden">
-          <button className="ml-2 resp-serch-btn">
+          <button onClick={ToggleShowRespInput} className="ml-2 resp-serch-btn">
             <img
-              className=" w-5 h-5"
+              className="h-5"
               src="/Images/search-icon.png"
               alt="search-icon"
             />
           </button>
         </div>
-        <div className="w-full relative flex items-center  ">
-          <select
-            value={categorySearch}
-            onChange={handleSelectValue}
-            className="absolute z-10 ml-5 hidden lg:block "
-            name="SelectCategory"
-            id="all"
-            style={{ width: "auto" }}
-          >
-            <option value="All">All</option>
-            {categorys?.map((category: TCategorys) => {
-              return (
-                <option key={category.id} value={category.name}>
-                  {category.name}
-                </option>
-              );
-            })}
-          </select>
-          <Input
-            value={search}
-            onChange={handleInputChange}
-            className="ml-5 hidden lg:block"
-            type="text"
-            placeholder="Search Amazon"
-          />
-          <div
-            style={{ display: show ? "block" : "none" }}
-            className="absolute max-h-80 top-12 left-40 bg-red-50 p-4 z-10 rounded-lg w-96 overflow-y-auto"
-          >
-            {SearchResults?.map((item: TProducts) => {
-              return (
-                <div
-                  key={item.id}
-                  onClick={() => handleProducts(item.category_name, item.id)}
-                  className="flex gap-2 py-1 cursor-pointer"
-                >
-                  <img
-                    className="h-12 w-10 rounded hover:shadow"
-                    src={item.image}
-                    alt="product-image"
-                  />
-                  <div>
-                    <p>{item.title}</p>
-                    {item.salePrice !== null ? (
-                      <h6 className="text-red-600">price: {item.salePrice}$</h6>
-                    ) : (
-                      <h6>price: {item.price}$</h6>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <button
-            onClick={() =>
-              hanldeSearchValue(categorySearch, `productName=${search}`, 1)
-            }
-            className="input-btn absolute hidden lg:block"
-          >
-            <img
-              className=" w-5 h-5"
-              src="/Images/search-icon.png"
-              alt="search-icon"
+        <div className="w-full hidden lg:block">
+          <div className="w-full relative flex items-center">
+            <select
+              value={categorySearch}
+              onChange={handleSelectValue}
+              className="absolute z-10 ml-5 hidden lg:block "
+              name="SelectCategory"
+              id="all"
+              style={{ width: "auto" }}
+            >
+              <option value="All">All</option>
+              {categorys?.map((category: TCategorys) => {
+                return (
+                  <option key={category.id} value={category.name}>
+                    {category.name}
+                  </option>
+                );
+              })}
+            </select>
+            <Input
+              value={search}
+              onChange={handleInputChange}
+              className="ml-5 hidden lg:block"
+              type="text"
+              placeholder="Search Amazon"
             />
-          </button>
+            <div
+              style={{ display: show ? "block" : "none" }}
+              className="absolute max-h-80 top-12 left-40 bg-red-50 p-4 z-10 rounded-lg w-96 overflow-y-auto"
+            >
+              {SearchResults?.map((item: TProducts) => {
+                return (
+                  <div
+                    key={item.id}
+                    onClick={() => handleProducts(item.category_name, item.id)}
+                    className=" flex gap-2 py-1 cursor-pointer"
+                  >
+                    <img
+                      className="h-12 w-10 rounded hover:shadow"
+                      src={item.image}
+                      alt="product-image"
+                    />
+                    <div>
+                      <p>{item.title}</p>
+                      {item.salePrice !== null ? (
+                        <h6 className="text-red-600">
+                          price: {item.salePrice}$
+                        </h6>
+                      ) : (
+                        <h6>price: {item.price}$</h6>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <button
+              onClick={() =>
+                hanldeSearchValue(categorySearch, `productName=${search}`, 1)
+              }
+              className="input-btn hidden lg:block"
+            >
+              <img
+                className=" w-5 h-5"
+                src="/Images/search-icon.png"
+                alt="search-icon"
+              />
+            </button>
+          </div>
+        </div>
+        <div
+          style={{ display: showRespInput ? "block" : "none" }}
+          className="z-10 resp-input relative"
+        >
+          <div className="relative block lg:hidden flex items-center">
+            <select
+              value={categorySearch}
+              onChange={handleSelectValue}
+              className="absolute z-10"
+              name="SelectCategory"
+              id="all"
+            >
+              <option value="All">All</option>
+              {categorys?.map((category: TCategorys) => {
+                return (
+                  <option key={category.id} value={category.name}>
+                    {category.name}
+                  </option>
+                );
+              })}
+            </select>
+            <Input
+              value={search}
+              onChange={handleInputChange}
+              className="ml-5"
+              type="text"
+              placeholder="Search Amazon"
+            />
+            <div
+              style={{ display: show ? "block" : "none" }}
+              className="absolute w-3/4 max-h-80 top-12 left-20 bg-red-50 p-4 z-10 rounded-lg overflow-y-auto"
+            >
+              {SearchResults?.map((item: TProducts) => {
+                return (
+                  <div
+                    key={item.id}
+                    onClick={() => handleProducts(item.category_name, item.id)}
+                    className="flex gap-2 py-1 cursor-pointer"
+                  >
+                    <img
+                      className="h-12 w-10 rounded hover:shadow"
+                      src={item.image}
+                      alt="product-image"
+                    />
+                    <div>
+                      <p>{item.title.slice(0, 20)}</p>
+                      {item.salePrice !== null ? (
+                        <h6 className="text-red-600">
+                          price: {item.salePrice}$
+                        </h6>
+                      ) : (
+                        <h6>price: {item.price}$</h6>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <button
+              onClick={() =>
+                hanldeSearchValue(categorySearch, `productName=${search}`, 1)
+              }
+              className="input-btn absolute"
+            >
+              <img
+                className=" w-5 h-5"
+                src="/Images/search-icon.png"
+                alt="search-icon"
+              />
+            </button>
+          </div>
         </div>
         <Translate />
         <UserAvatar />

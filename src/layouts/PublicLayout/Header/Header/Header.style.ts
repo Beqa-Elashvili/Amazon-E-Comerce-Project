@@ -6,34 +6,34 @@ export const SHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  & button {
+  button {
     border: none;
     background-color: rgb(17 24 39);
     cursor: pointer;
   }
-  & button:hover {
+  button:hover {
     border: solid 1px #ffffff;
     border-radius: 3%;
   }
-  & .Deliver {
+  .Deliver {
     display: flex;
     min-width: 155px;
     flex-direction: column;
     color: #ffffff;
     padding: 10px;
   }
-  & .Map {
+  .Map {
     filter: brightness(0) invert(1) grayscale(1);
   }
-  & h5 {
+  h5 {
     margin-left: 18px;
     color: gray;
     font-weight: 600;
   }
-  & h3 {
+  h3 {
     font-weight: 600;
   }
-  & select {
+  select {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
       Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
       sans-serif;
@@ -51,13 +51,14 @@ export const SHeader = styled.div`
       border-color: lightcoral;
       outline: none;
     }
-    & option {
+    option {
       background-color: #ffffff;
       color: black;
     }
   }
   Input {
     padding: 11px 0px 11px 140px;
+    width: 100%;
     z-index: 0;
     border: hidden;
     border-radius: 4px;
@@ -69,7 +70,8 @@ export const SHeader = styled.div`
     }
   }
 
-  & .input-btn {
+  .input-btn {
+    position: absolute;
     right: 0;
     padding: 10px;
     background-color: orange;
@@ -89,8 +91,24 @@ export const SHeader = styled.div`
       border-radius: 20%;
     }
   }
-  & .border-div button {
+
+  .border-div button {
     border: none;
+  }
+  .resp-input {
+    position: absolute;
+    width: 100%;
+    top: 60px;
+    select {
+      border-radius: 0px 0px 0px 4px;
+    }
+    input {
+      border-radius: 0px 0px 4px 4px;
+      margin-left: 0px;
+    }
+    button {
+      border-radius: 0px 0px 4px 0px;
+    }
   }
 `;
 export const Hbuttons = styled.div`
