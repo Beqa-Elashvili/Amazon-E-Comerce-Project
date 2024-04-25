@@ -25,53 +25,55 @@ export function CartProductsPage() {
   return (
     <SCartProducts>
       {ProductsCount === 0 ? (
-        <div className="flex justify-center items-center">
-          <img
-            className="w-full"
-            src="../Images/empty_cart_image/empty_cart_image.png"
-            alt="empty_cart_img"
-          />
-          <div className="absolute">
-            <h1>
-              <FormattedMessage
-                id="Your_Amazon_Cart_is_empty"
-                defaultMessage={"Your Amazon Cart is empty"}
-              />
-            </h1>
-            {authStatus === "unauthorized" ? (
-              <div className=" mt-2 bg-slate-700 rounded-xl p-4 flex justify-between">
-                <Button
-                  onClick={() => navigate("/Login")}
-                  className="bg-yellow-400 border-none"
-                >
-                  <FormattedMessage
-                    id="Authorization"
-                    defaultMessage={"Sign in to your account"}
-                  />
-                </Button>
-                <Button
-                  onClick={() => navigate("/Register")}
-                  className="bg-yellow-400 border-none"
-                >
-                  <FormattedMessage
-                    id="Registration"
-                    defaultMessage={"Sign up now"}
-                  />
-                </Button>
-              </div>
-            ) : (
-              <div className="mt-2 bg-slate-700 rounded-full p-4 text-center">
-                <Button
-                  onClick={() => navigate("/")}
-                  className="bg-yellow-400 text-base border-none w-full"
-                >
-                  <FormattedMessage
-                    id="Add_products_Here"
-                    defaultMessage={"Add products Here"}
-                  />
-                </Button>
-              </div>
-            )}
+        <div className="border-solid border rounded p-2 bg-slate-300 lg:border-none lg:bg-none">
+          <div className="flex justify-center items-center">
+            <img
+              className="hidden lg:block w-full"
+              src="../Images/empty_cart_image/empty_cart_image.png"
+              alt="empty_cart_img"
+            />
+            <div className="relative lg:absolute">
+              <h1>
+                <FormattedMessage
+                  id="Your_Amazon_Cart_is_empty"
+                  defaultMessage={"Your Amazon Cart is empty"}
+                />
+              </h1>
+              {authStatus === "unauthorized" ? (
+                <div className="mt-2 lg:bg-slate-700 rounded-xl p-4 flex justify-between">
+                  <Button
+                    onClick={() => navigate("/Login")}
+                    className="bg-yellow-500 border-none"
+                  >
+                    <FormattedMessage
+                      id="Authorization"
+                      defaultMessage={"Sign in to your account"}
+                    />
+                  </Button>
+                  <Button
+                    onClick={() => navigate("/Register")}
+                    className="bg-yellow-500 border-none"
+                  >
+                    <FormattedMessage
+                      id="Registration"
+                      defaultMessage={"Sign up now"}
+                    />
+                  </Button>
+                </div>
+              ) : (
+                <div className="mt-2 lg:bg-slate-700 rounded-full p-4 text-center">
+                  <Button
+                    onClick={() => navigate("/")}
+                    className="bg-yellow-500 text-base border-none w-full"
+                  >
+                    <FormattedMessage
+                      id="Add_products_Here"
+                      defaultMessage={"Add products Here"}
+                    />
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       ) : (

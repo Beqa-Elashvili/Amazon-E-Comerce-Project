@@ -21,21 +21,23 @@ export function LikedProductsPage(): JSX.Element {
   return (
     <SLikedProducts>
       {wishlist?.length === 0 || authStatus === "unauthorized" ? (
-        <div className="flex justify-center items-center">
-          <img
-            className="w-full h-full relative object-cover"
-            src="../Images/empty_cart_image/empty_cart_image.png"
-            alt="empty_cart_img"
-          />
-          <div className="absolute p-5">
-            <h1>Your Amazon Wishlist is empty</h1>
-            <div className=" mt-2 bg-slate-700 rounded-full p-4 text-center">
-              <Button
-                onClick={() => navigate("/")}
-                className="bg-yellow-400 border-none w-full"
-              >
-                Add Wishlist products Here
-              </Button>
+        <div className="border-solid border rounded bg-slate-300 lg:border-none">
+          <div className="flex justify-center items-center">
+            <img
+              className="hidden lg:block w-full relative object-cover"
+              src="../Images/empty_cart_image/empty_cart_image.png"
+              alt="empty_cart_img"
+            />
+            <div className="relative lg:absolute p-2">
+              <h1>Your Amazon Wishlist is empty</h1>
+              <div className=" mt-2 lg:bg-slate-700  rounded-full p-4 text-center">
+                <Button
+                  onClick={() => navigate("/")}
+                  className="bg-yellow-500 border-none w-full"
+                >
+                  Add Wishlist products Here
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -45,7 +47,7 @@ export function LikedProductsPage(): JSX.Element {
             return (
               <div
                 key={item.id}
-                className=" w-1/2 m-auto flex flex-col items-center rounded-xl overflow-hidden p-2 border-solid border border-orange-400"
+                className=" w-1/2 m-auto flex flex-col items-center rounded-xl overflow-hidden p-2 border-solid border border-orange-400 lg:border-none bg-white"
               >
                 <div className="bg-grey-200 flex flex-col">
                   <div

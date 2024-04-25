@@ -79,7 +79,7 @@ export function CategoryMenu() {
       >
         {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
       </Button>
-      <div className="bg-gray-400 opacity-70 h-auto min-h-96 rounded-r-lg">
+      <div className="bg-gray-400 h-auto min-h-96 rounded-r-lg">
         <Menu
           className="object-cover bg-gray-400 rounded-r-lg"
           mode="inline"
