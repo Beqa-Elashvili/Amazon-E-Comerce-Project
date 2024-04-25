@@ -25,8 +25,8 @@ export function ProfilePage() {
   };
 
   return (
-    <div className="flex justify-center p-12">
-      <div className="w-2/5 lg:2/5">
+    <div className="flex justify-center p-6 lg:p-12">
+      <div className="w-full lg:w-2/5">
         <div className="flex items-center justify-between">
           <div>
             <div className="flex">

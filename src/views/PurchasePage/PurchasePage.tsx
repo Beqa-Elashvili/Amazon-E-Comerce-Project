@@ -330,7 +330,7 @@ export function PurchasePage() {
           active
         />
       ) : (
-        <div>
+        <div className="p-4 lg:w-3/4 m-auto">
           {isChange ? (
             <p className="py-2 text-xl font-medium text-red-800">
               2 Add a New Shipping Address
@@ -344,7 +344,7 @@ export function PurchasePage() {
               1 Enter your shipping address
             </p>
           )}
-          <div className="content-2 flex justify-between gap-6">
+          <div className="content-2 lg:flex lg:justify-between gap-6">
             {isEverythingOkay ? (
               <div className="bg-orange-100 rounded-lg p-4">
                 <div
@@ -433,8 +433,8 @@ export function PurchasePage() {
               </div>
             ) : (
               <div className="w-full">
-                <div className="border-solid border-slate-400 p-6 border rounded-lg border w-11/12">
-                  <div className="w-5/6">
+                <div className="border-solid border-slate-400 p-6 border rounded-lg border ">
+                  <div className=" w-full lg:w-5/6">
                     {isChange ? (
                       <div>
                         <div className="flex flex-col gap-4">
@@ -553,7 +553,7 @@ export function PurchasePage() {
                                 value={locState}
                                 onChange={handleLocState}
                                 disabled={isEverythingOkay}
-                                style={{ width: 200 }}
+                                // style={{ width: 200 }}
                               >
                                 {states.map(
                                   (item: { Name: string; id: string }) => {
@@ -579,7 +579,7 @@ export function PurchasePage() {
                           )}
                           <Button
                             onClick={handleOk}
-                            className="btn text-base w-2/5"
+                            className="btn text-base w-full lg:w-2/5"
                           >
                             Use this address
                           </Button>
@@ -675,13 +675,19 @@ export function PurchasePage() {
                               />
                             </div>
                             <div className="flex items-center gap-2">
-                              <div>
+                              <div className="hidden lg:block">
                                 <p className="text-base font-medium">City</p>
                                 <Input
                                   name="city"
                                   value={deliverData.city}
                                   onChange={handleUserData}
                                 />
+                              </div>
+                              <div className="block lg:hidden">
+                                <p className="text-base font-medium">
+                                  ZIP Code
+                                </p>
+                                <Input disabled value={zipCode} />
                               </div>
                               <div>
                                 <div>
@@ -709,20 +715,33 @@ export function PurchasePage() {
                                   </Select>
                                 </div>
                               </div>
-                              <div>
-                                <div>
-                                  <p className="text-base font-medium">
-                                    ZIP Code
-                                  </p>
-                                  <Input disabled value={zipCode} />
-                                </div>
+                              <div className="hidden lg:block">
+                                <p className="text-base font-medium">
+                                  ZIP Code
+                                </p>
+                                <Input disabled value={zipCode} />
                               </div>
+                            </div>
+                            <div className="block lg:hidden">
+                              <p className="text-base font-medium">City</p>
+                              <Input
+                                name="city"
+                                value={deliverData.city}
+                                onChange={handleUserData}
+                              />
                             </div>
                           </div>
                           <div className=" mt-2 flex gap-2">
                             <Checkbox />
                             <p>Make this my default address</p>
                           </div>
+
+                          <Button
+                            onClick={handleOk}
+                            className="btn mt-2 text-base w-full lg:w-2/5"
+                          >
+                            Use this address
+                          </Button>
                           {iseveryValue && (
                             <div className="bg-red-200 m-2 border-solid border-2 border-red-700 w-3/5 rounded-xl px-6 py-2 pb-10">
                               <p className="opacity-100">
@@ -730,15 +749,68 @@ export function PurchasePage() {
                               </p>
                             </div>
                           )}
-                          <Button
-                            onClick={handleOk}
-                            className="btn mt-2 text-base w-2/5"
-                          >
-                            Use this address
-                          </Button>
                         </div>
                       </div>
                     )}
+                  </div>
+                </div>
+                <div>
+                  <div className="block mt-4 lg:hidden w-full m-auto ">
+                    <div className="border-solid border  text-center rounded-lg border-slate-400">
+                      <div className=" p-6">
+                        <p className="text-balance text-xs font-medium">
+                          Choose a shipping address to continue checking out.
+                          You'll still have a chance to review and edit your
+                          order before it's final.
+                        </p>
+                        <hr className="mt-2" />
+                        <h3 className="text-start mt-2">Order Summary</h3>
+                        <div className="text-balance flex flex-col gap-1 text-xs font-medium">
+                          <div className="flex justify-between">
+                            <p>items</p>
+                            <p>( {caunt} )</p>
+                          </div>
+                          <div className="flex justify-between">
+                            <p>Shipping & handling:</p>
+                            <p>${numberes.numberOne}</p>
+                          </div>
+                          <div>
+                            <hr className="w-2/6 float-end" />
+                          </div>
+                          <div className="flex justify-between">
+                            <p>Total before tax:</p>
+                            <p>${numberes.numberTwo}</p>
+                          </div>
+                          <div className="flex justify-between">
+                            <p>Estimate tax to be Collected</p>
+                            <p>${numberes.numberThree}</p>
+                          </div>
+                        </div>
+                        <hr className="mb-2 mt-1" />
+                        <div className="flex flex-col gap-1">
+                          <div className="flex text-xs text-orange-600 justify-between">
+                            <h3>Products</h3>
+                            <h3>${price}</h3>
+                          </div>
+                          <div className="flex text-orange-600 text-xs justify-between">
+                            <h3>Shipping Price</h3>
+                            <h3>${shippingCost}</h3>
+                          </div>
+                          <div className="flex justify-between">
+                            <h3 className="text-red-800">Order Total</h3>
+                            <h3 className="text-red-800">${SumTotal}</h3>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="p-6 bg-slate-200  rounded-b-lg text-center">
+                        <a
+                          className="text-xs font-medium no-underline hover:underline"
+                          href="https://www.amazon.com/gp/help/customer/display.html/ref=chk_help_shipcosts_pri?nodeId=GGE5X8EV7VNVTK6R&ie=UTF8&ref_=chk_help_shipcosts_pri"
+                        >
+                          How are shipping costs calculated?
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="Footer">
@@ -772,7 +844,7 @@ export function PurchasePage() {
                 </div>
               </div>
             )}
-            <div>
+            <div className="hidden lg:block">
               <div className="sticky top-4">
                 <div className="border-solid border max-w-[400px] text-center rounded-t-lg border-slate-400 p-6">
                   <p className="text-balance text-xs font-medium">

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const SPurchasePage = styled.div`
-  width: 65%;
   margin: auto;
   padding-bottom: 180px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -64,9 +63,9 @@ export const SPurchasePage = styled.div`
     flex-direction: column;
     gap: 8px;
     margin-top: 18px;
-    p{
+    p {
       color: darkslategray;
-      font-size:small;
+      font-size: small;
       font-weight: 400;
     }
     a {

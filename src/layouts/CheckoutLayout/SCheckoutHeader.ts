@@ -4,7 +4,7 @@ export const ScheckoutHeader = styled.div`
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   .header {
-    width: 70%;
+    width: 80%;
     margin: auto;
     display: flex;
     align-items: center;
