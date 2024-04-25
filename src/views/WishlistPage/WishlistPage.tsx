@@ -6,16 +6,16 @@ import { useAuthProvider } from "@src/providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { usewishTotalPrice } from "@src/hooks/useTotalPrice/wishlistTotalprice";
+import { IoMdHeartDislike } from "react-icons/io";
 
 export function LikedProductsPage(): JSX.Element {
   const { wishlist } = useGlobalProvider();
   const { DeleteWishlist } = useDeleteWishlist();
   const { authStatus } = useAuthProvider();
-  const { wishlistTotalprice } = usewishTotalPrice();
   const navigate = useNavigate();
 
-  const handleProduct = (id: string) => {
-    navigate(`/OneProductPage/${id}`);
+  const handleProducts = (category: string, id: string) => {
+    navigate(`/OneProductPage/${id}/${category}`);
   };
 
   return (
@@ -23,11 +23,11 @@ export function LikedProductsPage(): JSX.Element {
       {wishlist?.length === 0 || authStatus === "unauthorized" ? (
         <div className="flex justify-center items-center">
           <img
-            className="w-full relative"
+            className="w-full h-full relative object-cover"
             src="../Images/empty_cart_image/empty_cart_image.png"
             alt="empty_cart_img"
           />
-          <div className="absolute">
+          <div className="absolute p-5">
             <h1>Your Amazon Wishlist is empty</h1>
             <div className=" mt-2 bg-slate-700 rounded-full p-4 text-center">
               <Button
@@ -40,58 +40,42 @@ export function LikedProductsPage(): JSX.Element {
           </div>
         </div>
       ) : (
-        <div className="flex p-2 items-center">
-          <div className="flex w-full flex-col gap-2">
-            {wishlist?.map((item) => {
-              return (
-                <div
-                  key={item.id}
-                  className="flex justify-between items-center rounded-xl overflow-hidden p-2 w-2/3 bg-slate-400"
-                >
-                  <div className="bg-grey-200 flex">
-                    <div
-                      onClick={() => handleProduct(item.likedProduct.id)}
-                      className="bg-white p-2 rounded-xl inline-flex"
-                    >
-                      <img
-                        className="w-16"
-                        src={item.likedProduct.image}
-                        alt="img"
-                      />
-                    </div>
-                    <div className="ml-5">
-                      <h4>{item.likedProduct.price}$</h4>
-                      <p className="mt-5">
-                        {item.likedProduct.description.slice(0, 120)}...
-                      </p>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => DeleteWishlist(item.id)}
-                    className="rounded-full h-16 w-16 border-none flex justify-center items-center bg-slate-400 hover:bg-gray-800"
+        <div className="grid gap-y-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {wishlist?.map((item) => {
+            return (
+              <div
+                key={item.id}
+                className=" w-1/2 m-auto flex flex-col items-center rounded-xl overflow-hidden p-2 border-solid border border-orange-400"
+              >
+                <div className="bg-grey-200 flex flex-col">
+                  <div
+                    onClick={() =>
+                      handleProducts(
+                        item.likedProduct.category_name,
+                        item.likedProduct.id
+                      )
+                    }
+                    className="bg-white p-2 rounded-xl"
                   >
-                    {<MdDeleteForever className="w-20 h-10" />}
-                  </button>
+                    <img
+                      className="w-16 h-16"
+                      src={item.likedProduct.image}
+                      alt="img"
+                    />
+                  </div>
+                  <div className="ml-5">
+                    <h4>{item.likedProduct.price}$</h4>
+                  </div>
                 </div>
-              );
-            })}
-          </div>
-          <div className="flex flex-col gap-5  rounded-xl w-1/3 bg-slate-400 p-2 ">
-            <div className="flex justify-between">
-              <h3 className="text-gray-700">სრული ღირებულება</h3>
-              <p>{wishlistTotalprice}$</p>
-            </div>
-            <div className="flex justify-between">
-              <h3 className="text-gray-700">გადასახდელი თანხა</h3>
-              <p>{wishlistTotalprice}$</p>
-            </div>
-            <Button
-              type="primary"
-              className="flex items-center bg-yellow-400 border-none justify-center hover:bg-yellow-600"
-            >
-              <h3 className="text-gray-700">ყიდვა</h3>
-            </Button>
-          </div>
+                <button
+                  onClick={() => DeleteWishlist(item.id)}
+                  className="rounded-full h-16 w-16 border-none flex justify-center items-center bg-slate-400 hover:bg-gray-800"
+                >
+                  {<IoMdHeartDislike className="text-red-600 w-12 h-8" />}
+                </button>
+              </div>
+            );
+          })}
         </div>
       )}
     </SLikedProducts>

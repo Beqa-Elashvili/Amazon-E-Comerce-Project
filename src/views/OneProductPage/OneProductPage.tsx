@@ -25,7 +25,8 @@ export function OneProductPage() {
   const navigate = useNavigate();
   const { category } = useParams();
 
-  const Brand = product?.title.split(" ")[0];
+  const Brand = product?.title.split(" ").slice(0, 2).join(" ");
+
   const calculatePercentageOff = () => {
     if (product?.salePrice !== null) {
       if (product) {

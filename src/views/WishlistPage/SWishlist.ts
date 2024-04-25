@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 export const SLikedProducts = styled.div`
-  width: 98%;
-  margin: auto;
+  padding: 12px;
   min-height: 400px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;

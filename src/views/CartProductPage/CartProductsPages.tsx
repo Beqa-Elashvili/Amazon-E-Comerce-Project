@@ -60,7 +60,7 @@ export function CartProductsPage() {
                 </Button>
               </div>
             ) : (
-              <div className=" mt-2 bg-slate-700 rounded-full p-4 text-center">
+              <div className="mt-2 bg-slate-700 rounded-full p-4 text-center">
                 <Button
                   onClick={() => navigate("/")}
                   className="bg-yellow-400 text-base border-none w-full"
@@ -76,7 +76,7 @@ export function CartProductsPage() {
         </div>
       ) : (
         <div>
-          <h1 className="p-2 rounded-xl flex bg-gray-200 inline-flex m-4 ">
+          <h1 className="p-2 rounded-xl flex items-center bg-gray-200 inline-flex m-4 ">
             <FormattedMessage
               id="The_number_of_products_in_the_Cart"
               defaultMessage={"The number of products in the Cart"}
@@ -86,7 +86,7 @@ export function CartProductsPage() {
             </p>
           </h1>
           <hr className="w-4/5 m-auto" />
-          <div className="flex p-2 items-center h-2/5 relative">
+          <div className="hidden lg:flex  p-2 items-center h-2/5 relative">
             <div className="flex w-full m-3 flex-col gap-2">
               {cartProducts?.map((item) => {
                 return (
@@ -107,14 +107,16 @@ export function CartProductsPage() {
                             }
                           >
                             <img
-                              className="w-16 object-contain"
+                              className="w-16 h-16 object-contain"
                               src={item.cartProduct.image}
                               alt="img"
                             />
                           </div>
                         </div>
                         <div className="ml-4">
-                          <h4  className="h-12">{item.cartProduct.title.slice(0,80)}...</h4>
+                          <h4 className="h-12">
+                            {item.cartProduct.title.slice(0, 80)}...
+                          </h4>
                           {item.cartProduct.salePrice === null ? (
                             <h5 className="mt-2">{item.cartProduct.price} $</h5>
                           ) : (
@@ -154,9 +156,9 @@ export function CartProductsPage() {
                 );
               })}
             </div>
-            <div className="flex flex-col gap-5 m-3 rounded-xl w-1/3 border-solid border border-slate-400 p-4 absolute sticky top-5 self-start">
+            <div className=" bg-orange-600 flex flex-col gap-5 m-3 rounded-xl w-1/3 p-4 absolute sticky top-5 self-start">
               <div className="flex justify-between">
-                <h3 className="text-gray-700">
+                <h3 className="text-gray-800">
                   <FormattedMessage
                     id="Total_Cost"
                     defaultMessage={"Total Cost"}
@@ -166,7 +168,114 @@ export function CartProductsPage() {
               </div>
               <hr />
               <div className="flex justify-between">
+                <h3 className="text-gray-800">
+                  <FormattedMessage
+                    id="Amount_to_be_paid"
+                    defaultMessage={"Amount to be paid"}
+                  />
+                </h3>
+                <p>{CartTotalprice}$</p>
+              </div>
+              <Button
+                type="primary"
+                className="flex items-center bg-yellow-400 border-none justify-center hover:bg-yellow-600"
+                onClick={hanldeBuy}
+              >
                 <h3 className="text-gray-700">
+                  <FormattedMessage
+                    id="Go_to_Checkout"
+                    defaultMessage={"Go to Checkout"}
+                  />
+                </h3>
+              </Button>
+            </div>
+          </div>
+          <div className="block lg:hidden flex flex-col p-2 items-center h-2/5">
+            <div className="flex w-full m-3 flex-col gap-2">
+              {cartProducts?.map((item) => {
+                return (
+                  <div
+                    key={item.id}
+                    className="bg-slate-400 p-2 rounded-xl border-none"
+                  >
+                    <div className="flex flex-col">
+                      <div className="bg-grey-200 flex">
+                        <div className="bg-white p-2 rounded-xl inline-flex">
+                          <div
+                            className="cursor-pointer flex items-center"
+                            onClick={() =>
+                              handleProducts(
+                                item.cartProduct.category_name,
+                                item.cartProduct.id
+                              )
+                            }
+                          >
+                            <img
+                              className="w-16 h-16 object-contain"
+                              src={item.cartProduct.image}
+                              alt="img"
+                            />
+                          </div>
+                        </div>
+                        <div className="ml-4">
+                          <h4 className="h-12">
+                            {item.cartProduct.title
+                              .split(" ")
+                              .slice(0, 2)
+                              .join(" ")}
+                          </h4>
+                          {item.cartProduct.salePrice === null ? (
+                            <h5 className="mt-2">{item.cartProduct.price} $</h5>
+                          ) : (
+                            <h5 className="mt-2">
+                              {item.cartProduct.salePrice} $
+                            </h5>
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <div className="flex">
+                          <Button
+                            onClick={() => addToCart(item.cartProduct.id)}
+                            className=" w-12 h-7 rounded-full border-none"
+                          >
+                            +
+                          </Button>
+                          <p className="bg-slate-500 rounded-xl px-3">
+                            {item.count}
+                          </p>
+                          <Button
+                            onClick={() => deleteCartProduct(item.id, false)}
+                            className=" w-12 h-7 rounded-full border-none"
+                          >
+                            -
+                          </Button>
+                        </div>
+                        <button
+                          onClick={() => deleteCartProduct(item.id, true)}
+                          className=" ml-2 rounded-full h-16 w-16 border-none bg-slate-400"
+                        >
+                          {<MdDeleteForever className="w-10 h-10" />}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="bg-orange-700 flex flex-col w-full gap-5 m-3 rounded-xl p-4 ">
+              <div className="flex justify-between">
+                <h3 className="text-gray-800">
+                  <FormattedMessage
+                    id="Total_Cost"
+                    defaultMessage={"Total Cost"}
+                  />
+                </h3>
+                <p>{CartTotalprice}$</p>
+              </div>
+              <hr />
+              <div className="flex justify-between">
+                <h3 className="text-gray-800">
                   <FormattedMessage
                     id="Amount_to_be_paid"
                     defaultMessage={"Amount to be paid"}
