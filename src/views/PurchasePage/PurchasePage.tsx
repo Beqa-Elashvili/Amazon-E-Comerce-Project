@@ -421,13 +421,9 @@ export function PurchasePage() {
                   centered
                   footer={false}
                   open={isModalOpen}
-                  style={{
-                    padding: 100,
-                    textAlign: "center",
-                    position: "relative",
-                  }}
+                  style={{ textAlign: "center" }}
                 >
-                  <FaCcAmazonPay className="float-start size-12 absolute left-2 text-orange-700" />
+                  <FaCcAmazonPay className=" size-12 text-orange-700" />
                   <h1 className="p-2 text-orange-600">Purchase Succesfully</h1>
                 </Modal>
               </div>

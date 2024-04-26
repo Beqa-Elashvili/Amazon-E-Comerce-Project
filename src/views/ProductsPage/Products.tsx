@@ -27,22 +27,22 @@ export function Products() {
 
   return (
     <SProducts>
-      <div className="grid grid-cols-1 p-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-7 gap-y-2">
+      <div className="grid grid-cols-1 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-7 gap-y-2">
         {products?.map((item) => {
           return (
             <div
               key={item.id}
-              className="h-full border-none shadow-xl text-start p-3 bg-white rounded-lg"
+              className="h-full border-none shadow-xl p-3 bg-white rounded-lg w-auto"
             >
               <div
-                className="cursor-pointer"
+                className="cursor-pointer text-center lg:text-start w-auto"
                 onClick={() => handleProduct(item.category_name, item.id)}
               >
-                <h3 className="w-80 h-8">{item.title}</h3>
+                <h3 className="w-auto h-auto m-auto lg:m-0 lg:h-8 lg:w-80">{item.title}</h3>
                 <img
-                  className="h-80 mt-2"
+                  className="h-60 mt-2 md:h-40 lg:h-80 "
                   src={item.image}
-                  alt="SaleProducts"
+                  alt="productImg"
                 />
               </div>
               <h3 className="mt-2">Price: {item.price}$</h3>

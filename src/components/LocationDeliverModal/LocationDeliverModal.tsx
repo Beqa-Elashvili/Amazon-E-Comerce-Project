@@ -83,7 +83,7 @@ export function LocationDeliverModal(): JSX.Element {
   return (
     <>
       <Modal
-        className="p-20"
+        className="p-2 lg:p-20"
         title="Choose your location"
         open={openLocationModal}
         onOk={handleOk}
@@ -107,7 +107,9 @@ export function LocationDeliverModal(): JSX.Element {
           </p>
           <div className="flex mt-4 items-center justify-center">
             <div className="h-px w-full bg-slate-400"></div>
-            <p className="px-1 w-full text-gray-600">enter a zip code</p>
+            <div className=" text-center">
+              <p className="text-gray-600 w-28">enter a zip code</p>
+            </div>
             <div className="h-px w-full bg-slate-400"></div>
           </div>
           <Input
