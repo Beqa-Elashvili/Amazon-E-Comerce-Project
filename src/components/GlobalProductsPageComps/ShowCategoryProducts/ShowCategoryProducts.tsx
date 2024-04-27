@@ -42,9 +42,9 @@ export function ShowCategoryProducts() {
     <div className="p-2">
       <h1>{categoryName}</h1>
       {categoryProducts.length === 0 ? (
-        <div className="w-5/6 h-[300px]">
+        <div className="w-5/6">
           <img
-            className="w-full"
+            className="w-full h-auto"
             src="/Images/empty_cart_image/empty_cart_image.png"
             alt="EmptyErrey"
           />

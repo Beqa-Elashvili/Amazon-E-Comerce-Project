@@ -12,14 +12,20 @@ import {
   TCategorys,
   TProducts,
 } from "@src/providers/GlobalProvider/GlobalContext";
-import { Button, Input, Modal } from "antd";
+import { Input } from "antd";
 
 export function Header() {
   const [search, setSearch] = useState<string>("");
   const { GetSearchResult, SearchResults } = useGetSearchResult();
   const [categorySearch, setCategorySearch] = useState<string>("All");
-  const { categorys, ProductsCount, setOpenLocationModal, location, zipCode } =
-    useGlobalProvider();
+  const {
+    categorys,
+    ProductsCount,
+    setOpenLocationModal,
+    openLocationModal,
+    location,
+    zipCode,
+  } = useGlobalProvider();
   const [show, setshow] = useState<boolean>(false);
   const [showRespInput, setshowRespInput] = useState<boolean>(false);
 
@@ -71,6 +77,13 @@ export function Header() {
   };
   const ToggleShowRespInput = () => {
     setshowRespInput(!showRespInput);
+  };
+
+  const OnOpen = () => {
+    setOpenLocationModal(true);
+  };
+  const OnClose = () => {
+    setOpenLocationModal(false);
   };
 
   return (
@@ -156,7 +169,7 @@ export function Header() {
                       alt="product-image"
                     />
                     <div>
-                      <p>{item.title.slice(0,65)}...</p>
+                      <p>{item.title.slice(0, 65)}...</p>
                       {item.salePrice !== null ? (
                         <h6 className="text-red-600">
                           price: {item.salePrice}$

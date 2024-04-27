@@ -35,7 +35,7 @@ export function Footer() {
         >
           Back to top
         </div>
-        <div className="w-4/6 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-12 gap-y-2">
+        <div className="hidden lg:grid w-4/6 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-14 gap-y-2">
           {footerLinks.map((link: TFooterLInks) => (
             <div key={link.id}>
               {link.Name === "Get to Know Us" ||

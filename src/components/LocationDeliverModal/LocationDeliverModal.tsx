@@ -1,7 +1,8 @@
-import { SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { Modal, Input } from "antd";
 import { AiFillAmazonSquare } from "react-icons/ai";
+import { FaSlack } from "react-icons/fa";
 
 export function LocationDeliverModal(): JSX.Element {
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -86,6 +87,7 @@ export function LocationDeliverModal(): JSX.Element {
         className="p-2 lg:p-20"
         title="Choose your location"
         open={openLocationModal}
+       
         onOk={handleOk}
         onCancel={handleCancel}
         confirmLoading={confirmLoading}

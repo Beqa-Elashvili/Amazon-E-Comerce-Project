@@ -64,7 +64,7 @@ export function CategoryPage() {
                 </p>
                 <hr className="w-4/5 m-auto mt-2" />
               </div>
-              <div className="flex relative">
+              <div className="flex relative min-h-[380px]">
                 <div className="absolute left-0 z-20">
                   <CategoryMenu />
                 </div>

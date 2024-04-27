@@ -287,6 +287,7 @@ export function OneProductPage() {
                 {categoryProducts.slice(0, 6).map((item) => {
                   return (
                     <div
+                    key={item.id}
                       onClick={() =>
                         handleProducts(item.category_name, item.id)
                       }
