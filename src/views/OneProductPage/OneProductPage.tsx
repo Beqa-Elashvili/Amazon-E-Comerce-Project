@@ -311,7 +311,7 @@ export function OneProductPage() {
                 })}
               </div>
             </div>
-            <div className="sliders p-2 shadow-xl relative rounded-xl">
+            <div className="sliders p-2 shadow-xl relative rounded-xl w-[99%]">
               <ProductsSlider
                 itemsSHow={6}
                 relativeProp={undefined}
