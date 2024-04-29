@@ -78,7 +78,7 @@ export function CartProductsPage() {
         </div>
       ) : (
         <div>
-          <h1 className="p-2 rounded-xl flex items-center bg-gray-200 inline-flex m-4 ">
+          <h1 className="p-2 rounded-xl flex items-center bg-slate-400 inline-flex m-4 ">
             <FormattedMessage
               id="The_number_of_products_in_the_Cart"
               defaultMessage={"The number of products in the Cart"}
@@ -158,7 +158,7 @@ export function CartProductsPage() {
                 );
               })}
             </div>
-            <div className=" bg-orange-600 flex flex-col gap-5 m-3 rounded-xl w-1/3 p-4 absolute sticky top-5 self-start">
+            <div className=" bg-slate-400 flex flex-col gap-5 m-3 rounded-xl w-1/3 p-4 absolute sticky top-5 self-start">
               <div className="flex justify-between">
                 <h3 className="text-gray-800">
                   <FormattedMessage

@@ -4,9 +4,11 @@ import { FaAmazonPay } from "react-icons/fa";
 import { Button } from "antd";
 import { FormattedMessage } from "react-intl";
 import { useNavigate } from "react-router-dom";
+import { useAuthProvider } from "@src/providers/AuthProvider";
 
 export function OrdersPage() {
   const { Orders, RemoveOrders } = useGetAndRemoveOrders();
+  const { authStatus } = useAuthProvider();
   const navigate = useNavigate();
 
   return (
@@ -21,17 +23,43 @@ export function OrdersPage() {
           <div className="absolute">
             <h1>
               <FormattedMessage
-                id="Your_Amazon_Cart_is_empty"
+                id="You_do_not_have_orders"
                 defaultMessage={"Your Amazon Cart is empty"}
               />
             </h1>
             <div className="bg-slate-700 mt-2 rounded-full p-4">
-              <Button
-                onClick={() => navigate("/")}
-                className="bg-yellow-400 text-base border-none w-full"
-              >
-                Add orders There
-              </Button>
+              {authStatus === "authorized" ? (
+                <Button
+                  onClick={() => navigate("/")}
+                  className="bg-yellow-400 text-base border-none w-full"
+                >
+                  <FormattedMessage
+                    id="Add_products_Here"
+                    defaultMessage={"Add Products Here"}
+                  />
+                </Button>
+              ) : (
+                <div className="flex justify-between">
+                  <Button
+                    onClick={() => navigate("/Login")}
+                    className="bg-yellow-500 border-none"
+                  >
+                    <FormattedMessage
+                      id="Authorization"
+                      defaultMessage={"Sign in to your account"}
+                    />
+                  </Button>
+                  <Button
+                    onClick={() => navigate("/Register")}
+                    className="bg-yellow-500 border-none"
+                  >
+                    <FormattedMessage
+                      id="Registration"
+                      defaultMessage={"Sign up now"}
+                    />
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -45,10 +73,25 @@ export function OrdersPage() {
               >
                 <div>
                   <div>
-                    <p>Total Items {item.totalItems}</p>
-                    <p>Products Prices ${item.totalPrice}</p>
                     <p>
-                      Created At
+                      <FormattedMessage
+                        id="Total_Items"
+                        defaultMessage={"Total Items"}
+                      />{" "}
+                      {item.totalItems}
+                    </p>
+                    <p>
+                      <FormattedMessage
+                        id="Products_prices"
+                        defaultMessage={"Products Prices"}
+                      />{" "}
+                      ${item.totalPrice}
+                    </p>
+                    <p>
+                      <FormattedMessage
+                        id="Order_date"
+                        defaultMessage={"Products Prices"}
+                      />
                       <span className="text-blue-700">
                         ,,{item.created_at}''
                       </span>
@@ -60,7 +103,10 @@ export function OrdersPage() {
                   onClick={() => RemoveOrders(item.id)}
                   className="text-base mt-4 w-full bg-orange-400"
                 >
-                  Remove Order
+                 <FormattedMessage
+                        id="Remove_order"
+                        defaultMessage={"Products Prices"}
+                      />
                 </Button>
               </div>
             );

@@ -7,6 +7,7 @@ import { useAuthProvider } from "@src/providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { RiBookmark3Fill } from "react-icons/ri";
 import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
+import { FormattedMessage } from "react-intl";
 
 export function ProductsSlider({
   relativeProp,
@@ -104,14 +105,20 @@ export function ProductsSlider({
                     {item.salePrice !== null ? (
                       <div>
                         <h4 className="text-blue-900 object-cover flex mt-2">
-                          SalePrice:
+                        <FormattedMessage
+                              id="Sale"
+                              defaultMessage={"Sale"}
+                            />
                           <p className="ml-2 text-red-600">{item.salePrice}$</p>
                         </h4>
                       </div>
                     ) : (
                       <div>
                         <h4 className="text-blue-900 flex mt-2">
-                          Price:
+                        <FormattedMessage
+                              id="Price"
+                              defaultMessage={"Price"}
+                            />
                           <p className="ml-2">{item.price}$</p>
                         </h4>
                       </div>

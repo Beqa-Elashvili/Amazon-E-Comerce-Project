@@ -5,6 +5,8 @@ import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { ProductsSlider } from "@src/components/HomeComponents/ProductsSlider";
 import { Skeleton } from "antd";
 import { UseGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
+import { ScategoryPage } from "./Scategorypage";
+import { FormattedMessage } from "react-intl";
 export function CategoryPage() {
   const { productsSlider } = useGlobalProvider();
   const { loading } = UseGetCategoryProducts();
@@ -58,8 +60,13 @@ export function CategoryPage() {
           <div className="flex">
             <div>
               <div className="ml-2">
-                <h1>products</h1>
-                <p className="text-gray-800">
+                <h1 className="text-orange-700">
+                  <FormattedMessage
+                    id="Products"
+                    defaultMessage={"Products"}
+                  />
+                </h1>
+                <p className="text-orange-400">
                   Our most popular products based on sales. Updated frequently.
                 </p>
                 <hr className="w-4/5 m-auto mt-2" />
@@ -75,7 +82,7 @@ export function CategoryPage() {
             </div>
             <ShowCartProcuts />
           </div>
-          <div className=" w-[98%] my-10 m-auto relative shadow-xl shadow-inner p-2 bg-slate-20 rounded-xl">
+          <div className=" w-[98%] my-10 m-auto relative shadow-xl shadow-inner p-2  rounded-xl">
             <ProductsSlider
               relativeProp={undefined}
               imgHeight={210}

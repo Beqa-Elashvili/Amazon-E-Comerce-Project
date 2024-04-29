@@ -22,5 +22,13 @@
 "The_number_of_products_in_the_Cart":"კალათის პროდუქტების რაოდენობა",
 "Total_Cost":"საერთო ღირებულება",
 "Amount_to_be_paid":"გადასახელი თანხა",
-"Go_to_Checkout":"ყიდვა"
+"Go_to_Checkout":"ყიდვა",
+"You_do_not_have_orders": "თქვენ არ გაქვთ აქტიური შეკვეთა",
+"Total_Items": "საერთო რაოდენობა",
+"Products_prices": "პროდუქტების ფასი",
+"Order_date": "შეკვეთის თარიღი",
+"Remove_order": "შეკვეთის გაუქმება",
+"Products":"პროდუქტები",
+"Sale": "Sale",
+"Price": "ფასი"
 }

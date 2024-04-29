@@ -26,7 +26,7 @@ export function ShowCartProcuts() {
   };
 
   return (
-    <div className="hidden lg:block">
+    <div className="hidden lg:block bg-white">
       {isEmpty && (
         <div className=" flex flex-col border-solid h-full border-slate-400 border-y-0 border-r-0 border-l max-w-40">
           <div className=" p-2 flex flex-col items-center justify-center">

@@ -10,6 +10,7 @@ import { useIsProductInWishlist } from "@src/hooks/useAddAndGetLikedProducts";
 import { useParams } from "react-router-dom";
 import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
 import { UseGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
+import { FormattedMessage } from "react-intl";
 export function ShowCategoryProducts() {
   const { categoryName, productName } = useParams();
   const navigate = useNavigate();
@@ -69,8 +70,8 @@ export function ShowCategoryProducts() {
                       src={item.image}
                       alt="product_image"
                     />
-                    <h4 className= "h-20 flex text-start w-48 text-blue-900">
-                      {item.title.slice(0,90)}...
+                    <h4 className="h-20 flex text-start w-48 text-blue-900">
+                      {item.title.slice(0, 90)}...
                     </h4>
                   </div>
                   <div className="text-start">
@@ -94,7 +95,10 @@ export function ShowCategoryProducts() {
                       {item.salePrice !== null ? (
                         <div>
                           <h4 className="text-blue-900 flex mt-2">
-                            SalePrice:
+                            <FormattedMessage
+                              id="Sale_price"
+                              defaultMessage={"Sale Price"}
+                            />
                             <p className="ml-2 text-red-600">
                               {item.salePrice}$
                             </p>
@@ -103,7 +107,10 @@ export function ShowCategoryProducts() {
                       ) : (
                         <div>
                           <h4 className="text-blue-900 flex mt-2">
-                            Price:
+                          <FormattedMessage
+                              id="Price"
+                              defaultMessage={"Price"}
+                            />
                             <p className="ml-2">{item.price}$</p>
                           </h4>
                         </div>
@@ -124,7 +131,7 @@ export function ShowCategoryProducts() {
         </>
       )}
       <Pagination
-        className="text-center"
+        className="text-center my-4"
         current={page}
         pageSize={pageSize}
         onChange={handlePagination}
