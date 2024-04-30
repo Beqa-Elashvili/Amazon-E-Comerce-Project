@@ -11,6 +11,7 @@ import { ProductsSlider } from "@src/components/HomeComponents/ProductsSlider";
 import { useAuthProvider } from "@src/providers/AuthProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import { UseGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
+import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
 
 export function OneProductPage() {
   const { getCategoryProducts } = UseGetCategoryProducts();
@@ -203,27 +204,39 @@ export function OneProductPage() {
                     <h3 className="text-green-700">In Stock</h3>
                     {product && (
                       <>
-                        <Button
-                          className="mt-2 bg-yellow-400"
-                          icon={<FaCartArrowDown />}
-                          onClick={() => handleAddtoCart(product.id)}
-                        >
-                          Add Cart
-                        </Button>
-                        {product.salePrice !== null ? (
+                        {authStatus !== "authorized" ? (
                           <Button
-                            onClick={() => hanldeBuy(product.salePrice)}
-                            className="mt-2 bg-orange-500"
+                            className="mt-2 bg-yellow-400"
+                            icon={<FaCartArrowDown />}
+                            onClick={() => handleAddtoCart(product.id)}
                           >
-                            Buy Now
+                            Add Cart
                           </Button>
                         ) : (
-                          <Button
-                            onClick={() => hanldeBuy(product.price)}
-                            className="mt-2 bg-orange-500"
-                          >
-                            Buy Now
-                          </Button>
+                          <>
+                            <Button
+                              className="mt-2 bg-yellow-400"
+                              icon={<FaCartArrowDown />}
+                              onClick={() => handleAddtoCart(product.id)}
+                            >
+                              Add Cart
+                            </Button>
+                            {product.salePrice !== null ? (
+                              <Button
+                                onClick={() => hanldeBuy(product.salePrice)}
+                                className="mt-2 bg-orange-500"
+                              >
+                                Buy Now
+                              </Button>
+                            ) : (
+                              <Button
+                                onClick={() => hanldeBuy(product.price)}
+                                className="mt-2 bg-orange-500"
+                              >
+                                Buy Now
+                              </Button>
+                            )}
+                          </>
                         )}
                       </>
                     )}
@@ -284,10 +297,10 @@ export function OneProductPage() {
                 </div>
               </div>
               <div className="text-center grid gap-x-20 gap-y-4 grid-cols-2 md:grid-cols-3 lg:hidden">
-                {categoryProducts.slice(0, 6).map((item) => {
+                {categoryProducts.slice(0, 6).map((item: TProducts) => {
                   return (
                     <div
-                    key={item.id}
+                      key={item.id}
                       onClick={() =>
                         handleProducts(item.category_name, item.id)
                       }

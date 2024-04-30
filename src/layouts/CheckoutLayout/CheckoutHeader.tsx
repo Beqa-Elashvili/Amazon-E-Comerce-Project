@@ -1,15 +1,17 @@
 import { FaUserCircle } from "react-icons/fa";
 import { ScheckoutHeader } from "./SCheckoutHeader";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export function CheckoutHeader() {
   const { caunt } = useParams();
+  const navigate = useNavigate();
   return (
     <ScheckoutHeader>
       <div className="backImage">
         <header className="header">
           <img
-            className="w-36"
+            onClick={() => navigate("/")}
+            className="w-36 cursor-pointer"
             src="/Images/Amazon_logo(Black).png"
             alt="amazon.logo(black)"
           />

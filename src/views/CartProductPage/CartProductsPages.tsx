@@ -265,7 +265,7 @@ export function CartProductsPage() {
                 );
               })}
             </div>
-            <div className="bg-orange-700 flex flex-col w-full gap-5 m-3 rounded-xl p-4 ">
+            <div className="bg-slate-400 flex flex-col w-full gap-5 m-3 rounded-xl p-4 ">
               <div className="flex justify-between">
                 <h3 className="text-gray-800">
                   <FormattedMessage

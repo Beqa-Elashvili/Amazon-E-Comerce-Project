@@ -23,13 +23,18 @@ export function Products() {
   };
 
   const hanldeBuy = (price: number) => {
-    navigate(`/Buy/Checkout/${price}/${[1]}`);
+    if (authStatus !== "authorized") {
+      navigate("/Login")
+    } else {
+      navigate(`/Buy/Checkout/${price}/${[1]}`);
+    }
   };
 
   return (
     <SProducts>
       <div className="grid grid-cols-1 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-7 gap-y-2">
         {products?.slice(0, 24).map((item: TProducts) => {
+          const titles = item.title.split(" ").slice(0, 8).join(" ");
           return (
             <div
               key={item.id}
@@ -39,8 +44,8 @@ export function Products() {
                 className="cursor-pointer text-center lg:text-start w-auto"
                 onClick={() => handleProduct(item.category_name, item.id)}
               >
-                <h3 className="w-auto h-auto m-auto lg:m-0 lg:h-8 lg:w-80">
-                  {item.title}
+                <h3 className="w-auto h-16 m-auto lg:m-0 lg:h-10 lg:w-80">
+                  {titles}
                 </h3>
                 <img
                   className="h-60 mt-2 md:h-40 lg:h-80 "
@@ -48,7 +53,16 @@ export function Products() {
                   alt="productImg"
                 />
               </div>
-              <h3 className="mt-2">Price: {item.price}$</h3>
+              {item.salePrice !== null ? (
+                <h3 className="mt-2 text-blue-900">
+                  Sale: <span className="text-red-600">{item.price}$</span>
+                </h3>
+              ) : (
+                <h3 className="mt-2 text-blue-900">
+                  Price: <span className="text-red-600">{item.price}$</span>
+                </h3>
+              )}
+
               {authStatus === "authorized" ? (
                 <div className="flex justify-between mt-2">
                   <Button
@@ -75,7 +89,12 @@ export function Products() {
                   </button>
                 </div>
               ) : (
-                <Button className="w-full bg-amber-400 mt-2">Buy Now</Button>
+                <Button
+                  onClick={() => hanldeBuy(item.price)}
+                  className="w-full bg-amber-400 mt-2"
+                >
+                  Buy Now
+                </Button>
               )}
             </div>
           );

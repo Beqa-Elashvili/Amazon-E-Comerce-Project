@@ -34,8 +34,8 @@ export function OrdersPage() {
                   className="bg-yellow-400 text-base border-none w-full"
                 >
                   <FormattedMessage
-                    id="Add_products_Here"
-                    defaultMessage={"Add Products Here"}
+                    id="Add_Orders_Here"
+                    defaultMessage={"Add Orders Here"}
                   />
                 </Button>
               ) : (
@@ -103,10 +103,10 @@ export function OrdersPage() {
                   onClick={() => RemoveOrders(item.id)}
                   className="text-base mt-4 w-full bg-orange-400"
                 >
-                 <FormattedMessage
-                        id="Remove_order"
-                        defaultMessage={"Products Prices"}
-                      />
+                  <FormattedMessage
+                    id="Remove_order"
+                    defaultMessage={"Products Prices"}
+                  />
                 </Button>
               </div>
             );

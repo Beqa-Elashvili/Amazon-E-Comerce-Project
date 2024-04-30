@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { usewishTotalPrice } from "@src/hooks/useTotalPrice/wishlistTotalprice";
 import { IoMdHeartDislike } from "react-icons/io";
+import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
 
 export function LikedProductsPage(): JSX.Element {
   const { wishlist } = useGlobalProvider();
@@ -43,7 +44,7 @@ export function LikedProductsPage(): JSX.Element {
         </div>
       ) : (
         <div className="grid gap-y-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {wishlist?.map((item) => {
+          {wishlist?.map((item: TProducts) => {
             return (
               <div
                 key={item.id}
@@ -60,7 +61,7 @@ export function LikedProductsPage(): JSX.Element {
                     className="bg-white p-2 rounded-xl"
                   >
                     <img
-                      className="w-16 h-16"
+                      className="w-16 h-16 cursor-pointer"
                       src={item.likedProduct.image}
                       alt="img"
                     />
