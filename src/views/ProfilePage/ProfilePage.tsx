@@ -35,6 +35,7 @@ export function ProfilePage() {
           <div className="w-full lg:w-2/5">
             <div className="flex items-center justify-between">
               <div>
+                <p onClick={()=>setIsOpenProfileInfo(false)} className="text-blue-500 mb-4 cursor-pointer hover:text-blue-400">{"<"} Turn back</p>
                 <div className="flex">
                   <h3 className="text-start text-blue-900">Profile {">"}</h3>
                   <p className="text-orange-700 ml-2">Login & Security</p>

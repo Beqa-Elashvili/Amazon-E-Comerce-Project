@@ -11,7 +11,7 @@ import { AiFillAmazonSquare } from "react-icons/ai";
 import { useAuthProvider } from "@src/providers/AuthProvider";
 
 export function ChangeUserInfo() {
-  const { GetUserData } = useGetUserData();
+  // const { GetUserData } = useGetUserData();
   const { logout } = useAuthProvider();
   const { forChange, setForChange, userdata } = useGlobalProvider();
   const [loading, setLoading] = useState<boolean>(false);

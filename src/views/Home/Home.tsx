@@ -33,7 +33,7 @@ export function Home() {
 
   return (
     <SHome>
-      <div className="flex flex-col gap-14">
+      <div className="flex flex-col gap-2">
         <div className="relative mb-auto lg:mb-0">
           <BackSlider />
           <CategoryShablons />

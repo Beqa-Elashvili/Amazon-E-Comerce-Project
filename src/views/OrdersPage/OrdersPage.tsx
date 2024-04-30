@@ -77,14 +77,14 @@ export function OrdersPage() {
                       <FormattedMessage
                         id="Total_Items"
                         defaultMessage={"Total Items"}
-                      />{" "}
+                      />
                       {item.totalItems}
                     </p>
                     <p>
                       <FormattedMessage
                         id="Products_prices"
                         defaultMessage={"Products Prices"}
-                      />{" "}
+                      />
                       ${item.totalPrice}
                     </p>
                     <p>
