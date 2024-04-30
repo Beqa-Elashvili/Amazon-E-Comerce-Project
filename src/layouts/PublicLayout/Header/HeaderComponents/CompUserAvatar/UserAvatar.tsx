@@ -65,7 +65,7 @@ export function UserAvatar() {
       ) : (
         <>
           <button
-            className="hidden lg:block p-3 flex flex-col text-start justify-center h-14 text-white"
+            className="hidden lg:block p-3 flex flex-col text-start justify-center h-14 text-white min-w-[130px]"
             onClick={() => navigate("/Login")}
           >
             <p>

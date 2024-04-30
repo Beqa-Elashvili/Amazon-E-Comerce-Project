@@ -271,7 +271,7 @@ export function Header() {
         <Translate />
         <UserAvatar />
         <Hbuttons>
-          <div className="hidden lg:block">
+          <div className="hidden lg:block min-w-20">
             <button onClick={() => navigate("/OrdersPage")}>
               <p>
                 <FormattedMessage id="returns" defaultMessage={"returns"} />

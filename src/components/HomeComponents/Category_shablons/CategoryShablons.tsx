@@ -29,7 +29,7 @@ export function CategoryShablons() {
           <h2 onClick={() => handleCategory("აუდიო")}>Audio</h2>
         </div>
       </div>
-      <div className=" block lg:hidden grid grid-cols-1 md:grid-cols-2  gap-x-12 gap-y-2">
+      <div className=" block lg:hidden grid grid-cols-2 md:grid-cols-2  gap-x-12 gap-y-2">
         <div className="relative">
           <img src="\Images\onFloImages\imageOne.jpg" alt="img" />
           <h2 onClick={() => handleCategory("სმარტფონები")}>Smartphones</h2>
