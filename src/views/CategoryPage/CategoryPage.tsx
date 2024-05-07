@@ -57,7 +57,7 @@ export function CategoryPage() {
         </>
       ) : (
         <div>
-          <div className="flex">
+          <div className="flex justify-between">
             <div>
               <div className="ml-2">
                 <h1 className="text-orange-700">

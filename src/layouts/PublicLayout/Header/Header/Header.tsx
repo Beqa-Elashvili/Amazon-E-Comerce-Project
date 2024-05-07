@@ -8,6 +8,7 @@ import { SetStateAction, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LocationDeliverModal } from "@src/components/LocationDeliverModal";
 import { useGetSearchResult } from "@src/hooks/useGetSeacthResultFetch/useGetSearchResult";
+import { FaArrowUp } from "react-icons/fa";
 import {
   TCategorys,
   TProducts,
@@ -75,15 +76,9 @@ export function Header() {
     setshow(false);
     setshowRespInput(false);
   };
-  const ToggleShowRespInput = () => {
-    setshowRespInput(!showRespInput);
-  };
-
-  const OnOpen = () => {
-    setOpenLocationModal(true);
-  };
-  const OnClose = () => {
-    setOpenLocationModal(false);
+  const removeInput = () => {
+    setshow(false);
+    setshowRespInput(false);
   };
 
   return (
@@ -118,7 +113,10 @@ export function Header() {
         </div>
 
         <div className="block lg:hidden">
-          <button onClick={ToggleShowRespInput} className="ml-2 resp-serch-btn">
+          <button
+            onClick={() => setshowRespInput(true)}
+            className="ml-2 resp-serch-btn"
+          >
             <img
               className="h-5"
               src="/Images/search-icon.png"
@@ -157,6 +155,7 @@ export function Header() {
               className="absolute max-h-80 top-12 left-40 bg-red-50 p-4 z-10 rounded-lg w-96 overflow-y-auto"
             >
               {SearchResults?.map((item: TProducts) => {
+                const titles = item.title.split(" ").slice(0, 6).join(" ");
                 return (
                   <div
                     key={item.id}
@@ -169,7 +168,7 @@ export function Header() {
                       alt="product-image"
                     />
                     <div>
-                      <p>{item.title.slice(0, 65)}...</p>
+                      <p>{titles}</p>
                       {item.salePrice !== null ? (
                         <h6 className="text-red-600">
                           price: {item.salePrice}$
@@ -197,14 +196,14 @@ export function Header() {
           </div>
         </div>
         <div
-          style={{ display: showRespInput ? "block" : "none" }}
-          className="z-10 resp-input relative"
+          className={`z-10  resp-input ${showRespInput ? "show" : ""} relative`}
         >
           <div className="relative block lg:hidden flex items-center">
             <select
               value={categorySearch}
               onChange={handleSelectValue}
               className="absolute z-10"
+              style={{ height: 62, borderRadius: 0 }}
               name="SelectCategory"
               id="all"
             >
@@ -220,7 +219,8 @@ export function Header() {
             <Input
               value={search}
               onChange={handleInputChange}
-              className="ml-5"
+              className="ml-5 h-[62px]"
+              style={{ borderRadius: 0 }}
               type="text"
               placeholder="Search Amazon"
             />
@@ -255,10 +255,18 @@ export function Header() {
               })}
             </div>
             <button
+              className="z-10 absolute right-14 cursor-pointer "
+              style={{ backgroundColor: "white" }}
+              onClick={removeInput}
+            >
+              <FaArrowUp className="bg-white size-6 text-slate-200" />
+            </button>
+            <button
               onClick={() =>
                 hanldeSearchValue(categorySearch, `productName=${search}`, 1)
               }
-              className="input-btn absolute"
+              className="input-btn absolute h-[62px]"
+              style={{ borderRadius: 0 }}
             >
               <img
                 className=" w-5 h-5"

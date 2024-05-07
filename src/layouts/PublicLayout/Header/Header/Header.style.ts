@@ -98,7 +98,8 @@ export const SHeader = styled.div`
   .resp-input {
     position: absolute;
     width: 100%;
-    top: 60px;
+    transition: transform 0.5s ease-in-out;
+    transform: translateY(-120%);
     select {
       border-radius: 0px 0px 0px 4px;
     }
@@ -109,6 +110,9 @@ export const SHeader = styled.div`
     button {
       border-radius: 0px 0px 4px 0px;
     }
+  }
+  .resp-input.show {
+    transform: translateY(0%);
   }
 `;
 export const Hbuttons = styled.div`
