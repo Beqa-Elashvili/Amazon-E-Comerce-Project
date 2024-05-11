@@ -19,10 +19,6 @@ export function Login(): JSX.Element {
   const { setAuthData } = useAuthProvider();
   const navigate = useNavigate();
 
-  function handleButtonClick(): void {
-    setDivVisible(!isDivVisible);
-  }
-
   async function onfinish(values: LoginFormValue) {
     try {
       setAuthLoading(true);
@@ -102,7 +98,7 @@ export function Login(): JSX.Element {
           </p>
           <div className="mt-5">
             <button
-              onClick={handleButtonClick}
+              onClick={() => setDivVisible(!isDivVisible)}
               className="flex border-none bg-white text-blue-400 cursor-pointer hover:underline"
             >
               Need help?

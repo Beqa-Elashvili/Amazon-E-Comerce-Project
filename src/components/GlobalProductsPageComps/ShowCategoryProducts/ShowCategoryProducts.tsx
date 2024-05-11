@@ -96,7 +96,7 @@ export function ShowCategoryProducts() {
                         <div>
                           <h4 className="text-blue-900 flex mt-2">
                             <FormattedMessage
-                              id="Sale_price"
+                              id="Sale"
                               defaultMessage={"Sale Price"}
                             />
                             <p className="ml-2 text-red-600">

@@ -12,6 +12,7 @@ import { useAuthProvider } from "@src/providers/AuthProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import { UseGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
 import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
+import { FormattedMessage } from "react-intl";
 
 export function OneProductPage() {
   const { getCategoryProducts } = UseGetCategoryProducts();
@@ -137,7 +138,8 @@ export function OneProductPage() {
                   </div>
                 ) : (
                   <p className="text-xl">
-                    Price: <span className="text-3xl">${product?.price}</span>
+                    <FormattedMessage id="Price" defaultMessage={"Price"} />:{" "}
+                    <span className="text-3xl">${product?.price}</span>
                   </p>
                 )}
               </div>

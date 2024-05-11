@@ -5,6 +5,7 @@ import { Button } from "antd";
 import { FormattedMessage } from "react-intl";
 import { useNavigate } from "react-router-dom";
 import { useAuthProvider } from "@src/providers/AuthProvider";
+import { TOrders } from "@src/providers/GlobalProvider/GlobalContext";
 
 export function OrdersPage() {
   const { Orders, RemoveOrders } = useGetAndRemoveOrders();
@@ -65,7 +66,7 @@ export function OrdersPage() {
         </div>
       ) : (
         <div className=" p-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-7 gap-y-2">
-          {Orders?.map((item) => {
+          {Orders?.map((item: TOrders) => {
             return (
               <div
                 key={item.id}
@@ -77,14 +78,14 @@ export function OrdersPage() {
                       <FormattedMessage
                         id="Total_Items"
                         defaultMessage={"Total Items"}
-                      />
+                      />{" "}
                       {item.totalItems}
                     </p>
                     <p>
                       <FormattedMessage
                         id="Products_prices"
                         defaultMessage={"Products Prices"}
-                      />
+                      />{" "}
                       ${item.totalPrice}
                     </p>
                     <p>
@@ -93,6 +94,7 @@ export function OrdersPage() {
                         defaultMessage={"Products Prices"}
                       />
                       <span className="text-blue-700">
+                        {" "}
                         ,,{item.created_at}''
                       </span>
                     </p>
