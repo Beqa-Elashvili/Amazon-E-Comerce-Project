@@ -18,6 +18,10 @@ export type TFooterLInks = {
   id: string;
   Destination: string;
 };
+export type TEnCategorys = {
+  name: string;
+  id: string;
+};
 
 export type TGender = {
   label: string;
@@ -146,9 +150,14 @@ interface TGlobalContext {
 
   Orders: TOrders[];
   setOrders: Dispatch<SetStateAction<TOrders[]>>;
+
+  EnCategorysState: TEnCategorys[];
+  setEnCategorysState: Dispatch<SetStateAction<TEnCategorys[]>>;
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
+  EnCategorysState: [],
+  setEnCategorysState: () => {},
   FooterLinksTwo: [],
   setFooterLinksTwo: () => {},
   Orders: [],

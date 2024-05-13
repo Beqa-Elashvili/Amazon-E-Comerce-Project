@@ -14,6 +14,7 @@ import {
   TUserChangeValues,
   GlobalContext,
   TOrders,
+  TEnCategorys,
 } from "./GlobalContext";
 import { TUserData } from "@src/@types/TuserData";
 
@@ -554,14 +555,47 @@ const countriesArray: { country: string }[] = [
   { country: "Montenegro" },
   { country: "Montserrat" },
 ];
-const Genders = [
+const Genders: TGender[] = [
   { label: "Male", value: "male", id: uuidv4() },
   { label: "Female", value: "female", id: uuidv4() },
+];
+
+const EnCategorys: TEnCategorys[] = [
+  {
+    id: uuidv4(),
+    name: "Audio",
+  },
+  {
+    id: uuidv4(),
+    name: "Photo | Video",
+  },
+  {
+    id: uuidv4(),
+    name: "Gaming",
+  },
+  {
+    id: uuidv4(),
+    name: "TV | Monitors",
+  },
+  {
+    id: uuidv4(),
+    name: "Tables",
+  },
+  {
+    id: uuidv4(),
+    name: "Laptops",
+  },
+  {
+    id: uuidv4(),
+    name: "Smartphones",
+  },
 ];
 
 export function GlobalProvider({ children }: PropsWithChildren) {
   const [saleProducts, setSaleProducts] = useState<TProducts[]>([]);
   const [categorys, setCategorys] = useState<TCategorys[]>([]);
+  const [EnCategorysState, setEnCategorysState] =
+    useState<TEnCategorys[]>(EnCategorys);
   const [footerLinks, setFooterLinks] =
     useState<TFooterLInks[]>(footerAmazonLinks);
   const [ChooceGender, setChooceGender] = useState<TGender[]>(Genders);
@@ -587,7 +621,6 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   const [productsSlider, setProductsSlider] = useState<TProducts[]>([]);
   const [FooterLinksTwo, setFooterLinksTwo] =
     useState<TFooterLInks[]>(amazonServices);
-
   const [Orders, setOrders] = useState<TOrders[]>([]);
 
   const { authStatus } = useAuthProvider();
@@ -645,6 +678,8 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   return (
     <GlobalContext.Provider
       value={{
+        EnCategorysState,
+        setEnCategorysState,
         FooterLinksTwo,
         setFooterLinksTwo,
         Orders,
