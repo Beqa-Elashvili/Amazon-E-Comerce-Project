@@ -619,10 +619,10 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   const [ProductsCount, setAddProductCount] = useState<number | null>(0);
   const [loading, setLoading] = useState<boolean>(false);
   const [productsSlider, setProductsSlider] = useState<TProducts[]>([]);
+
   const [FooterLinksTwo, setFooterLinksTwo] =
     useState<TFooterLInks[]>(amazonServices);
   const [Orders, setOrders] = useState<TOrders[]>([]);
-
   const { authStatus } = useAuthProvider();
 
   function sumPrices() {

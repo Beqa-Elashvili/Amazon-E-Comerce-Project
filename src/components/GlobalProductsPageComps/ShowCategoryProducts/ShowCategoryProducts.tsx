@@ -11,7 +11,11 @@ import { useParams } from "react-router-dom";
 import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
 import { UseGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
 import { FormattedMessage } from "react-intl";
+import { LocaleContext } from "@src/providers/LocaleProvaider/LocaleContext";
+import { useContext } from "react";
 export function ShowCategoryProducts() {
+  const { locale } = useContext(LocaleContext);
+
   const { categoryName, productName } = useParams();
   const navigate = useNavigate();
   const { AddWishlist } = useAddWishlist();
@@ -39,9 +43,37 @@ export function ShowCategoryProducts() {
     navigate(`/Category_Products_Page/${categoryName}/${productName}/${pages}`);
   };
 
+  const LocaleCategory = () => {
+    let Tranlatecategory = "";
+    switch (categoryName) {
+      case "აუდიო":
+        Tranlatecategory = "Audio";
+        break;
+      case "ფოტო | ვიდეო":
+        Tranlatecategory = "Photo | Video";
+        break;
+      case "გეიმინგი":
+        Tranlatecategory = "Gaming";
+        break;
+      case "TV | მონიტორები":
+        Tranlatecategory = "TV | Monitors";
+        break;
+      case "ტაბები":
+        Tranlatecategory = "Tables";
+        break;
+      case "ლეპტოპები":
+        Tranlatecategory = "Laptops";
+        break;
+      case "სმარტფონები":
+        Tranlatecategory = "Smartphones";
+        break;
+    }
+    return Tranlatecategory;
+  };
+
   return (
     <div className="p-2">
-      <h1>{categoryName}</h1>
+      {locale !== "ka" ? <h1>{LocaleCategory()}</h1> : <h1>{categoryName}</h1>}
       {categoryProducts.length === 0 ? (
         <div className="w-5/6">
           <img
@@ -107,7 +139,7 @@ export function ShowCategoryProducts() {
                       ) : (
                         <div>
                           <h4 className="text-blue-900 flex mt-2">
-                          <FormattedMessage
+                            <FormattedMessage
                               id="Price"
                               defaultMessage={"Price"}
                             />

@@ -11,16 +11,15 @@ import { AiFillAmazonSquare } from "react-icons/ai";
 import { useAuthProvider } from "@src/providers/AuthProvider";
 
 export function ChangeUserInfo() {
-  // const { GetUserData } = useGetUserData();
   const { logout } = useAuthProvider();
   const { forChange, setForChange, userdata } = useGlobalProvider();
+
   const [loading, setLoading] = useState<boolean>(false);
   const [oldValue, setOldValue] = useState<string | number>();
   const [newValue, setNewValue] = useState<string | number>();
   const [check, setChecked] = useState<boolean>(false);
   const [successModalVisible, setSuccessModalVisible] =
     useState<boolean>(false);
-
 
   const [kay, setKay] = useState<string>("");
   const [form] = Form.useForm();
@@ -68,6 +67,7 @@ export function ChangeUserInfo() {
       localStorage.setItem("value", String(newValue));
       setOldValue(newValue);
       setSuccessModalVisible(true);
+
       if (!check) {
         setTimeout(() => {
           setSuccessModalVisible(false);

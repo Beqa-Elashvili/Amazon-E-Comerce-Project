@@ -5,11 +5,22 @@ import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { ProductsSlider } from "@src/components/HomeComponents/ProductsSlider";
 import { Skeleton } from "antd";
 import { UseGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
-import { ScategoryPage } from "./Scategorypage";
+
 import { FormattedMessage } from "react-intl";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 export function CategoryPage() {
   const { productsSlider } = useGlobalProvider();
   const { loading } = UseGetCategoryProducts();
+  const { categoryName } = useParams();
+
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [categoryName]);
 
   return (
     <div className="w-full">
@@ -61,10 +72,7 @@ export function CategoryPage() {
             <div>
               <div className="ml-2">
                 <h1 className="text-orange-700">
-                  <FormattedMessage
-                    id="Products"
-                    defaultMessage={"Products"}
-                  />
+                  <FormattedMessage id="Products" defaultMessage={"Products"} />
                 </h1>
                 <p className="text-orange-400">
                   Our most popular products based on sales. Updated frequently.

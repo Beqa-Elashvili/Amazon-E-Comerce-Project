@@ -25,7 +25,7 @@ export function OneProductPage() {
     useGlobalProvider();
   const [randomNumber, setRandomNumber] = useState<number>(0);
   const navigate = useNavigate();
-  const { category } = useParams();
+  const { category, id } = useParams();
 
   const Brand = product?.title.split(" ").slice(0, 2).join(" ");
 
@@ -51,6 +51,13 @@ export function OneProductPage() {
   const handleProducts = (category: string, id: string) => {
     navigate(`/OneProductPage/${id}/${category}`);
   };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [id]);
 
   useEffect(() => {
     const newRandomNumber = getRandomNumber(50, 400);
@@ -95,12 +102,40 @@ export function OneProductPage() {
   return (
     <SProductPage>
       {loading ? (
-        <Skeleton
-          avatar={true}
-          paragraph={{ rows: 10, width: ["100%", "75%", "60%"] }}
-          loading={true}
-          active
-        />
+        <>
+          <div className="hidden lg:flex h-[1200px] p-12 flex-col gap-[600px]">
+            <div className="flex">
+              <div className="w-5/6 m-auto">
+                <Skeleton.Image style={{ height: 300, width: 400 }} active />
+              </div>
+              <Skeleton loading={true} active />
+            </div>
+            <div className="flex justify-between">
+              <Skeleton.Image style={{ height: 200, width: 200 }} active />
+              <Skeleton.Image style={{ height: 200, width: 200 }} active />
+              <Skeleton.Image style={{ height: 200, width: 200 }} active />
+              <Skeleton.Image style={{ height: 200, width: 200 }} active />
+              <Skeleton.Image style={{ height: 200, width: 200 }} active />
+              <Skeleton.Image style={{ height: 200, width: 200 }} active />
+            </div>
+          </div>
+          <div className="flex lg:hidden h-[2000px] p-12 flex-col items-center gap-[1400px]">
+            <div className="flex">
+              <div className="w-5/6 m-auto">
+                <Skeleton.Image active />
+              </div>
+              <Skeleton loading={true} active />
+            </div>
+            <div className="grid grid-cols-2 gap-12">
+              <Skeleton.Image active />
+              <Skeleton.Image active />
+              <Skeleton.Image active />
+              <Skeleton.Image active />
+              <Skeleton.Image active />
+              <Skeleton.Image active />
+            </div>
+          </div>
+        </>
       ) : (
         <div className="flex justify-between">
           <div className="w-full flex flex-col items-center gap-4 p-2">
