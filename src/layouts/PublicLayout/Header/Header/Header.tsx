@@ -19,14 +19,8 @@ export function Header() {
   const [search, setSearch] = useState<string>("");
   const { GetSearchResult, SearchResults } = useGetSearchResult();
   const [categorySearch, setCategorySearch] = useState<string>("All");
-  const {
-    categorys,
-    ProductsCount,
-    setOpenLocationModal,
-    openLocationModal,
-    location,
-    zipCode,
-  } = useGlobalProvider();
+  const { categorys, ProductsCount, setOpenLocationModal, location, zipCode } =
+    useGlobalProvider();
   const [show, setshow] = useState<boolean>(false);
   const [showRespInput, setshowRespInput] = useState<boolean>(false);
 
@@ -79,6 +73,14 @@ export function Header() {
   const removeInput = () => {
     setshow(false);
     setshowRespInput(false);
+  };
+
+  const handleKeyDown = (event: { key: string }) => {
+    if (event.key === "Enter") {
+      if (SearchResults?.length !== 0) {
+        hanldeSearchValue(categorySearch, `productName=${search}`, 1);
+      }
+    }
   };
 
   return (
@@ -144,6 +146,7 @@ export function Header() {
               })}
             </select>
             <Input
+              onKeyDown={handleKeyDown}
               value={search}
               onChange={handleInputChange}
               className="ml-5 hidden lg:block"
@@ -217,6 +220,7 @@ export function Header() {
               })}
             </select>
             <Input
+              onKeyDown={handleKeyDown}
               value={search}
               onChange={handleInputChange}
               className="ml-5 h-[62px]"
