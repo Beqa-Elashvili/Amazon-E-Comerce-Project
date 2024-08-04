@@ -1,6 +1,6 @@
 import { useGetOneProduct } from "@src/hooks/useGetOneProduct";
 import { SProductPage } from "./SProductPage";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { Checkbox, Rate, Popover, Button, Skeleton } from "antd";
 import { useAddinCart } from "@src/hooks/useAddAndGetCart";
@@ -13,6 +13,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { UseGetCategoryProducts } from "@src/hooks/useGetCategoryProducts";
 import { TProducts } from "@src/providers/GlobalProvider/GlobalContext";
 import { FormattedMessage } from "react-intl";
+import { LocaleContext } from "@src/providers/LocaleProvaider/LocaleContext";
 
 export function OneProductPage() {
   const { getCategoryProducts } = UseGetCategoryProducts();
@@ -26,6 +27,7 @@ export function OneProductPage() {
   const [randomNumber, setRandomNumber] = useState<number>(0);
   const navigate = useNavigate();
   const { category, id } = useParams();
+  const { locale } = useContext(LocaleContext);
 
   const Brand = product?.title.split(" ").slice(0, 2).join(" ");
 
@@ -247,7 +249,11 @@ export function OneProductPage() {
                             icon={<FaCartArrowDown />}
                             onClick={() => handleAddtoCart(product.id)}
                           >
-                            Add Cart
+                            {locale === "en" ? (
+                              <>Add in Cart</>
+                            ) : (
+                              <>კალათაში დამატება</>
+                            )}
                           </Button>
                         ) : (
                           <>
@@ -256,21 +262,25 @@ export function OneProductPage() {
                               icon={<FaCartArrowDown />}
                               onClick={() => handleAddtoCart(product.id)}
                             >
-                              Add Cart
+                              {locale === "en" ? (
+                                <>Add in Cart</>
+                              ) : (
+                                <>კალათაში დამატება</>
+                              )}
                             </Button>
                             {product.salePrice !== null ? (
                               <Button
                                 onClick={() => hanldeBuy(product.salePrice)}
                                 className="mt-2 bg-orange-500"
                               >
-                                Buy Now
+                                {locale === "en" ? <>Buy Now</> : <>ყიდვა</>}
                               </Button>
                             ) : (
                               <Button
                                 onClick={() => hanldeBuy(product.price)}
                                 className="mt-2 bg-orange-500"
                               >
-                                Buy Now
+                                {locale === "en" ? <>Buy Now</> : <>ყიდვა</>}
                               </Button>
                             )}
                           </>
