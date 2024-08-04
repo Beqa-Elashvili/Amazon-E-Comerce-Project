@@ -563,6 +563,14 @@ const Genders: TGender[] = [
 const EnCategorys: TEnCategorys[] = [
   {
     id: uuidv4(),
+    name: "Smartphones",
+  },
+  {
+    id: uuidv4(),
+    name: "Laptops",
+  },
+  {
+    id: uuidv4(),
     name: "Audio",
   },
   {
@@ -581,13 +589,10 @@ const EnCategorys: TEnCategorys[] = [
     id: uuidv4(),
     name: "Tables",
   },
+
   {
     id: uuidv4(),
-    name: "Laptops",
-  },
-  {
-    id: uuidv4(),
-    name: "Smartphones",
+    name: "Tools",
   },
 ];
 

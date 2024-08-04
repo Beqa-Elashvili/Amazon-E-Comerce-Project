@@ -12,7 +12,7 @@ export function CategoryShablons() {
       <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-2">
         <div className="relative">
           <img src="\Images\onFloImages\imageSix.jpg" alt="img" />
-          <h2 onClick={() => handleCategory("TV | მონიტორები")}>
+          <h2 className="text-center" onClick={() => handleCategory("TV | მონიტორები")}>
             TV | Monitores
           </h2>
         </div>
@@ -22,21 +22,25 @@ export function CategoryShablons() {
         </div>
         <div className="relative">
           <img src="\Images\onFloImages\ImageFour.webp" alt="img" />
-          <h2 onClick={() => handleCategory("ფოტო | ვიდეო")}>Photo | Video</h2>
+          <h2 className="text-center" onClick={() => handleCategory("ფოტო | ვიდეო")}>Photo | Video</h2>
         </div>
         <div className="relative">
           <img src="\Images\onFloImages\imageFive.jpg" alt="img" />
           <h2 onClick={() => handleCategory("აუდიო")}>Audio</h2>
         </div>
       </div>
-      <div className=" block lg:hidden grid grid-cols-2 md:grid-cols-2  gap-x-12 gap-y-2">
+      <div className="block lg:hidden grid grid-cols-2 md:grid-cols-2  gap-x-12 gap-y-2">
         <div className="relative">
           <img src="\Images\onFloImages\imageOne.jpg" alt="img" />
-          <h2 onClick={() => handleCategory("სმარტფონები")}>Smartphones</h2>
+          <h2 className="text-2xl" onClick={() => handleCategory("სმარტფონები")}>Smartphones</h2>
         </div>
         <div className="relative">
           <img src="\Images\onFloImages\imageEleven.webp" alt="img" />
           <h2 onClick={() => handleCategory("ლეპტოპები")}>Laptops</h2>
+        </div>
+        <div className="relative">
+          <img src="\Images\onFloImages\imageTwo.jpg" alt="img" />
+          <h2 onClick={() => handleCategory("გეიმინგი")}>Gaming</h2>
         </div>
         <div className="relative">
           <img src="\Images\onFloImages\imageTwo.jpg" alt="img" />

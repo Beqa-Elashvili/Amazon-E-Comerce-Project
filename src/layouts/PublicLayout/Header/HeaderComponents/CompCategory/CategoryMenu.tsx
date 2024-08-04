@@ -44,6 +44,9 @@ export function CategoryButtons() {
         case "Smartphones":
           Tranlatecategory = "სმარტფონები";
           break;
+        case "Tools":
+          Tranlatecategory = "ხელსაწყოები";
+          break;
       }
     }
     navigate(
