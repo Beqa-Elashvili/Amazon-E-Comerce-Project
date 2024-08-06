@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { SPurchasePage } from "./SPurchasePage";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import Input from "antd/es/input/Input";
-import { Select, Checkbox, Skeleton, Button, Divider, Modal } from "antd";
+import { Select, Checkbox, Skeleton, Button, Modal } from "antd";
 import { MdOutlineRotateRight } from "react-icons/md";
 import React from "react";
 import Cards, { Focused } from "react-credit-cards";
@@ -84,14 +84,12 @@ export function PurchasePage() {
   type PaymentState = {
     cvc: string;
     expiry: string;
-    focus: Focused | undefined | string;
+    focus: Focused | undefined;
     name: string;
     number: string;
   };
 
-  const handleInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    setState({ ...state, focus: e.target.name });
-  };
+
 
   const handleInputChange = (e: {
     target: { name: string; value: string };
@@ -368,7 +366,7 @@ export function PurchasePage() {
                         name="number"
                         placeholder="Card Number"
                         onChange={handleInputChange}
-                        onFocus={handleInputFocus}
+                        // onFocus={handleInputFocus}
                       />
                       <Input
                         type="text"
@@ -377,7 +375,7 @@ export function PurchasePage() {
                         className="mt-1 w-3/5"
                         placeholder="Name"
                         onChange={handleInputChange}
-                        onFocus={handleInputFocus}
+                        // onFocus={handleInputFocus}
                       />
 
                       <Input
@@ -387,7 +385,7 @@ export function PurchasePage() {
                         className="mt-1 w-4/6"
                         placeholder="MM/YY Expiry"
                         onChange={handleInputChange}
-                        onFocus={handleInputFocus}
+                        // onFocus={handleInputFocus}
                       />
 
                       <Input
@@ -397,7 +395,7 @@ export function PurchasePage() {
                         className="mt-1 w-5/6"
                         placeholder="CVC"
                         onChange={handleInputChange}
-                        onFocus={handleInputFocus}
+                        // onFocus={handleInputFocus}
                       />
                     </form>
                   </div>
