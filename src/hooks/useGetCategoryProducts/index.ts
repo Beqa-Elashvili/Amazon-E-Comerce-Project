@@ -1,1 +1,1 @@
-export { UseGetCategoryProducts } from "./UseGetCategoryProducts";
+export { UseGetCategoryProducts } from "./useGetCategoryProducts";
