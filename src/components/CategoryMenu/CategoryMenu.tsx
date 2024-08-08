@@ -6,6 +6,7 @@ import { SmenuImages } from "./SglobalProducts";
 import { useGlobalProvider } from "@src/providers/GlobalProvider";
 import { usePriceFilter } from "@src/hooks/usePriceFilter";
 import { useNavigate, useParams } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 
 export function CategoryMenu() {
   const { categorys, collapsed, setCollapsed } = useGlobalProvider();
@@ -62,7 +63,6 @@ export function CategoryMenu() {
   useEffect(() => {
     if (collapsed === false) {
       setCollapsed(true);
-      console.log("fddf");
     }
   }, [categoryName]);
 
@@ -88,7 +88,7 @@ export function CategoryMenu() {
           items={items}
         />
         {!collapsed && (
-          <div className="px-2">
+          <div className="p-2">
             <div className="bg-white p-2 rounded-xl mt-2">
               <div className="flex justify-between text-red-600">
                 <p>MIN</p>
@@ -110,6 +110,12 @@ export function CategoryMenu() {
                 {sliderValue[1]} $
               </div>
             </div>
+            <button
+              onClick={() => setSliderValue([0, 0])}
+              className="text-center border-none text-lg bg-yellow-500 w-full cursor-pointer p-4 rounded-xl"
+            >
+              <FormattedMessage id="Clear" defaultMessage={"Clear"} />
+            </button>
           </div>
         )}
       </div>

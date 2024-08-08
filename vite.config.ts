@@ -11,4 +11,14 @@ export default defineConfig({
       },
     }),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "react-vendors": ["react", "react-dom"],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 700,
+  },
 });

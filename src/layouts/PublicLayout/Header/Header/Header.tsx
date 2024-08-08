@@ -88,7 +88,7 @@ export function Header() {
       <SHeader className="bg-gray-900">
         <button className="p-1" onClick={() => navigate("/")}>
           <img
-            src="/IMages/amazon logo.png"
+            src="/public/images/amazon logo.png"
             alt="amazon Logo"
             className="w-28 h-50 p-1"
           />

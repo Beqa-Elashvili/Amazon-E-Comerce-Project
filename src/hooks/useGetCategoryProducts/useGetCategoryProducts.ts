@@ -9,14 +9,12 @@ export function UseGetCategoryProducts() {
     categoryProducts,
     setSliderValue,
     setProductsSlider,
-    productsSlider
   } = useGlobalProvider();
   const [loading, setLoading] = useState<boolean>(false);
   const { categoryName, productName, page: pageParam } = useParams();
   const page = Number(pageParam);
   const [dataTotal, setDataTotal] = useState<number>(15);
   const pageSize = 10;
-
 
   async function getCategoryProducts(
     category: string,
@@ -33,17 +31,18 @@ export function UseGetCategoryProducts() {
         setDataTotal(resp.data.total);
         setCategoryProducts(resp.data.products);
         return;
-      }
-      const resp = await BaseAxios.get(
-        `/product?categoryName=${category}&page=${page}&pageSize=${pageSize}&${productName}`
-      );
-      setDataTotal(resp.data.total);
-      setCategoryProducts(resp.data.products);
+      } else {
+        const resp = await BaseAxios.get(
+          `/product?categoryName=${category}&page=${page}&pageSize=${pageSize}&${productName}`
+        );
+        setDataTotal(resp.data.total);
+        setCategoryProducts(resp.data.products);
 
-      if (categoryName && productName === "productName" && page === 1) {
-        setProductsSlider(resp.data.products);
+        if (categoryName && productName === "productName" && page === 1) {
+          setProductsSlider(resp.data.products);
+        }
+        setLoading(false);
       }
-      setLoading(false);
     } catch (error) {
       console.error("Get Category Products Failed");
       alert("Get Category Products Failed");
