@@ -52,7 +52,7 @@ export function Register(): JSX.Element {
       setAuthData(resp.data as TAuthTokens);
       navigate("/login");
     } catch (error: any) {
-      alert(error.response?.data?.message[0].message);
+      alert(error.response?.data?.message);
     } finally {
       setAuthLoading(false);
     }

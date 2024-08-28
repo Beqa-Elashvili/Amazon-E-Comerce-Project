@@ -8,10 +8,11 @@ import { useGlobalProvider } from "@src/providers/GlobalProvider";
 
 export function UserAvatar() {
   const navigate = useNavigate();
-  const { selectedGender } = useGlobalProvider();
+  const { selectedGender, setCartProducts } = useGlobalProvider();
   const { authStatus, userData, logout } = useAuthProvider();
 
   const hanldeLogOut = () => {
+    setCartProducts([]);
     logout();
     navigate("/");
   };
